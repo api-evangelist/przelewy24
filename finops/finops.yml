@@ -1,0 +1,110 @@
+name: Przelewy24 FinOps
+description: >-
+  Financial operations guidance for Przelewy24 API integration. Covers
+  transaction costs, settlement timing, currency handling, refund windows,
+  and cost optimization strategies for merchants using the Przelewy24
+  payment gateway.
+costs:
+  activation:
+    amount: 59.00
+    currency: PLN
+    refundable: true
+    refundCondition: At least 10 transactions completed within the first two months
+
+  monthlySubscription:
+    amount: 0.00
+    currency: PLN
+    note: No monthly or annual subscription fees
+
+  integration:
+    amount: 0.00
+    currency: PLN
+    note: No integration or setup fees beyond the activation fee
+
+  perTransactionFees:
+    - paymentMethod: Online bank transfer
+      commissionRate: '1.90%'
+      minimumFee: null
+      currency: PLN
+
+    - paymentMethod: Card payments (Visa, Mastercard)
+      commissionRate: '1.29%'
+      fixedFee: 0.30
+      currency: PLN
+
+    - paymentMethod: BLIK
+      commissionRate: '1.90%'
+      currency: PLN
+
+    - paymentMethod: Google Pay
+      commissionRate: '1.90%'
+      currency: PLN
+
+    - paymentMethod: Prepaid cards
+      commissionRate: Variable
+      note: Contact Przelewy24 for prepaid card fee schedule
+
+  withdrawalFees:
+    - tier: First 4 per month
+      amount: 0.00
+      currency: PLN
+    - tier: Each additional beyond 4 per month
+      amount: 0.99
+      currency: PLN
+
+  refunds:
+    fee: No explicit refund fee documented publicly
+    window: Up to 180 days post-transaction
+    settlement: Immediate upon processing
+    note: >-
+      Original transaction commission is typically not returned on refunds.
+      Verify current refund commission policy with Przelewy24 support.
+
+settlement:
+  options:
+    - type: Daily
+      description: Funds settled to merchant bank account daily
+    - type: Weekly
+      description: Funds settled to merchant bank account weekly
+  currencies:
+    - PLN
+    - EUR
+  note: >-
+    Settlement currency and schedule can be configured in the Przelewy24
+    merchant administration panel.
+
+costOptimization:
+  - strategy: Card Payment Promo
+    description: >-
+      New merchants may qualify for 0% commission on Visa and Mastercard
+      payments for 12 months or up to PLN 50,000 turnover through the
+      Polska Bezgotówkowa program.
+    url: https://www.przelewy24.pl/en/offer/commissions-and-fees
+
+  - strategy: Minimize Extra Withdrawals
+    description: >-
+      Keep monthly bank withdrawals to 4 or fewer to avoid the PLN 0.99
+      fee per additional withdrawal.
+
+  - strategy: Volume Negotiation
+    description: >-
+      High-volume merchants should contact Przelewy24 sales to negotiate
+      lower per-transaction commission rates.
+    url: https://www.przelewy24.pl/en/start-cooperation
+
+  - strategy: Cache Payment Methods
+    description: >-
+      Cache the /api/v1/payment/methods response locally for at least
+      one hour to reduce API call volume and latency.
+
+  - strategy: Refund Timing
+    description: >-
+      Process refunds promptly; the 180-day window provides flexibility
+      but refunds tied to disputed transactions should be handled within
+      chargeback timeframes.
+
+monitoring:
+  adminPanel: https://panel.przelewy24.pl/
+  sandboxPanel: https://sandbox.przelewy24.pl/panel
+  reportingAPI: https://developers.przelewy24.pl/extended/
+  statusPage: https://status.przelewy24.pl/

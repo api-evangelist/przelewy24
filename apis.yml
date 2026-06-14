@@ -1,0 +1,163 @@
+name: Przelewy24
+description: >-
+  Przelewy24 is Poland's leading online payment gateway, providing REST APIs
+  for bank transfer payments, card processing, BLIK mobile payments, and
+  multi-currency payment processing for e-commerce merchants. With 91% brand
+  recognition among Polish online customers, the platform connects merchants
+  to over 165 Polish banks and supports payment methods including online bank
+  transfers, credit and debit cards, BLIK, Google Pay, digital wallets, and
+  prepaid cards. The API supports PLN and EUR currencies and enables
+  transaction registration, payment verification, refunds, and real-time
+  webhook notifications for payment events.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Payments
+  - Payment Gateway
+  - Bank Transfer
+  - BLIK
+  - Card Payments
+  - E-Commerce
+  - Poland
+  - Polish
+  - Multi-Currency
+  - Fintech
+apis:
+  - name: Przelewy24 REST API
+    description: >-
+      The Przelewy24 REST API (v1) provides endpoints for registering and
+      verifying payment transactions, retrieving available payment methods,
+      processing card payments with optional 3D Secure authentication,
+      initiating refunds, and querying transaction details by session ID.
+      Authentication uses HTTP Basic Auth with the merchant's POS ID and API
+      key, and transaction integrity is secured via SHA-384 signatures using
+      the merchant CRC key.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.przelewy24.pl/
+    baseURL: https://secure.przelewy24.pl/api/v1
+    tags:
+      - Payments
+      - Bank Transfer
+      - BLIK
+      - Card Payments
+      - Refunds
+      - Multi-Currency
+    properties:
+      - type: Documentation
+        url: https://developers.przelewy24.pl/
+      - type: Sandbox
+        url: https://sandbox.przelewy24.pl/api/v1
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/openapi.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    contact:
+      - FN: Przelewy24 Developer Support
+        url: https://www.przelewy24.pl/en/help-center/api-technical-support
+        email: ''
+
+  - name: Przelewy24 Marketplace API
+    description: >-
+      The Przelewy24 Marketplace API extends the core payment gateway for
+      marketplace and platform use cases, enabling split payments between
+      marketplace operators and sellers, multi-vendor transaction routing,
+      and seller onboarding workflows. It supports the distribution of funds
+      to multiple beneficiaries within a single transaction.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.przelewy24.pl/marketplace/
+    baseURL: https://secure.przelewy24.pl/api/v1
+    tags:
+      - Marketplace
+      - Split Payments
+      - Multi-Vendor
+      - Platform Payments
+    properties:
+      - type: Documentation
+        url: https://developers.przelewy24.pl/marketplace/
+    contact:
+      - FN: Przelewy24 Developer Support
+        url: https://www.przelewy24.pl/en/help-center/api-technical-support
+        email: ''
+
+  - name: Przelewy24 Extended API
+    description: >-
+      The Przelewy24 Extended API provides additional payment capabilities
+      beyond the standard REST API, including advanced reporting, batch
+      operations, recurring payment handling, and access to extended
+      transaction data. It is intended for enterprise merchants requiring
+      deeper integration with Przelewy24's payment infrastructure.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.przelewy24.pl/extended/
+    baseURL: https://secure.przelewy24.pl/api/v1
+    tags:
+      - Reporting
+      - Recurring Payments
+      - Enterprise
+      - Batch Processing
+    properties:
+      - type: Documentation
+        url: https://developers.przelewy24.pl/extended/
+    contact:
+      - FN: Przelewy24 Developer Support
+        url: https://www.przelewy24.pl/en/help-center/api-technical-support
+        email: ''
+
+  - name: Przelewy24 Ekspres API
+    description: >-
+      The Przelewy24 Ekspres API provides fast-pay functionality for
+      registered Przelewy24 users, enabling one-click payments without
+      the need for customers to re-enter banking credentials. It streamlines
+      the checkout experience for returning customers who have previously
+      authenticated with Przelewy24.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.przelewy24.pl/ekspres/
+    baseURL: https://secure.przelewy24.pl/api/v1
+    tags:
+      - Fast Pay
+      - One-Click
+      - Express Payments
+    properties:
+      - type: Documentation
+        url: https://developers.przelewy24.pl/ekspres/
+    contact:
+      - FN: Przelewy24 Developer Support
+        url: https://www.przelewy24.pl/en/help-center/api-technical-support
+        email: ''
+
+common:
+  - type: Website
+    url: https://www.przelewy24.pl/en
+  - type: Developer Portal
+    url: https://developers.przelewy24.pl/
+  - type: Documentation
+    url: https://developers.przelewy24.pl/
+  - type: Sandbox
+    url: https://sandbox.przelewy24.pl/
+  - type: Pricing
+    url: https://www.przelewy24.pl/en/offer/commissions-and-fees
+  - type: Registration
+    url: https://www.przelewy24.pl/en/start-cooperation
+  - type: Support
+    url: https://www.przelewy24.pl/en/help-center/api-technical-support
+  - type: Blog
+    url: https://www.przelewy24.pl/en/news
+  - type: PaymentMethods
+    url: https://www.przelewy24.pl/en/payment-methods
+  - type: PartnerProgram
+    url: https://www.przelewy24.pl/en/partner-program
+  - type: Marketplace
+    url: https://www.przelewy24.pl/en/payment-solutions/marketplace
+  - type: StatusPage
+    url: https://status.przelewy24.pl/
+
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
+    email: info@apievangelist.com

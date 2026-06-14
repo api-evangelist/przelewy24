@@ -1,0 +1,79 @@
+name: Przelewy24 Plans
+description: >-
+  Przelewy24 operates on a merchant account model with per-transaction pricing.
+  There are no monthly subscription fees or integration fees. Merchants pay
+  commissions on each transaction, with rates varying by payment method.
+  A one-time refundable activation fee applies. Pricing is tailored via
+  direct agreement for high-volume merchants.
+plans:
+  - name: Standard Merchant Account
+    description: >-
+      The default Przelewy24 merchant plan with per-transaction fees and no
+      recurring subscription costs. Suitable for small to medium e-commerce
+      businesses. API access is included with all merchant accounts.
+    url: https://www.przelewy24.pl/en/offer/commissions-and-fees
+    activationFee:
+      amount: 59.00
+      currency: PLN
+      note: Refundable if at least 10 transactions are completed within the first two months
+    monthlyFee:
+      amount: 0.00
+      currency: PLN
+    integrationFee:
+      amount: 0.00
+      currency: PLN
+    transactionFees:
+      - method: Bank Transfer (online banking)
+        rate: 1.9%
+        currency: PLN
+        note: Standard commission for online bank transfer payments
+      - method: Card Payments (Visa/Mastercard)
+        rate: 1.29%
+        fixedFee: 0.30
+        fixedFeeCurrency: PLN
+        currency: PLN
+        note: Per-transaction card processing fee
+      - method: BLIK
+        rate: 1.9%
+        currency: PLN
+        note: Polish mobile payment commission rate
+      - method: Google Pay
+        rate: 1.9%
+        currency: PLN
+        note: Digital wallet payment commission
+    withdrawalFees:
+      - description: First 4 withdrawals per month to bank account
+        amount: 0.00
+        currency: PLN
+      - description: Each additional withdrawal beyond 4 per month
+        amount: 0.99
+        currency: PLN
+    promotions:
+      - name: Polska Bezgotówkowa Program
+        description: 0% commission on Visa and Mastercard card payments for 12 months
+        condition: Until 12 months pass or PLN 50,000 turnover is reached, whichever comes first
+        eligibility: New merchants qualifying under the Polska Bezgotówkowa government program
+    apiAccess: true
+    sandboxAccess: true
+    supportedCurrencies:
+      - PLN
+      - EUR
+    supportedPaymentMethods:
+      - Online bank transfers (165+ Polish banks)
+      - Credit cards (Visa, Mastercard)
+      - Debit cards
+      - BLIK
+      - Google Pay
+      - Prepaid cards
+      - Mobile banking transfers
+
+  - name: Enterprise / Custom Volume
+    description: >-
+      High-volume merchants can negotiate custom commission rates directly
+      with Przelewy24 sales. Rates may be lower than standard per-transaction
+      fees for merchants with significant monthly turnover.
+    url: https://www.przelewy24.pl/en/start-cooperation
+    note: Contact Przelewy24 sales for custom pricing
+    customPricing: true
+    apiAccess: true
+    sandboxAccess: true

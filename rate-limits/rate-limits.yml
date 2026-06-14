@@ -1,0 +1,59 @@
+name: Przelewy24 API Rate Limits
+description: >-
+  Przelewy24 does not publish explicit rate limit values in their public
+  developer documentation. API access is tied to merchant accounts and
+  subject to standard fair-use policies. High-volume merchants experiencing
+  throughput concerns should contact Przelewy24 technical support directly.
+  The following reflects publicly available information and general practices.
+rateLimits:
+  - scope: Transaction Registration
+    endpoint: /api/v1/transaction/register
+    method: POST
+    limit: Not publicly specified
+    note: >-
+      Merchants should implement exponential backoff and avoid burst request
+      patterns. Contact Przelewy24 technical support for throughput guidance.
+
+  - scope: Transaction Verification
+    endpoint: /api/v1/transaction/verify
+    method: PUT
+    limit: Not publicly specified
+    note: >-
+      Verification requests should be made once per webhook notification
+      received. Avoid polling this endpoint repeatedly for the same transaction.
+
+  - scope: Payment Methods Retrieval
+    endpoint: /api/v1/payment/methods
+    method: GET
+    limit: Not publicly specified
+    recommendation: >-
+      Cache payment methods responses locally for at least 1 hour to reduce
+      API calls. Payment method availability does not change frequently.
+
+  - scope: Refunds
+    endpoint: /api/v1/transaction/refund
+    method: POST
+    limit: Not publicly specified
+    timeWindow: Refunds available up to 180 days post-transaction
+
+  - scope: Test Access
+    endpoint: /api/v1/testAccess
+    method: GET
+    limit: Not publicly specified
+    note: For connectivity testing only; do not call in production transaction flows.
+
+  - scope: Card Endpoints
+    endpoint: /api/v1/card/*
+    method: POST
+    limit: Not publicly specified
+    note: >-
+      Card payment endpoints (pay, charge, chargeWith3ds, info) are subject
+      to PCI DSS compliance requirements in addition to standard rate limits.
+
+general:
+  authentication: HTTP Basic Auth (POS ID as username, API key as password)
+  signatureMethod: SHA-384 HMAC using CRC key
+  sandboxEnvironment: https://sandbox.przelewy24.pl/api/v1
+  productionEnvironment: https://secure.przelewy24.pl/api/v1
+  supportContact: https://www.przelewy24.pl/en/help-center/api-technical-support
+  documentation: https://developers.przelewy24.pl/
