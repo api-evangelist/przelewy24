@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AffiliatesResponse400",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error message",
+      "example": "Invalid merchant or affiliate id"
+    },
+    "code": {
+      "type": "integer",
+      "description": "Erroc code",
+      "example": 400
+    }
+  }
+}

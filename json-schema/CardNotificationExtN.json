@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardNotificationExtN",
+  "properties": {
+    "amount": {
+      "type": "integer",
+      "description": "Transaction amount"
+    },
+    "3ds": {
+      "type": "boolean",
+      "description": "Was 3D-Secure performed during payment?"
+    },
+    "method": {
+      "type": "integer",
+      "description": "Payment method ID"
+    },
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Transaction number assigned by P24 for oneclick sampling"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Unique identifier from merchant's system"
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "Error code"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error description"
+    },
+    "sign": {
+      "type": "string",
+      "description": "<br> Before calculating the sign value, it is necessary to convert the alphanumeric characters to diacritics.<br><br>Checksum of parameters:<br>{<font color = \"brown\">\"amount\":</font>int,<font color = \"brown\">\"3ds\":</font>boolean,<font color = \"brown\">\"method\":</font>int,<font color = \"brown\">\"orderId\":</font>int,<font color = \"brown\">\"sessionId\":</font>\"str\",<br/><font color = \"brown\">\"errorCode\":</font>\"str\",<font color = \"brown\">\"errorMessage\":</font>\"str\",<font color = \"brown\">\"crc\":</font>\"str\"} <br><br>Calculated with the use of SHA384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\""
+    }
+  }
+}

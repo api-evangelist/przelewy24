@@ -1,0 +1,11 @@
+{
+  "summary": "Example TransactionRefund201Item",
+  "value": {
+    "orderId": 1,
+    "sessionId": "example_sessionId",
+    "amount": 1,
+    "description": "example_description",
+    "status": true,
+    "message": "success"
+  }
+}

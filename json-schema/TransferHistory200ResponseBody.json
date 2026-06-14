@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransferHistory200ResponseBody",
+  "properties": {
+    "result": {
+      "description": "Comprises a table of objects of the transfer history or an empty table if no transfers have been found",
+      "items": {
+        "$ref": "#/components/schemas/HistoryOutObjectBody"
+      }
+    }
+  }
+}

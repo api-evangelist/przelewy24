@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionRegisterTtl",
+  "required": [
+    "merchantId",
+    "posId",
+    "sessionId",
+    "amount",
+    "currency",
+    "description",
+    "email",
+    "country",
+    "language",
+    "urlReturn",
+    "sign",
+    "ttl"
+  ],
+  "properties": {
+    "merchantId": {
+      "description": "Merchant identification number",
+      "type": "integer"
+    },
+    "posId": {
+      "description": "Shop identification number (defaults to merchant ID)",
+      "type": "integer"
+    },
+    "sessionId": {
+      "description": "Unique identifier from merchant's system",
+      "type": "string"
+    },
+    "amount": {
+      "description": "Transaction amount expressed in lowest currency unit, e.g. 1.23 PLN = 123",
+      "type": "integer"
+    },
+    "currency": {
+      "description": "Currency compatible with ISO, e.g. PLN",
+      "default": "PLN",
+      "type": "string",
+      "maxLength": 3
+    },
+    "description": {
+      "description": "Transaction description",
+      "type": "string",
+      "maxLength": 1024
+    },
+    "email": {
+      "description": "Customer's e-mail",
+      "type": "string",
+      "maxLength": 50
+    },
+    "client": {
+      "description": "Customer's first name and surname",
+      "type": "string",
+      "maxLength": 50
+    },
+    "address": {
+      "description": "Customer's address",
+      "type": "string",
+      "maxLength": 80
+    },
+    "zip": {
+      "description": "Customer's postal code",
+      "type": "string",
+      "maxLength": 10
+    },
+    "city": {
+      "description": "Customer's city",
+      "type": "string",
+      "maxLength": 50
+    },
+    "country": {
+      "description": "Country codes compatible with ISO, e.g. PL, DE, etc.",
+      "type": "string",
+      "default": "PL",
+      "maxLength": 2
+    },
+    "phone": {
+      "description": "Customer's telephone in the following format : 481321132123",
+      "type": "string",
+      "maxLength": 2
+    },
+    "language": {
+      "description": "One of following language codes according to ISO 639-1: bg, cs, de, en, es, fr, hr, hu, it, nl, pl, pt, se, sk, ro",
+      "type": "string",
+      "default": "pl"
+    },
+    "method": {
+      "description": "Payment method ID. List of payment methods provided in the panel or available through API",
+      "type": "integer",
+      "maxLength": 2
+    },
+    "urlReturn": {
+      "description": "URL address to which customer will be redirected when transaction is complete",
+      "type": "string",
+      "maxLength": 250
+    },
+    "urlStatus": {
+      "description": "URL address to which transaction status will be send",
+      "type": "string",
+      "maxLength": 250
+    },
+    "urlNotify": {
+      "description": "URL address to which notify message will be send",
+      "type": "string",
+      "maxLength": 250
+    },
+    "timeLimit": {
+      "description": "Time limit for transaction process 0 - no limit max. 99 (in minutes)",
+      "type": "integer"
+    },
+    "ttl": {
+      "description": "Time limit for transaction token 0 = max 31 days max. 44640 (in minutes)",
+      "type": "integer"
+    },
+    "channel": {
+      "description": " 1 - card + ApplePay + GooglePay, 2 - transfer, 4 - traditional transfer, 8 - N/A, 16 - all 24/7 \u2013 makes available all payment methods, 32 - use pre-payment, 64 \u2013 only pay-by-link methods, 128 \u2013 instalment payment forms, 256 \u2013 wallets, 4096 - card, 8192 - blik, 16384 - all methods except blik\n<p>To activate the specific channels, their values should be summed up.\n<p>Example: transfer and traditional transfer: channel=6",
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        4096,
+        8192,
+        16384
+      ]
+    },
+    "shipping": {
+      "description": "Delivery cost",
+      "type": "integer"
+    },
+    "transferLabel": {
+      "description": "Description forwarded to transfer's description (not in every payment methods). A parameter can contain values only \u200b\u200bin a range [a-z A-Z 0-9 \u0119\u00f3\u0142\u015b\u0105\u017c\u017a\u0107\u0144\u0118\u00d3\u0141\u015a\u0104\u017b\u0179\u0106\u0143 . / :- ]",
+      "type": "string",
+      "maxLength": 20
+    },
+    "sdkVersion": {
+      "description": "Version of mobile library. Determines if transaction is mobile",
+      "type": "string"
+    },
+    "sign": {
+      "description": "<br>Checksum of parameters:<br> {<font color = \"brown\">\"sessionId\":</font>\"str\",<font color = \"brown\">\"merchantId\":</font>int,<font color = \"brown\">\"amount\":</font>int,<font color = \"brown\">\"currency\":</font>\"str\",<font color = \"brown\">\"crc\":</font>\"str\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\"",
+      "type": "string"
+    },
+    "encoding": {
+      "description": "Coding system for characters sent: ISO-8859-2, UTF-8, Windows-1250",
+      "type": "string"
+    },
+    "cart": {
+      "description": "cart",
+      "type": "array",
+      "items": null,
+      "$ref": "#/components/schemas/CartParameters"
+    },
+    "methodRefId": {
+      "description": "Special parameter for some payment flows e.g. BLIK and Card one-click.",
+      "type": "string"
+    }
+  }
+}

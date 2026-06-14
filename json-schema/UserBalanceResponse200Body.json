@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UserBalanceResponse200Body",
+  "properties": {
+    "balance": {
+      "description": "Object representing the account balance for a given wallet",
+      "items": {
+        "$ref": "#/components/schemas/BalanceObjectBody"
+      }
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix time stamp of the exact moment for which the results are presented"
+    }
+  }
+}

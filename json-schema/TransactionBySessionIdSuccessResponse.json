@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionBySessionIdSuccessResponse",
+  "properties": {
+    "data": {
+      "$ref": "#/components/schemas/TransactionBySessionIdResponse"
+    },
+    "responseCode": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "type": "object"
+}

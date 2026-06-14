@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example AuthorizationRequired",
+  "value": {
+    "error": "Incorrect authentication",
+    "code": 401
+  }
+}

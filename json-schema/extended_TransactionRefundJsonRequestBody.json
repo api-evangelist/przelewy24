@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_TransactionRefundJsonRequestBody",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Individual request ID",
+      "maxLength": 45
+    },
+    "refunds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/RefundRequestArrayDataBasic"
+      }
+    },
+    "refundsUuid": {
+      "type": "string",
+      "description": "Individual ID for a correct refund request in the merchant\u2019s system",
+      "maxLength": 35
+    },
+    "urlStatus": {
+      "type": "string",
+      "description": "Notification address for the refund batch transferred"
+    }
+  },
+  "required": [
+    "requestId",
+    "refunds",
+    "refundsUuid"
+  ]
+}

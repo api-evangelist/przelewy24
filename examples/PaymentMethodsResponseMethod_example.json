@@ -1,0 +1,18 @@
+{
+  "summary": "Example PaymentMethodsResponseMethod",
+  "value": {
+    "name": "example_name",
+    "id": 1,
+    "group": "example_group",
+    "subgroup": "example_subgroup",
+    "status": true,
+    "imgUrl": "https://example.com",
+    "mobileImgUrl": "https://example.com",
+    "mobile": true,
+    "availabilityHours": {
+      "mondayToFriday": "example_mondayToFriday",
+      "saturday": "example_saturday",
+      "sunday": "example_sunday"
+    }
+  }
+}

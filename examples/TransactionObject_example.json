@@ -1,0 +1,22 @@
+{
+  "summary": "Example TransactionObject",
+  "value": {
+    "settledAmount": 1,
+    "ordrId": 1,
+    "sessionId": "example_sessionId",
+    "status": 1,
+    "date": "example_date",
+    "dateOfTransaction": "example_dateOfTransaction",
+    "dateOfVerification": "example_dateOfVerification",
+    "clientEmail": "example_clientEmail",
+    "accountChecksum": "example_accountChecksum",
+    "paymentMethod": 1,
+    "description": "example_description",
+    "clientName": "example_clientName",
+    "clientAddress": "example_clientAddress",
+    "clientCity": "example_clientCity",
+    "clientZip": "example_clientZip",
+    "statement": "example_statement",
+    "fee": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example MerchantRegisterDataObject",
+  "value": {
+    "merchant_id": 1,
+    "link": "example_link"
+  }
+}

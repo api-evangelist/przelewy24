@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ApiKeyResponse400",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error message",
+      "example": "Invalid  affiliate"
+    },
+    "status": {
+      "type": "integer",
+      "description": "Status",
+      "example": 400
+    }
+  }
+}

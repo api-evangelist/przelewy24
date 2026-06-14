@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_Alternativekey",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/BlikOneClick"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "Token obtained during transaction registration request via <b><a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\">transaction/register</a></b>. <br> <br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br> In order to correctly charge the payer using the blikChargeByAlias method the <b>PSU</b> object must be sent in the <b>additional</b> object in the <b><a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\">transaction/register</a></b> request."
+        },
+        "type": {
+          "type": "string",
+          "description": "Send value \u201ealternativeKey\u201d"
+        },
+        "alternativeKey": {
+          "type": "string",
+          "description": "Value obtained as a response from chargeByAlias, when charging a token with \"type\" = \"alias\" where is assigned more than one banking application"
+        }
+      },
+      "required": [
+        "token",
+        "type",
+        "alternativeKey"
+      ]
+    }
+  ]
+}

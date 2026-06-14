@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionVerificationBody",
+  "properties": {
+    "merchantId": {
+      "description": "Merchant ID",
+      "type": "integer"
+    },
+    "posId": {
+      "description": "Shop identification number (defaults to merchant ID)",
+      "type": "integer"
+    },
+    "sessionId": {
+      "description": "Unique identifier from merchant's system",
+      "type": "string",
+      "maxLength": 100
+    },
+    "amount": {
+      "description": "Transaction amount which format is presented as amount in lowest currency unit, e.g. 1.23 PLN = 123",
+      "type": "integer"
+    },
+    "currency": {
+      "description": "Currency",
+      "type": "string",
+      "maxLength": 3,
+      "default": "PLN"
+    },
+    "orderId": {
+      "description": "Id of an order assigned by P24",
+      "type": "integer",
+      "format": "int64"
+    },
+    "sign": {
+      "description": "Checksum of parameters:<br> {<font color = \"brown\">\"sessionId\":</font>\"str\",<font color = \"brown\">\"orderId\":</font>int,<font color = \"brown\">\"amount\":</font>int,<font color = \"brown\">\"currency\":</font>\"str\",<font color = \"brown\">\"crc\":</font>\"str\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\"",
+      "type": "string"
+    }
+  },
+  "required": [
+    "posId",
+    "sessionId",
+    "amount",
+    "currency",
+    "orderId",
+    "sign",
+    "merchantId"
+  ]
+}

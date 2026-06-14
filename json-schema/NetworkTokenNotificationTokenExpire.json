@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NetworkTokenNotificationTokenExpire",
+  "type": "object",
+  "description": "Data on the validity of the token",
+  "properties": {
+    "month": {
+      "type": "integer",
+      "description": "Month",
+      "example": 2
+    },
+    "year": {
+      "type": "integer",
+      "description": "Year",
+      "example": 2028
+    }
+  }
+}

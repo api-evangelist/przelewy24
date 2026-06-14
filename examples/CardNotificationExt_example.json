@@ -1,0 +1,19 @@
+{
+  "summary": "Example CardNotificationExt",
+  "value": {
+    "amount": 1,
+    "3ds": false,
+    "method": 1,
+    "refId": "example_refId",
+    "orderId": 1,
+    "sessionId": "example_sessionId",
+    "bin": 1,
+    "maskedCCNumber": "example_maskedCCNumber",
+    "ccExp": "example_ccExp",
+    "hash": "example_hash",
+    "cardCountry": "PL",
+    "risk": 1,
+    "liabilityshift": false,
+    "sign": "example_sign"
+  }
+}

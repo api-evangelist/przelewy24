@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FundsResponse200",
+  "properties": {
+    "result": {
+      "type": "integer",
+      "description": "Amount of funds in polish groshes"
+    },
+    "code": {
+      "type": "integer",
+      "description": "Response code, 200 for correct",
+      "example": 200
+    }
+  }
+}

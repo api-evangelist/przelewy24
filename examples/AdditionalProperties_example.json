@@ -1,0 +1,7 @@
+{
+  "summary": "Example AdditionalProperties",
+  "value": {
+    "shipping": null,
+    "PSU": null
+  }
+}

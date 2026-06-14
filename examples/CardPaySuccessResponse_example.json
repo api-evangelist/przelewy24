@@ -1,0 +1,7 @@
+{
+  "summary": "Example CardPaySuccessResponse",
+  "value": {
+    "data": null,
+    "responseCode": 0
+  }
+}

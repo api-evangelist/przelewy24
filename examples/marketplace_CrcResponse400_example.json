@@ -1,0 +1,9 @@
+{
+  "summary": "Marketplace Example CrcResponse400",
+  "value": {
+    "data": [
+      {}
+    ],
+    "error": "Invalid merchant or affiliate id"
+  }
+}

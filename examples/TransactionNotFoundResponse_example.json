@@ -1,0 +1,7 @@
+{
+  "summary": "Example TransactionNotFoundResponse",
+  "value": {
+    "error": "Transaction not found",
+    "responseCode": 0
+  }
+}

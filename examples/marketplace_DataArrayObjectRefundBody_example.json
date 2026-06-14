@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example DataArrayObjectRefundBody",
+  "value": {
+    "spId": 0,
+    "spAmount": 1
+  }
+}

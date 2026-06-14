@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "p24": "https://developers.przelewy24.pl/vocab#",
+    "Payment": "schema:Payment",
+    "Transaction": "schema:OrderItem",
+    "merchantId": "p24:merchantId",
+    "posId": "p24:posId",
+    "sessionId": "p24:sessionId",
+    "amount": {
+      "@id": "schema:price",
+      "@type": "schema:Number"
+    },
+    "currency": {
+      "@id": "schema:priceCurrency"
+    },
+    "description": "schema:description",
+    "email": "schema:email",
+    "country": "schema:addressCountry",
+    "language": "schema:inLanguage",
+    "urlReturn": {
+      "@id": "schema:url"
+    },
+    "urlStatus": {
+      "@id": "p24:urlStatus"
+    },
+    "sign": "p24:sign",
+    "status": "schema:orderStatus",
+    "orderId": "schema:orderNumber",
+    "refund": "schema:refund",
+    "card": "schema:PaymentCard",
+    "blik": "p24:BlikPayment",
+    "transferLabel": "p24:transferLabel",
+    "channel": "p24:paymentChannel",
+    "method": "schema:paymentMethod",
+    "cart": "schema:ItemList",
+    "shipping": "schema:shippingDetails",
+    "phone": "schema:telephone",
+    "address": "schema:streetAddress",
+    "zip": "schema:postalCode",
+    "city": "schema:addressLocality",
+    "client": "schema:customer",
+    "seller": "schema:seller",
+    "marketplace": "p24:MarketplaceTransaction",
+    "split": "p24:SplitPayment"
+  }
+}

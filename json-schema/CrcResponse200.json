@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CrcResponse200",
+  "properties": {
+    "data": {
+      "description": "Object with crc key data",
+      "$ref": "#/components/schemas/CrcDataObject"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message, empty for correct",
+      "example": ""
+    }
+  }
+}

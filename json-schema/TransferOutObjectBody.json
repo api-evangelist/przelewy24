@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransferOutObjectBody",
+  "properties": {
+    "transferRequestId": {
+      "type": "string",
+      "description": "Query ID of a registered transfer, marked in <a href=\"#tag/Notifications-on-transfer-status\"><b>notifications</b></a> as type \u201epay\u201d"
+    },
+    "transferIds": {
+      "type": "array",
+      "description": "Table of registered transfers, marked in <a href=\"#tag/Notifications-on-transfer-status\"><b>notifications</b></a> as type \u201epayout\u201d",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "url": {
+      "type": "string",
+      "description": "The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid."
+    }
+  }
+}

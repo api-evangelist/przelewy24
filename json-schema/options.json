@@ -1,0 +1,601 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "options",
+  "properties": {
+    "lang": {
+      "type": "string",
+      "description": "Default form language",
+      "default": "pl",
+      "example": "pl"
+    },
+    "size": {
+      "type": "object",
+      "description": "Object that modifies the size of an iFrame",
+      "properties": {
+        "width": {
+          "type": "string",
+          "description": "Width",
+          "default": "500px",
+          "example": "500px"
+        },
+        "height": {
+          "type": "string",
+          "description": "Height",
+          "default": "500px",
+          "example": "500px"
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "description": "Object that modifies the labels of an fields",
+      "properties": {
+        "cardholder": {
+          "type": "string",
+          "description": "Text visible as the label of the cardholder field",
+          "example": "Name and surname of the card holder"
+        },
+        "card": {
+          "type": "string",
+          "description": "Text visible as the label of the card number field",
+          "example": "Card number"
+        },
+        "cvv": {
+          "type": "string",
+          "description": "Text visible as the label of the card's CVV/CVC number field",
+          "example": "Card CVV/CVC number"
+        },
+        "exp": {
+          "type": "string",
+          "description": "Text visible as the label of the card expiration date field",
+          "example": "Card expiration date"
+        }
+      }
+    },
+    "agreement": {
+      "type": "object",
+      "description": "An object that modifies the visibility and language of the TOS (Terms Of Services) field",
+      "properties": {
+        "contentEnabled": {
+          "type": "object",
+          "description": "An object that modifies the visibility of Terms Of Services elements",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Should information about regulations and information obligations be displayed?",
+              "example": true
+            },
+            "checkboxEnabled": {
+              "type": "boolean",
+              "description": "Should a checkbox be displayed confirming that you have read the regulations and the information obligation?",
+              "example": true
+            }
+          }
+        },
+        "TOSLanguage": {
+          "type": "string",
+          "description": "Defines in what language the Terms Of Services text will be displayed",
+          "example": "pl"
+        }
+      }
+    },
+    "placeholders": {
+      "type": "object",
+      "description": "Object that modifies text visible in individual elements",
+      "properties": {
+        "card": {
+          "type": "string",
+          "description": "Text visible in card element",
+          "example": "Enter your card number"
+        },
+        "cvv": {
+          "type": "string",
+          "description": "Text visible in cvv element",
+          "example": "Enter your card's CVV number"
+        },
+        "exp": {
+          "type": "string",
+          "description": "Text visible in the expire date element",
+          "example": "Enter your expired card's date"
+        },
+        "cardholder": {
+          "type": "string",
+          "description": "Text visible in cardholder element",
+          "example": "Enter the name and surname of the card holder"
+        }
+      }
+    },
+    "styles": {
+      "type": "object",
+      "description": "Conditions style modifying object",
+      "properties": {
+        "font": {
+          "type": "object",
+          "description": "Object that modifies form font",
+          "properties": {
+            "basic": {
+              "type": "object",
+              "description": "Default font configuration",
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "description": "Font size",
+                  "example": "24px"
+                },
+                "family": {
+                  "type": "string",
+                  "description": "Font family",
+                  "example": "Impact,Charcoal,sans-serif"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font weight",
+                  "example": "500"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Font color (possibility to indicate in HEX or words)",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "error": {
+              "type": "object",
+              "description": "Error font configuration",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Font color (possibility to indicate in HEX or words)",
+                  "example": "#000/black"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Grubo\u015b\u0107 czcionki",
+                  "example": "500"
+                }
+              }
+            },
+            "agreement": {
+              "type": "object",
+              "description": "Configuring the font for the TOS (Terms Of Services) field",
+              "properties": {
+                "family": {
+                  "type": "string",
+                  "description": "Font family",
+                  "example": "Impact,Charcoal,sans-serif"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Font color (possibility to indicate in HEX or words)",
+                  "example": "#000/black"
+                },
+                "size": {
+                  "type": "string",
+                  "description": "Font size",
+                  "example": "24px"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font weight",
+                  "default": "500",
+                  "example": "500"
+                },
+                "link": {
+                  "type": "string",
+                  "description": "Determines the font color of the link to the regulations and information obligation (can be indicated in HEX or in words)",
+                  "example": "#000/black"
+                },
+                "visited": {
+                  "type": "string",
+                  "description": "Determines the font color of the link to the regulations and information obligation that has already been visited (can be indicated in HEX or in words)",
+                  "example": "#000/black"
+                },
+                "active": {
+                  "type": "string",
+                  "description": "Determines the font color of the link to the regulations and information obligation, which the mouse cursor is currently on (can be indicated in HEX or in words)",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "focus": {
+              "type": "object",
+              "description": "Font configuration when activating an item",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Font color (possibility to indicate in HEX or words)",
+                  "example": "#000/black"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font weight",
+                  "example": "500"
+                }
+              }
+            },
+            "placeholders": {
+              "type": "object",
+              "description": "Font configuration for text visible in individual element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Font color (possibility to indicate in HEX or words)",
+                  "example": "#000/black"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font weight",
+                  "example": "500"
+                }
+              }
+            }
+          }
+        },
+        "colors": {
+          "type": "object",
+          "description": "Object that modifies the font color for a particular element",
+          "properties": {
+            "card": {
+              "type": "string",
+              "description": "Font color in card element",
+              "default": "#000/black",
+              "example": "#000/black"
+            },
+            "cvv": {
+              "type": "string",
+              "description": "Font color in cvv element",
+              "default": "#000/black",
+              "example": "#000/black"
+            },
+            "exp": {
+              "type": "string",
+              "description": "Font color in expiry date of card element",
+              "default": "#000/black",
+              "example": "#000/black"
+            },
+            "cardholder": {
+              "type": "string",
+              "description": "Font color in cardholder element",
+              "default": "#000/black",
+              "example": "#000/black"
+            },
+            "loader": {
+              "type": "object",
+              "description": "Loader color",
+              "properties": {
+                "primary": {
+                  "type": "string",
+                  "description": "Main color, static element",
+                  "default": "#000/black",
+                  "example": "#000/black"
+                },
+                "secondary": {
+                  "type": "string",
+                  "description": "Color of moving element",
+                  "default": "#000/black",
+                  "example": "#000/black"
+                }
+              }
+            }
+          }
+        },
+        "border": {
+          "type": "object",
+          "description": "Object that modifies the edge for a particular element",
+          "properties": {
+            "card": {
+              "type": "object",
+              "description": "Edge styles for card element",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge Type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge Color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge Thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            },
+            "cvv": {
+              "type": "object",
+              "description": "Edge styles for cvv element",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge Type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge Color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge Thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            },
+            "exp": {
+              "type": "object",
+              "description": "Edge styles for Expiry Date element",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge Type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge Color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge Thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            },
+            "form": {
+              "type": "object",
+              "description": "Edge styles for form element",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge Type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge Color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge Thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            },
+            "cardholder": {
+              "type": "object",
+              "description": "Border styles for tabholder element",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge Type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge Color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge Thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            }
+          }
+        },
+        "agreement_checkbox": {
+          "type": "object",
+          "description": "Object that modifies the colors of TOS (Terms Of Services) checkbox.",
+          "properties": {
+            "color": {
+              "type": "string",
+              "description": "The color of the checkbox border",
+              "example": "#000/black"
+            },
+            "colorInside": {
+              "type": "string",
+              "description": "The color of the checkbox background",
+              "example": "#000/black"
+            },
+            "colorSelected": {
+              "type": "string",
+              "description": "The color of the checkbox when selected",
+              "example": "#000/black"
+            },
+            "width": {
+              "type": "string",
+              "description": "The width and height of the checkbox",
+              "example": "15px"
+            }
+          }
+        },
+        "background": {
+          "type": "object",
+          "description": "Object that modifies the background color of a particular element",
+          "properties": {
+            "card": {
+              "type": "object",
+              "description": "Background color for card element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Background color",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "cvv": {
+              "type": "object",
+              "description": "Background color for CVV element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Background color",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "exp": {
+              "type": "object",
+              "description": "Background color for Expiry Date element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Background color",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "form": {
+              "type": "object",
+              "description": "Background color for form element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Background color",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "cardholder": {
+              "type": "object",
+              "description": "Background color for card holder element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Kolor t\u0142a",
+                  "example": "#000/black"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "buttons": {
+      "type": "object",
+      "description": "Object used for generating buttons with relevant styling. By default, the form gets generated without buttons. If you want the buttons to be visible, you must indicate them.",
+      "properties": {
+        "tokenize": {
+          "type": "object",
+          "description": "Button edges, labels and backgrounds styles",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Text visible on button",
+              "example": "Save card and pay"
+            },
+            "backgroundColor": {
+              "type": "string",
+              "description": "Button background color",
+              "example": "#000/black"
+            },
+            "border": {
+              "type": "object",
+              "description": "Button Edge Styles",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge Type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge Color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge Thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            }
+          }
+        },
+        "tokenize_temporary": {
+          "type": "object",
+          "description": "Button edges, labels and backgrounds styles",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Text visible on button",
+              "example": "Save card and pay"
+            },
+            "backgroundColor": {
+              "type": "string",
+              "description": "Button background color",
+              "example": "#000/black"
+            },
+            "border": {
+              "type": "object",
+              "description": "Button Edge Styles",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge Type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge Color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge Thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "label"
+      ]
+    }
+  }
+}

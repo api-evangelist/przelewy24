@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BalanceObjectBody",
+  "properties": {
+    "amount": {
+      "type": "integer",
+      "description": "The amount of the balance in the smallest denomination (grosz)"
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Currency in the form of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) code",
+      "example": "PLN"
+    }
+  }
+}

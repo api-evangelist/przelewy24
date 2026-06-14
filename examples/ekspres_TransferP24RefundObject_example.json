@@ -1,0 +1,10 @@
+{
+  "summary": "Ekspres Example TransferP24RefundObject",
+  "value": {
+    "sessionId": "example_sessionId",
+    "title": "example_title",
+    "currency": "example_currency",
+    "amount": 1,
+    "overrefund": false
+  }
+}

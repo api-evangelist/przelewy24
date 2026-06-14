@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NetworkTokenNotificationCard",
+  "type": "object",
+  "description": "Card data. </br><i>The object is sent if any of the following parameters change</i>",
+  "properties": {
+    "bin": {
+      "type": "string",
+      "description": "BIN value of the card",
+      "example": "564125"
+    },
+    "mask": {
+      "type": "string",
+      "description": "Card mask",
+      "example": "XXXX XXXX XXXX 1101"
+    },
+    "expire_date": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NetworkTokenNotificationCardExpireDate"
+        }
+      ]
+    }
+  }
+}

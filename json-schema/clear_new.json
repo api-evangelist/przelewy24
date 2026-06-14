@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "clear_new",
+  "properties": {
+    "card": {
+      "type": "integer",
+      "description": "Clearing the card number field"
+    },
+    "cvv": {
+      "type": "string",
+      "description": "Clearing the CVV/CVC field"
+    },
+    "exp": {
+      "type": "string",
+      "description": "Clear the card expiration date field"
+    },
+    "cardholder": {
+      "type": "string",
+      "description": "Clearing the first name and last name fields"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,7 @@
+{
+  "summary": "Example CardPayResponse409",
+  "value": {
+    "error": "Unable to make payment.",
+    "code": 0.0
+  }
+}

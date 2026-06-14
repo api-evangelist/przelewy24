@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "eventFailData",
+  "properties": {
+    "p24": {
+      "type": "boolean",
+      "description": "Indication of the message addressee"
+    },
+    "type": {
+      "type": "string",
+      "description": "Indication of message type",
+      "example": "fail"
+    },
+    "error": {
+      "type": "array",
+      "description": "An indication of the type of error",
+      "items": {
+        "type": "string",
+        "example": "invalidCardNumber"
+      }
+    }
+  }
+}

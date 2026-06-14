@@ -1,0 +1,7 @@
+{
+  "summary": "Example InvalidInputData",
+  "value": {
+    "error": "Invalid input data",
+    "code": 400
+  }
+}

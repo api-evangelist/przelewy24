@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "other",
+  "description": "recurring transaction",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/cardData"
+    },
+    {
+      "type": "object"
+    }
+  ],
+  "type": "object"
+}

@@ -1,0 +1,9 @@
+{
+  "summary": "Example HistoryResponse200Body",
+  "value": {
+    "data": null,
+    "token": "example_token",
+    "responseCode": 1,
+    "pageInformation": null
+  }
+}

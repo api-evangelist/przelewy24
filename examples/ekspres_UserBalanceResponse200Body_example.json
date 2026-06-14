@@ -1,0 +1,7 @@
+{
+  "summary": "Ekspres Example UserBalanceResponse200Body",
+  "value": {
+    "balance": null,
+    "timestamp": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PutPaymentRefundResponse",
+  "properties": {
+    "transferId": {
+      "type": "integer",
+      "description": "ID of refunded transfer"
+    },
+    "refundId": {
+      "type": "integer",
+      "description": "ID of refund (important for <a href=\"#tag/Notifications-on-transfer-status\"><b>notifications</b></a>)"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount of created refund in smallest denomination<br/><br/> 1000 = 10.00"
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Currency of created refund as ISO 4217 code"
+    }
+  }
+}

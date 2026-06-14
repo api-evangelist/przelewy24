@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example ApiKeyResponse400",
+  "value": {
+    "error": "Invalid  affiliate",
+    "status": 400
+  }
+}

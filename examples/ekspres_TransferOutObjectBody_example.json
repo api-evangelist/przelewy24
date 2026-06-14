@@ -1,0 +1,10 @@
+{
+  "summary": "Ekspres Example TransferOutObjectBody",
+  "value": {
+    "transferRequestId": "example_transferRequestId",
+    "transferIds": [
+      1
+    ],
+    "url": "https://example.com"
+  }
+}

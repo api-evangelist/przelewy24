@@ -1,0 +1,7 @@
+{
+  "summary": "Example GeneralErrorResponse",
+  "value": {
+    "error": "example_error",
+    "code": "example_code"
+  }
+}

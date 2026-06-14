@@ -1,0 +1,9 @@
+{
+  "summary": "Marketplace Example CrcResponse404",
+  "value": {
+    "data": [
+      {}
+    ],
+    "error": "Affiliate not found"
+  }
+}

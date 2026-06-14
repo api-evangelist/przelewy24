@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example ApiKeyResponse404",
+  "value": {
+    "error": "Affiliate not found",
+    "status": 404
+  }
+}

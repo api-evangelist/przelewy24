@@ -1,0 +1,11 @@
+{
+  "summary": "Example cardpayjson",
+  "value": {
+    "cardHolderLabel": "example_cardHolderLabel",
+    "cardNumberLabel": 1,
+    "cvvLabel": 1,
+    "expDateLabel": "example_expDateLabel",
+    "payButtonCaption": "example_payButtonCaption",
+    "threeDSAuthMessage": "example_threeDSAuthMessage"
+  }
+}

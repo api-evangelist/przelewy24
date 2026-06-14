@@ -1,0 +1,10 @@
+{
+  "summary": "Marketplace Example CrcResponse200",
+  "value": {
+    "data": {
+      "id": "example_id",
+      "crc": "example_crc"
+    },
+    "error": ""
+  }
+}

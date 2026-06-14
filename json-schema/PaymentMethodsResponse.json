@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PaymentMethodsResponse",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of payment method"
+    },
+    "id": {
+      "type": "integer",
+      "description": "Payment method ID"
+    },
+    "status": {
+      "type": "boolean",
+      "description": "Specifies whether a given method is active"
+    },
+    "imgUrl": {
+      "type": "string",
+      "description": "Link do grafiki"
+    },
+    "mobileImgUrl": {
+      "type": "string",
+      "description": "Link do grafiki mobilnej"
+    },
+    "mobile": {
+      "type": "boolean",
+      "description": "Czy forma p\u0142atno\u015bci jest dost\u0119pna mobilnie"
+    },
+    "availabilityHours": {
+      "$ref": "#/components/schemas/AvailabilityHoursResponse"
+    }
+  }
+}

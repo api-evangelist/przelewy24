@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_BatchObject",
+  "properties": {
+    "dateIn": {
+      "type": "string",
+      "description": "Date of creating batch. Format: \u201cYYYY-MM-DD HH:MM:SS\u201d"
+    },
+    "dateOut": {
+      "type": "string",
+      "description": "Date of withdrawal. Format: \u201cYYYY-MM-DD HH:MM:SS\u201d"
+    },
+    "batchId": {
+      "type": "integer",
+      "description": "Unique id of withdrawal"
+    },
+    "commision": {
+      "type": "integer",
+      "description": "Sum of commisions"
+    },
+    "charge": {
+      "type": "integer",
+      "description": "Charge"
+    },
+    "refund": {
+      "type": "integer",
+      "description": "Sum of refunds"
+    }
+  }
+}

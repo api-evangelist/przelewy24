@@ -1,0 +1,11 @@
+{
+  "summary": "Marketplace Example DispatchResult600ObjectArrayBody",
+  "value": {
+    "orderId": 1,
+    "orderIdNew": 1,
+    "sessionId": "example_sessionId",
+    "sellerId": 1,
+    "status": false,
+    "error": "Incorrect orderId or sessionId"
+  }
+}

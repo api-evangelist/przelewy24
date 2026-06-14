@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_UnauthorizedResponse",
+  "properties": {
+    "error": {
+      "type": "string",
+      "default": "Incorrect authentication",
+      "example": "Incorrect authentication"
+    },
+    "code": {
+      "type": "number",
+      "default": 401,
+      "example": 401
+    }
+  }
+}

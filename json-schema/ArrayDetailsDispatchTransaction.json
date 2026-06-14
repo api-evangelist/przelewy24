@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ArrayDetailsDispatchTransaction",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Identifier of dispatch transaction"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session's identifier of dispatch transaction"
+    },
+    "sellerId": {
+      "type": "integer",
+      "description": "Submerchant's id. The funds are going to be transferred to this submerchant"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount of transferred funds in polish groshes, e.g. 1 z\u0142 = 100 gr"
+    }
+  }
+}

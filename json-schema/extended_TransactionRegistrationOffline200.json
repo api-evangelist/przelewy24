@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_TransactionRegistrationOffline200",
+  "properties": {
+    "data": {
+      "properties": {
+        "orderId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique transaction ID assigned by P24"
+        },
+        "sessionId": {
+          "type": "string",
+          "description": "Unique ID assigned by the merchant\u2019s system"
+        },
+        "amount": {
+          "type": "integer",
+          "description": "Transaction amount"
+        },
+        "statement": {
+          "type": "string",
+          "description": "Full payment title"
+        },
+        "iban": {
+          "type": "string",
+          "description": "Number of account for payment"
+        },
+        "ibanOwner": {
+          "type": "string",
+          "description": "Name of payment recipient"
+        },
+        "ibanOwnerAddress": {
+          "type": "string",
+          "description": "Address of payment recipient"
+        }
+      },
+      "type": "object"
+    },
+    "responseCode": {
+      "type": "number",
+      "example": 0
+    }
+  }
+}

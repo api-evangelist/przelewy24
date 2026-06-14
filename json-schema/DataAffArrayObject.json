@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataAffArrayObject",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Merchant's id"
+    },
+    "name": {
+      "type": "string",
+      "description": "Merchant's name",
+      "example": "Sample Merchant Oddzia\u0142 Pozna\u0144"
+    },
+    "nip": {
+      "type": "string",
+      "description": "Merchant's NIP number"
+    },
+    "regon": {
+      "type": "string",
+      "description": "Merchant's REGON number"
+    },
+    "customerStatus": {
+      "type": "string",
+      "description": "Merchant's status",
+      "example": "Verified",
+      "enum": [
+        "Verified",
+        "Not verified"
+      ]
+    },
+    "extendedStatus": {
+      "type": "string",
+      "description": "Extended merchant's status",
+      "enum": [
+        "Inactive",
+        "Active",
+        "Blocked"
+      ]
+    }
+  }
+}

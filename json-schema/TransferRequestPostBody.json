@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransferRequestPostBody",
+  "properties": {
+    "transfer": {
+      "description": "Object of transfer",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TransferObjectBody"
+        }
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "Payment types available: wallet, p24, p24mobile",
+      "example": "wallet"
+    },
+    "express": {
+      "type": "boolean",
+      "description": "Default setting - True: <br/>True \u2013 upon payment, the transfer will be sent in the express mode,<br/> False \u2013 upon payment, the transfer will be sent in the elixir mode.",
+      "default": true,
+      "example": true
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Transfer currency in which the funds will be collected for specific payment types:<br/> wallet \u2013 funds will be collected from the wallet in a given currency;<br/> p24, p24mobile \u2013 the currency in which the client will pay in their funds,<br/>",
+      "example": "PLN"
+    },
+    "send": {
+      "type": "integer",
+      "description": "Values:<br/> 0 - none,<br/> 1 \u2013 send an email with the url to the recipient of the transfer ,<br/> 2 \u2013 send an email with the url to the sender of the transfer,<br/> 4 \u2013 send an email with a confirmation of completion to the recipient,<br/> 8 \u2013 send an email with a confirmation of completion to the sender.<br/> In order to choose, e.g. two options, provide the sum of the respective values: email with url to the sender + to the recipient + email with confirmation to the sender:<br/> 2 + 1 + 8 = 11 -> value to be provided",
+      "example": 11
+    },
+    "regulations": {
+      "type": "boolean",
+      "default": false,
+      "description": "Acceptance of Przelewy24 regulations: <br/>false \u2013 display consent on p24 website (default),<br/>true \u2013 consent granted, do not display.<br/>In case the \u201etrue\u201d parameter is sent, the consent \u2013 worded as follows \u2013 must be displayed on the Partner\u2019s website: \u201eI hereby state that I have read the [regulations](https://www.przelewy24.pl/regulamin) and [information obligation](https://www.przelewy24.pl/obowiazekinformacyjny) of \u201dPrzelewy24\u201d. <br/>Under words <i>regulations</i> and <i>information obligation</i> there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default."
+    },
+    "id": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "Unique transfer ID, UUID recommended"
+    },
+    "sign": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "Signature calculated separately for each transfer. For more information see <a href=\"#tag/Calculation-of-sign-parameter\"><b>Calculation of sign parameter</b></a>"
+    },
+    "label": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "<b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> Additional description in the transfer title.<br/><br/> Can be send in the object of transfer, in the <b>label</b> parameter. Value from the object overwirtes value from this parameter"
+    },
+    "ttl": {
+      "type": "integer",
+      "description": "<b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>Timestamp \u2013 date and time after which it will not be possible to pay the transaction<br/><br/>NOTE! For the parameter to work in P24 system, please send a request to partner@przelewy24.pl<br/>Example:<br/><br/> 1577833200 = 2020-01-01 00:00:00<br/>0 = no limit (as default)"
+    },
+    "paymentMethod": {
+      "type": "integer",
+      "description": "<b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> The payment method selected in P24, see <a href=\"#tag/Ekspres-P24-API/paths/~1express~1v1~1payment~1methods/get\"><b>v1/payment/methods</b></a>"
+    },
+    "returnUrl": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "<b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>The address to which the client will be redirected after processing the payment in Przelewy24.pl. By default, the client will return to the URL address generated upon transfer registration."
+    },
+    "sdkVersion": {
+      "type": "string",
+      "maxLength": 10,
+      "default": "3.0",
+      "description": "<b>Additional fields used solely for payments of the following type p24mobile.</b><br/> Mobile library version number must be provided. This parameter may be obtained directly from the library (iOS - class P24, Android - class P24SdkVersion). The default value sent is \u201e3.0\u201d."
+    }
+  },
+  "required": [
+    "transfer",
+    "type",
+    "currency",
+    "send",
+    "id",
+    "sign"
+  ]
+}

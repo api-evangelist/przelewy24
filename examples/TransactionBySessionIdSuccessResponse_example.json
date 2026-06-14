@@ -1,0 +1,26 @@
+{
+  "summary": "Example TransactionBySessionIdSuccessResponse",
+  "value": {
+    "data": {
+      "statement": "example_statement",
+      "orderId": 1,
+      "sessionId": "example_sessionId",
+      "status": 1,
+      "amount": 1,
+      "currency": "example_currency",
+      "date": "example_date",
+      "dateOfTransaction": "example_dateOfTransaction",
+      "clientEmail": "example_clientEmail",
+      "accountMD5": "example_accountMD5",
+      "paymentMethod": 1,
+      "description": "example_description",
+      "clientName": "example_clientName",
+      "clientAddress": "example_clientAddress",
+      "clientCity": "example_clientCity",
+      "clientPostcode": "example_clientPostcode",
+      "batchId": 1,
+      "fee": "example_fee"
+    },
+    "responseCode": 0.0
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "summary": "Marketplace Example MerchantRegisterResponse400",
+  "value": {
+    "error": "Incorrect parameter: phone_number | (contact_person)",
+    "code": 400,
+    "data": null
+  }
+}

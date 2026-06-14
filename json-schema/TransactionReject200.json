@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionReject200",
+  "properties": {
+    "data": {
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "success"
+        }
+      },
+      "type": "object"
+    },
+    "responseCode": {
+      "type": "string",
+      "example": "0"
+    }
+  }
+}

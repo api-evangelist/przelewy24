@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_RefundsCollection",
+  "properties": {
+    "batchId": {
+      "type": "integer"
+    },
+    "requestId": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "login": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer",
+      "example": 3,
+      "default": 3,
+      "description": "1 - completed,<br/>2 - pending,<br/>3 - awaiting P24's acceptance,<br/>4 - rejected"
+    },
+    "amount": {
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

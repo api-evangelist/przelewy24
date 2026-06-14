@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionRefund409Item",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Transaction order ID from Przelewy24"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Transaction session ID from the Partner\u2019s system"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount of refund"
+    },
+    "description": {
+      "type": "string",
+      "description": "Refund description"
+    },
+    "status": {
+      "type": "boolean",
+      "example": false,
+      "description": "Was refund attempt successful?"
+    },
+    "message": {
+      "type": "string",
+      "example": "The amount of refund exceeds available amount for the transaction",
+      "description": "Error message. Possible values:<br/><br/>\"Transaction not found\" - in case the transaction is not found, <br/><br/>\"Transaction in wrong status - cannot refund\" - in case the transaction is in wrong status, therefore the refundis not possible, <br/><br/>\"Insufficient funds available\" - in case there are not enough funds to execute the refund, <br/><br/>\"The amount of refund exceeds available amount for the transaction\" - in case the amount of the refund request exceeds available amount for the transaction"
+    }
+  }
+}

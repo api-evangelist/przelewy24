@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NetworkTokenNotificationCardExpireDate",
+  "type": "object",
+  "description": "Card expiry data",
+  "properties": {
+    "month": {
+      "type": "integer",
+      "description": "Month",
+      "example": 10
+    },
+    "year": {
+      "type": "integer",
+      "description": "Year",
+      "example": 2025
+    }
+  }
+}

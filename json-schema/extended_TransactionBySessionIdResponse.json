@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_TransactionBySessionIdResponse",
+  "properties": {
+    "statement": {
+      "type": "string",
+      "description": "Transfer title"
+    },
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Transaction ID"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Transaction ID assigned by Merchant"
+    },
+    "status": {
+      "type": "integer",
+      "description": "Transaction status. 0 - no payment, 1 - advance payment, 2 - payment made, 3 - payment returned"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Transaction amount"
+    },
+    "currency": {
+      "type": "string",
+      "default": "PLN",
+      "description": "Transaction currency"
+    },
+    "date": {
+      "type": "string",
+      "description": "Transaction registration date"
+    },
+    "dateOfTransaction": {
+      "type": "string",
+      "description": "Date of payment"
+    },
+    "clientEmail": {
+      "type": "string",
+      "description": "Customer's e-mail"
+    },
+    "accountMD5": {
+      "type": "string",
+      "description": "Customer's hashed bank account number"
+    },
+    "paymentMethod": {
+      "type": "integer",
+      "description": "Payment method ID"
+    },
+    "description": {
+      "type": "string",
+      "description": "Transaction description"
+    },
+    "clientName": {
+      "type": "string",
+      "description": "Customer's first name and surname"
+    },
+    "clientAddress": {
+      "type": "string",
+      "description": "Customer's address"
+    },
+    "clientCity": {
+      "type": "string",
+      "description": "Customer's city"
+    },
+    "clientPostcode": {
+      "type": "string",
+      "description": "Customer's zip code"
+    },
+    "batchId": {
+      "type": "integer",
+      "description": "Batch number in which the transaction was paid"
+    },
+    "fee": {
+      "type": "string",
+      "description": "Commission"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransferP24RefundObject",
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "Session ID in Przelewy24 system"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "Title of refund transaction"
+    },
+    "currency": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Currency in which refund will be executed as ISO 4217 code (currently available: EUR, PLN)"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount  of  created  refund  in  smallest denomination<br/> Example: \"100\" (1 PLN)"
+    },
+    "overrefund": {
+      "type": "boolean",
+      "default": false,
+      "description": "If  TRUE,  refund  will  be  executed <b>no matter if there was any other refunds executed for this transaction earlier</b>. It ignores error 2010.<br/><b>Default value is FALSE</b>"
+    }
+  },
+  "required": [
+    "sessionId",
+    "title",
+    "currency",
+    "amount"
+  ]
+}

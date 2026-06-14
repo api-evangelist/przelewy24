@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_BatchDetailsError400Body",
+  "properties": {
+    "code": {
+      "type": "string",
+      "example": 400
+    },
+    "error": {
+      "type": "string",
+      "example": "Value for field batch is invalid"
+    }
+  }
+}

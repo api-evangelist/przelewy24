@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_Transaction200Blik",
+  "properties": {
+    "data": {
+      "description": "Array of objects related to the BLIK alias",
+      "items": {
+        "$ref": "#/components/schemas/BlikAlias200"
+      }
+    },
+    "responseCode": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

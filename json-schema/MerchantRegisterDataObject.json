@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MerchantRegisterDataObject",
+  "properties": {
+    "merchant_id": {
+      "type": "integer",
+      "description": "Id of a new merchant"
+    },
+    "link": {
+      "type": "string",
+      "description": "Link - new merchant registration form"
+    }
+  }
+}

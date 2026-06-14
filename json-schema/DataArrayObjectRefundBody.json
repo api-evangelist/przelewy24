@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataArrayObjectRefundBody",
+  "properties": {
+    "spId": {
+      "type": "integer",
+      "description": "Merchant's ID. The given merchant will be charged with the refund",
+      "example": 0
+    },
+    "spAmount": {
+      "type": "integer",
+      "description": "The amount of funds, in polish groshes,to charge the merchant"
+    }
+  },
+  "required": [
+    "spId",
+    "spAmount"
+  ]
+}

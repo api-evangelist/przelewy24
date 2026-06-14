@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BlikOneClick",
+  "type": "object",
+  "required": [
+    "token",
+    "type"
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "alias": "#/components/schemas/Alias",
+      "alternativeKey": "#/components/schemas/Alternativekey"
+    }
+  },
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "Token obtained during transaction registration request via <b><a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\">transaction/register</a></b>. <br> <br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br> In order to correctly charge the payer using the blikChargeByAlias method the <b>PSU</b> object must be sent in the <b>additional</b> object in the <b><a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\">transaction/register</a></b> request."
+    },
+    "type": {
+      "type": "string"
+    },
+    "aliasValue": {
+      "type": "string",
+      "description": "<b> Warning! If you send the parameter it will result in overwriting the current value. </b> <br/> Unique alias of the user which can be used to charge client's next transactions. <br><br><b><font color = \"#DB2053\">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request."
+    },
+    "aliasLabel": {
+      "type": "string",
+      "description": "<b> Warning! If you send the parameter it will result in overwriting the current value. </b> <br/> Alias label displayed in the app. <br><br><b><font color = \"#DB2053\">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request."
+    },
+    "recurring": {
+      "description": null,
+      "$ref": "#/components/schemas/RecurringParamsIn"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_OverallObject",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/Batch"
+    },
+    {
+      "$ref": "#/components/schemas/Transaction"
+    },
+    {
+      "$ref": "#/components/schemas/Refund"
+    }
+  ],
+  "discriminator": {
+    "propertyName": "details"
+  }
+}

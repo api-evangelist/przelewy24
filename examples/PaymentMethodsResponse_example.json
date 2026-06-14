@@ -1,0 +1,16 @@
+{
+  "summary": "Example PaymentMethodsResponse",
+  "value": {
+    "name": "example_name",
+    "id": 1,
+    "status": false,
+    "imgUrl": "https://example.com",
+    "mobileImgUrl": "https://example.com",
+    "mobile": false,
+    "availabilityHours": {
+      "mondayToFriday": "example_mondayToFriday",
+      "saturday": "example_saturday",
+      "sunday": "example_sunday"
+    }
+  }
+}

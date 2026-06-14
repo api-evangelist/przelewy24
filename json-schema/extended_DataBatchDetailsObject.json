@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_DataBatchDetailsObject",
+  "properties": {
+    "overall": {
+      "description": "Batch overall information",
+      "items": null,
+      "$ref": "#/components/schemas/OverallObject"
+    },
+    "transactions": {
+      "description": "List of transactions",
+      "type": "array"
+    },
+    "refunds": {
+      "description": "List of refunds",
+      "type": "array"
+    }
+  }
+}

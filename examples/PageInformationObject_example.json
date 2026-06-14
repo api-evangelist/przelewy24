@@ -1,0 +1,8 @@
+{
+  "summary": "Example PageInformationObject",
+  "value": {
+    "recordsOnPage": 1,
+    "recordsAll": 1,
+    "pageCount": 1
+  }
+}

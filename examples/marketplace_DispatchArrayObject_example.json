@@ -1,0 +1,12 @@
+{
+  "summary": "Marketplace Example DispatchArrayObject",
+  "value": {
+    "date": "2020-03-27 15:18:38",
+    "orderId": 1,
+    "partner_id": 1,
+    "items": [
+      {}
+    ],
+    "amount": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "render_new",
+  "required": [
+    "type",
+    "id"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "form"
+      ],
+      "description": "Form type"
+    },
+    "id": {
+      "type": "string",
+      "example": "#card-form-block",
+      "description": "ID of the block in which the iFrame will be generated"
+    },
+    "options": {
+      "type": "object",
+      "description": "Additional form styling options"
+    }
+  },
+  "type": "object"
+}

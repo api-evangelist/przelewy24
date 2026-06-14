@@ -1,0 +1,12 @@
+{
+  "summary": "Example CartParameters",
+  "value": {
+    "sellerId": "example_sellerId",
+    "sellerCategory": "example_sellerCategory",
+    "name": "example_name",
+    "description": "example_description",
+    "quantity": 1,
+    "price": 1,
+    "number": "example_number"
+  }
+}

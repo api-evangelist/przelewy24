@@ -1,0 +1,7 @@
+{
+  "summary": "Example TransactionVerificationResponse",
+  "value": {
+    "data": null,
+    "responseCode": 0.0
+  }
+}

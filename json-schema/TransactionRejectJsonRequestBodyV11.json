@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionRejectJsonRequestBodyV11",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Transaction ID assigned by Przelewy24"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Unique ID from Partner\u2019s system"
+    },
+    "sign": {
+      "type": "string",
+      "description": "<br>Checksum of parameters:<br> {<font color = \"brown\">\"merchantId\":</font>int,<font color = \"brown\">\"orderId\":</font>int,<font color = \"brown\">\"sessionId\":</font>\"string\",<font color = \"brown\">\"crc\":</font>\"string\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\""
+    }
+  }
+}

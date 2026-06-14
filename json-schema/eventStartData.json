@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "eventStartData",
+  "properties": {
+    "p24": {
+      "type": "boolean",
+      "description": "Indication of the message addressee"
+    },
+    "type": {
+      "type": "string",
+      "description": "Indication of message type",
+      "example": "start"
+    }
+  }
+}

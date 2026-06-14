@@ -1,0 +1,9 @@
+{
+  "summary": "Marketplace Example MerchantExistsResponse404",
+  "value": {
+    "data": [
+      {}
+    ],
+    "error": "Affiliate not found"
+  }
+}

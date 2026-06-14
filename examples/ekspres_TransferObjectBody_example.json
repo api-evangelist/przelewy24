@@ -1,0 +1,15 @@
+{
+  "summary": "Ekspres Example TransferObjectBody",
+  "value": {
+    "iban": "example_iban",
+    "recipient": null,
+    "sender": null,
+    "label": "example_label",
+    "title": "example_title",
+    "amountOut": 1,
+    "currencyOut": "example_currencyOut",
+    "externalParam": "example_externalParam",
+    "confirmation": false,
+    "confirmationFilename": "string"
+  }
+}

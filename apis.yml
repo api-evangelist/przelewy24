@@ -81,6 +81,8 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.przelewy24.pl/marketplace/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/openapi/openapi-marketplace.yml
     contact:
       - FN: Przelewy24 Developer Support
         url: https://www.przelewy24.pl/en/help-center/api-technical-support
@@ -104,6 +106,8 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.przelewy24.pl/extended/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/openapi/openapi-extended.yml
     contact:
       - FN: Przelewy24 Developer Support
         url: https://www.przelewy24.pl/en/help-center/api-technical-support
@@ -126,6 +130,8 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.przelewy24.pl/ekspres/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/openapi/openapi-ekspres.yml
     contact:
       - FN: Przelewy24 Developer Support
         url: https://www.przelewy24.pl/en/help-center/api-technical-support

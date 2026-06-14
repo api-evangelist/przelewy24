@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_TransactionObject",
+  "properties": {
+    "settledAmount": {
+      "type": "integer",
+      "description": "Amount without commision"
+    },
+    "ordrId": {
+      "type": "integer",
+      "description": "Unique id of transaction"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Id of transaction used by merchant"
+    },
+    "status": {
+      "type": "integer",
+      "description": "Status of transaction: 0 \u2013 not paid, 1 \u2013 paid, 2 \u2013 paid and verified, 3 \u2013 payment returned"
+    },
+    "date": {
+      "type": "string",
+      "description": "Creation date of transaction. Format: \u201cYYYY-MM-DD HH:MM:SS\u201d"
+    },
+    "dateOfTransaction": {
+      "type": "string",
+      "description": "Transaction registration date"
+    },
+    "dateOfVerification": {
+      "type": "string",
+      "description": "Date of verification"
+    },
+    "clientEmail": {
+      "type": "string",
+      "description": "Client's email"
+    },
+    "accountChecksum": {
+      "type": "string",
+      "description": "Customer\u2019s hashed bank account number"
+    },
+    "paymentMethod": {
+      "type": "integer",
+      "description": "Payment method ID"
+    },
+    "description": {
+      "type": "string",
+      "description": "Transaction description"
+    },
+    "clientName": {
+      "type": "string",
+      "description": "Customer\u2019s first name and surname"
+    },
+    "clientAddress": {
+      "type": "string",
+      "description": "Customer's address"
+    },
+    "clientCity": {
+      "type": "string",
+      "description": "Customer's city"
+    },
+    "clientZip": {
+      "type": "string",
+      "description": "Customer's zip code"
+    },
+    "statement": {
+      "type": "string",
+      "description": "Payment title"
+    },
+    "fee": {
+      "type": "integer",
+      "descirption": "Commision"
+    }
+  }
+}

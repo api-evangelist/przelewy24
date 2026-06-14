@@ -1,0 +1,9 @@
+{
+  "summary": "Example BatchDetails200ResponseBody",
+  "value": {
+    "token": "example_token",
+    "responseCode": 1,
+    "pageInformation": null,
+    "data": null
+  }
+}

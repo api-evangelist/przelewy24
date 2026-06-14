@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionNotFoundResponse",
+  "properties": {
+    "error": {
+      "type": "string",
+      "default": "Transaction not found",
+      "example": "Transaction not found"
+    },
+    "responseCode": {
+      "type": "number",
+      "default": 0,
+      "example": 0
+    }
+  }
+}

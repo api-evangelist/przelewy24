@@ -1,0 +1,10 @@
+{
+  "summary": "Marketplace Example DispatchInfoResponse200",
+  "value": {
+    "data": {
+      "amountLeft": 1,
+      "dispatch": null
+    },
+    "responseCode": 0
+  }
+}

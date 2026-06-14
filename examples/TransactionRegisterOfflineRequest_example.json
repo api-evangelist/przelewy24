@@ -1,0 +1,6 @@
+{
+  "summary": "Example TransactionRegisterOfflineRequest",
+  "value": {
+    "token": "example_token"
+  }
+}

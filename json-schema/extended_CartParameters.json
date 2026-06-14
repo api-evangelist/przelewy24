@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_CartParameters",
+  "description": "Cart Parameters",
+  "type": "object",
+  "required": [
+    "sellerId",
+    "sellerCategory"
+  ],
+  "properties": {
+    "sellerId": {
+      "type": "string",
+      "description": "Shop ID on the part of Partner"
+    },
+    "sellerCategory": {
+      "type": "string",
+      "description": "Shop category"
+    },
+    "name": {
+      "type": "string",
+      "description": "Product name<br/><br/><font color=\"red\">Required for PayPal payment method</font>"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description<br/><br/><font color=\"red\">Required for PayPal payment method</font>"
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Product quantity<br/><br/><font color=\"red\">Required for PayPal payment method</font>"
+    },
+    "price": {
+      "type": "integer",
+      "description": "Product price<br/><br/><font color=\"red\">Required for PayPal payment method</font>"
+    },
+    "number": {
+      "type": "string",
+      "description": "Product number<br/><br/><font color=\"red\">Required for PayPal payment method</font>"
+    }
+  }
+}

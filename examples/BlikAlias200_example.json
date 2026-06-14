@@ -1,0 +1,9 @@
+{
+  "summary": "Example BlikAlias200",
+  "value": {
+    "value": "example_value",
+    "type": "example_type",
+    "status": "example_status",
+    "expirationDate": "example_expirationDate"
+  }
+}

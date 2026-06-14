@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example DispatchErrorObjectBody",
+  "value": {
+    "errorCode": 0,
+    "errorMessage": "Success, no error."
+  }
+}

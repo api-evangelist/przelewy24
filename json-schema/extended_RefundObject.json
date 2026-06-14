@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_RefundObject",
+  "properties": {
+    "refundId": {
+      "type": "integer",
+      "description": "Unique id of refund"
+    },
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "descirption": "Unique id of payment transaction"
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Unique request ID of refund. Empty when refund is done by P24 Panel."
+    },
+    "dateIn": {
+      "type": "string",
+      "description": "Refund registration date"
+    },
+    "dateOut": {
+      "type": "string",
+      "description": "Refund payout date"
+    },
+    "status": {
+      "type": "integer",
+      "descirption": "Status of refund: 1 \u2013 completed, 2 \u2013 pending, 3 \u2013 waiting to acceptance, 4 - rejected"
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional description of refund"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PageInformationObject",
+  "properties": {
+    "recordsOnPage": {
+      "type": "integer",
+      "description": "Amount records on current page"
+    },
+    "recordsAll": {
+      "type": "integer",
+      "description": "Amount of all records"
+    },
+    "pageCount": {
+      "type": "integer",
+      "description": "Amount of pages"
+    }
+  }
+}

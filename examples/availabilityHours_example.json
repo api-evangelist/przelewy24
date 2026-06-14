@@ -1,0 +1,8 @@
+{
+  "summary": "Example availabilityHours",
+  "value": {
+    "mondayToFriday": "example_mondayToFriday",
+    "saturday": "example_saturday",
+    "sunday": "example_sunday"
+  }
+}

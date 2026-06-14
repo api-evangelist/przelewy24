@@ -1,0 +1,10 @@
+{
+  "summary": "Example CardRegisterRequestBody",
+  "value": {
+    "transactionToken": "example_transactionToken",
+    "cardNumber": "example_cardNumber",
+    "cardDate": "example_cardDate",
+    "cvv": "example_cvv",
+    "clientName": "example_clientName"
+  }
+}

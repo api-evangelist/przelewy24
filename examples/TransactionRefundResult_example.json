@@ -1,0 +1,15 @@
+{
+  "summary": "Example TransactionRefundResult",
+  "value": {
+    "orderId": 1,
+    "sessionId": "example_sessionId",
+    "merchantId": 1,
+    "requestId": "example_requestId",
+    "refundsUuid": "example_refundsUuid",
+    "amount": 1,
+    "currency": "PLN",
+    "timestamp": 1,
+    "status": 0,
+    "sign": "example_sign"
+  }
+}

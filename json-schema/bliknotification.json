@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "bliknotification",
+  "properties": {
+    "data": {
+      "properties": {
+        "orderId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Order ID"
+        },
+        "sessionId": {
+          "type": "string",
+          "description": "Merchant session ID"
+        },
+        "method": {
+          "type": "integer",
+          "description": "Payment Method ID"
+        },
+        "result": {
+          "description": "Array of values",
+          "type": "object",
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "Error code - 0 for success"
+            },
+            "message": {
+              "type": "string",
+              "description": "Error message"
+            },
+            "status": {
+              "type": "string",
+              "description": "Transaction status"
+            },
+            "trxRef": {
+              "type": "string",
+              "description": "BLIK transaction reference number"
+            }
+          }
+        },
+        "sign": {
+          "type": "string",
+          "description": "<br>Checksum of parameters:<br> {<font color = \"brown\">\"orderId\":</font>int, <font color = \"brown\">\"sessionId\":</font>\"string\", <font color = \"brown\">\"method\":</font>int, <font color = \"brown\">\"result\":</font>array, <font color = \"brown\">\"crc\":</font>\"string\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\""
+        }
+      }
+    }
+  }
+}

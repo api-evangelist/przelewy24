@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_BatchDetails200ResponseBody",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "Token needed to request next page"
+    },
+    "responseCode": {
+      "type": "integer",
+      "description": "0 if correct"
+    },
+    "pageInformation": {
+      "description": "Array of page information",
+      "properties": {
+        "recordsOnPage": {
+          "type": "integer",
+          "description": "Amount records on current page"
+        },
+        "recordsAll": {
+          "type": "integer",
+          "description": "Amount of all records"
+        },
+        "pageCount": {
+          "type": "integer",
+          "description": "Amount of pages"
+        }
+      }
+    },
+    "data": {
+      "description": "Array of transactions, refunds and batch",
+      "items": {
+        "$ref": "#/components/schemas/DataBatchDetailsObject"
+      }
+    }
+  }
+}

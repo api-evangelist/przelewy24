@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionRefundResult",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the refunded transaction in P24 system"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "ID of the refunded transaction in Partner's system"
+    },
+    "merchantId": {
+      "type": "integer",
+      "description": "Merchant's ID of whose account the refund is performed"
+    },
+    "requestId": {
+      "type": "string",
+      "description": "ID of refund request provided in <a href=\"#tag/Dodatkowa-funkcjonalnosc-API/paths/~1api~1v1~1transaction~1refund/post\"><b>transaction/refund</b></a>"
+    },
+    "refundsUuid": {
+      "type": "string",
+      "description": "ID of refund request in Partner's system provided in <a href=\"#tag/Dodatkowa-funkcjonalnosc-API/paths/~1api~1v1~1transaction~1refund/post\"><b>transaction/refund</b></a>"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Refund amount expressed in lowest currency unit, e.g. 1.23 PLN = 123"
+    },
+    "currency": {
+      "type": "string",
+      "example": "PLN",
+      "description": "Refund currency"
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Time of sending the refund notification provided in UNIX timestamp"
+    },
+    "status": {
+      "type": "integer",
+      "description": "Status of the executed refund. 0 - completed, 1 - rejected",
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "sign": {
+      "type": "string",
+      "description": "<br>Checksum of parameters:<br> {<font color = \"brown\">\"orderId\":</font>int,<font color = \"brown\">\"sessionId\":</font>\"str\",<font color = \"brown\">\"refundsUuid\":</font>\"str\",<font color = \"brown\">\"merchantId\":</font>int,<font color = \"brown\">\"amount\":</font>int,<br/><font color = \"brown\">\"currency\":</font>\"str\",<font color = \"brown\">\"status\":</font>int,<font color = \"brown\">\"crc\":</font>\"str\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\""
+    }
+  }
+}

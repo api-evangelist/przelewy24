@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostTransferRefundBody",
+  "properties": {
+    "refund": {
+      "type": "object",
+      "description": "Refund object",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TransferP24RefundObject"
+        }
+      ]
+    },
+    "id": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "Unique transfer ID, UUID recommended"
+    },
+    "sign": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "Signature calculated separately for each transfer. For more information see <a href=\"#tag/Calculation-of-sign-parameter\"><b> sign parameter calculation</b></a>"
+    }
+  },
+  "required": [
+    "refund",
+    "id",
+    "sign"
+  ]
+}

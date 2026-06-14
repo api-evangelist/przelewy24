@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_AvailabilityHoursResponse",
+  "properties": {
+    "mondayToFriday": {
+      "type": "string"
+    },
+    "saturday": {
+      "type": "string",
+      "default": "unavailable"
+    },
+    "sunday": {
+      "type": "string"
+    }
+  }
+}

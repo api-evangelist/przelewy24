@@ -1,0 +1,8 @@
+{
+  "summary": "Marketplace Example ApiKeyResponse200",
+  "value": {
+    "api_key": "example_api_key",
+    "type": "baseAuth",
+    "name": ""
+  }
+}

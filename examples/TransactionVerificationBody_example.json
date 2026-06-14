@@ -1,0 +1,12 @@
+{
+  "summary": "Example TransactionVerificationBody",
+  "value": {
+    "merchantId": 1,
+    "posId": 1,
+    "sessionId": "example_sessionId",
+    "amount": 1,
+    "currency": "example_currency",
+    "orderId": 1,
+    "sign": "example_sign"
+  }
+}

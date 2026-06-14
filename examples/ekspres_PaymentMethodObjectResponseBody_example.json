@@ -1,0 +1,8 @@
+{
+  "summary": "Ekspres Example PaymentMethodObjectResponseBody",
+  "value": {
+    "id": 1,
+    "name": "example_name",
+    "status": false
+  }
+}

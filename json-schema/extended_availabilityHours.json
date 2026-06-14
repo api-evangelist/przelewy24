@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_availabilityHours",
+  "type": "object",
+  "description": "An object containing information about the method's availability hours (methods with ID 177, 178 return bool true/false information)",
+  "properties": {
+    "mondayToFriday": {
+      "type": "string"
+    },
+    "saturday": {
+      "type": "string"
+    },
+    "sunday": {
+      "type": "string"
+    }
+  }
+}

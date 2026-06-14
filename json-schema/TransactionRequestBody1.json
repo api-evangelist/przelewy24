@@ -1,0 +1,237 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionRequestBody1",
+  "type": "object",
+  "properties": {
+    "merchantId": {
+      "name": "merchantId",
+      "in": "formData",
+      "description": "Merchant identification number",
+      "type": "integer"
+    },
+    "posId": {
+      "name": "posId",
+      "in": "formData",
+      "description": "Shop identification number (defaults to merchant ID)",
+      "type": "integer"
+    },
+    "sessionId": {
+      "name": "sessionId",
+      "in": "formData",
+      "description": "Unique identifier from merchant's system",
+      "type": "string",
+      "maxLength": 100
+    },
+    "amount": {
+      "name": "amount",
+      "in": "formData",
+      "description": "Transaction amount expressed in lowest currency unit, e.g. 1.23 PLN = 123",
+      "type": "integer"
+    },
+    "currency": {
+      "name": "currency",
+      "in": "formData",
+      "description": "Currency compatible with ISO, e.g. PLN",
+      "type": "string",
+      "maxLength": 3,
+      "default": "PLN"
+    },
+    "description": {
+      "name": "description",
+      "in": "formData",
+      "description": "Transaction description",
+      "type": "string",
+      "maxLength": 1024
+    },
+    "email": {
+      "name": "email",
+      "in": "formData",
+      "description": "Customer's e-mail",
+      "type": "string",
+      "maxLength": 50
+    },
+    "client": {
+      "name": "client",
+      "in": "formData",
+      "description": "Customer's first name and surname",
+      "type": "string",
+      "maxLength": 40
+    },
+    "address": {
+      "name": "address",
+      "in": "formData",
+      "description": "Customer's address",
+      "type": "string",
+      "maxLength": 80
+    },
+    "zip": {
+      "name": "zip",
+      "in": "formData",
+      "description": "Customer's postal code",
+      "type": "string",
+      "maxLength": 10
+    },
+    "city": {
+      "name": "city",
+      "in": "formData",
+      "description": "Customer's city",
+      "type": "string",
+      "maxLength": 50
+    },
+    "country": {
+      "name": "country",
+      "in": "formData",
+      "description": "Country codes compatible with  ISO, e.g. PL, DE, etc.",
+      "type": "string",
+      "maxLength": 2,
+      "default": "PL"
+    },
+    "phone": {
+      "name": "phone",
+      "in": "formData",
+      "description": "Customer's telephone in the following format:  481321132123",
+      "type": "string",
+      "maxLength": 12
+    },
+    "language": {
+      "name": "language",
+      "in": "formData",
+      "description": "One of following language codes according to ISO 639-1: bg, cs, de, en, es, fr, hr, hu, it, nl, pl, pt, se, sk, ro",
+      "type": "string",
+      "maxLength": 2,
+      "default": "pl"
+    },
+    "method": {
+      "name": "method",
+      "in": "formData",
+      "description": "Payment method ID. List of payment methods provided in the panel or available through API",
+      "type": "integer"
+    },
+    "urlReturn": {
+      "name": "urlReturn",
+      "in": "formData",
+      "description": "URL address to which customer will be redirected when transaction is complete",
+      "type": "string",
+      "maxLength": 250
+    },
+    "urlStatus": {
+      "name": "urlStatus",
+      "in": "formData",
+      "description": "URL address to which transaction status will be send",
+      "type": "string",
+      "maxLength": 250
+    },
+    "timeLimit": {
+      "name": "timeLimit",
+      "in": "formData",
+      "description": "Time limit for transaction process, 0 - no limit, max. 99 (in minutes)",
+      "type": "integer"
+    },
+    "channel": {
+      "name": "channel",
+      "description": " 1 - card + ApplePay + GooglePay, 2 - transfer, 4 - traditional transfer, 8 - N/A, 16 - all 24/7 \u2013 makes available all payment methods, 32 - use pre-payment, 64 \u2013 only pay-by-link methods, 128 \u2013 instalment payment forms, 256 \u2013 wallets, 4096 - card, 8192 - blik, 16384 - all methods except blik\n<p>To activate the specific channels, their values should be summed up.\n<p>Example:\ntransfer and traditional transfer: channel=6",
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        4096,
+        8192,
+        16384
+      ]
+    },
+    "waitForResult": {
+      "type": "boolean",
+      "description": "Parameter determines wheter a user should wait for result of the transaction in the transaction service and be redirected back to the shop upon receiving confirmation or be redirected back to the shop immediately after payment. <a href=\"#section/Use-cases\"><b>Read more</b></a>"
+    },
+    "regulationAccept": {
+      "type": "boolean",
+      "description": "Acceptance of Przelewy24 regulations: <br/>false \u2013 display consent on p24 website (default),<br/>true \u2013 consent granted, do not display.<br/>In case the \u201etrue\u201d parameter is sent, the consent \u2013 worded as follows \u2013 must be displayed on the Partner\u2019s website: \u201eI hereby state that I have read the [regulations](https://www.przelewy24.pl/regulamin) and [information obligation](https://www.przelewy24.pl/obowiazekinformacyjny) of \u201dPrzelewy24\u201d. <br/>Under words <i>regulations</i> and <i>information obligation</i> there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default.",
+      "default": false
+    },
+    "shipping": {
+      "name": "shipping",
+      "in": "formData",
+      "description": "Delivery cost",
+      "type": "integer"
+    },
+    "transferLabel": {
+      "name": "transferLabel",
+      "in": "formData",
+      "description": "Description forwarded to transfer's description  (not in every payment methods). A parameter can contain values only \u200b\u200bin a range [a-z A-Z 0-9 \u0119\u00f3\u0142\u015b\u0105\u017c\u017a\u0107\u0144\u0118\u00d3\u0141\u015a\u0104\u017b\u0179\u0106\u0143 . /\\ :- ]",
+      "type": "string",
+      "maxLength": 20
+    },
+    "mobileLib": {
+      "name": "mobileLib",
+      "description": "The parameter is necessary while using SDK libraries. The value passed in <b>mobileLib</b> parameter is always 1 and value passed in <b>sdkVersion</b> determines which version of library should be used.",
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "sdkVersion": {
+      "name": "sdkVersion",
+      "in": "formData",
+      "description": "Version of mobile library. Determines if transaction is mobile.",
+      "type": "string",
+      "maxLength": 10
+    },
+    "sign": {
+      "name": "sign",
+      "in": "formData",
+      "type": "string",
+      "maxLength": 100,
+      "description": "<br>Checksum of parameters:<br> {<font color = \"brown\">\"sessionId\":</font>\"str\",<font color = \"brown\">\"merchantId\":</font>int,<font color = \"brown\">\"amount\":</font>int,<font color = \"brown\">\"currency\":</font>\"str\",<font color = \"brown\">\"crc\":</font>\"str\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\""
+    },
+    "encoding": {
+      "name": "encoding",
+      "in": "formData",
+      "description": "Coding system for characters sent: ISO-8859-2, UTF-8, Windows-1250",
+      "type": "string",
+      "maxLength": 15
+    },
+    "methodRefId": {
+      "name": "methodRefId",
+      "in": "formData",
+      "description": "Special parameter for some payment flows e.g. BLIK and Card one-click.",
+      "type": "string",
+      "maxLength": 250
+    },
+    "cart": {
+      "description": "cart",
+      "items": {
+        "$ref": "#/components/schemas/CartParameters"
+      }
+    },
+    "additional": {
+      "type": "object",
+      "description": "Set of additional information about the transaction or the payer",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AdditionalProperties"
+        }
+      ]
+    }
+  },
+  "required": [
+    "merchantId",
+    "posId",
+    "sessionId",
+    "amount",
+    "currency",
+    "description",
+    "email",
+    "country",
+    "language",
+    "urlReturn",
+    "ttl",
+    "sign"
+  ]
+}

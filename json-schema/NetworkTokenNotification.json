@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NetworkTokenNotification",
+  "type": "object",
+  "properties": {
+    "refid": {
+      "type": "string",
+      "description": "Reference number for making debits during card transactions",
+      "example": "BDA8DF2315F17426D1279776DE1E032"
+    },
+    "token_status": {
+      "type": "string",
+      "description": "Current token status",
+      "example": "active",
+      "enum": [
+        "active",
+        "suspended",
+        "cancelled"
+      ]
+    },
+    "tokenExpire": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NetworkTokenNotificationTokenExpire"
+        }
+      ]
+    },
+    "card_art": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NetworkTokenNotificationCardArt"
+        }
+      ]
+    },
+    "card_logotype": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NetworkTokenNotificationCardLogotype"
+        }
+      ]
+    },
+    "card": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NetworkTokenNotificationCard"
+        }
+      ]
+    }
+  }
+}

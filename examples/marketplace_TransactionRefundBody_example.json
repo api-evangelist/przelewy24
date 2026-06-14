@@ -1,0 +1,9 @@
+{
+  "summary": "Marketplace Example TransactionRefundBody",
+  "value": {
+    "requestId": "example_requestId",
+    "refundsUuid": "example_refundsUuid",
+    "urlStatus": "https://example.com",
+    "refunds": null
+  }
+}

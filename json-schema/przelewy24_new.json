@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "przelewy24_new",
+  "required": [
+    "merchantId",
+    "sessionId",
+    "sign"
+  ],
+  "properties": {
+    "merchantId": {
+      "type": "integer",
+      "description": "Merchant identification number"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Unique identifier from merchant's system"
+    },
+    "sign": {
+      "type": "string",
+      "description": "Parameters checksum calculated using sha384<br><ul><li> without sending the userId parameter <br> {<font color = \"brown\">\"merchantId\":</font>int,<font color = \"brown\">\"sessionId\":</font>\"string\",<font color = \"brown\">\"crc\":</font>\"string\"}</li><li>with sending the userId parameter <br>{<font color = \"brown\">\"merchantId\":</font>int,<font color = \"brown\">\"sessionId\":</font>\"string\",<font color = \"brown\">\"crc\":</font>\"string\",<font color = \"brown\">\"userId\":</font>\"string\"}</li></ul><b><font color = \"#DB2053\">IMPORTANT!:</font></b><br> in case json_encode function is used, the following attributes should be added<br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\""
+    },
+    "userId": {
+      "type": "string",
+      "description": "User ID in the merchant's system"
+    }
+  },
+  "type": "object"
+}

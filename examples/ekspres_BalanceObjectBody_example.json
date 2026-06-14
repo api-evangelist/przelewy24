@@ -1,0 +1,7 @@
+{
+  "summary": "Ekspres Example BalanceObjectBody",
+  "value": {
+    "amount": 1,
+    "currency": "PLN"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "summary": "Example BatchDetailsError400Body",
+  "value": {
+    "code": 400,
+    "error": "Value for field batch is invalid"
+  }
+}

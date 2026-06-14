@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_RecurringParamsIn",
+  "description": "An object containing information on BLIK recurring payment.\n<div id=\"note\">  The recurring payment functionality is not enabled by default. Contact the Technical Service Department via <a href=\"https://www.przelewy24.pl/en/help-center/api-technical-support/is-your-question-not-answered\"><b>contact form</b></a>, in order to launch the service.  </div>\n",
+  "type": "object",
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "O": "#/components/schemas/RecurringParametersO",
+      "M": "#/components/schemas/RecurringParametersM",
+      "A": "#/components/schemas/RecurringParametersA"
+    }
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "name": "type",
+      "enum": [
+        "M",
+        "A",
+        "O"
+      ],
+      "description": "The type of recurring payment; allowed values: A, O, M",
+      "in": "formData",
+      "default": "M"
+    },
+    "expirationDate": {
+      "type": "string",
+      "description": "Allowed format: YYYY-MM-DD hh:mm:ss"
+    },
+    "frequency": {
+      "type": "string",
+      "description": "Frequency of the recurrency; value must fulfill regex: [1-9][0-9]{0,2}[DWMY])"
+    },
+    "totalLimitAmount": {
+      "type": "integer",
+      "description": "Maximum total amount that will be charged through the process"
+    },
+    "limitAmount": {
+      "type": "integer",
+      "description": "Maximum amount that will be charged in a single payment"
+    },
+    "totalLimitCount": {
+      "type": "integer",
+      "description": "Number of payments that will be issued in the whole process"
+    },
+    "minimumTime": {
+      "type": "boolean",
+      "description": "Parametr to control min flag",
+      "default": true
+    },
+    "availableBanks": {
+      "description": "Parameter to control the verification of whether the bank supports recursion. If set to false, it is not checked if the bank supports recursion.",
+      "default": true,
+      "type": "boolean"
+    }
+  }
+}

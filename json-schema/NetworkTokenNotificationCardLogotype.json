@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NetworkTokenNotificationCardLogotype",
+  "type": "object",
+  "description": "Card logo data. </br><i>Submission of the object depends on the data received from the card organizations.</i>",
+  "properties": {
+    "width": {
+      "type": "integer",
+      "description": "Recommended width of the logo in px",
+      "example": 100
+    },
+    "height": {
+      "type": "integer",
+      "description": "Recommended height of the logo in px",
+      "example": 100
+    },
+    "url": {
+      "type": "string",
+      "description": "Link to download the card's logo",
+      "example": "https://card-logotype/combined-image-asset/MyBank.png"
+    }
+  }
+}

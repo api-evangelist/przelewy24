@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_CardRegisterRequestBody",
+  "type": "object",
+  "properties": {
+    "transactionToken": {
+      "type": "string",
+      "description": "Token obtained during registration"
+    },
+    "cardNumber": {
+      "type": "string",
+      "description": "Card number",
+      "maxLength": 16
+    },
+    "cardDate": {
+      "type": "string",
+      "description": "Card expiry date in format MMYYYY"
+    },
+    "cvv": {
+      "type": "string",
+      "description": "Card CVV"
+    },
+    "clientName": {
+      "type": "string",
+      "description": "First name and surname of cardholder"
+    }
+  },
+  "required": [
+    "transactionToken",
+    "cardNumber",
+    "cardDate",
+    "cvv",
+    "clientName"
+  ]
+}

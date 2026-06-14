@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionRefundBody",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique request id"
+    },
+    "refundsUuid": {
+      "type": "string",
+      "description": "Unique id of correct refund request in Merchant's system"
+    },
+    "urlStatus": {
+      "type": "string",
+      "description": "URL address for sendig refund's status"
+    },
+    "refunds": {
+      "description": "Array of refund objects",
+      "items": {
+        "$ref": "#/components/schemas/RefundArrayObjectBody"
+      }
+    }
+  },
+  "required": [
+    "requestId",
+    "refundsUuid",
+    "refunds"
+  ]
+}

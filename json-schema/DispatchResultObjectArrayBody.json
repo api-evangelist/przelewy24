@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DispatchResultObjectArrayBody",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Id number of dispatched transaction"
+    },
+    "orderIdNew": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Id number of new transaction created in P24 system"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session's id of dispatched transaction podzielonej transakcji"
+    },
+    "sellerId": {
+      "type": "integer",
+      "description": "Submerchant's id. The funds are transferred to this submerchant"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount of transferred funds in polish groshes"
+    },
+    "status": {
+      "type": "boolean",
+      "description": "Status of transaction",
+      "example": true
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message. Empty for correct transaction",
+      "example": ""
+    }
+  }
+}

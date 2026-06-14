@@ -1,0 +1,12 @@
+{
+  "summary": "Example RefundObject",
+  "value": {
+    "refundId": 1,
+    "orderId": 1,
+    "requestId": "example_requestId",
+    "dateIn": "example_dateIn",
+    "dateOut": "example_dateOut",
+    "status": 1,
+    "description": "example_description"
+  }
+}

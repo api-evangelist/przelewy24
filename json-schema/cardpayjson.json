@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "cardpayjson",
+  "properties": {
+    "cardHolderLabel": {
+      "type": "string"
+    },
+    "cardNumberLabel": {
+      "type": "integer"
+    },
+    "cvvLabel": {
+      "type": "integer"
+    },
+    "expDateLabel": {
+      "type": "string"
+    },
+    "payButtonCaption": {
+      "type": "string"
+    },
+    "threeDSAuthMessage": {
+      "type": "string"
+    }
+  }
+}

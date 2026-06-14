@@ -1,0 +1,9 @@
+{
+  "summary": "Marketplace Example MerchantExistsResponse400",
+  "value": {
+    "data": [
+      {}
+    ],
+    "error": "Invalid pesel format"
+  }
+}

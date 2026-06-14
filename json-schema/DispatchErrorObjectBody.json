@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DispatchErrorObjectBody",
+  "properties": {
+    "errorCode": {
+      "type": "integer",
+      "description": "Erroc code. 0 for correct transaction",
+      "example": 0
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message. For correct transaction \"Success, no error.\"",
+      "example": "Success, no error."
+    }
+  }
+}

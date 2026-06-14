@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_TransactionResult",
+  "type": "object",
+  "properties": {
+    "merchantId": {
+      "name": "merchantId",
+      "in": "formData",
+      "description": "Merchant identification number",
+      "type": "integer"
+    },
+    "posId": {
+      "name": "posId",
+      "in": "formData",
+      "description": "Shop identification number (defaults to merchant ID)",
+      "type": "integer"
+    },
+    "sessionId": {
+      "name": "sessionId",
+      "in": "formData",
+      "description": "Unique identifier from merchant's system",
+      "type": "string",
+      "maxLength": 100
+    },
+    "amount": {
+      "name": "amount",
+      "in": "formData",
+      "description": "Amount of paid transaction expressed in lowest currency unit, e.g. 1.23 PLN = 123",
+      "type": "integer"
+    },
+    "originAmount": {
+      "name": "originAmount",
+      "in": "formData",
+      "description": "Amount of the transaction when registered the token expressed in lowest currency unit, e.g. 1.23 PLN = 123",
+      "type": "integer"
+    },
+    "currency": {
+      "name": "currency",
+      "in": "formData",
+      "description": "Currency compatible with ISO, e.g. PLN",
+      "type": "string",
+      "maxLength": 3,
+      "default": "PLN"
+    },
+    "orderId": {
+      "name": "orderId",
+      "in": "formData",
+      "description": "Transaction number assigned by P24",
+      "type": "integer",
+      "format": "int64"
+    },
+    "methodId": {
+      "name": "methodId",
+      "in": "formData",
+      "description": "Payment method used by customer",
+      "type": "integer"
+    },
+    "statement": {
+      "name": "statement",
+      "in": "formData",
+      "description": "Payment title",
+      "type": "string"
+    },
+    "sign": {
+      "name": "sign",
+      "in": "formData",
+      "description": "<br>Checksum of parameters:<br> {<font color = \"brown\">\"merchantId\":</font>int,<font color = \"brown\">\"posId\":</font>int,<font color = \"brown\">\"sessionId\":</font>\"string\",<font color = \"brown\">\"amount\":</font>int,<font color = \"brown\">\"originAmount\":</font>int,<font color = \"brown\">\"currency\":</font>\"string\", <font color = \"brown\">\"orderId\":</font>int,<font color = \"brown\">\"methodId\":</font>int,<font color = \"brown\">\"statement\":</font>\"string\",<font color = \"brown\">\"crc\":</font>\"string\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\"",
+      "type": "string"
+    }
+  }
+}

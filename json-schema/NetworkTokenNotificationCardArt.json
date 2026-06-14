@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NetworkTokenNotificationCardArt",
+  "type": "object",
+  "description": "Card appearance data. </br><i>Submission of the object depends on the data received from the card organizations.</i>",
+  "properties": {
+    "width": {
+      "type": "integer",
+      "description": "Recommended card width in px",
+      "example": 1536
+    },
+    "height": {
+      "type": "integer",
+      "description": "Recommended card height in px",
+      "example": 960
+    },
+    "url": {
+      "type": "string",
+      "description": "Link to download art card",
+      "example": "https://card-art/combined-image-asset/MyBank.png"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_InvalidInputData",
+  "properties": {
+    "error": {
+      "type": "string",
+      "default": "Invalid input data",
+      "example": "Invalid input data"
+    },
+    "code": {
+      "type": "number",
+      "default": 400,
+      "example": 400
+    }
+  }
+}

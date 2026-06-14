@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardPaymentNegativeNotificationResult",
+  "type": "object",
+  "description": "Transaction details",
+  "properties": {
+    "error": {
+      "type": "string",
+      "example": "0",
+      "description": "Error code"
+    },
+    "message": {
+      "type": "string",
+      "description": "Description",
+      "example": "Incorrect Transaction"
+    },
+    "rejectReason": {
+      "type": "string",
+      "description": "Reason for rejection of the transaction",
+      "example": "declined"
+    },
+    "behaviour": {
+      "type": "string",
+      "description": "Guidelines for further course of action in case of rejection or decline",
+      "example": "abort"
+    },
+    "issuerResponseCode": {
+      "type": "string",
+      "description": "Response code from the bank"
+    }
+  }
+}

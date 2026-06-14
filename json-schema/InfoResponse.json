@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InfoResponse",
+  "properties": {
+    "country": {
+      "type": "string",
+      "default": "PL"
+    },
+    "bank": {
+      "type": "string",
+      "default": "PL"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,12 @@
+{
+  "summary": "Ekspres Example TransferBasketResultBody",
+  "value": {
+    "result": {
+      "transferRequestId": "example_transferRequestId",
+      "transferIds": [
+        1
+      ],
+      "url": "https://example.com"
+    }
+  }
+}

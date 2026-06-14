@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_Transaction",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Possible values: batch, refund, transaction"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency",
+      "example": "PLN"
+    },
+    "details": {
+      "description": "Array of objects depended of type",
+      "items": {
+        "$ref": "#/components/schemas/TransactionObject"
+      }
+    }
+  }
+}

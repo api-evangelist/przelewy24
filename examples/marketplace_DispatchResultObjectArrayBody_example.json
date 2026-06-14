@@ -1,0 +1,12 @@
+{
+  "summary": "Marketplace Example DispatchResultObjectArrayBody",
+  "value": {
+    "orderId": 1,
+    "orderIdNew": 1,
+    "sessionId": "example_sessionId",
+    "sellerId": 1,
+    "amount": 1,
+    "status": true,
+    "error": ""
+  }
+}

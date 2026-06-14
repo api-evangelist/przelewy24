@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_RecurringParams",
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "Token obtained during transaction registration request via <b><a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\">transaction/register</a></b>. <br> <br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br> In order to correctly charge the payer using the blikChargeByCode method the <b>PSU</b> object must be sent in the <b>additional</b> object in the <b><a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\">transaction/register</a></b> request."
+    },
+    "blikCode": {
+      "type": "string",
+      "description": "6-digit, one-time BLIK code generated in the app"
+    },
+    "aliasValue": {
+      "type": "string",
+      "description": "Unique alias of the user which can be used to charge client's next transactions. <br><br><b><font color = \"#DB2053\">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request."
+    },
+    "aliasLabel": {
+      "type": "string",
+      "description": "Alias label displayed in the app. <br><br><b><font color = \"#DB2053\">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request.",
+      "minLength": 5,
+      "maxLength": 35
+    },
+    "recurring": {
+      "type": "object",
+      "$ref": "#/components/schemas/RecurringParamsIn"
+    }
+  },
+  "required": [
+    "token",
+    "blikCode"
+  ]
+}

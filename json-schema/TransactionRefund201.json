@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransactionRefund201",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TransactionRefund201Item"
+      }
+    },
+    "responseCode": {
+      "type": "number",
+      "example": 0
+    }
+  }
+}

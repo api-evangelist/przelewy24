@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "cardData",
+  "type": "object",
+  "description": "<b><font color = \"#DB2053\">IN PREPARATION!</font></b> An object containing card data",
+  "discriminator": {
+    "propertyName": "transactionType",
+    "mapping": {
+      "recurring": "#/components/schemas/recurring",
+      "standard": "#/components/schemas/other2",
+      "initial": "#/components/schemas/other",
+      "1click": "#/components/schemas/other2"
+    }
+  },
+  "properties": {
+    "means": {
+      "type": "object",
+      "properties": {
+        "card": {
+          "type": "object",
+          "properties": {
+            "pan": {
+              "type": "string",
+              "description": "Payment card number (PAN - personal account number)"
+            },
+            "expYear": {
+              "type": "integer",
+              "description": "The year in which the card expires"
+            },
+            "expMonth": {
+              "type": "integer",
+              "description": "The month in which the card expires"
+            },
+            "clientName": {
+              "type": "string",
+              "description": "Name and surname of the card holder"
+            },
+            "securityCode": {
+              "type": "string",
+              "description": "CVV/CVC code"
+            }
+          },
+          "required": [
+            "pan",
+            "expYear",
+            "expMonth",
+            "clientName"
+          ]
+        },
+        "referenceNumber": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Reference number (token assigned by P24)"
+            },
+            "securityCode": {
+              "type": "string",
+              "description": "Security code"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "schemeToken": {
+          "type": "object",
+          "properties": {
+            "pan": {
+              "type": "string",
+              "description": "Token number"
+            },
+            "expYear": {
+              "type": "integer",
+              "description": "The year in which the card expires"
+            },
+            "expMonth": {
+              "type": "integer",
+              "description": "The month in which the card expires"
+            },
+            "securityCode": {
+              "type": "string",
+              "description": "Cryptogram"
+            },
+            "eci": {
+              "type": "string",
+              "description": "The Electronic Commerce Indicator"
+            },
+            "type": {
+              "type": "string",
+              "description": "Typ tokenu",
+              "enum": [
+                "visaToken",
+                "mcToken",
+                "visaMobile",
+                "applepay",
+                "googlepay"
+              ]
+            }
+          },
+          "required": [
+            "pan",
+            "expYear",
+            "expMonth",
+            "type"
+          ]
+        },
+        "xPayPayload": {
+          "type": "object",
+          "properties": {
+            "payload": {
+              "type": "string",
+              "description": "Base64 encrypted payment payload"
+            },
+            "type": {
+              "type": "string",
+              "description": "Payment type",
+              "enum": [
+                "applepay",
+                "googlepay"
+              ]
+            }
+          },
+          "required": [
+            "payload",
+            "type"
+          ]
+        }
+      }
+    },
+    "transactionType": {
+      "type": "string",
+      "description": "Transaction type:<br> - <b>standard</b> - standard transaction<br> - <b>initial</b> - 1click or recurring initialization transaction. Launched in SCA mode<br> - <b>1click</b> - transaction with a saved card in the presence of the customer<br> - <b>recurring</b> - recurring transaction<br>\n"
+    }
+  },
+  "required": [
+    "means",
+    "transactionType"
+  ]
+}

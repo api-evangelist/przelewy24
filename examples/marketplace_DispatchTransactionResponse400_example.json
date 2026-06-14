@@ -1,0 +1,10 @@
+{
+  "summary": "Marketplace Example DispatchTransactionResponse400",
+  "value": {
+    "result": null,
+    "error": {
+      "errorCode": 1,
+      "errorMessage": "Empty refund list!"
+    }
+  }
+}

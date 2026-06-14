@@ -1,0 +1,9 @@
+{
+  "summary": "Ekspres Example GeneralErrorObjectResponseBody",
+  "value": {
+    "error": {
+      "code": "example_code",
+      "description": "example_description"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "summary": "Ekspres Example BankAvailabilityObjectResponseBody",
+  "value": {
+    "name": "example_name",
+    "workweek": "example_workweek",
+    "saturday": "example_saturday",
+    "sunday": "example_sunday",
+    "holidays": false
+  }
+}

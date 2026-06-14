@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ErrorDispatch400Object",
+  "properties": {
+    "errorCode": {
+      "type": "integer",
+      "description": "Erroc code"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Error message",
+      "example": "Empty refund list!"
+    }
+  }
+}

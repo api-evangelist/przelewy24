@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example CrcDataObject",
+  "value": {
+    "id": "example_id",
+    "crc": "example_crc"
+  }
+}

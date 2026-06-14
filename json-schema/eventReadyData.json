@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "eventReadyData",
+  "properties": {
+    "p24": {
+      "type": "boolean",
+      "description": "Indication of the message addressee"
+    },
+    "type": {
+      "type": "string",
+      "description": "Indication of message type",
+      "example": "start"
+    },
+    "status": {
+      "type": "boolean",
+      "description": "Indicating whether the form is completed correctly and the button can be activated",
+      "example": true
+    },
+    "buttons": {
+      "type": "array",
+      "description": "Indication of which button is affected by the status",
+      "items": {
+        "type": "string",
+        "enum": [
+          "temporary",
+          "permanent",
+          "temporary,permanent"
+        ]
+      }
+    }
+  }
+}

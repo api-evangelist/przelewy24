@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SIMPTransactionRegistrationResponse",
+  "properties": {
+    "data": {
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "Token"
+        },
+        "iban": {
+          "type": "string",
+          "description": "IBAN",
+          "example": "PL59105000996912000444444341"
+        },
+        "companyName": {
+          "type": "string",
+          "description": "Company name"
+        }
+      },
+      "type": "object"
+    },
+    "responseCode": {
+      "type": "string",
+      "default": "0"
+    }
+  }
+}

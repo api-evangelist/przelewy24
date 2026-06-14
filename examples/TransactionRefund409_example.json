@@ -1,0 +1,16 @@
+{
+  "summary": "Example TransactionRefund409",
+  "value": {
+    "error": [
+      {
+        "orderId": 1,
+        "sessionId": "example_sessionId",
+        "amount": 1,
+        "description": "example_description",
+        "status": false,
+        "message": "The amount of refund exceeds available amount for the transaction"
+      }
+    ],
+    "code": 409
+  }
+}

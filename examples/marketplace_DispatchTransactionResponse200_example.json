@@ -1,0 +1,10 @@
+{
+  "summary": "Marketplace Example DispatchTransactionResponse200",
+  "value": {
+    "result": null,
+    "error": {
+      "errorCode": 0,
+      "errorMessage": "Success, no error."
+    }
+  }
+}

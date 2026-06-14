@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PutPaymentRefundBody",
+  "properties": {
+    "transferId": {
+      "type": "integer",
+      "description": "ID of Ekspres transfer that we want to refund"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount to refund, if empty by default whole transfer will be refunded. Refund is always in currency of original transfer"
+    }
+  },
+  "required": [
+    "transferId"
+  ]
+}

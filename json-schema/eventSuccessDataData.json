@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "eventSuccessDataData",
+  "properties": {
+    "cardType": {
+      "type": "string",
+      "description": "Indication of card type",
+      "example": "Visa"
+    },
+    "bank": {
+      "type": "string",
+      "description": "Indication on the card issuer's bank",
+      "example": "Bank Polska Kasa Opieki S.A. (Bank Pekao Sa)"
+    },
+    "refId": {
+      "type": "string",
+      "description": "Indication of the id that will be used to charge the Payer's card",
+      "example": "G7891BF3-F04CB264-8B294H9E-1834D8AC"
+    },
+    "bin": {
+      "type": "integer",
+      "description": "Indication on bin of stored card",
+      "example": "512345"
+    },
+    "mask": {
+      "type": "string",
+      "description": "Indication on last4 saved card",
+      "example": "XXXX XXXX XXXX 2122"
+    },
+    "cardDate": {
+      "type": "string",
+      "description": "Indication of the expiration date of the stored card (MMYYY)",
+      "example": "122024"
+    },
+    "hash": {
+      "type": "string",
+      "description": "Indication of the hash of the stored card",
+      "example": "a5fe3eb65615e7db2c55623f30675531b05cd"
+    },
+    "cardCountry": {
+      "type": "string",
+      "description": "Indication of the card's country of issue",
+      "example": "PL"
+    },
+    "tokenization": {
+      "type": "string",
+      "description": "Indication of card recording type",
+      "example": "permanent"
+    }
+  }
+}

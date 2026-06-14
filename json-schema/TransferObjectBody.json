@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransferObjectBody",
+  "properties": {
+    "iban": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Recipient\u2019s IBAN no. <b>with country prefix</b>"
+    },
+    "recipient": {
+      "description": "Object representing recipient\u2019s details",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PersonObjectBody"
+        }
+      ]
+    },
+    "sender": {
+      "description": "Object representing sender\u2019s details",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/PersonObjectBody"
+        }
+      ]
+    },
+    "label": {
+      "type": "string",
+      "description": "Additional description in the transfer title \u2013 only for p24, p24mobile modes",
+      "maxLength": 20
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Transaction title"
+    },
+    "amountOut": {
+      "type": "integer",
+      "description": "Amount of transaction in the smallest denomination<br/>1000 = 10.00"
+    },
+    "currencyOut": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Transfer currency [ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)"
+    },
+    "externalParam": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "<b>We recommend that additional, individual transfer ids are used with this parameter, as it significantly simplifies transaction identification in <a href=\"#tag/Notifications-on-transfer-status\"><b>notifications</b></a>.</b><br/> The parameter is defined at the user\u2019s discretion and is generated when notifications are sent.<br/>This parameter may be the same as the \u201cid\u201d parameter."
+    },
+    "confirmation": {
+      "type": "boolean",
+      "default": false,
+      "description": "Defines if this transfer should get generated confirmation from outgoing bank in PDF format.<br/><br/> <b>Warning!  This  feature  of  generating PDF confirmations from outgoing bank is required to be consulted and enabled with integrations support before use! By default using this parameter will do nothing instead!"
+    },
+    "confirmationFilename": {
+      "type": "string",
+      "maxLength": 100,
+      "example": "string",
+      "description": "The name of the generated confirmation from the bank (PDF file).<br/><br/> If the `confirmationFilename` parameter isn't sent in request and `confirmation` parametr is set to 'true' then the default file name takes the value from the formula \"EX_timestamp_idtransfer_iduser\"."
+    }
+  },
+  "required": [
+    "iban",
+    "recipient",
+    "sender",
+    "title",
+    "amountOut",
+    "currencyOut",
+    "externalParam"
+  ]
+}

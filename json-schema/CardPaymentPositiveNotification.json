@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardPaymentPositiveNotification",
+  "type": "object",
+  "properties": {
+    "merchantId": {
+      "type": "integer",
+      "description": "Merchant identification number"
+    },
+    "posId": {
+      "type": "integer",
+      "description": "Shop identification number (defaults to merchant ID)"
+    },
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Transaction number assigned by P24"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Unique identifier from merchant's system",
+      "example": "c3b520e2-5429-11e8-a782-43fdbbec70f2"
+    },
+    "method": {
+      "type": "integer",
+      "description": "Payment method used by customer"
+    },
+    "result": {
+      "type": "object",
+      "description": "Transactions details",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CardPaymentPositiveNotificationResult"
+        }
+      ]
+    },
+    "sign": {
+      "type": "string",
+      "example": "SHA384",
+      "description": "Checksum of parameters calculated using SHA384. Details of sign calculation below."
+    }
+  }
+}

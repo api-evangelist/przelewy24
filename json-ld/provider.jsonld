@@ -1,0 +1,61 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "p24": "https://developers.przelewy24.pl/vocab#"
+  },
+  "@type": "FinancialService",
+  "@id": "https://www.przelewy24.pl",
+  "name": "Przelewy24",
+  "description": "Poland's leading online payment gateway",
+  "url": "https://www.przelewy24.pl/en",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Poland"
+  },
+  "currenciesAccepted": [
+    "PLN",
+    "EUR"
+  ],
+  "paymentAccepted": [
+    "Bank Transfer",
+    "Credit Card",
+    "Debit Card",
+    "BLIK",
+    "Google Pay"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Przelewy24 APIs",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Przelewy24 REST API",
+        "url": "https://developers.przelewy24.pl/",
+        "description": "Core payment API for transaction registration, verification and refunds"
+      },
+      {
+        "@type": "Offer",
+        "name": "Przelewy24 Marketplace API",
+        "url": "https://developers.przelewy24.pl/marketplace/",
+        "description": "Split payments and multi-vendor transaction routing"
+      },
+      {
+        "@type": "Offer",
+        "name": "Przelewy24 Extended API",
+        "url": "https://developers.przelewy24.pl/extended/",
+        "description": "Advanced reporting, batch operations, recurring payments"
+      },
+      {
+        "@type": "Offer",
+        "name": "Przelewy24 Ekspres API",
+        "url": "https://developers.przelewy24.pl/ekspres/",
+        "description": "One-click fast-pay for registered Przelewy24 users"
+      }
+    ]
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "url": "https://www.przelewy24.pl/en/help-center/api-technical-support",
+    "contactType": "technical support"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "summary": "Example BasicResponse",
+  "value": {
+    "data": [
+      "example_value"
+    ],
+    "responseCode": 0.0
+  }
+}

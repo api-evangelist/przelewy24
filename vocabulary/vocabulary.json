@@ -1,0 +1,1565 @@
+{
+  "name": "Przelewy24 API Vocabulary",
+  "description": "Terms and concepts used across the Przelewy24 REST APIs",
+  "version": "1.0.0",
+  "source": "https://developers.przelewy24.pl/",
+  "terms": [
+    {
+      "term": "data",
+      "type": "object",
+      "description": "Property data",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationResponse",
+        "TransactionRegistrationResponse",
+        "Transaction200Blik",
+        "TransactionTestAccess200",
+        "BasicResponse",
+        "TransactionRefund201",
+        "TransactionRegistrationOffline200",
+        "TransactionRefundsInfoResponse",
+        "TransactionBySessionIdSuccessResponse",
+        "BlikChargeByCodeResponse",
+        "BlikChargeByAliasResponse",
+        "cardinfores",
+        "ChargeCard3dsSuccessResponse",
+        "ChargeCardSuccessResponse",
+        "CardPayThreeDSecureResponse",
+        "CardPaySuccessResponse",
+        "bliknotification",
+        "HistoryResponse200Body",
+        "BatchDetails200ResponseBody"
+      ]
+    },
+    {
+      "term": "responseCode",
+      "type": "number",
+      "description": "Property responseCode",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationResponse",
+        "TransactionRegistrationResponse",
+        "Transaction200Blik",
+        "BasicResponse",
+        "TransactionRefund201",
+        "TransactionRegistrationOffline200",
+        "TransactionRefundsInfoResponse",
+        "TransactionNotFoundResponse",
+        "TransactionBySessionIdSuccessResponse",
+        "BlikChargeByCodeResponse",
+        "cardinfores",
+        "ChargeCard3dsSuccessResponse",
+        "ChargeCardSuccessResponse",
+        "CardPayThreeDSecureResponse",
+        "CardPaySuccessResponse",
+        "HistoryResponse200Body",
+        "BatchDetails200ResponseBody"
+      ]
+    },
+    {
+      "term": "merchantId",
+      "type": "integer",
+      "description": "Merchant ID",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationBody",
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment",
+        "TransactionRefundResult",
+        "TransactionResult"
+      ]
+    },
+    {
+      "term": "posId",
+      "type": "integer",
+      "description": "Shop identification number (defaults to merchant ID)",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationBody",
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment",
+        "TransactionResult"
+      ]
+    },
+    {
+      "term": "sessionId",
+      "type": "string",
+      "description": "Unique identifier from merchant's system",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationBody",
+        "TransactionRequestBody1",
+        "RefundRequestArrayDataBasic",
+        "TransactionRefund201Item",
+        "TransactionRefund409Item",
+        "TranstactionSplitPayment",
+        "TransactionWithRefundsResponse",
+        "TransactionBySessionIdResponse",
+        "CardNotificationExtN",
+        "CardNotificationExt",
+        "TransactionRefundResult",
+        "TransactionResult",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "amount",
+      "type": "integer",
+      "description": "Transaction amount which format is presented as amount in lowest currency unit, e.g. 1.23 PLN = 123",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationBody",
+        "TransactionRequestBody1",
+        "RefundRequestArrayDataBasic",
+        "TransactionRefund201Item",
+        "TransactionRefund409Item",
+        "TranstactionSplitPayment",
+        "TransactionWithRefundsResponse",
+        "RefundsCollection",
+        "TransactionBySessionIdResponse",
+        "CardNotificationExtN",
+        "CardNotificationExt",
+        "TransactionRefundResult",
+        "TransactionResult",
+        "Batch",
+        "Transaction",
+        "Refund"
+      ]
+    },
+    {
+      "term": "currency",
+      "type": "string",
+      "description": "Currency",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationBody",
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment",
+        "TransactionWithRefundsResponse",
+        "TransactionBySessionIdResponse",
+        "TransactionRefundResult",
+        "TransactionResult",
+        "Batch",
+        "Transaction",
+        "Refund"
+      ]
+    },
+    {
+      "term": "orderId",
+      "type": "integer",
+      "description": "Id of an order assigned by P24",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationBody",
+        "RefundRequestArrayDataBasic",
+        "TransactionRefund201Item",
+        "TransactionRefund409Item",
+        "TransactionWithRefundsResponse",
+        "TransactionBySessionIdResponse",
+        "CardNotificationExtN",
+        "CardNotificationExt",
+        "TransactionRefundResult",
+        "TransactionResult",
+        "RefundObject"
+      ]
+    },
+    {
+      "term": "sign",
+      "type": "string",
+      "description": "Checksum of parameters:<br> {<font color = \"brown\">\"sessionId\":</font>\"str\",<font color = \"brown\">\"orderId\":</font>int,<font color = \"brown\">\"amount\":</font>int,<font color = \"brown\">\"currency\":</font>\"str\",<font color = \"brown\">\"crc\":</font>\"str\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\"",
+      "example": null,
+      "usedIn": [
+        "TransactionVerificationBody",
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment",
+        "CardNotificationExtN",
+        "CardNotificationExt",
+        "TransactionRefundResult",
+        "TransactionResult"
+      ]
+    },
+    {
+      "term": "mondayToFriday",
+      "type": "string",
+      "description": "Property mondayToFriday",
+      "example": null,
+      "usedIn": [
+        "AvailabilityHoursResponse",
+        "availabilityHours"
+      ]
+    },
+    {
+      "term": "saturday",
+      "type": "string",
+      "description": "Property saturday",
+      "example": null,
+      "usedIn": [
+        "AvailabilityHoursResponse",
+        "availabilityHours"
+      ]
+    },
+    {
+      "term": "sunday",
+      "type": "string",
+      "description": "Property sunday",
+      "example": null,
+      "usedIn": [
+        "AvailabilityHoursResponse",
+        "availabilityHours"
+      ]
+    },
+    {
+      "term": "description",
+      "type": "string",
+      "description": "Transaction description",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "RefundRequestArrayDataBasic",
+        "TransactionRefund201Item",
+        "TransactionRefund409Item",
+        "TranstactionSplitPayment",
+        "CartParameters",
+        "RefundsCollection",
+        "TransactionBySessionIdResponse",
+        "TransactionObject",
+        "RefundObject"
+      ]
+    },
+    {
+      "term": "email",
+      "type": "string",
+      "description": "Customer's e-mail",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment",
+        "blikadnotification"
+      ]
+    },
+    {
+      "term": "client",
+      "type": "string",
+      "description": "Customer's first name and surname",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "address",
+      "type": "string",
+      "description": "Customer's address",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "zip",
+      "type": "string",
+      "description": "Customer's postal code",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "city",
+      "type": "string",
+      "description": "Customer's city",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "country",
+      "type": "string",
+      "description": "Country codes compatible with  ISO, e.g. PL, DE, etc.",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment",
+        "InfoResponse"
+      ]
+    },
+    {
+      "term": "phone",
+      "type": "string",
+      "description": "Customer's telephone in the following format:  481321132123",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "language",
+      "type": "string",
+      "description": "One of following language codes according to ISO 639-1: bg, cs, de, en, es, fr, hr, hu, it, nl, pl, pt, se, sk, ro",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "method",
+      "type": "integer",
+      "description": "Payment method ID. List of payment methods provided in the panel or available through API",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment",
+        "CardNotificationExtN",
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "urlReturn",
+      "type": "string",
+      "description": "URL address to which customer will be redirected when transaction is complete",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "urlStatus",
+      "type": "string",
+      "description": "URL address to which transaction status will be send",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TransactionRefundJsonRequestBody",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "timeLimit",
+      "type": "integer",
+      "description": "Time limit for transaction process, 0 - no limit, max. 99 (in minutes)",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "channel",
+      "type": "integer",
+      "description": " 1 - card + ApplePay + GooglePay, 2 - transfer, 4 - traditional transfer, 8 - N/A, 16 - all 24/7 \u2013 makes available all payment methods, 32 - use pre-payment, 64 \u2013 only pay-by-link methods, 128 \u2013 instalment payment forms, 256 \u2013 wallets, 4096 - card, 8192 - blik, 16384 - all methods except blik\n<p>To activate the specific channels, their values should be summed up.\n<p>Example:\ntransfer and traditional transfer: channel=6",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "waitForResult",
+      "type": "boolean",
+      "description": "Parameter determines wheter a user should wait for result of the transaction in the transaction service and be redirected back to the shop upon receiving confirmation or be redirected back to the shop immediately after payment. <a href=\"#section/Use-cases\"><b>Read more</b></a>",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1"
+      ]
+    },
+    {
+      "term": "regulationAccept",
+      "type": "boolean",
+      "description": "Acceptance of Przelewy24 regulations: <br/>false \u2013 display consent on p24 website (default),<br/>true \u2013 consent granted, do not display.<br/>In case the \u201etrue\u201d parameter is sent, the consent \u2013 worded as follows \u2013 must be displayed on the Partner\u2019s website: \u201eI hereby state that I have read the [regulations](https://www.przelewy24.pl/regulamin) and [information obligation](https://www.przelewy24.pl/obowiazekinformacyjny) of \u201dPrzelewy24\u201d. <br/>Under words <i>regulations</i> and <i>information obligation</i> there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default.",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1"
+      ]
+    },
+    {
+      "term": "shipping",
+      "type": "integer",
+      "description": "Delivery cost",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "AdditionalProperties",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "transferLabel",
+      "type": "string",
+      "description": "Description forwarded to transfer's description  (not in every payment methods). A parameter can contain values only \u200b\u200bin a range [a-z A-Z 0-9 \u0119\u00f3\u0142\u015b\u0105\u017c\u017a\u0107\u0144\u0118\u00d3\u0141\u015a\u0104\u017b\u0179\u0106\u0143 . /\\ :- ]",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "mobileLib",
+      "type": "integer",
+      "description": "The parameter is necessary while using SDK libraries. The value passed in <b>mobileLib</b> parameter is always 1 and value passed in <b>sdkVersion</b> determines which version of library should be used.",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1"
+      ]
+    },
+    {
+      "term": "sdkVersion",
+      "type": "string",
+      "description": "Version of mobile library. Determines if transaction is mobile.",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "encoding",
+      "type": "string",
+      "description": "Coding system for characters sent: ISO-8859-2, UTF-8, Windows-1250",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "methodRefId",
+      "type": "string",
+      "description": "Special parameter for some payment flows e.g. BLIK and Card one-click.",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "cart",
+      "type": "string",
+      "description": "cart",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1",
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "additional",
+      "type": "object",
+      "description": "Set of additional information about the transaction or the payer",
+      "example": null,
+      "usedIn": [
+        "TransactionRequestBody1"
+      ]
+    },
+    {
+      "term": "PSU",
+      "type": "object",
+      "description": "Payment Service User<br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br> Object required when using methods <b><a href=\"#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByCode/post\">blikChargeByCode</a></b> or <b><a href=\"#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByAlias/post\">blikChargeByAlias</a></b>.\n",
+      "example": null,
+      "usedIn": [
+        "AdditionalProperties"
+      ]
+    },
+    {
+      "term": "value",
+      "type": "string",
+      "description": "alias value",
+      "example": null,
+      "usedIn": [
+        "BlikAlias200",
+        "blikadnotification"
+      ]
+    },
+    {
+      "term": "type",
+      "type": "string",
+      "description": "alias type",
+      "example": null,
+      "usedIn": [
+        "BlikAlias200",
+        "RecurringParamsIn",
+        "BlikOneClick",
+        "blikadnotification",
+        "Batch",
+        "Transaction",
+        "Refund",
+        "ValidationObject"
+      ]
+    },
+    {
+      "term": "status",
+      "type": "string",
+      "description": "alias status",
+      "example": null,
+      "usedIn": [
+        "BlikAlias200",
+        "PaymentMethodsResponse",
+        "TransactionRefund201Item",
+        "TransactionRefund409Item",
+        "PaymentMethodsResponseMethod",
+        "RefundsCollection",
+        "TransactionBySessionIdResponse",
+        "blikadnotification",
+        "TransactionRefundResult",
+        "TransactionObject",
+        "RefundObject"
+      ]
+    },
+    {
+      "term": "expirationDate",
+      "type": "string",
+      "description": "alias expiration date",
+      "example": null,
+      "usedIn": [
+        "BlikAlias200",
+        "RecurringParamsIn"
+      ]
+    },
+    {
+      "term": "error",
+      "type": "string",
+      "description": "Property error",
+      "example": "Invalid input data",
+      "usedIn": [
+        "InvalidInputData",
+        "UnauthorizedResponse",
+        "TransactionTestAccess200",
+        "InvalidInputDataRefund",
+        "TransactionRefund409",
+        "Refund500Response",
+        "TransactionRegistrationOffline409",
+        "ErrorCodeResponse",
+        "TransactionNotFoundResponse",
+        "ChargeByAlias409",
+        "CardPayResponse409",
+        "HistoryError400Body",
+        "BatchDetailsError400Body",
+        "GeneralErrorResponse"
+      ]
+    },
+    {
+      "term": "code",
+      "type": "number",
+      "description": "Property code",
+      "example": 400,
+      "usedIn": [
+        "InvalidInputData",
+        "UnauthorizedResponse",
+        "InvalidInputDataRefund",
+        "TransactionRefund409",
+        "Refund500Response",
+        "TransactionRegistrationOffline409",
+        "ErrorCodeResponse",
+        "ChargeByAlias409",
+        "CardPayResponse409",
+        "HistoryError400Body",
+        "BatchDetailsError400Body",
+        "GeneralErrorResponse"
+      ]
+    },
+    {
+      "term": "name",
+      "type": "string",
+      "description": "Name of payment method",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponse",
+        "CartParameters",
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "id",
+      "type": "integer",
+      "description": "Payment method ID",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponse",
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "imgUrl",
+      "type": "string",
+      "description": "Link do grafiki",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponse",
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "mobileImgUrl",
+      "type": "string",
+      "description": "Link do grafiki mobilnej",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponse",
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "mobile",
+      "type": "boolean",
+      "description": "Czy forma p\u0142atno\u015bci jest dost\u0119pna mobilnie",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponse",
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "availabilityHours",
+      "type": "string",
+      "description": "Property availabilityHours",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponse",
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "requestId",
+      "type": "string",
+      "description": "Individual request ID",
+      "example": null,
+      "usedIn": [
+        "TransactionRefundJsonRequestBody",
+        "RefundsCollection",
+        "TransactionRefundResult",
+        "RefundObject"
+      ]
+    },
+    {
+      "term": "refunds",
+      "type": "array",
+      "description": "Property refunds",
+      "example": null,
+      "usedIn": [
+        "TransactionRefundJsonRequestBody",
+        "TransactionWithRefundsResponse",
+        "DataBatchDetailsObject"
+      ]
+    },
+    {
+      "term": "refundsUuid",
+      "type": "string",
+      "description": "Individual ID for a correct refund request in the merchant\u2019s system",
+      "example": null,
+      "usedIn": [
+        "TransactionRefundJsonRequestBody",
+        "TransactionRefundResult"
+      ]
+    },
+    {
+      "term": "message",
+      "type": "string",
+      "description": "Text description of successful refund",
+      "example": "success",
+      "usedIn": [
+        "TransactionRefund201Item",
+        "TransactionRefund409Item"
+      ]
+    },
+    {
+      "term": "token",
+      "type": "string",
+      "description": "Property token",
+      "example": null,
+      "usedIn": [
+        "TransactionRegisterOfflineRequest",
+        "RecurringParams",
+        "BlikOneClick",
+        "CardChargeRequestBody",
+        "HistoryResponse200Body",
+        "BatchDetails200ResponseBody"
+      ]
+    },
+    {
+      "term": "splitPaymentDetails",
+      "type": "object",
+      "description": "Property splitPaymentDetails",
+      "example": null,
+      "usedIn": [
+        "TranstactionSplitPayment"
+      ]
+    },
+    {
+      "term": "sellerId",
+      "type": "string",
+      "description": "Shop ID on the part of Partner",
+      "example": null,
+      "usedIn": [
+        "CartParameters"
+      ]
+    },
+    {
+      "term": "sellerCategory",
+      "type": "string",
+      "description": "Shop category",
+      "example": null,
+      "usedIn": [
+        "CartParameters"
+      ]
+    },
+    {
+      "term": "quantity",
+      "type": "integer",
+      "description": "Product quantity<br/><br/><font color=\"red\">Required for PayPal payment method</font>",
+      "example": null,
+      "usedIn": [
+        "CartParameters"
+      ]
+    },
+    {
+      "term": "price",
+      "type": "integer",
+      "description": "Product price<br/><br/><font color=\"red\">Required for PayPal payment method</font>",
+      "example": null,
+      "usedIn": [
+        "CartParameters"
+      ]
+    },
+    {
+      "term": "number",
+      "type": "string",
+      "description": "Product number<br/><br/><font color=\"red\">Required for PayPal payment method</font>",
+      "example": null,
+      "usedIn": [
+        "CartParameters"
+      ]
+    },
+    {
+      "term": "group",
+      "type": "string",
+      "description": "Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "subgroup",
+      "type": "string",
+      "description": "Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment",
+      "example": null,
+      "usedIn": [
+        "PaymentMethodsResponseMethod"
+      ]
+    },
+    {
+      "term": "batchId",
+      "type": "integer",
+      "description": "Property batchId",
+      "example": null,
+      "usedIn": [
+        "RefundsCollection",
+        "TransactionBySessionIdResponse",
+        "BatchObject"
+      ]
+    },
+    {
+      "term": "date",
+      "type": "string",
+      "description": "Property date",
+      "example": null,
+      "usedIn": [
+        "RefundsCollection",
+        "TransactionBySessionIdResponse",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "login",
+      "type": "string",
+      "description": "Property login",
+      "example": null,
+      "usedIn": [
+        "RefundsCollection"
+      ]
+    },
+    {
+      "term": "bank",
+      "type": "string",
+      "description": "Property bank",
+      "example": null,
+      "usedIn": [
+        "InfoResponse"
+      ]
+    },
+    {
+      "term": "statement",
+      "type": "string",
+      "description": "Transfer title",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "TransactionResult",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "dateOfTransaction",
+      "type": "string",
+      "description": "Date of payment",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "clientEmail",
+      "type": "string",
+      "description": "Customer's e-mail",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "accountMD5",
+      "type": "string",
+      "description": "Customer's hashed bank account number",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse"
+      ]
+    },
+    {
+      "term": "paymentMethod",
+      "type": "integer",
+      "description": "Payment method ID",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "clientName",
+      "type": "string",
+      "description": "Customer's first name and surname",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "CardRegisterRequestBody",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "clientAddress",
+      "type": "string",
+      "description": "Customer's address",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "clientCity",
+      "type": "string",
+      "description": "Customer's city",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "clientPostcode",
+      "type": "string",
+      "description": "Customer's zip code",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse"
+      ]
+    },
+    {
+      "term": "fee",
+      "type": "string",
+      "description": "Commission",
+      "example": null,
+      "usedIn": [
+        "TransactionBySessionIdResponse",
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "blikCode",
+      "type": "string",
+      "description": "6-digit, one-time BLIK code generated in the app",
+      "example": null,
+      "usedIn": [
+        "RecurringParams"
+      ]
+    },
+    {
+      "term": "aliasValue",
+      "type": "string",
+      "description": "Unique alias of the user which can be used to charge client's next transactions. <br><br><b><font color = \"#DB2053\">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request.",
+      "example": null,
+      "usedIn": [
+        "RecurringParams",
+        "BlikOneClick"
+      ]
+    },
+    {
+      "term": "aliasLabel",
+      "type": "string",
+      "description": "Alias label displayed in the app. <br><br><b><font color = \"#DB2053\">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request.",
+      "example": null,
+      "usedIn": [
+        "RecurringParams",
+        "BlikOneClick"
+      ]
+    },
+    {
+      "term": "recurring",
+      "type": "object",
+      "description": "Property recurring",
+      "example": null,
+      "usedIn": [
+        "RecurringParams",
+        "BlikOneClick"
+      ]
+    },
+    {
+      "term": "frequency",
+      "type": "string",
+      "description": "Frequency of the recurrency; value must fulfill regex: [1-9][0-9]{0,2}[DWMY])",
+      "example": null,
+      "usedIn": [
+        "RecurringParamsIn"
+      ]
+    },
+    {
+      "term": "totalLimitAmount",
+      "type": "integer",
+      "description": "Maximum total amount that will be charged through the process",
+      "example": null,
+      "usedIn": [
+        "RecurringParamsIn"
+      ]
+    },
+    {
+      "term": "limitAmount",
+      "type": "integer",
+      "description": "Maximum amount that will be charged in a single payment",
+      "example": null,
+      "usedIn": [
+        "RecurringParamsIn"
+      ]
+    },
+    {
+      "term": "totalLimitCount",
+      "type": "integer",
+      "description": "Number of payments that will be issued in the whole process",
+      "example": null,
+      "usedIn": [
+        "RecurringParamsIn"
+      ]
+    },
+    {
+      "term": "minimumTime",
+      "type": "boolean",
+      "description": "Parametr to control min flag",
+      "example": null,
+      "usedIn": [
+        "RecurringParamsIn"
+      ]
+    },
+    {
+      "term": "availableBanks",
+      "type": "boolean",
+      "description": "parameter to control the verification of whether the bank supports recursion. If set to false, it is not checked if the bank supports recursion.",
+      "example": null,
+      "usedIn": [
+        "RecurringParamsIn"
+      ]
+    },
+    {
+      "term": "label",
+      "type": "string",
+      "description": "Property label",
+      "example": null,
+      "usedIn": [
+        "alternativeKeysItem"
+      ]
+    },
+    {
+      "term": "alias",
+      "type": "string",
+      "description": "Property alias",
+      "example": null,
+      "usedIn": [
+        "alternativeKeysItem"
+      ]
+    },
+    {
+      "term": "transactionToken",
+      "type": "string",
+      "description": "Token obtained during registration",
+      "example": null,
+      "usedIn": [
+        "CardRegisterRequestBody"
+      ]
+    },
+    {
+      "term": "cardNumber",
+      "type": "string",
+      "description": "Card number",
+      "example": null,
+      "usedIn": [
+        "CardRegisterRequestBody"
+      ]
+    },
+    {
+      "term": "cardDate",
+      "type": "string",
+      "description": "Card expiry date in format MMYYYY",
+      "example": null,
+      "usedIn": [
+        "CardRegisterRequestBody"
+      ]
+    },
+    {
+      "term": "cvv",
+      "type": "string",
+      "description": "Card CVV",
+      "example": null,
+      "usedIn": [
+        "CardRegisterRequestBody"
+      ]
+    },
+    {
+      "term": "3ds",
+      "type": "boolean",
+      "description": "Was 3D-Secure performed during payment?",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExtN",
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "errorCode",
+      "type": "string",
+      "description": "Error code",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExtN"
+      ]
+    },
+    {
+      "term": "errorMessage",
+      "type": "string",
+      "description": "Error description",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExtN"
+      ]
+    },
+    {
+      "term": "refId",
+      "type": "string",
+      "description": "Card reference number",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "bin",
+      "type": "integer",
+      "description": "Registered card bin",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "maskedCCNumber",
+      "type": "string",
+      "description": "Masked card number",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "ccExp",
+      "type": "string",
+      "description": "Card expiry date in MMYYYY format eg. 122020",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "hash",
+      "type": "string",
+      "description": "Unique card hash \u2013 unique for each card",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "cardCountry",
+      "type": "string",
+      "description": "Country code compatible with  ISO, e.g. PL",
+      "example": "PL",
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "risk",
+      "type": "integer",
+      "description": "0 \u2013 safe, 1 \u2013 suspicious, 2 \u2013 hazardous. Score calculated using a card payment risk calculation tool",
+      "example": null,
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "liabilityshift",
+      "type": "boolean",
+      "description": "Liability Shift means transferring responsibility for fraudulent transactions from the merchant to the card issuer or payment processor. 1 \u2013 Yes, 0 \u2013 No",
+      "example": false,
+      "usedIn": [
+        "CardNotificationExt"
+      ]
+    },
+    {
+      "term": "cardHolderLabel",
+      "type": "string",
+      "description": "Property cardHolderLabel",
+      "example": null,
+      "usedIn": [
+        "cardpayjson"
+      ]
+    },
+    {
+      "term": "cardNumberLabel",
+      "type": "integer",
+      "description": "Property cardNumberLabel",
+      "example": null,
+      "usedIn": [
+        "cardpayjson"
+      ]
+    },
+    {
+      "term": "cvvLabel",
+      "type": "integer",
+      "description": "Property cvvLabel",
+      "example": null,
+      "usedIn": [
+        "cardpayjson"
+      ]
+    },
+    {
+      "term": "expDateLabel",
+      "type": "string",
+      "description": "Property expDateLabel",
+      "example": null,
+      "usedIn": [
+        "cardpayjson"
+      ]
+    },
+    {
+      "term": "payButtonCaption",
+      "type": "string",
+      "description": "Property payButtonCaption",
+      "example": null,
+      "usedIn": [
+        "cardpayjson"
+      ]
+    },
+    {
+      "term": "threeDSAuthMessage",
+      "type": "string",
+      "description": "Property threeDSAuthMessage",
+      "example": null,
+      "usedIn": [
+        "cardpayjson"
+      ]
+    },
+    {
+      "term": "timestamp",
+      "type": "integer",
+      "description": "Time of sending the refund notification provided in UNIX timestamp",
+      "example": null,
+      "usedIn": [
+        "TransactionRefundResult"
+      ]
+    },
+    {
+      "term": "originAmount",
+      "type": "integer",
+      "description": "Amount of the transaction when registered the token expressed in lowest currency unit, e.g. 1.23 PLN = 123",
+      "example": null,
+      "usedIn": [
+        "TransactionResult"
+      ]
+    },
+    {
+      "term": "methodId",
+      "type": "integer",
+      "description": "Payment method used by customer",
+      "example": null,
+      "usedIn": [
+        "TransactionResult"
+      ]
+    },
+    {
+      "term": "pageInformation",
+      "type": "string",
+      "description": "Information about pagination",
+      "example": null,
+      "usedIn": [
+        "HistoryResponse200Body",
+        "BatchDetails200ResponseBody"
+      ]
+    },
+    {
+      "term": "recordsOnPage",
+      "type": "integer",
+      "description": "Amount records on current page",
+      "example": null,
+      "usedIn": [
+        "PageInformationObject"
+      ]
+    },
+    {
+      "term": "recordsAll",
+      "type": "integer",
+      "description": "Amount of all records",
+      "example": null,
+      "usedIn": [
+        "PageInformationObject"
+      ]
+    },
+    {
+      "term": "pageCount",
+      "type": "integer",
+      "description": "Amount of pages",
+      "example": null,
+      "usedIn": [
+        "PageInformationObject"
+      ]
+    },
+    {
+      "term": "details",
+      "type": "string",
+      "description": "Array of objects depended of type",
+      "example": null,
+      "usedIn": [
+        "Batch",
+        "Transaction",
+        "Refund"
+      ]
+    },
+    {
+      "term": "dateIn",
+      "type": "string",
+      "description": "Date of creating batch. Format: \u201cYYYY-MM-DD HH:MM:SS\u201d",
+      "example": null,
+      "usedIn": [
+        "BatchObject",
+        "RefundObject"
+      ]
+    },
+    {
+      "term": "dateOut",
+      "type": "string",
+      "description": "Date of withdrawal. Format: \u201cYYYY-MM-DD HH:MM:SS\u201d",
+      "example": null,
+      "usedIn": [
+        "BatchObject",
+        "RefundObject"
+      ]
+    },
+    {
+      "term": "commision",
+      "type": "integer",
+      "description": "Sum of commisions",
+      "example": null,
+      "usedIn": [
+        "BatchObject"
+      ]
+    },
+    {
+      "term": "charge",
+      "type": "integer",
+      "description": "Charge",
+      "example": null,
+      "usedIn": [
+        "BatchObject"
+      ]
+    },
+    {
+      "term": "refund",
+      "type": "integer",
+      "description": "Sum of refunds",
+      "example": null,
+      "usedIn": [
+        "BatchObject"
+      ]
+    },
+    {
+      "term": "settledAmount",
+      "type": "integer",
+      "description": "Amount without commision",
+      "example": null,
+      "usedIn": [
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "ordrId",
+      "type": "integer",
+      "description": "Unique id of transaction",
+      "example": null,
+      "usedIn": [
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "dateOfVerification",
+      "type": "string",
+      "description": "Date of verification",
+      "example": null,
+      "usedIn": [
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "accountChecksum",
+      "type": "string",
+      "description": "Customer\u2019s hashed bank account number",
+      "example": null,
+      "usedIn": [
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "clientZip",
+      "type": "string",
+      "description": "Customer's zip code",
+      "example": null,
+      "usedIn": [
+        "TransactionObject"
+      ]
+    },
+    {
+      "term": "refundId",
+      "type": "integer",
+      "description": "Unique id of refund",
+      "example": null,
+      "usedIn": [
+        "RefundObject"
+      ]
+    },
+    {
+      "term": "validation",
+      "type": "string",
+      "description": "Property validation",
+      "example": null,
+      "usedIn": [
+        "HistoryError400Body"
+      ]
+    },
+    {
+      "term": "overall",
+      "type": "string",
+      "description": "Batch overall information",
+      "example": null,
+      "usedIn": [
+        "DataBatchDetailsObject"
+      ]
+    },
+    {
+      "term": "transactions",
+      "type": "array",
+      "description": "List of transactions",
+      "example": null,
+      "usedIn": [
+        "DataBatchDetailsObject"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "tag": "Transaction service API",
+      "operations": [
+        {
+          "operationId": "",
+          "summary": "Transaction registration",
+          "method": "POST",
+          "path": "/api/v1/transaction/register"
+        },
+        {
+          "operationId": "",
+          "summary": "Transaction verification",
+          "method": "PUT",
+          "path": "/api/v1/transaction/verify"
+        }
+      ]
+    },
+    {
+      "tag": "Additional API functionality",
+      "operations": [
+        {
+          "operationId": "",
+          "summary": "Test Access",
+          "method": "GET",
+          "path": "/api/v1/testAccess"
+        },
+        {
+          "operationId": "",
+          "summary": "Payment Methods",
+          "method": "GET",
+          "path": "/api/v1/payment/methods/{lang}?amount=150&currency=PLN"
+        },
+        {
+          "operationId": "",
+          "summary": "Refund transaction",
+          "method": "POST",
+          "path": "/api/v1/transaction/refund"
+        },
+        {
+          "operationId": "",
+          "summary": "Register offline transaction",
+          "method": "POST",
+          "path": "/api/v1/transaction/registerOffline"
+        },
+        {
+          "operationId": "",
+          "summary": "Split Payment",
+          "method": "POST",
+          "path": "/api/v1/transaction/register/splitpayment"
+        },
+        {
+          "operationId": "",
+          "summary": "Refund by OrderID",
+          "method": "GET",
+          "path": "/api/v1/refund/by/orderId/{orderId}"
+        },
+        {
+          "operationId": "",
+          "summary": "Get transaction by sessionID",
+          "method": "GET",
+          "path": "/api/v1/transaction/by/sessionId/{sessionId}"
+        }
+      ]
+    },
+    {
+      "tag": "BLIK API",
+      "operations": [
+        {
+          "operationId": "",
+          "summary": "BLIK charge by code",
+          "method": "POST",
+          "path": "/api/v1/paymentMethod/blik/chargeByCode"
+        },
+        {
+          "operationId": "",
+          "summary": "BLIK charge by Alias",
+          "method": "POST",
+          "path": "/api/v1/paymentMethod/blik/chargeByAlias"
+        },
+        {
+          "operationId": "",
+          "summary": "Getting Aliases ByEmail",
+          "method": "GET",
+          "path": "/api/v1/paymentMethod/blik/getAliasesByEmail/{email}"
+        },
+        {
+          "operationId": "",
+          "summary": "Getting Aliases ByEmail (Custom)",
+          "method": "GET",
+          "path": "/api/v1/paymentMethod/blik/getAliasesByEmail/{email}/custom"
+        }
+      ]
+    },
+    {
+      "tag": "Card API",
+      "operations": [
+        {
+          "operationId": "",
+          "summary": "Card info",
+          "method": "GET",
+          "path": "/api/v1/card/info/{orderId}"
+        },
+        {
+          "operationId": "",
+          "summary": "Charge card with 3DS",
+          "method": "POST",
+          "path": "/api/v1/card/chargeWith3ds"
+        },
+        {
+          "operationId": "",
+          "summary": "Charge card",
+          "method": "POST",
+          "path": "/api/v1/card/charge"
+        },
+        {
+          "operationId": "",
+          "summary": "Card Payment",
+          "method": "POST",
+          "path": "/api/v1/card/pay"
+        }
+      ]
+    },
+    {
+      "tag": "Report API",
+      "operations": [
+        {
+          "operationId": "",
+          "summary": "History transaction",
+          "method": "GET",
+          "path": "/api/v1/report/history"
+        },
+        {
+          "operationId": "",
+          "summary": "Batch information",
+          "method": "GET",
+          "path": "/api/v1/report/batch/details"
+        }
+      ]
+    },
+    {
+      "tag": "GPay API",
+      "operations": [
+        {
+          "operationId": "",
+          "summary": "Token transfer",
+          "method": "GET",
+          "path": "/bundle/payWithGoogle/{TOKEN}"
+        }
+      ]
+    },
+    {
+      "tag": "APay API",
+      "operations": [
+        {
+          "operationId": "",
+          "summary": "Token transfer",
+          "method": "GET",
+          "path": "/bundle/applepay/{TOKEN}"
+        }
+      ]
+    }
+  ]
+}

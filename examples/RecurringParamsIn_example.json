@@ -1,0 +1,13 @@
+{
+  "summary": "Example RecurringParamsIn",
+  "value": {
+    "type": "M",
+    "expirationDate": "example_expirationDate",
+    "frequency": "example_frequency",
+    "totalLimitAmount": 1,
+    "limitAmount": 1,
+    "totalLimitCount": 1,
+    "minimumTime": false,
+    "availableBanks": false
+  }
+}

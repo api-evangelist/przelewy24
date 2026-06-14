@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example DispatchTransactionBody",
+  "value": {
+    "batchId": 1,
+    "details": null
+  }
+}

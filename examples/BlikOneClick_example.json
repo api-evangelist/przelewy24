@@ -1,0 +1,19 @@
+{
+  "summary": "Example BlikOneClick",
+  "value": {
+    "token": "example_token",
+    "type": "example_type",
+    "aliasValue": "example_aliasValue",
+    "aliasLabel": "example_aliasLabel",
+    "recurring": {
+      "type": "M",
+      "expirationDate": "example_expirationDate",
+      "frequency": "example_frequency",
+      "totalLimitAmount": 1,
+      "limitAmount": 1,
+      "totalLimitCount": 1,
+      "minimumTime": false,
+      "availableBanks": false
+    }
+  }
+}

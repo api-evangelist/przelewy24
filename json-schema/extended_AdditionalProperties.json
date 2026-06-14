@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_AdditionalProperties",
+  "properties": {
+    "shipping": {
+      "type": "object",
+      "description": "Additional shipping information",
+      "properties": {
+        "type": {
+          "type": "integer",
+          "description": "Type of shipment:<br> 0 - courier<br>1 - delivery point<br>2 - parcel locker<br> 3 - package in a shop",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "address": {
+          "type": "string",
+          "description": "Shipment address: street and number"
+        },
+        "zip": {
+          "type": "string",
+          "description": "Shipment zip code"
+        },
+        "city": {
+          "type": "string",
+          "description": "Shipment city"
+        },
+        "country": {
+          "type": "string",
+          "description": "Shipment country"
+        }
+      },
+      "required": [
+        "type",
+        "address",
+        "zip",
+        "city",
+        "country"
+      ]
+    },
+    "PSU": {
+      "type": "object",
+      "description": "Payment Service User<br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br> Object required when using methods <b><a href=\"#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByCode/post\">blikChargeByCode</a></b> or <b><a href=\"#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByAlias/post\">blikChargeByAlias</a></b>.\n",
+      "properties": {
+        "IP": {
+          "type": "string",
+          "description": "IPv4 or IPv6"
+        },
+        "userAgent": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "UserAgent is a string identifying the browser and operating system."
+        }
+      }
+    }
+  }
+}

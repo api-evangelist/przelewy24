@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_BlikChargeByCodeResponse",
+  "properties": {
+    "data": {
+      "properties": {
+        "orderId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "responseCode": {
+      "type": "number",
+      "default": 0
+    }
+  }
+}

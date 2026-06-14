@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DispatchArrayObject",
+  "properties": {
+    "date": {
+      "type": "string",
+      "description": "Date and time of dispatch",
+      "example": "2020-03-27 15:18:38"
+    },
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Identifier of dispatched transaction"
+    },
+    "partner_id": {
+      "type": "integer",
+      "description": "Submerchant's id. The funds are transferred to this sumberchant"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of product data objects"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount of transferred funds, in polish groshes"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "summary": "Example TranstactionSplitPayment",
+  "value": {
+    "merchantId": 1,
+    "posId": 1,
+    "sessionId": "example_sessionId",
+    "amount": 1,
+    "currency": "example_currency",
+    "description": "example_description",
+    "email": "example_email",
+    "client": "example_client",
+    "address": "example_address",
+    "zip": "example_zip",
+    "city": "example_city",
+    "country": "example_country",
+    "phone": "example_phone",
+    "language": "example_language",
+    "method": 1,
+    "urlReturn": "https://example.com",
+    "urlStatus": "https://example.com",
+    "timeLimit": 1,
+    "channel": "1",
+    "shipping": 1,
+    "transferLabel": "example_transferLabel",
+    "sdkVersion": "example_sdkVersion",
+    "sign": "example_sign",
+    "encoding": "example_encoding",
+    "cart": null,
+    "methodRefId": "example_methodRefId",
+    "splitPaymentDetails": null
+  }
+}

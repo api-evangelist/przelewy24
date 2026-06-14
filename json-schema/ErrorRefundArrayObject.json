@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ErrorRefundArrayObject",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Identifier of refunded transaction"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session's id of refunded transaction"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "The refunded amount, in polish groshes"
+    },
+    "description": {
+      "type": "string",
+      "description": "Refund description"
+    },
+    "status": {
+      "type": "boolean",
+      "description": "Refund's status",
+      "example": false
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message",
+      "example": "The amount of refund exceeds available amount for the transaction"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "summary": "Marketplace Example DataAffArrayObject",
+  "value": {
+    "id": 1,
+    "name": "Sample Merchant Oddzia\u0142 Pozna\u0144",
+    "nip": "example_nip",
+    "regon": "example_regon",
+    "customerStatus": "Verified",
+    "extendedStatus": "Inactive"
+  }
+}

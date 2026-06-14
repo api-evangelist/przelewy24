@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example FundsResponse400",
+  "value": {
+    "error": "Invalid merchant id",
+    "code": 400
+  }
+}

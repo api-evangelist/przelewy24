@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RefundArrayObjectBody",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Identifier of refunded transaction in P24 system"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session's id of refunded transactio in Partner's system"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount of refund in polish groshes"
+    },
+    "description": {
+      "type": "string",
+      "description": "Refund description"
+    },
+    "data": {
+      "description": "Array of sub-merchants' data",
+      "items": {
+        "$ref": "#/components/schemas/DataArrayObjectRefundBody"
+      }
+    }
+  },
+  "required": [
+    "orderId",
+    "sessionId",
+    "amount",
+    "data"
+  ]
+}

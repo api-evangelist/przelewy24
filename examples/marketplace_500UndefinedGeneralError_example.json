@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example 500UndefinedGeneralError",
+  "value": {
+    "error": "Undefined error",
+    "code": 500
+  }
+}

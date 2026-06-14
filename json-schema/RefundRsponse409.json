@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RefundRsponse409",
+  "properties": {
+    "error": {
+      "description": "Error Array of refund object",
+      "items": {
+        "$ref": "#/components/schemas/ErrorRefundArrayObject"
+      }
+    },
+    "code": {
+      "type": "integer",
+      "description": "Erroc code",
+      "example": 409
+    }
+  }
+}

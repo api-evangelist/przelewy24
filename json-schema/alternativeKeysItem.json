@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "alternativeKeysItem",
+  "properties": {
+    "label": {
+      "type": "string"
+    },
+    "alias": {
+      "type": "string"
+    }
+  }
+}

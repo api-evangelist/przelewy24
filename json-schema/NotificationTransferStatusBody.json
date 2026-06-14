@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NotificationTransferStatusBody",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "<b>Sent: always.</b><br/>Specifies which stage the notification refers to.<br/>Possible values:<br/>- pay - transfer payment(transferRequestId),<br/>- payout  - payout of funds (transferIds),<br/>- refund."
+    },
+    "id": {
+      "type": "string",
+      "description": "<b>Sent: always.</b><br/> Identifier of transfer, payout or refund which the notification refers to."
+    },
+    "status": {
+      "type": "integer",
+      "description": "<b>Sent&#x3A; always.</b><br/> Operation statuses are described in <a href=\"#tag/Table-of-transfer-statuses\"><b>Table of tansaction statuses</b></a>"
+    },
+    "externalParam": {
+      "type": "string",
+      "description": "<b>Sent: always.</b><br/>Parameter defined at transfer registration.<br/><b>Note!</b><br/>For method /v1/transfer/basket n case of notifications of the type \u201epay\u201d, the field comprises <b>all the externalParam values of the sent transfers separated with commas.</b>"
+    },
+    "method": {
+      "type": "string",
+      "description": "<b>Sent: only if it is a notification on the payment of the transfer.</b><br/> Transfer payment method: p24/p24code/wallet/card.",
+      "example": "wallet"
+    },
+    "sign": {
+      "type": "string",
+      "description": "<b>Sent&#x3A; always.</b><br/> Control sum is a value calculated with the use of sha384 algorithm. For details, see <a href=\"#section/Calculation-of-sign-parameter-for-notifications\"><b>Calculation of sign parameter dla powiadomie\u0144</b></a>."
+    }
+  }
+}

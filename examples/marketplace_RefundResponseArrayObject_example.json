@@ -1,0 +1,12 @@
+{
+  "summary": "Marketplace Example RefundResponseArrayObject",
+  "value": {
+    "orderId": 0,
+    "sessionId": "example_sessionId",
+    "amount": 1000,
+    "data": null,
+    "description": "example_description",
+    "status": true,
+    "message": "success"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "summary": "Example CardNotificationExtN",
+  "value": {
+    "amount": 1,
+    "3ds": false,
+    "method": 1,
+    "orderId": 1,
+    "sessionId": "example_sessionId",
+    "errorCode": "example_errorCode",
+    "errorMessage": "example_errorMessage",
+    "sign": "example_sign"
+  }
+}

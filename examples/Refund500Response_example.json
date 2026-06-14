@@ -1,0 +1,7 @@
+{
+  "summary": "Example Refund500Response",
+  "value": {
+    "error": "Unknown error",
+    "code": 500
+  }
+}

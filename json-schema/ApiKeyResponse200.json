@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ApiKeyResponse200",
+  "properties": {
+    "api_key": {
+      "type": "string",
+      "description": "API key"
+    },
+    "type": {
+      "type": "string",
+      "description": "Authentication type",
+      "example": "baseAuth"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nazwa",
+      "example": ""
+    }
+  }
+}

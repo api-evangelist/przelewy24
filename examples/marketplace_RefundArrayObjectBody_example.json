@@ -1,0 +1,10 @@
+{
+  "summary": "Marketplace Example RefundArrayObjectBody",
+  "value": {
+    "orderId": 1,
+    "sessionId": "example_sessionId",
+    "amount": 1,
+    "description": "example_description",
+    "data": null
+  }
+}

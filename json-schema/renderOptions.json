@@ -1,0 +1,832 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "renderOptions",
+  "properties": {
+    "lang": {
+      "type": "string",
+      "description": "Default form language according to ISO 639-1 standard",
+      "default": "pl"
+    },
+    "loader": {
+      "type": "boolean",
+      "description": "Indicate whether to show loader when building form",
+      "default": false
+    },
+    "errorMessage": {
+      "type": "boolean",
+      "description": "Indicate whether to show an error if the Payer completes the form incorrectly",
+      "default": false
+    },
+    "transactions": {
+      "type": "object",
+      "description": "Additional transaction data",
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "description": "Transaction amount expressed in lowest currency unit, e.g. 1.23 PLN = 123",
+          "example": 1000
+        },
+        "currency": {
+          "type": "string",
+          "description": "Transaction currency in accordance with ISO",
+          "example": "PLN"
+        },
+        "channel": {
+          "type": "string",
+          "description": "Indicate which payment channels are to be available on the form</br>  1 - cards",
+          "example": 1,
+          "enum": 1
+        }
+      }
+    },
+    "c2p": {
+      "type": "boolean",
+      "description": "Available Click to Pay payment in form. </br><font size=\"2\"><i> Click to Pay is an extension of the current card payment method, allowing card details to be stored in one secure place - the payer profile.  <a href=\"https://www.przelewy24.pl/blog/click-pay-co-jest-i-jak-dzial\">Read more</a></font></i> </br><b style=\"color: #DB2053; font-size: 11.5px;\"><i> IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\"> There will be a blocking of card enrollment in permanent mode (e.g., for recurring payments) if the payer logs his profile in Click to Pay. </span></i>",
+      "default": false
+    },
+    "psu": {
+      "type": "object",
+      "description": "Additional data about the Payer",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email Payer",
+          "example": "Jan.Kowalski@gmail.com"
+        }
+      }
+    },
+    "size": {
+      "type": "object",
+      "description": "Object that modifies the size of the iFrame",
+      "properties": {
+        "width": {
+          "type": "string",
+          "minimum": "360px",
+          "description": "Width <br> <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\"> Sending less than the minimum value will cause a form generation error. In such a situation, a fail event will be sent. </i></span> ",
+          "default": "370px"
+        },
+        "height": {
+          "type": "string",
+          "description": "The height of the iFrame. By default, it will adjust to the content presented in the iFrame",
+          "default": "638px"
+        }
+      }
+    },
+    "agreement": {
+      "type": "object",
+      "description": "Object responsible for visibility of Przelewy24 regulations",
+      "properties": {
+        "contentEnabled": {
+          "type": "object",
+          "description": "Object that modifies the visibility of elements",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Indicate whether the rules of Przelewy24 are to be displayed",
+              "example": true
+            },
+            "checkboxEnabled": {
+              "type": "boolean",
+              "description": "Indication of whether the displayed regulations require confirmation by the Payer",
+              "example": true
+            }
+          }
+        },
+        "TOSLanguage": {
+          "type": "string",
+          "deprecated": true,
+          "description": "Defines in which language the text of the terms of service in ISO 639-1 will be displayed.",
+          "default": "pl"
+        }
+      }
+    },
+    "agreement_save_card": {
+      "type": "object",
+      "description": "Object responsible for visibility of Merchant's regulations",
+      "properties": {
+        "contentEnabled": {
+          "type": "object",
+          "description": "Object that modifies the visibility of elements",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Indicate whether Merchant's regulations are to be displayed",
+              "example": true
+            },
+            "checkboxEnabled": {
+              "type": "boolean",
+              "description": "Indicate whether the displayed regulations require confirmation by the Payer  <br><b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\"> With Click to Pay enabled, it is not possible to present Merchant's terms and conditions without requiring the Payer to confirm them (no checkbox). Attempting to set this up will result in a form generation error. A fail event will be returned. For the moment, the Payer can save the card either to Click to Pay or with Merchant. </i></span> ",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "description": "Text modification object visible as label of fields",
+      "properties": {
+        "cardholder": {
+          "type": "string",
+          "maximum": "40 chars",
+          "description": "Text visible as a cardholder field label <br> <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">Send more than the maximum value will cause a form generation error. In this situation, a fail event will be passed. </i></span> ",
+          "default": "Name and surname",
+          "example": "Name and surname of the cardholder "
+        },
+        "card": {
+          "type": "string",
+          "maximum": "40 chars",
+          "description": "Text visible as label of card number field <br> <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">Send more than the maximum value will cause a form generation error. In this situation, a fail event will be passed. </i></span> ",
+          "default": "Card number",
+          "example": "Card number"
+        },
+        "cvv": {
+          "type": "string",
+          "maximum": "30 chars",
+          "description": "Text visible as the label of the field of CVV/CVC number of the card <br> <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">Send more than the maximum value will cause a form generation error. In this situation, a fail event will be passed. </i></span> ",
+          "default": "CVV/CVC code",
+          "example": "CVV/CVC"
+        },
+        "exp": {
+          "type": "string",
+          "maximum": "30 chars",
+          "description": "Text visible as label of card expiration date field <br> <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">Send more than the maximum value will cause a form generation error. In this situation, a fail event will be passed. </i></span> ",
+          "default": "Expiry date",
+          "example": "MM/RR"
+        }
+      }
+    },
+    "placeholders": {
+      "type": "object",
+      "description": "Object that modifies the text visible in each element",
+      "properties": {
+        "card": {
+          "type": "string",
+          "description": "Text visible in the card element",
+          "default": "0000 0000 0000 0000",
+          "example": "Enter your card number"
+        },
+        "cvv": {
+          "type": "string",
+          "description": "Text visible in the cvv element",
+          "default": "123",
+          "example": "Enter your CVV/CVC"
+        },
+        "exp": {
+          "type": "string",
+          "description": "Text visible in the expire date element",
+          "default": "MM/RR",
+          "example": "Enter your expire date"
+        },
+        "cardholder": {
+          "type": "string",
+          "description": "Text visible in the cardholder element",
+          "default": "John Doe",
+          "example": "Enter the name and surname of the cardholder"
+        }
+      }
+    },
+    "buttons": {
+      "type": "object",
+      "description": "The object that enables the configuration of buttons in a card form. <br> <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">By default, buttons are not available in iFrame. </i></span>",
+      "properties": {
+        "tokenize": {
+          "type": "object",
+          "description": "The object responsible for configuring a button to permanently save card data, which in the future can be used for loads using another library <a href=\"#tag/Card-payment-flow\">Read more</a> <br> <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">At this moment there is no possibility to save permanent card data if the Payer will use Click to Pay. Work is in progress to provide such functionality.</i> </span>",
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "type": "string",
+              "maximum": "30 chars",
+              "description": "The text shown on the button <br>  <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">Send more than the maximum value will cause a form generation error. In this situation, a fail event will be passed. </i></span> ",
+              "example": "Enroll and pay"
+            },
+            "backgroundColor": {
+              "type": "string",
+              "description": "Button background color",
+              "default": "#29323C",
+              "example": "#000/black"
+            },
+            "color": {
+              "type": "string",
+              "description": "Text color on the button",
+              "default": "#FFFFFF",
+              "example": "#000/black"
+            },
+            "border": {
+              "type": "object",
+              "description": "Button edge styles",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge color",
+                  "default": "#29323C",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge thickness",
+                  "default": "1px",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "default": "4px",
+                  "example": "15px"
+                }
+              }
+            }
+          }
+        },
+        "tokenize_temporary": {
+          "type": "object",
+          "description": "Object responsible for configuring a button to temporarily save card data for later loading using another library <a href=\"#tag/Card-payment-flow\">Read more</a>",
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "type": "string",
+              "maximum": "30 chars",
+              "description": "The text shown on the button <br>  <b style=\"color: #DB2053; font-size: 11.5px;\"><i>IMPORTANT!:</b></br><span style=\"color: #DB2053; font-size: 11.5px;\">Send more than the maximum value will cause a form generation error. In this situation, a fail event will be passed. </i></span> ",
+              "example": "Enroll card"
+            },
+            "backgroundColor": {
+              "type": "string",
+              "description": "Button background color",
+              "default": "#29323C",
+              "example": "#000/black"
+            },
+            "color": {
+              "type": "string",
+              "description": "Text color on the button",
+              "default": "#FFFFFF",
+              "example": "#000/black"
+            },
+            "border": {
+              "type": "object",
+              "description": "Button edge styles",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge color",
+                  "default": "#29323C",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge thickness",
+                  "default": "1px",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "default": "4px",
+                  "example": "15px"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "styles": {
+      "type": "object",
+      "description": "Object that modifies form styles",
+      "properties": {
+        "font": {
+          "type": "object",
+          "description": "Object that modifies the font of the form",
+          "properties": {
+            "basic": {
+              "type": "object",
+              "description": "Font configuration relating to the whole form",
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "description": "Size expressed in px, em, rem",
+                  "default": "14px",
+                  "example": "24px"
+                },
+                "family": {
+                  "type": "string",
+                  "description": "Font family specified after the comma (without spaces). All Google fonts are supported.",
+                  "default": "Inter,Regular",
+                  "example": "Impact,Charcoal,sans-serif"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font thickness",
+                  "default": "normal",
+                  "example": "500"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Font color (option to indicate in HEX or in words)",
+                  "default": "#0000C7",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "error": {
+              "type": "object",
+              "description": "Configure the font for the error",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Font color (option to indicate in HEX or in words)",
+                  "default": "#BB1820",
+                  "example": "#000/black"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font thickness",
+                  "default": "normal",
+                  "example": "500"
+                }
+              }
+            },
+            "agreement": {
+              "type": "object",
+              "description": "Configure the font for the TOS (Terms Of Services) field.",
+              "properties": {
+                "family": {
+                  "type": "string",
+                  "description": "Font family specified after the comma (without spaces). All Google fonts are supported.",
+                  "default": "Inter,Regular",
+                  "example": "Impact,Charcoal,sans-serif"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Font color (option to indicate in HEX or in words)",
+                  "default": "#00008A",
+                  "example": "#000/black"
+                },
+                "size": {
+                  "deprecated": true,
+                  "type": "string",
+                  "description": "Size",
+                  "default": "10px",
+                  "example": "24px"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font thickness",
+                  "default": "normal",
+                  "example": "500"
+                },
+                "link": {
+                  "type": "string",
+                  "description": "Specifies the font color of the link to the regulations and information obligation (possibility to indicate in HEX or in words)",
+                  "default": "#29323C",
+                  "example": "#000/black"
+                },
+                "visited": {
+                  "type": "string",
+                  "description": "Specifies the font color of the link to the regulations and information obligation that has already been visited (option to indicate in HEX or in words)",
+                  "default": "#29323C",
+                  "example": "#000/black"
+                },
+                "active": {
+                  "type": "string",
+                  "description": "Specifies the font color of the link to the regulations and information obligation on which the mouse cursor is just located (possibility to indicate in HEX or in words)",
+                  "default": "#29323C",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "focus": {
+              "type": "object",
+              "description": "Configure the font during element activation",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Font color (option to indicate in HEX or in words)",
+                  "example": "#000/black"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font thickness",
+                  "example": "500"
+                }
+              }
+            },
+            "placeholders": {
+              "type": "object",
+              "description": "Configure the font for the text visible in each element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Font color (option to indicate in HEX or in words)",
+                  "default": "#29323C",
+                  "example": "#000/black"
+                },
+                "weight": {
+                  "type": "string",
+                  "description": "Font thickness",
+                  "default": "normal",
+                  "example": "500"
+                }
+              }
+            }
+          }
+        },
+        "colors": {
+          "type": "object",
+          "description": "Object that modifies the font color for an individual element.",
+          "properties": {
+            "card": {
+              "type": "string",
+              "description": "Font color in the card element",
+              "default": "#29323C",
+              "example": "#000/black"
+            },
+            "cvv": {
+              "type": "string",
+              "description": "Font color in the cvv element",
+              "default": "#29323C",
+              "example": "#000/black"
+            },
+            "exp": {
+              "type": "string",
+              "description": "Font color in the exp element",
+              "default": "#29323C",
+              "example": "#000/black"
+            },
+            "cardholder": {
+              "type": "string",
+              "description": "Font color in the cardholder element",
+              "default": "#29323C",
+              "example": "#000/black"
+            },
+            "loader": {
+              "type": "object",
+              "description": "Loadera color",
+              "properties": {
+                "primary": {
+                  "type": "string",
+                  "description": "Main color, static element",
+                  "example": "#000/black"
+                },
+                "secondary": {
+                  "type": "string",
+                  "description": "Color of the moving element",
+                  "example": "#000/black"
+                }
+              }
+            }
+          }
+        },
+        "border": {
+          "type": "object",
+          "description": "Obiekt modyfikuj\u0105cy kraw\u0119d\u017a dla poszczeg\u00f3lnego elementu",
+          "properties": {
+            "basic": {
+              "type": "object",
+              "description": "Edge modification object for a specific element",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            },
+            "form": {
+              "type": "object",
+              "description": "Edge styles for the form element",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Edge type",
+                  "example": "solid"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Edge color",
+                  "example": "#000/black"
+                },
+                "width": {
+                  "type": "string",
+                  "description": "Edge thickness",
+                  "example": "15px"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Edge rounding",
+                  "example": "15px"
+                }
+              }
+            }
+          }
+        },
+        "agreement_checkbox": {
+          "deprecated": true,
+          "type": "object",
+          "description": "Object that modifies the colors for the TOS (Terms Of Services) checkbox.",
+          "properties": {
+            "color": {
+              "type": "string",
+              "description": "Checkbox border color",
+              "example": "#000/black"
+            },
+            "colorInside": {
+              "type": "string",
+              "description": "Background color of the checkbox",
+              "example": "#000/black"
+            },
+            "colorSelected": {
+              "type": "string",
+              "description": "Color of the checkbox when selected",
+              "example": "#000/black"
+            },
+            "width": {
+              "type": "string",
+              "description": "Width and height of the checkbox",
+              "example": "15px"
+            }
+          }
+        },
+        "checkboxes": {
+          "type": "object",
+          "description": "Object that modifies the colors for the checkbox",
+          "properties": {
+            "color": {
+              "type": "string",
+              "description": "Checkbox border color",
+              "default": "#C9D1D6",
+              "example": "#000/black"
+            },
+            "colorInside": {
+              "type": "string",
+              "description": "Background color of the checkbox",
+              "default": "#F6F9FC",
+              "example": "#000/black"
+            },
+            "colorSelected": {
+              "type": "string",
+              "description": "Color of the checkbox when selected",
+              "default": "#0000ED",
+              "example": "#000/black"
+            },
+            "width": {
+              "type": "string",
+              "description": "Width and height of the checkbox",
+              "default": "16px",
+              "example": "15px"
+            }
+          }
+        },
+        "background": {
+          "type": "object",
+          "description": "Object that modifies the background color for an individual element",
+          "properties": {
+            "basic": {
+              "type": "object",
+              "description": "Background color for all input type elements",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Background color",
+                  "default": "#F6F9FC",
+                  "example": "#000/black"
+                }
+              }
+            },
+            "form": {
+              "type": "object",
+              "description": "Background color for the form element",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Background color",
+                  "default": "#F6F9FC",
+                  "example": "#000/black"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "additional": {
+      "type": "object",
+      "description": "Additional configuration of padding and margin for individual form elements",
+      "properties": {
+        "inputs": {
+          "type": "object",
+          "description": "Applies to all text inputs in the form ",
+          "properties": {
+            "paddingTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the top edge of the element and its content."
+            },
+            "paddingRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the right edge of the element and its content."
+            },
+            "paddingBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the bottom edge of the element and its content."
+            },
+            "paddingLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the left edge of the element and its content."
+            },
+            "marginTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the top edge of the element and surrounding elements"
+            },
+            "marginRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the right edge of the element and surrounding elements"
+            },
+            "marginBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the bottom edge of the element and surrounding elements"
+            },
+            "marginLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the left edge of the element and surrounding elements"
+            }
+          }
+        },
+        "labels": {
+          "type": "object",
+          "description": "Applies to all form labels",
+          "properties": {
+            "paddingTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the top edge of the element and its content."
+            },
+            "paddingRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the right edge of the element and its content."
+            },
+            "paddingBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the bottom edge of the element and its content."
+            },
+            "paddingLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the left edge of the element and its content."
+            },
+            "marginTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the top edge of the element and surrounding elements"
+            },
+            "marginRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the right edge of the element and surrounding elements"
+            },
+            "marginBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the bottom edge of the element and surrounding elements"
+            },
+            "marginLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the left edge of the element and surrounding elements"
+            }
+          }
+        },
+        "buttons": {
+          "type": "object",
+          "description": "Applies to all form buttons",
+          "properties": {
+            "paddingTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the top edge of the element and its content."
+            },
+            "paddingRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the right edge of the element and its content."
+            },
+            "paddingBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the bottom edge of the element and its content."
+            },
+            "paddingLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the left edge of the element and its content."
+            },
+            "marginTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the top edge of the element and surrounding elements"
+            },
+            "marginRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the right edge of the element and surrounding elements"
+            },
+            "marginBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the bottom edge of the element and surrounding elements"
+            },
+            "marginLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the left edge of the element and surrounding elements"
+            }
+          }
+        },
+        "form": {
+          "type": "object",
+          "description": "Applies to the entire form",
+          "properties": {
+            "paddingTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the top edge of the element and its content."
+            },
+            "paddingRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the right edge of the element and its content."
+            },
+            "paddingBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the bottom edge of the element and its content."
+            },
+            "paddingLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the internal spacing between the left edge of the element and its content."
+            },
+            "marginTop": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the top edge of the element and surrounding elements"
+            },
+            "marginRight": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the right edge of the element and surrounding elements"
+            },
+            "marginBottom": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the bottom edge of the element and surrounding elements"
+            },
+            "marginLeft": {
+              "type": "string",
+              "example": "10px",
+              "description": "Specifies the external spacing between the left edge of the element and surrounding elements"
+            }
+          }
+        }
+      }
+    }
+  }
+}

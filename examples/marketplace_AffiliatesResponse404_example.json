@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example AffiliatesResponse404",
+  "value": {
+    "error": "Affiliates not found",
+    "code": 404
+  }
+}

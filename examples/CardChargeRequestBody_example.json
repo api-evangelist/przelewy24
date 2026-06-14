@@ -1,0 +1,6 @@
+{
+  "summary": "Example CardChargeRequestBody",
+  "value": {
+    "token": "example_token"
+  }
+}

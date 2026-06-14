@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PaymentMethodObjectResponseBody",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique payment method ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of a payment method"
+    },
+    "status": {
+      "type": "boolean",
+      "description": "True \u2013 ON, False \u2013 OFF"
+    }
+  }
+}

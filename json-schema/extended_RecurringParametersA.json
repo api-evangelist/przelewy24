@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_RecurringParametersA",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/RecurringParamsIn"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "name": "type",
+          "enum": [
+            "M",
+            "A",
+            "O"
+          ],
+          "description": "the type of recurring payment; allowed values: A, O, M",
+          "in": "formData"
+        },
+        "initDate": {
+          "type": "string",
+          "description": "Allowed format: YYYY-MM-DD"
+        },
+        "expirationDate": {
+          "type": "string",
+          "description": "Allowed format: YYYY-MM-DD hh:mm:ss"
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Frequency of the recurrency; value must fulfill regex: [1-9][0-9]{0,2}[DWMY])"
+        },
+        "totalLimitAmount": {
+          "type": "integer",
+          "description": "Maximum total amount that will be charged through the process"
+        },
+        "limitAmount": {
+          "type": "integer",
+          "description": "Maximum amount that will be charged in a single payment"
+        },
+        "totalLimitCount": {
+          "type": "integer",
+          "description": "Number of payments that will be issued in the whole process"
+        },
+        "availableBanks": {
+          "description": "Parameter to control the verification of whether the bank supports recursion. If set to false, it is not checked if the bank supports recursion.",
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "initDate",
+        "totalLimitAmount",
+        "limitAmount",
+        "frequency",
+        "type"
+      ]
+    }
+  ]
+}

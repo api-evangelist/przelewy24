@@ -1,0 +1,7 @@
+{
+  "summary": "Example UnauthorizedResponse",
+  "value": {
+    "error": "Incorrect authentication",
+    "code": 401
+  }
+}

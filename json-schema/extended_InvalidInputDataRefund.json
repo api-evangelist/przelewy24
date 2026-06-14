@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_InvalidInputDataRefund",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error message. Possbile values:<br/><br/>\"Invalid input parameters\" - in case incorrect parameters or their values,<br/><br/> \"Request already exists\" - in case the refund was already created,<br/><br/> \"Concurrent call\" - in case the  refund is multiplied."
+    },
+    "code": {
+      "type": "number",
+      "default": 400,
+      "example": 400
+    }
+  }
+}

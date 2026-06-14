@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example AffiliatesResponse400",
+  "value": {
+    "error": "Invalid merchant or affiliate id",
+    "code": 400
+  }
+}

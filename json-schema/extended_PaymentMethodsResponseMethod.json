@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_PaymentMethodsResponseMethod",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of payment method"
+    },
+    "id": {
+      "type": "integer",
+      "description": "Payment method ID"
+    },
+    "group": {
+      "type": "string",
+      "description": "Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment"
+    },
+    "subgroup": {
+      "type": "string",
+      "description": "Possible values: PBL, Blik, BlikWhiteLabel, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another, SplitPayment, PIS"
+    },
+    "status": {
+      "type": "boolean",
+      "example": true,
+      "description": "Specifies whether a given method is active"
+    },
+    "imgUrl": {
+      "type": "string",
+      "description": "Link to graphics"
+    },
+    "mobileImgUrl": {
+      "type": "string",
+      "description": "Link to mobile graphics"
+    },
+    "mobile": {
+      "type": "boolean",
+      "example": true,
+      "description": "Is the payment mobile method available?"
+    },
+    "availabilityHours": {
+      "$ref": "#/components/schemas/availabilityHours"
+    }
+  }
+}

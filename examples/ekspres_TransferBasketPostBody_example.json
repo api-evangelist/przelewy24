@@ -1,0 +1,18 @@
+{
+  "summary": "Ekspres Example TransferBasketPostBody",
+  "value": {
+    "transfers": null,
+    "type": "example_type",
+    "express": true,
+    "currency": "PLN",
+    "send": 11,
+    "regulations": false,
+    "id": "example_id",
+    "sign": "example_sign",
+    "label": "example_label",
+    "ttl": 1,
+    "paymentMethod": 1,
+    "returnUrl": "https://example.com",
+    "sdkVersion": 3.0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "summary": "Example DataBatchDetailsObject",
+  "value": {
+    "overall": {},
+    "transactions": [
+      {}
+    ],
+    "refunds": [
+      {}
+    ]
+  }
+}

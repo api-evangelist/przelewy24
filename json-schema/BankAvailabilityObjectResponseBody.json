@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BankAvailabilityObjectResponseBody",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Bank name"
+    },
+    "workweek": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Working hours from Monday to Friday"
+    },
+    "saturday": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Working hours on Saturdays"
+    },
+    "sunday": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Working hours on Sundays"
+    },
+    "holidays": {
+      "type": "boolean",
+      "description": "Availability on public holidays:<br/> false \u2013 unavailable<br/>true \u2013 available"
+    }
+  }
+}

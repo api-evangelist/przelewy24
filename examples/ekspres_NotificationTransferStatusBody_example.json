@@ -1,0 +1,11 @@
+{
+  "summary": "Ekspres Example NotificationTransferStatusBody",
+  "value": {
+    "type": "example_type",
+    "id": "example_id",
+    "status": 1,
+    "externalParam": "example_externalParam",
+    "method": "wallet",
+    "sign": "example_sign"
+  }
+}

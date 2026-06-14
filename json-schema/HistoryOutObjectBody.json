@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HistoryOutObjectBody",
+  "properties": {
+    "transfer": {
+      "description": "Object of transfer TransferObject",
+      "$ref": "#/components/schemas/TransferObjectBody"
+    },
+    "express": {
+      "type": "boolean",
+      "description": "Was the transfer ordered in the express mode?"
+    },
+    "date": {
+      "type": "string",
+      "description": "Transfer registration date"
+    },
+    "status": {
+      "type": "integer",
+      "description": "Transfer current status"
+    },
+    "statusDescription": {
+      "type": "string",
+      "description": "Current status (description)"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of payment: wallet, p24, p24code"
+    },
+    "id": {
+      "type": "string",
+      "description": "\u201cid\u201d parameter provided during transfer registration"
+    },
+    "transferId": {
+      "type": "integer",
+      "description": "Transfer identifier in the express system"
+    },
+    "transferRequestId": {
+      "type": "integer",
+      "description": "Request identifier in the express mode"
+    }
+  }
+}

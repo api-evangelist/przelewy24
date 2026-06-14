@@ -1,0 +1,1341 @@
+openapi: 3.0.0
+info:
+  x-logo:
+    url: "getfile/przelewy24-logo_mini.png"
+    altText: LogoP24
+  contact:
+    name: Przelewy24 Support
+    url: https://www.przelewy24.pl/support    
+  title: Marketplace Przelewy24 REST API Documentation
+  description: >
+
+
+
+    # Marketplace Przelewy24
+
+
+    Przelewy24 provides an authorisation and clearing system and provides payment services as a Domestic Payment Institution. <br><br/>
+
+    <b><b>Market Przelewy24</b> service provides efficient and convinient way for creating and managing shops at your platform.</b><br/><br/>
+
+    Below documentation contains technical specification of installation Przelewy 24 system for marketplace solutions.
+    <br/><br/>
+
+    In order to be able to access Marketplace API Przelewy24, contact Partner Support:<br/>
+    partner@przelewy24.pl.
+
+    <br/>
+
+    # Business types
+
+    The table below contains a list of possible business types with corresponding values, which should be send in <a href="#tag/Marketplace-Merchant-API/paths/~1api~1v1~1merchant~1register/post"><b>merchant/register</b></a> method in <b>business_type</b> field.<br/><br/>
+
+
+      |Value| Description       |
+      |:--------:|:-----------|
+      | 1 | Natural person |
+      | 2 | Sole trader |
+      | 3 | Civil law partnership |
+      | 4 | General partnership |
+      | 5 | Limited partnership |
+      | 6 | Limited join-stock partnership|
+      | 7 | Joint-stock company |
+      | 8 | Limited liability company |
+      | 9 | Association, foundation, public benefit organization |
+      | 10 | Cooperative |
+
+
+    # List of trades
+
+    The table below contais a list of possible trade types witch corresponding values, which sould be send in <a href="#tag/Marketplace-Merchant-API/paths/~1api~1v1~1merchant~1register/post"><b>merchant/register</b></a> method in <b>trade</b> field.<br/><br/>
+
+
+
+      | Value  |      Description      |
+      |--------------|:--------------|
+      | agd  |   Household articles |
+      | agdrtv | Household articles and RTV|
+      | alkoh | Alcohol |
+      | apteki | Pharmacy |
+      | artlab | Laboratory articles |
+      | artmed | Medical articles |
+      | artspoz | Groceries |
+      | aukcje | Auctions |
+      | behape | EHS |
+      | blizna | Underwear |
+      | bilety | Tickets |
+      | buki | Bookmaker |
+      | biz | Jewellery and watches |
+      | budow | Construction |
+      | chemia | Chemistry |
+      | czaspis | Magazines |
+      | dekor | Decor |
+      | dewoc | Devotional items |
+      | domiogr | House and garden |
+      | dziecko | Child |
+      | elektronika | Electronics |
+      | erotyka | Erotica |
+      | epapier | E-cigarette |
+      | ezoter | Esoterics |
+      | filatel | Philately |
+      | finanse | Finances |
+      | fotogr | Photography |
+      | fundacja | Foundation |
+      | galant | Gallantry |
+      | gadzet | Gadgetry |
+      | gry | Games |
+      | komphost | Hosting |
+      | hotel | Hotel business |
+      | instyt | Institutions |
+      | ipsp | IPSP |
+      | komputery | Computers |
+      | ksiazki | Books |
+      | kosmetyki | Cosmetics |
+      | ksieg | Bookstores |
+      | kip | Flowers and gifts |
+      | mwf | Mass Invoice Issuers |
+      | maszyny | Machines |
+      | matbiur | Office supplies |
+      | matfol | Foil materials |
+      | matpap | Paper materials |
+      | militaria | Military |
+      | motoryz | Motorization |
+      | mim | Multimedia and musics |
+      | nagrob | Gravestones  |
+      | narzedzia | Tools  |
+      | nis | Science and education |
+      | numiz | Numismatics |
+      | obuwie | Footwear |
+      | odziez | Clothing |
+      | ogl | Adverts |
+      | ogrod | Garden |
+      | oprogra | Software |
+      | oswietl | Lighting |
+      | pasman | Haberdashery |
+      | podroze | Travels |
+      | randki | Dating website |
+      | portfel | Electronic wallet |
+      | prasa | Newspapers |
+      | prawo | Law |
+      | kurier | Courier services |
+      | reklama | Advertising |
+      | rekodz | Handcraft |
+      | rodzice | Parents |
+      | rtv | RTV |
+      | serint |  Website |
+      | sklmuz | Music shop |
+      | siw | Sports and leisure |
+      | suplem | Dietary supplement |
+      | szklo | Glass |
+      | szkol | Training course |
+      | sztuka | Art |
+      | sorne | Bridal |
+      | tif | Theatre and movies |
+      | telek | Telecomunications |
+      | tkan | Fabric |
+      | twstrwww | WWW websites development |
+      | ubezp | Inscurance |
+      | uslugi | Services |
+      | wielob | Multi-business |
+      | wypmiesz | Homeware |
+      | wypsklep | Shop fittings  |
+      | wyrtyt | Tobacco products |
+      | wio | Eyesight and glasses |
+      | vod | Vod |
+      | zabawki | Toys |
+      | zik | Health and cosmetics |
+      | zwierz | Animals |
+
+
+    # Environments
+
+    ## Production environment
+
+    Every request is differentiated by its own unique request URL. This way P24 knows which API-function you want to access. Combined with the base URL for either the production- or test-environment, you will get the complete API-URL.
+
+
+    Base URL production system:<br/>
+    https://secure.przelewy24.pl/api/v1
+
+
+
+    # API Access
+
+    Authentication is effected with the Basic Auth mechanism.<br/>
+    Login is an ID of merchant's account and corresponding API key is a password. You can acces your API key in P24 [panelu](https://panel.przelewy24.pl/).
+
+
+    # Possible error codes
+
+      | ErrorCode | Description                                                                                                                                                       |
+      |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | err00     | Invalid script call                                                                                                                                        |
+      | err01     | No confirmation of reception of authorisation has been received from the shop                                                                              |
+      | err02     | No authorisation has been received                                                                                                                         |
+      | err03     | This query has already been processed                                                                                                                      |
+      | err04     | Authorisation query incomplete or invalid                                                                                                                  |
+      | err05     | Reading of web-shop configuration failed                                                                                                                   |
+      | err06     | Record of authorisation query failed                                                                                                                       |
+      | err07     | A different person is making the payment                                                                                                                   |
+      | err08     | Status of connection with the shop not established.                                                                                                        |
+      | err09     | Limit on the number of data corrections exceeded.                                                                                                          |
+      | err10     | Invalid transaction amount!                                                                                                                                |
+      | err49     | Transaction risk assessment score too high.                                                                                                                |
+      | err51     | Invalid website call                                                                                                                                       |
+      | err52     | Invalid feedback session information!                                                                                                                      |
+      | err53     | Transaction error!                                                                                                                                         |
+      | err54     | Incompatible transaction amounts!                                                                                                                          |
+      | err55     | Invalid response code!                                                                                                                                     |
+      | err56     | Invalid card                                                                                                                                               |
+      | err57     | IncompatibleTEST flag!                                                                                                                                     |
+      | err58     | Invalid sequence number!                                                                                                                                   |
+      | err59     | Invalid transaction currency!                                                                                                                              |
+      | err101    | Website call error A required parameter is missing from the transaction request or an inadmissible value has appeared.                                     |
+      | err102    | Allowed time for transaction has expired                                                                                                                   |
+      | err103    | Invalid amount of transfer                                                                                                                                 |
+      | err104    | Transaction is awaiting confirmation.                                                                                                                      |
+      | err105    | Transaction made after expiry of time allowed for transaction                                                                                              |
+      | err161    | Request for transaction interrupted by User The customer has interrupted the payment procedure by clicking "Go back" on the payment method selection site. |
+      | err162    | Request for transaction interrupted by User The customer has cancelled the payment procedure by clicking „Resign” on the payment instructions site.        |
+
+
+
+    # Authentication
+
+    <!-- Redoc-Inject: <security-definitions> -->
+
+  version: 1.0.1
+x-tagGroups:
+  - name: User creating and management
+    tags:
+      - Marketplace Merchant API
+  - name: Marketplace management
+    tags:
+      - Marketplace Management API
+  - name: Partner Marketplace
+    tags:
+      - Marketplace Partner API
+
+paths:
+  /api/v1/merchant/register:
+    post:
+      servers:
+        - url: https://secure.przelewy24.pl/
+          description: Production server (uses live data)
+      tags:
+        - Marketplace Merchant API
+      summary: Merchant Register
+      description: The method allows to register new merchant/shop.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MerchantRegisterBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantRegisterResponse201"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantRegisterResponse200"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantRegisterResponse400"
+        "401":
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizationRequired"
+      security:
+        - basicAuth: []
+  /api/v1/merchant/exists/{identificationType}/{identificationNumber}:
+    get:
+      description: The method allows to verify wheter a given merchant has been already registered in a given marketplace.
+      tags:
+        - Marketplace Merchant API
+      summary: Merchant Exists
+      parameters:
+        - name: identificationType
+          in: path
+          description: 'Possible values: nip or pesel'
+          required: true
+          schema:
+            type: string
+        - name: identificationNumber
+          in: path
+          description: nip or pesel number
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchanExistsResponse200"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantExistsResponse400"
+        "401":
+          description: Not authorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizationRequired"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantExistsResponse404"
+      security:
+        -
+          basicAuth: []
+  #########################################
+  /api/v1/multiStore/dispatchTransaction:
+    post:
+      tags:
+        - Marketplace Management API
+      summary: Dispatch Transaction
+      description: The method allows to transfer the funds to specific submerchant's account.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DispatchTransactionBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DispatchTransactionResponse200"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DispatchTransactionResponse400"
+        "401":
+          description: Unathorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizationRequired"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/403ForbiddenGeneralError"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500UndefinedGeneralError"
+      security:
+        - basicAuth: []
+  /api/v1/multiStore/dispatchInfo/{orderId}:
+    get:
+      tags:
+        - Marketplace Management API
+      summary:  Dispatch Information
+      description: The method reutrn information about a dispatched transaction for the given <b>orderId</d>.
+      parameters:
+        - name: orderId
+          in: path
+          description: Identifier of transaction
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DispatchInfoResponse200"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DispatchInfoResponse404"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationRequired'
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500UndefinedGeneralError'
+      security:
+        - basicAuth: []
+  /api/v1/multiStore/funds?merchantId={merchantId}:
+     get:
+      tags:
+        - Marketplace Management API
+      summary: Merchant's Balance
+      description: The method returns information about the current stafe of given merchant's balance.
+      parameters:
+        - name: merchantId
+          in: path
+          description: Merchant's ID.
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FundsResponse200"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FundsResponse400"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundsResponse403'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationRequired'
+      security:
+        - basicAuth: []
+  /api/v1/multiStore/affiliates?affiliateId={merchantId}:
+     get:
+      tags:
+        - Marketplace Management API
+      summary: Registered Submerchants
+      description: The method allows to download information about registered submerchants in a given marketplace. If you send an optional parameter afiiliatedId, the method returns information about this specific merchant. If you don't send an afiliatedId, the method returns a full list of registered submerchants and their basic data.
+      parameters:
+        - name: affiliateId
+          in: path
+          description: Merchant's ID.
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AffiliatesResponse200"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AffiliatesResponse400"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AffiliatesResponse404'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationRequired'
+      security:
+        - basicAuth: []
+  ###############################################
+  /api/v1/multiStore/{affiliate_id}/crc:
+     get:
+      tags:
+        - Marketplace Partner API
+      summary: CRC key downloading
+      description: The method allows to download information about crc key/keys from given submerchant's account.
+      parameters:
+        - name: affiliate_id
+          in: path
+          description: Merchant's ID.
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CrcResponse200"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CrcResponse400"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrcResponse404'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationRequired'
+      security:
+        - basicAuth: []
+  /api/v1/multiStore/{affiliate_id}/apiKey:
+     get:
+      tags:
+        - Marketplace Partner API
+      summary: API key downloading
+      description: The method allows to download information about API key/keys from given submerchant's account.
+      parameters:
+        - name: affiliate_id
+          in: path
+          description: Merchant's ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiKeyResponse200"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiKeyResponse400"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse404'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationRequired'
+      security:
+        - basicAuth: []
+  /api/v1/multiStore/refund:
+    post:
+      tags:
+        - Marketplace Management API
+      summary: Refund Dispatch Transaction
+      description: To refund a dispatched transaction use an extended refund method. The additional parameters are <b>merchantId</b> and <b>merchantAmount</b>.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionRefundBody"
+      responses:
+        "201":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RefundResponse201"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RefundResponse400"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizationRequired"
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RefundRsponse409"
+      security:
+        - basicAuth: []
+
+servers:
+  - url: https://secure.przelewy24.pl/
+    description: Production server (uses live data)
+  - url: https://sandbox.przelewy24.pl/
+    description: Sandbox server
+components:
+  securitySchemes:
+   basicAuth:
+      description: This is the default authentication method. Merchant's ID is user login and API key is the password.
+      type: http
+      scheme: basic
+  schemas:
+    MerchantRegisterBody:
+      properties:
+        business_type:
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
+            - 9
+            - 10
+          type: integer
+          description: Business type. Acceptable values are available at <a href="#section/Business-types"><b>Business types</b></a> table
+        name:
+          type: string
+          minLength: 3
+          maxLength: 255
+          description: Name of business
+        email:
+          type: string
+          maxLength: 50
+          description: Merchant's address email
+        pesel:
+          type: string
+          maxLength: 11
+          minLength: 11
+          description: Pesel number. The Pesel number must be a unique value.<br/><br/> <b>*Requierd in case natural person is registered (business_type = 1)</b>
+        phone_number:
+          type: string
+          maxLength: 9
+          minLength: 9
+          description: Phone number, format xxxxxxxxx
+        bank_account:
+          type: string
+          description: Number of bank account
+        invoice_email:
+          type: string
+          maxLength: 50
+          description: Email address for invoices
+        shop_url:
+          type: string
+          description: 'Website address, format: http(s)://nazwasklepuprzyklad.pl<br/><br/> <b>*The parameter is not required, if parameter services_description is send</b>'
+        services_description:
+          type: string
+          description: Description of provided services<br/><br/><b>*The parameter is not required, if parameter shop_url is send</b>
+        trade:
+          type: string
+          description: Trade, Acceptable values are available at <a href="#section/List-of-trades"><b>List of trades</b></a> table
+          example: agd
+        krs:
+          type: string
+          description: KRS Number <br/><br/> <b>*Requierd only if business_type > 3
+          maxLength: 10
+          minLength: 10
+        nip:
+          type: string
+          description: Number of NIP. The NIP number must be a unique value.<br/><br/> <b>*Requierd only if business_type != 1
+          maxLength: 10
+          minLength: 10
+        regon:
+          type: string
+          description: Number of REGON<br/><br/> <b>*Requierd only if business_type != 1
+          maxLength: 14
+        acceptance:
+          type: boolean
+          description: Determines wheter the account should be activated immediately
+                       <br/><br/> <b>*The parameter is available only to selected Partners.</b></br>To have this parameter enabled, please contact Partner Support:partner@przelewy24.pl
+          example: 1
+        representatives:
+          description: Data of the representative / person authorized to conclude the contract
+          items:
+            $ref: '#/components/schemas/RepresentativesArray'
+        contact_person[name]:
+          type: string
+          description: First name and last name of contact person
+          maxLength: 50
+        contact_person[email]:
+          type: string
+          description: Address email of contact person
+          maxLength: 50
+        contact_person[phone_number]:
+          type: string
+          description: Phone number of contact person
+          maxLength: 9
+        technical_contact[name]:
+          type: string
+          description: First name and last name of technical contact person
+        technical_contact[email]:
+          type: string
+          description: Address email of technical contact person
+        technical_contact[phone_number]:
+          type: string
+          description: Phone number of technical contact person
+        address[country]:
+          type: string
+          description: Country of company's headquarters, available value is PL
+          example: PL
+          enum:
+           - PL
+        address[city]:
+          type: string
+          description: City of comapny's headquarters
+          example: Warszawa
+          maxLength: 50
+          minLength: 3
+        address[post_code]:
+          type: string
+          description: Postal code of company's headquarters, format 00-000 or 00000
+        address[street]:
+          type: string
+          description: Street of company's headquarters
+          maxLength: 100
+          minLength: 3
+        correspondence_address[country]:
+          type: string
+          description: Correspondence address - country, available value is PL
+          example: PL
+          enum:
+           - PL
+        correspondence_address[city]:
+          type: string
+          description: Correspondence address - city
+          example: Poznań
+          maxLength: 50
+          minLength: 3
+        correspondence_address[post_code]:
+          type: string
+          description: Correspondence address - postal code, format 00-000 or 00000
+        correspondence_address[street]:
+          type: string
+          description: Correspondence address - street
+          maxLength: 100
+          minLength: 3
+      required:
+        - business_type
+        - name
+        - email
+        - phone_number
+        - bank_account
+        - invoice_email
+        - shop_url
+        - services_description
+        - trade
+        - acceptace
+        - contact_person[name]
+        - contact_person[email]
+        - contact_person[phone_number]
+        - technical_contact[name]
+        - technical_contact[email]
+        - technical_contact[phone_number]
+        - address[country]
+        - address[city]
+        - address[post_code]
+        - address[street]
+        - correspondence_address[country]
+        - correspondence_address[city]
+        - correspondence_address[street]
+        - correspondence_address[post_code]
+    MerchantRegisterResponse200:
+      properties:
+        error:
+          type: string
+          description: Error message. In case of empty message, null is returned.
+          example: null
+        code:
+          type: string
+          description: Response's code
+          example: 200
+        data:
+          description: Object of registration data
+          $ref: "#/components/schemas/MerchantRegisterDataObject"
+    MerchantRegisterResponse201:
+      properties:
+        error:
+          type: string
+          description: Error message. In case of empty message, null is returned.
+          example: null
+        code:
+          type: string
+          description: Response's code
+          example: 201
+        data:
+          description: Object of registration data
+          $ref: "#/components/schemas/MerchantRegisterDataObject"
+    RepresentativesArray:
+      properties:
+          name:
+            maxLength: 100
+            type: string
+            description: First name and last name
+          pesel:
+            type: string
+            maxLength: 11
+            minLength: 11
+            description: Explicit identifier - PESEL
+    MerchantRegisterDataObject:
+      properties:
+        merchant_id:
+          type: integer
+          description: Id of a new merchant
+        link:
+          type: string
+          description: Link - new merchant registration form
+    MerchantRegisterResponse400:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Incorrect parameter: phone_number | (contact_person)"
+        code:
+          type: string
+          description: Erroc code
+          example: 400
+        data:
+          default: null
+          example: null
+    AuthorizationRequired:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Incorrect authentication
+        code:
+          type: string
+          description: Erroc code
+          example: 401
+    MerchanExistsResponse200:
+      properties:
+        data:
+          type: array
+          description: Array with merchant's id
+          items:
+            type: string
+        error:
+          type: string
+          description: Error message. Empty for correct
+          example: ""
+    MerchantExistsResponse400:
+      properties:
+        data:
+          type: array
+        error:
+          type: string
+          description: Error message
+          example: Invalid pesel format
+    MerchantExistsResponse404:
+      properties:
+        data:
+          type: array
+        error:
+          type: string
+          description: Error message
+          example: Affiliate not found
+    DispatchTransactionBody:
+      properties:
+        batchId:
+          type: integer
+          description: Unique id
+        details:
+          description: Array of dispatch transaction objects
+          items:
+            $ref: "#/components/schemas/ArrayDetailsDispatchTransaction"
+      required:
+      - batchId
+      - details
+    ArrayDetailsDispatchTransaction:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of dispatch transaction
+        sessionId:
+          type: string
+          description: Session's identifier of dispatch transaction
+        sellerId:
+          type: integer
+          description: Submerchant's id. The funds are going to be transferred to this submerchant
+        amount:
+          type: integer
+          description: Amount of transferred funds in polish groshes, e.g. 1 zł = 100 gr
+    DispatchTransactionResponse200:
+      properties:
+        result:
+          description: Array of dispatched transaction results
+          items:
+            $ref: "#/components/schemas/DispatchResultObjectArrayBody"
+        error:
+          description: Dispatch error object
+          $ref: "#/components/schemas/DispatchErrorObjectBody"
+    DispatchResultObjectArrayBody:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Id number of dispatched transaction
+        orderIdNew:
+          type: integer
+          format: int64
+          description: Id number of new transaction created in P24 system
+        sessionId:
+          type: string
+          description: Session's id of dispatched transaction podzielonej transakcji
+        sellerId:
+          type: integer
+          description: Submerchant's id. The funds are transferred to this submerchant
+        amount:
+          type: integer
+          description: Amount of transferred funds in polish groshes
+        status:
+          type: boolean
+          description: Status of transaction
+          example: true
+        error:
+          type: string
+          description: Error message. Empty for correct transaction
+          example: ""
+    DispatchErrorObjectBody:
+      properties:
+        errorCode:
+          type: integer
+          description: Erroc code. 0 for correct transaction
+          example: 0
+        errorMessage:
+          type: string
+          description: Error message. For correct transaction "Success, no error."
+          example: Success, no error.
+    DispatchTransactionResponse400:
+      properties:
+        result:
+          description: Array of transaction result objects
+          items:
+            $ref: "#/components/schemas/DispatchResult600ObjectArrayBody"
+        error:
+          description: Error object
+          $ref: "#/components/schemas/ErrorDispatch400Object"
+    DispatchResult600ObjectArrayBody:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of dispatched transaction
+        orderIdNew:
+          type: integer
+          format: int64
+          description: Identifier of new transaction created in P24 systemu. 0 in case of an error
+        sessionId:
+          type: string
+          description: Session's id of dispatched transaction
+        sellerId:
+          type: integer
+          description: Submerchant's id. The funds were supposed to be transferred to this submerchant
+        status:
+          type: boolean
+          description: Status of transaction
+          example: false
+        error:
+          type: string
+          description: Error message
+          example: Incorrect orderId or sessionId
+    ErrorDispatch400Object:
+      properties:
+        errorCode:
+          type: integer
+          description: Erroc code
+        errorMessage:
+          type: string
+          description: Error message
+          example: Empty refund list!
+    403ForbiddenGeneralError:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: ""
+        code:
+          type: integer
+          description: Erroc code
+          example: 403
+    500UndefinedGeneralError:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Undefined error
+        code:
+          type: integer
+          description: Erroc code
+          example: 500
+    TransactionRefundBody:
+      properties:
+        requestId:
+          type: string
+          description: Unique request id
+        refundsUuid:
+          type: string
+          description: Unique id of correct refund request in Merchant's system
+        urlStatus:
+          type: string
+          description: URL address for sendig refund's status
+        refunds:
+          description: Array of refund objects
+          items:
+            $ref: "#/components/schemas/RefundArrayObjectBody"
+      required:
+      - requestId
+      - refundsUuid
+      - refunds
+    RefundArrayObjectBody:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of refunded transaction in P24 system
+        sessionId:
+          type: string
+          description: Session's id of refunded transactio in Partner's system
+        amount:
+          type: integer
+          description: Amount of refund in polish groshes
+        description:
+          type: string
+          description: Refund description
+        data:
+          description: Array of sub-merchants' data
+          items:
+            $ref: "#/components/schemas/DataArrayObjectRefundBody"
+      required:
+      - orderId
+      - sessionId
+      - amount
+      - data
+    DataArrayObjectRefundBody:
+      properties:
+        spId:
+          type: integer
+          description: Merchant's ID. The given merchant will be charged with the refund
+          example: 0
+        spAmount:
+          type: integer
+          description: The amount of funds, in polish groshes,to charge the merchant
+      required:
+        - spId
+        - spAmount
+    RefundResponse201:
+      properties:
+        data:
+          description: Array of refund objects
+          items:
+            $ref: "#/components/schemas/RefundResponseArrayObject"
+        responseCode:
+          type: string
+          description: Response code. 0 for correct
+          example: 0
+    RefundResponseArrayObject:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of refunded transaction
+          example: 0
+        sessionId:
+          type: string
+          description: Session's id of refunded transaction
+        amount:
+          type: integer
+          description: The refunded amount, in polish groshes
+          example: 1000
+        data:
+          description: Tablica danych sub-partnerów
+          items:
+            $ref: "#/components/schemas/RefundResponseArrDataObj"
+        description:
+          type: string
+          description: Refund description
+        status:
+          type: boolean
+          description: Refund's status
+          example: true
+        message:
+          type: string
+          description: Message
+          example: success
+    RefundResponseArrDataObj:
+      properties:
+        spId:
+          type: integer
+        spAmount:
+          type: integer
+    RefundRsponse409:
+      properties:
+        error:
+          description: Error Array of refund object
+          items:
+            $ref: "#/components/schemas/ErrorRefundArrayObject"
+        code:
+         type: integer
+         description: Erroc code
+         example: 409
+    ErrorRefundArrayObject:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of refunded transaction
+        sessionId:
+          type: string
+          description: Session's id of refunded transaction
+        amount:
+          type: integer
+          description: The refunded amount, in polish groshes
+        description:
+          type: string
+          description: Refund description
+        status:
+          type: boolean
+          description: Refund's status
+          example: false
+        message:
+          type: string
+          description: Error message
+          example: The amount of refund exceeds available amount for the transaction
+    RefundResponse400:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Invalid input parameters
+        code:
+          type: integer
+          description: Erroc code
+          example:
+    DispatchInfoResponse200:
+      properties:
+        data:
+          description: Information of dispatched transactio n
+          $ref: "#/components/schemas/DataDispatchInfoObject"
+        responseCode:
+          type: integer
+          description: Response code. 0 for correct
+          example: 0
+    DataDispatchInfoObject:
+      properties:
+        amountLeft:
+          type: integer
+          description: The amount of left funds, in polish groshes
+        dispatch:
+          description: Array of dispatch information objects
+          items:
+            $ref: "#/components/schemas/DispatchArrayObject"
+    DispatchArrayObject:
+      properties:
+        date:
+          type: string
+          description: Date and time of dispatch
+          example: '2020-03-27 15:18:38'
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of dispatched transaction
+        partner_id:
+          type: integer
+          description: Submerchant's id. The funds are transferred to this sumberchant
+        items:
+          type: array
+          description: Array of product data objects
+        amount:
+          type: integer
+          description: Amount of transferred funds, in polish groshes
+    DispatchInfoResponse404:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Transaction Not Found
+        code:
+          type: integer
+          description: Erroc code
+          example: 3
+    FundsResponse200:
+      properties:
+        result:
+          type: integer
+          description: Amount of funds in polish groshes
+        code:
+          type: integer
+          description: Response code, 200 for correct
+          example: 200
+    FundsResponse403:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: You do not have rights to this account
+        code:
+          type: integer
+          description: Erroc code
+          example: 403
+    FundsResponse400:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Invalid merchant id
+        code:
+          type: integer
+          description: Erroc code
+          example: 400
+    AffiliatesResponse200:
+      properties:
+        data:
+          descriptiom: Array of pbjects - a list of merchants
+          items:
+            $ref: '#/components/schemas/DataAffArrayObject'
+        code:
+          type: integer
+          description: Response code, 200 for correct
+          example: 200
+    DataAffArrayObject:
+      properties:
+        id:
+          type: integer
+          description: Merchant's id
+        name:
+          type: string
+          description: Merchant's name
+          example: Sample Merchant Oddział Poznań
+        nip:
+          type: string
+          description: Merchant's NIP number
+        regon:
+          type: string
+          description: Merchant's REGON number
+        customerStatus:
+          type: string
+          description: Merchant's status
+          example: Verified
+          enum: 
+            - Verified
+            - Not verified
+        extendedStatus: 
+          type: string
+          description: Extended merchant's status 
+          enum: 
+            - Inactive
+            - Active
+            - Blocked
+    AffiliatesResponse400:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Invalid merchant or affiliate id
+        code:
+          type: integer
+          description: Erroc code
+          example: 400
+    AffiliatesResponse404:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Affiliates not found
+        code:
+          type: integer
+          description: Erroc code
+          example: 404
+    CrcResponse200:
+      properties:
+        data:
+          description: Object with crc key data
+          $ref: '#/components/schemas/CrcDataObject'
+        error:
+          type: string
+          description: Error message, empty for correct
+          example: ""
+    CrcDataObject:
+      properties:
+          id:
+            type: string
+            description: Merchant's id
+          crc:
+            type: string
+            description: CRC key
+    CrcResponse400:
+      properties:
+        data:
+          type: array
+        error:
+          type: string
+          description: Error message
+          example: Invalid merchant or affiliate id
+    CrcResponse404:
+      properties:
+        data:
+          type: array
+        error:
+          type: string
+          description: Error message
+          example: Affiliate not found
+    ApiKeyResponse200:
+      properties:
+        api_key:
+          type: string
+          description: API key
+        type:
+          type: string
+          description: Authentication type
+          example: baseAuth
+        name:
+          type: string
+          description: Nazwa
+          example: ""
+    ApiKeyResponse400:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Invalid  affiliate
+        status:
+          type: integer
+          description: Status
+          example: 400
+    ApiKeyResponse404:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Affiliate not found
+        status:
+          type: integer
+          description: Status
+          example: 404
+  ######################

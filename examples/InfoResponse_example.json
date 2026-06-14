@@ -1,0 +1,7 @@
+{
+  "summary": "Example InfoResponse",
+  "value": {
+    "country": "example_country",
+    "bank": "example_bank"
+  }
+}

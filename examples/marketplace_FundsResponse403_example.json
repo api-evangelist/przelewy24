@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example FundsResponse403",
+  "value": {
+    "error": "You do not have rights to this account",
+    "code": 403
+  }
+}

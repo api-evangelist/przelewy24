@@ -1,0 +1,7 @@
+{
+  "summary": "Example TransactionRegistrationOffline409",
+  "value": {
+    "error": "Unable to create offline transaction",
+    "code": 409
+  }
+}

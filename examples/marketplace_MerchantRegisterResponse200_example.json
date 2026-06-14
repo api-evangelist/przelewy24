@@ -1,0 +1,11 @@
+{
+  "summary": "Marketplace Example MerchantRegisterResponse200",
+  "value": {
+    "error": "example_error",
+    "code": 200,
+    "data": {
+      "merchant_id": 1,
+      "link": "example_link"
+    }
+  }
+}

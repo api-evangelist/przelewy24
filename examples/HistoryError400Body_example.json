@@ -1,0 +1,8 @@
+{
+  "summary": "Example HistoryError400Body",
+  "value": {
+    "error": "Invalid data provided",
+    "code": 400,
+    "validation": null
+  }
+}

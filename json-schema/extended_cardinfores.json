@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_cardinfores",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "refId": {
+          "type": "string",
+          "description": "Unique card token (reference code)"
+        },
+        "bin": {
+          "type": "integer",
+          "description": "Card\u2019s BIN number"
+        },
+        "mask": {
+          "type": "string",
+          "description": "Masked card number"
+        },
+        "cardType": {
+          "type": "string",
+          "description": "Card type (VISA, ECMC)"
+        },
+        "cardDate": {
+          "type": "string",
+          "description": "Expiry date in the following format MMYYYY"
+        },
+        "hash": {
+          "type": "string",
+          "description": "Unique card hash \u2013 unique for each card"
+        }
+      }
+    },
+    "responseCode": {
+      "type": "number",
+      "default": 0,
+      "example": 0
+    }
+  }
+}

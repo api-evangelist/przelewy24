@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DataDispatchInfoObject",
+  "properties": {
+    "amountLeft": {
+      "type": "integer",
+      "description": "The amount of left funds, in polish groshes"
+    },
+    "dispatch": {
+      "description": "Array of dispatch information objects",
+      "items": {
+        "$ref": "#/components/schemas/DispatchArrayObject"
+      }
+    }
+  }
+}

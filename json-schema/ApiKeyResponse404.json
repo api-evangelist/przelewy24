@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ApiKeyResponse404",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error message",
+      "example": "Affiliate not found"
+    },
+    "status": {
+      "type": "integer",
+      "description": "Status",
+      "example": 404
+    }
+  }
+}

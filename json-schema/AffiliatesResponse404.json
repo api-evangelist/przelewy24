@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AffiliatesResponse404",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error message",
+      "example": "Affiliates not found"
+    },
+    "code": {
+      "type": "integer",
+      "description": "Erroc code",
+      "example": 404
+    }
+  }
+}

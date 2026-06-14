@@ -1,0 +1,11 @@
+{
+  "summary": "Example BatchObject",
+  "value": {
+    "dateIn": "example_dateIn",
+    "dateOut": "example_dateOut",
+    "batchId": 1,
+    "commision": 1,
+    "charge": 1,
+    "refund": 1
+  }
+}

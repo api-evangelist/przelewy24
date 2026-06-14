@@ -1,0 +1,9 @@
+{
+  "summary": "Example Refund",
+  "value": {
+    "type": "example_type",
+    "amount": 1,
+    "currency": "PLN",
+    "details": null
+  }
+}

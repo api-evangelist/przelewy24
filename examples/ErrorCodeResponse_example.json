@@ -1,0 +1,7 @@
+{
+  "summary": "Example ErrorCodeResponse",
+  "value": {
+    "error": "Undefined error",
+    "code": 500
+  }
+}

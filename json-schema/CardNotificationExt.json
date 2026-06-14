@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardNotificationExt",
+  "properties": {
+    "amount": {
+      "type": "integer",
+      "description": "Transaction amount"
+    },
+    "3ds": {
+      "type": "boolean",
+      "description": "Was 3D-Secure performed during payment?"
+    },
+    "method": {
+      "type": "integer",
+      "description": "Payment method ID"
+    },
+    "refId": {
+      "type": "string",
+      "description": "Card reference number"
+    },
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Transaction number assigned by P24 for oneclick sampling"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Unique identifier from merchant's system"
+    },
+    "bin": {
+      "type": "integer",
+      "description": "Registered card bin"
+    },
+    "maskedCCNumber": {
+      "type": "string",
+      "description": "Masked card number"
+    },
+    "ccExp": {
+      "type": "string",
+      "description": "Card expiry date in MMYYYY format eg. 122020"
+    },
+    "hash": {
+      "type": "string",
+      "description": "Unique card hash \u2013 unique for each card"
+    },
+    "cardCountry": {
+      "type": "string",
+      "description": "Country code compatible with  ISO, e.g. PL",
+      "example": "PL"
+    },
+    "risk": {
+      "type": "integer",
+      "description": "0 \u2013 safe, 1 \u2013 suspicious, 2 \u2013 hazardous. Score calculated using a card payment risk calculation tool"
+    },
+    "liabilityshift": {
+      "type": "boolean",
+      "description": "Liability Shift means transferring responsibility for fraudulent transactions from the merchant to the card issuer or payment processor. 1 \u2013 Yes, 0 \u2013 No",
+      "example": false
+    },
+    "sign": {
+      "type": "string",
+      "description": "<br>Checksum of parameters:<br>{<font color = \"brown\">\"amount\":</font>int,<font color = \"brown\">\"3ds\":</font>boolean,<font color = \"brown\">\"method\":</font>int,<font color = \"brown\">\"refId\":</font>\"str\",<font color = \"brown\">\"orderId\":</font>int,<font color = \"brown\">\"sessionId\":</font>\"str\",<br/><font color = \"brown\">\"bin\":</font>int,<font color = \"brown\">\"maskedCCNumber\":</font>\"str\",<font color = \"brown\">\"ccExp\":</font>\"str\",<font color = \"brown\">\"hash\":</font>\"str\",<br/><font color = \"brown\">\"cardCountry\":</font>\"str\",<font color = \"brown\">\"risk\":</font>int,<font color = \"brown\">\"liabilityshift\":</font>boolean,<font color = \"brown\">\"crc\":</font>\"str\"} <br><br>calculated with the use of sha384<br><br> <b><font color = \"#DB2053\">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> \"JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES\""
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "summary": "Ekspres Example PostTransferRefundBody",
+  "value": {
+    "refund": null,
+    "id": "example_id",
+    "sign": "example_sign"
+  }
+}

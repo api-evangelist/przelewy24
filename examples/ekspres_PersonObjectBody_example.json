@@ -1,0 +1,11 @@
+{
+  "summary": "Ekspres Example PersonObjectBody",
+  "value": {
+    "name": "example_name",
+    "email": "example_email",
+    "address": "example_address",
+    "zip": "example_zip",
+    "city": "example_city",
+    "country": "example_country"
+  }
+}

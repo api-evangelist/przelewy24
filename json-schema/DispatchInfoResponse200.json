@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DispatchInfoResponse200",
+  "properties": {
+    "data": {
+      "description": "Information of dispatched transactio n",
+      "$ref": "#/components/schemas/DataDispatchInfoObject"
+    },
+    "responseCode": {
+      "type": "integer",
+      "description": "Response code. 0 for correct",
+      "example": 0
+    }
+  }
+}

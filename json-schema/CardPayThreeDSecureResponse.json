@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardPayThreeDSecureResponse",
+  "properties": {
+    "data": {
+      "properties": {
+        "orderId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "redirectUrl": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "responseCode": {
+      "type": "number",
+      "example": 0
+    }
+  }
+}

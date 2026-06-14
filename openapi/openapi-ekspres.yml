@@ -1,0 +1,1193 @@
+openapi: 3.0.0
+servers:
+    - url: https://sandbox.przelewy24.pl
+      description: Sandbox server (uses test data)
+    - url: https://secure.przelewy24.pl
+      description: Production server (uses live data)
+info:
+  x-logo:
+    url: "getfile/przelewy24-logo_mini.png"
+    altText: LogoP24
+  contact:
+    name: Przelewy24 Support
+    url: https://www.przelewy24.pl/support
+  title: Ekspres Przelewy24 REST API Documentation
+  version: 1.0.6
+  description: >
+
+
+
+    # Ekspres Przelewy24
+
+
+    Przelewy24 provides an authorisation and clearing system and provides payment services as a Domestic Payment Institution. <br><br/>
+
+    <b><b>Ekspres-Przelewy24</b> service allows to quickly and effortlessly send money between accounts from different banks.</b><br/><br/>
+
+    Below documentation describes the process of information exchange in the course of ordering a transfer via Ekspres Przelewy24 with the use of REST API.<br/><br/>
+
+    In order to be able to access Ekspres API Przelewy24, first you need to [create an account](https://ekspres.przelewy24.pl/kontakt/index) in Ekspres P24 Administration Panel.
+
+    <br/>
+
+    # Basic notions
+
+    The following notions will be used for describing the operation of Ekspres Przelewy24:<br/><br/>
+    **WWW system** – access to Ekspres Przelewy24 in the WWW version through the following websites:<ul>
+        <li>[https://ekspres.przelewy24.pl](https://ekspres.przelewy24.pl) – production version,</li>
+        <li>[https://testekspres.przelewy24.pl](https://testekspres.przelewy24.pl) – sandbox version.</li></ul>
+    **API** – access to Ekspres Przelewy24 via REST API. <br/>
+    **Partner** – a person / entity owning the system and submitting transfer orders to Ekspres.<br/>
+    **Client** – a person using Ekspres services (payer or recipient of payment from Ekspres).
+
+
+    # Modes and transfer processing
+
+    Ekspres Przelewy24 offers 3 modes of transfer processing:<ul>
+    <li><b>Wallet</b> - transfers are processed using the funds previously paid into the wallet,</li>
+    <li><b>P24</b> i <b>P24mobile</b> - transfers are processed only after the client has made the payment in [przelewy24.pl](https://www.przelewy24.pl),</li>
+    Each of these modes allows the client to monitor the progress of the transfer by providing them with a dedicated URL address (available upon transfer registration).
+
+
+    ## Transfer processing in Wallet
+
+    <b>Wallet</b> is characterized by quick processing of transfers to the client. Thanks to the funds accrued in the wallet, it is possible to effect immediate processing of a transfer registered by the Partner.<br/><br/>
+
+
+    <img src="getfile/eng_wallet.png" alt="Transfer w trybie Wallet" class="center smallImg">
+
+
+
+    ## Transfer processing in P24 and P24mobile
+
+    <b>P24</b> and <b>P24mobile</b> processes payments based on the funds paid in by the Client through [przelewy24.pl](https://www.przelewy24.pl). Using this mode, the partner registers the transfer in API and, subsequently, sends a payment link to the client (alternatively, the payment link may also be sent automatically via email). Once the transaction is paid by the client in [przelewy24.pl](https://www.przelewy24.pl), the transfer registered by the partner is sent for processing.<br/><br/>
+
+    <b>NOTE: P24mobile is analogous to P24 in that it is designed to operate with a mobile library.</b><br/><br/>
+
+
+    <img src="getfile/eng_p24_p24mobile.png" alt="Transfer w trybie P24 i P24mobile" class="center smallImg">
+
+    
+
+    # Codes of responses and erros
+
+    ## HTTP response codes
+
+    Ekspres Przelewy24 REST API uses response codes in HTTP headers to communicate the result of a query, potential problems and errors. <br/><br/>
+    An inventory of possible response codes and their meanings are explained in the appropriate subchapters describing the specific methods.<br/><br/>
+    <b>Always take note of the response code in order to react adequately to potential problems idempotent replies, etc.</b><br/><br/>
+
+    <b>Possible response codes for all methods:</b>
+
+      | Kod   |      Opis      |  Znaczenie |
+      |--------------|:--------------|:------------|
+      | 401  |   Authorization Required   | No access, check the key and the password, check if the key and the password are active and valid for this method. The code is also used to signal temporary failures. |
+      | 403 |  Forbidden  | No access to a given method. The API key and the password are correct. Contact our staff in order to get access.  |
+      | 404 | Not Found | Method not found, check the URL address called. |
+      | 405 | Method Not Allowed | The method used exists, but under a different http call. Check the calls for this method (GET/POST/etc.).|
+      | 415 | Unsupported Media Type | The „Content-Type” value used is not allowed or a required header is missing. Inventory of allowed values available at <a href="#section/General-structures-of-queries-and-responses/General-query-format"><b>General query format</b></a>. |
+      | 500 | Internal Server Error | Server error, if the error recurs, contact our staff and provide the whole query processed, as well as your API key. |
+      | 503 | Service Unavailable | Service temporarily unavailable due to a failure or planned upgrade.   |
+
+
+    ## Error codes
+
+    Error codes appear in the output object of a query that ended with an error and, if it’s possible, indicate its cause. This allows to precisely establish the cause of the error and triggers an automatic reaction / error notification. <br/><br/>
+
+    Error codes are divided into the following groups:<ul>
+    <li><b>1xxx</b> – input parameter validation error (the query contains an error),</li>
+    <li><b>2xxx, 3xxx</b> – transfer registration error (the query is correct, but the transfer cannot be processed, e.g. due to insufficient funds),</b>
+    <li><b>9xxx</b> – external services error (API failure caused by unavailability of a related service necessary to process the transfer, e.g. currency exchange),</li>
+    <li><b>10000</b> – internal error (failure of Ekspres Przelewy24 REST API).</li></ul>
+
+    <b>NOTE! When implementing API error service, in order to identify the error, rely solely on the codes, as the “description” parameter may change and constitutes additional information only!</b><br/><br/>
+
+    The table below presents error codes <b>input parameter validation:</b>
+
+      | Error code   |      Description      |
+      |--------------|:--------------|
+      | 1001  | The value of parameter <b>parameter_name</b> contains illicict characters |
+      | 1002  | Parameter <b>parameter_name</b> value must not be empty |
+      | 1003  | Passwords are not identical |
+      | 1004  | The password must consist of at least 8 characters and contain small and capital letters and digits |
+      | 1005  | Incorrect email address |
+      | 1006  | Incorrect postal code |
+      | 1007  | Incorrect country code |
+      | 1008  | Incorrect amount |
+      | 1009  | The <b>parameter</b> value submitted is not a correct integer |
+      | 1010  | Incorrect currency |
+      | 1011  | Incorrect account number |
+      | 1012  | Incorrect URL address |
+      | 1013  | Transaction type not serviced |
+      | 1014  | Incorrect field value |
+      | 1015  | Current transfer status prevents this operation, or incorrect transfer object |
+      | 1016  | Incorrect date format / incorrect date |
+      | 1017  | Incorrect query signature |
+      | 1018  | Parameter value too long |
+      | 1019  | IBAN number submitted has been blocked |
+
+    <br/>The table below presents <b>transfer registration error codes:</b>
+
+      | Error code   |      Description   |
+      |--------------|:--------------|
+      |  2001	| Bank unavailable |
+      |  2002 |	Insufficient funds in wallet |
+      |  2003	| Limit for a single transfer has been exceeded |
+      |  2004	|	Daily limit on the amount of transfers paid has been exceeded |
+      |  2005	| Transfer ID not recognised |
+      |  2006	| Refund amount provided exceeds the transfer value available |
+      |  2007	| Access denied |
+      |  2008	| Incorrect transfer ID |
+      |  2009	| Transfer limit exceeded |
+      |  2010	| Transfer already returned in P24 mode |
+      |  3000	| Incorrect ID query |
+      |  3001	| Unknown sessionId in P24 mode |
+
+    <br/>The table below presents <b>error codes for external services:</b>
+
+      | Error code   |      Description      |
+      |--------------|:--------------|
+      | 9001 |	Transfer processing error. Contact the customer service department and provide the query ID |
+      | 9002 |	Currency exchange error. Please, try again |
+
+    <br/>The table below presents the <b>remaining error codes:</b>
+
+      | Error code   |      Description      |
+      |--------------|:--------------|
+      | 10000 |	Internal error. Please, contact the customer service department and provide the query ID |
+
+
+
+    # General structures of queries and responses
+
+    ## General query format
+
+      API queries may be processed using any library that allows HTTPS protocol-based communication. Allowed Content-Type values:<ul>
+      <li><b>application/json</b> – queries sent in JSON format,</li>
+      <li><b>application/x-www-form-urlencoded</b> – queries sent as POST (urlencoded).</li></ul>
+
+      <b>Required coding to UTF-8.</b><br/>
+
+      Sample PHP code with the use of cURL
+      ```php
+          <?php
+          $process = curl_init('https://endpoint/ekspres/v1/balance');
+          // Content-Type header required
+          curl_setopt(
+            $process,
+            CURLOPT_HTTPHEADER,
+            array('Content-Type: application/json')
+          );
+          // Basic Auth authentication
+          curl_setopt($process, CURLOPT_USERPWD, 'api-key' . ":" . 'api-pass');
+          curl_setopt($process, CURLOPT_RETURNTRANSFER, true);
+          $return = json_decode(curl_exec($process));
+          echo json_encode($return, JSON_PRETTY_PRINT) . "n";
+          curl_close($process);
+      ```
+
+    ## General response format
+
+    A correct method call in Ekspres Przelewy24 REST API will generate a response in the form of a JSON object, in the format dependent on the method called.<br/>
+    <p style="border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;">
+    <b>NOTE!</b><br/><br/>
+    All the responses returned by API are <b>UTF-8-coded JSON objects without “slash” sign filters and unicode characters!</b><br/><br/>
+    All the responses are returned using the following method:<br/>
+    json_encode($response, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)<br/><br/>
+    For more information see [PHP documentation](https://www.php.net/manual/en/json.constants.php).
+    </p><br/>
+
+    In the case of some errors, e.g. internal error 500 or authorisation error 401, the same http code will be returned without additional information in the body. These are the cases when the system does not have any more information on the error or does not want to make it available (for instance, due to lack of authorisation). <br/><br/>
+
+     When most errors are generated, GeneralErrorObject is returned (in addition to the relevant http code) with additional details:<br/>
+
+      <b>GeneralErrorObject:</b>
+
+      | Field name   |      Type    |  Description |
+      |--------------|:--------------:|:------------|
+      | code  |     int   | General <a href="#section/Codes-of-responses-and-erros/Error-codes"><b>error code</b></a>  |
+      | description |  string  | Error details   |
+
+      <p style="color:darkblue; font-size:17px"><b>Przykład odpowiedzi z obiektem GeneralErrorObject:</b></p>
+
+        ```html
+            HTTP/1.1 400 Bad Request
+              Content-Type: application/json
+
+              {
+                „error”: {
+                  „code”: 1011,
+                  „description”: „Given IBAN value ”iban” is not valid”
+                }
+              }
+        ```
+
+
+    # Environments
+
+    ## Production environment
+
+    Every request is differentiated by its own unique request URL. This way Ekspres P24 knows which API-function you want to access. Combined with the base URL for either the production- or test-environment, you will get the complete API-URL.
+
+
+    Base URL production system:<br/>
+    https://secure.przelewy24.pl/express/v1
+
+
+    ## Test environment
+
+    During implementation of the mechanisms in merchant’s system, it is recommended to use test environment. Test environment allows to reproduce system functionalities without making actual payments. <br><br>
+
+    Test environment endpoint:<br>
+    https://sandbox.przelewy24.pl/express/v1 <br><br>
+
+    **<u>The test version does not effect transfers and requires separate login keys.</u>**
+
+
+    # IP server addresses
+
+    We recommend script protection against suspicious calls using address filtering for incoming connections. IP server ranges for the P24 servers: <br><br>
+    <font class = "right"><b>5.252.202.255 , 5.252.202.254</b></font><br>
+    <font class = "right"><b>20.215.81.124</b></font><br>
+    <font class = "right"><b>193.178.213.0/24</b></font><br>
+    <font class = "right"><b>91.220.177.0/24</b></font><br>
+    <font class = "right"><b>20.215.183.48/28</b></font><br>
+    <font class = "right"><b>134.112.88.8/29</b></font><br>
+
+
+
+    # API Access
+
+    Authentication is effected with the Basic Auth mechanism, which uses a REST API key (as a login) and the password assigned to it. Generating the API key is possible upon logging on to one’s account in the  <a href="#section/Basic-notions"><b>WWW System</b></a> (left-hand menu, tab “API Users” -> “REST User List”). A single user may possess a few API access keys.
+
+    # Authentication
+
+    <!-- Redoc-Inject: <security-definitions> -->
+
+
+x-tagGroups:
+  - name: Methods available in API
+    tags:
+      - Ekspres P24 API
+  - name: Sign parameter
+    tags:
+      - Calculation of sign parameter
+  - name: Transfer
+    tags:
+      - Notifications on transfer status
+      - Table of transfer statuses
+      - Transfer scenarios
+
+
+paths:
+  /express/v1/access/check:
+    get:
+      tags:
+        - Ekspres P24 API
+      summary: Access Check
+      description: '<br/>The method is used to test access to API. It allows you to verify if the key and the password are active and working correctly.<br/><br/>Object returned: <b>NONE, empty response</b>'
+      responses:
+        "200":
+          description: OK - Access granted, API working properly
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+        "403":
+          description: Forbidden - Access active, but you are not authorised to use this method
+      security:
+        - basicAuth: []
+  /express/v1/user/balance:
+    get:
+      tags:
+        - Ekspres P24 API
+      summary: Current user's balance
+      description: <br/>The method allows to download the current balance of the user’s wallets.<br/>
+      responses:
+        "200":
+          description: OK - JSON object returned with account balance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserBalanceResponse200Body"
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+      security:
+        - basicAuth: []
+  /express/v1/bank/availability:
+    get:
+      tags:
+        - Ekspres P24 API
+      summary: Banks' availability
+      description: The method returns declared by banks availability on specific weekdays and public holidays. The information allows you to find out at what time a given transfer may be processed.
+      responses:
+        "200":
+          description: OK - JSON object returned with a list of availability of banks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAvailabilityObjectResponseBody'
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+      security:
+        -
+          basicAuth: []
+  /express/v1/payment/methods:
+    get:
+      description: The method returns payment methods available in przelewy24.pl. The information returned proves useful for ordering transfers in  <a href="#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile"><b>p24 and p24mobile</b></a>. We can make the client use a specific payment method after they are redirected to przelewy24.pl in order to pay for the transaction. <br><br><b>It may also return an empty result if no method is available at the moment.</b>
+      tags:
+        - Ekspres P24 API
+      summary: Payment methods
+      responses:
+        "200":
+          description: OK - JSON object returned with a list of payment methods available at przelewy24.pl
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethodObjectResponseBody"
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+      security:
+        - basicAuth: []
+  /express/v1/payment/refund:
+    put:
+      description: This  method  refunds  payment  of  transfers  in <a href="#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile"><b>p24 i p24mobile</b></a> type that were rejected by bank or finished with errors and returned to wallet. Funds for this operation are taken from Ekspres user wallet and refund request is sent to Przelewy24 service for refunding money directly to client.<br/><br/>The progress of refunding a transfer can be watched through transfer <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.
+      tags:
+        - Ekspres P24 API
+      summary: Refund
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PutPaymentRefundBody"
+      responses:
+        "200":
+          description: OK - Refund for transfer has been accepted for processing in Przelewy24 service
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PutPaymentRefundResponse"
+        "400":
+          description: Bad Request - Incorrect parameter format, the error object returned should include a description of the field in which the problem occurred
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+        "404":
+          description: Not Found - No transfer was found, this will be also returned for transfers that aren’t p24/p24mobile type
+        "409":
+          description: Conflict - Transfer is in status that prevents its refunding
+      security:
+        - basicAuth: []
+  /express/v1/transfer/request:
+    post:
+      tags:
+        - Ekspres P24 API
+      summary: Transfer request
+      description: This method is responsible for sending transfers. The query and the response look similar for each type of transfer, yet the results of the call will be different for each type.<br><ul><li><a href="#section/Modes-and-transfer-processing/Transfer-processing-in-Wallet"><b>wallet</b></a>  – concludes with <b>an immediate transfer of money</b> upon a correct call, provided there are sufficient funds in the account,</li><li><a href="#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile"><b>p24 and p24mobile</b></a> – concludes with transaction registration in przelewy24.pl, a link to which will be generated. Once the transaction is paid and verified positively, the transfer will be sent to the entity whose details are indicated in the query,</li><p style="border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;"><font size=3px><b>Note!</b><br/>/v1/transfer/request method is idempotent.<br/> It means that if the method is called for the first time and a positive result is obtained, a new transfer will be created. In this case, the http code returned is <b>201 Created</b>.<br/> If <b>the same query is called again</b>, the transfer <b>will not be repeated</b> and the same result as in the case of the original transfer will be generated. In this case, the http code returned is <b>200 OK</b>. It is important to note that <b>only code 201 Created</b> means that <b>the transfer has been sent / registered</b>. Code 200 OK means that such a transfer already exists and the system only returns <b>the result of the original call.</b><br/><br/>The mechanism serves to prevent accidental duplication of transfers. If the same transfer is called twice, the money will be sent only once. In case the API connection is interrupted (e.g. Timeout) while the method is being called, it can be repeated without worrying about the possibility of generating a duplicate transfer. At the same time, it is possible to check if the original query was successful and to obtain a link.<br/><br/>The mechanism is based on the ‘id’ parameter. In case the parameter is changed, the query is treated as an <b>entirely new transfer</b>. That is why one must still exercise caution so as to avoid creating a duplicate. </font></p>
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransferRequestPostBody"
+      responses:
+        "200":
+          description: OK - The result returned is idempotent, the transfer has already been registered, no new transfer has been registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferRequestResultObjectBody"
+        "201":
+          description: Created - New transfer has been accepted and registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferRequestResultObjectBody"
+        "202":
+          description: Accepted - The transfer is being processed (occurs when the same request is called for again before an idempotent response is generated)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferRequestResultObjectBody"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralErrorObjectResponseBody"
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+      security:
+        - basicAuth: []
+  /express/v1/transfer/basket:
+    post:
+      tags:
+        - Ekspres P24 API
+      summary: Multiple transfers at once (basket)
+      description: The method allows processing numerous transfers with one payment through przelewy24.pl or with a payment card.<br/>The method operates in an analogous manner to <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post"><b>/v1/transfer/request</b></a>, all the information regarding response codes and values returned may be found there. The description comprises only the elements that differ with respect to the call.<br/><br/><font color="red"><b>Note!</b><br/>/v1/transfer/basket method <b>is also idempotent!</b><br/>The operation details are analogous to <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post"><b>/v1/transfer/request</b></a>.</font>
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransferBasketPostBody"
+      responses:
+        "200":
+          description: OK - The result returned is idempotent, the transfer has already been registered, no new transfer has been registered.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferBasketResultBody"
+        "201":
+          description: Created - New transfer has been accepted and registered.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferBasketResultBody"
+        "202":
+          description: Accepted - he transfer is being processed (occurs when the same request is called for again before an idempotent response is generated)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferBasketResultBody"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralErrorObjectResponseBody'
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+      security:
+        - basicAuth: []
+  /express/v1/transfer/history:
+    get:
+      tags:
+        - Ekspres P24 API
+      summary: Transfers' history
+      description: The method allows to download the history of transfers from the account within a specified period of time. <b> Warning! Do not use this method to verify whether a transfer was successful.</b> In order to monitor the transfer status use <a href="#tag/Notifications-on-transfer-status"><b>Notifications</b></a>.</b><br/>.
+      parameters:
+        - name: limit
+          in: path
+          description: Limit of transfers downloaded in a single query. Default setting - 10.
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: dateFrom
+          in: path
+          description: 'The date FROM which the transfer history will be downloaded.<br/>Format: „YYYY-mm-dd”'
+          required: false
+          schema:
+            type: string
+            maxLength: 10
+        - name: dateTo
+          in: path
+          description: 'The date TO which the transfer history will be downloaded.<br/> Format: „YYYY-mm-dd”'
+          required: False
+          schema:
+            type: string
+            maxLength: 10
+      responses:
+        "200":
+          description: OK -Table of JSON objects returned with history results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferHistory200ResponseBody"
+        "400":
+          description: Bad Request - Incorrect parameter format, the error object returned should include a description of the field in which the problem occurred
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralErrorObjectResponseBody"
+        "401":
+          description: Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+      security:
+        - basicAuth: []
+  /express/v1/transfer/p24/refund:
+    post:
+      tags:
+        - Ekspres P24 API
+      summary: Refund (possible overrefund)
+      description: This method generates new transfer for an existing transaction in Przelewy24 system. New transfer is created exactly the  same as in method <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post"><b>/v1/transfer/request</b></a>, and its data is pulled from transaction in Przelewy24 system. <b>Refunds are always created as </b> <a href="#section/Modes-and-transfer-processing/Transfer-processing-in-Wallet"><b>Wallet  type</b></a> – the amount is pulled from user in Ekspres system.<br/><br/> As for default method does not allow creating a refund transfer for transactions that were previously refunded in Przelewy24 system. Optionally you can force such refund with overrefund parameter. <p style="border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;"><b><font size=4px>Warning! Refunds in foreign currencies are evaluated and refunded in PLN!</font></b></p><p style="border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;"><b><font size=4px>NOTE!</b><br/><br/>Method /v1/transfer/p24/refund is idempotent! <br/><br/>The operation details are analogous to <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post"><b>/v1/transfer/request</b></a></font></b></p>
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostTransferRefundBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferRequestResultObjectBody"
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferRequestResultObjectBody"
+        "202":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferRequestResultObjectBody"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralErrorObjectResponseBody"
+        "401":
+          description: Authorization Required -  No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method
+      security:
+        - basicAuth: []
+  /express/v1/bank/check:
+    get:
+      description: The method allows you to check whether the bank that serves the given IBAN by default is currently active.</br><p style="border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;"><b><font size=4px>NOTE!</b><br/><br/>Even if the method of returning that the bank is an existing system, re-recover the information for a given user, which will direct the transfer to another bank.<br/>
+      tags:
+        - Ekspres P24 API
+      summary: Verification of the bank's activity
+      parameters:
+        - name: iban
+          in: path
+          description: IBAN number 
+          required: true
+          schema:
+            type: string
+            maxLength: 40
+            default: PL0000000000000000000000000000
+      responses:
+        "200":
+          description: The returned JSON object with the default bank activity parameter for the given IBAN
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetBankCheck"
+        "400":
+          description: The provided IBAN is incorrect or parameters were provided incorrected
+      security:
+        - basicAuth: []
+
+components:
+  securitySchemes:
+   basicAuth:
+      description: This is the default authentication method. User login is API REST key the password assigned to it.
+      type: http
+      scheme: basic
+  schemas:
+    PostTransferRefundBody:
+      properties:
+        refund:
+          type: object
+          description: Refund object
+          allOf:
+            - $ref: "#/components/schemas/TransferP24RefundObject"
+        id:
+          type: string
+          maxLength: 255
+          description: Unique transfer ID, UUID recommended
+        sign:
+          type: string
+          maxLength: 255
+          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b> sign parameter calculation</b></a>
+      required:
+        - refund
+        - id
+        - sign
+    TransferP24RefundObject:
+      properties:
+        sessionId:
+          type: string
+          maxLength: 255
+          description: Session ID in Przelewy24 system
+        title:
+          type: string
+          maxLength: 255
+          description: Title of refund transaction
+        currency:
+          type: string
+          maxLength: 3
+          description: 'Currency in which refund will be executed as ISO 4217 code (currently available: EUR, PLN)'
+        amount:
+          type: integer
+          description: 'Amount  of  created  refund  in  smallest denomination<br/> Example: "100" (1 PLN)'
+        overrefund:
+          type: boolean
+          default: false
+          description: If  TRUE,  refund  will  be  executed <b>no matter if there was any other refunds executed for this transaction earlier</b>. It ignores error 2010.<br/><b>Default value is FALSE</b>
+      required:
+        - sessionId
+        - title
+        - currency
+        - amount
+    PutPaymentRefundBody:
+      properties:
+        transferId:
+          type: integer
+          description: ID of Ekspres transfer that we want to refund
+        amount:
+          type: integer
+          description: Amount to refund, if empty by default whole transfer will be refunded. Refund is always in currency of original transfer
+      required:
+        - transferId
+    PutPaymentRefundResponse:
+      properties:
+        transferId:
+          type: integer
+          description: ID of refunded transfer
+        refundId:
+          type: integer
+          description: ID of refund (important for <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>)
+        amount:
+          type: integer
+          description: Amount of created refund in smallest denomination<br/><br/> 1000 = 10.00
+        currency:
+          type: string
+          maxLength: 3
+          description: Currency of created refund as ISO 4217 code
+    TransferRequestPostBody:
+      properties:
+        transfer:
+          description: Object of transfer
+          allOf:
+            - $ref: "#/components/schemas/TransferObjectBody"
+        type:
+          type: string
+          description: 'Payment types available: wallet, p24, p24mobile'
+          example: wallet
+        express:
+          type: boolean
+          description: 'Default setting - True: <br/>True – upon payment, the transfer will be sent in the express mode,<br/> False – upon payment, the transfer will be sent in the elixir mode.'
+          default: true
+          example: true
+        currency:
+          type: string
+          maxLength: 3
+          description: 'Transfer currency in which the funds will be collected for specific payment types:<br/> wallet – funds will be collected from the wallet in a given currency;<br/> p24, p24mobile – the currency in which the client will pay in their funds,<br/>'
+          example: PLN
+        send:
+          type: integer
+          description: 'Values:<br/> 0 - none,<br/> 1 – send an email with the url to the recipient of the transfer ,<br/> 2 – send an email with the url to the sender of the transfer,<br/> 4 – send an email with a confirmation of completion to the recipient,<br/> 8 – send an email with a confirmation of completion to the sender.<br/> In order to choose, e.g. two options, provide the sum of the respective values: email with url to the sender + to the recipient + email with confirmation to the sender:<br/> 2 + 1 + 8 = 11 -> value to be provided'
+          example: 11
+        regulations:
+          type: boolean
+          default: false
+          description: 'Acceptance of Przelewy24 regulations: <br/>false – display consent on p24 website (default),<br/>true – consent granted, do not display.<br/>In case the „true” parameter is sent, the consent – worded as follows – must be displayed on the Partner’s website: „I hereby state that I have read the [regulations](https://www.przelewy24.pl/regulamin) and [information obligation](https://www.przelewy24.pl/obowiazekinformacyjny) of ”Przelewy24”. <br/>Under words <i>regulations</i> and <i>information obligation</i> there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default.'
+        id:
+          type: string
+          maxLength: 255
+          description: Unique transfer ID, UUID recommended
+        sign:
+          type: string
+          maxLength: 255
+          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b>Calculation of sign parameter</b></a>
+        label:
+          type: string
+          maxLength: 20
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> Additional description in the transfer title.<br/><br/> Can be send in the object of transfer, in the <b>label</b> parameter. Value from the object overwirtes value from this parameter
+        ttl:
+          type: integer
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>Timestamp – date and time after which it will not be possible to pay the transaction<br/><br/>NOTE! For the parameter to work in P24 system, please send a request to partner@przelewy24.pl<br/>Example:<br/><br/> 1577833200 = 2020-01-01 00:00:00<br/>0 = no limit (as default)
+        paymentMethod:
+          type: integer
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> The payment method selected in P24, see <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1payment~1methods/get"><b>v1/payment/methods</b></a>
+        returnUrl:
+          type: string
+          maxLength: 255
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>The address to which the client will be redirected after processing the payment in Przelewy24.pl. By default, the client will return to the URL address generated upon transfer registration.
+        sdkVersion:
+          type: string
+          maxLength: 10
+          default: '3.0'
+          description: <b>Additional fields used solely for payments of the following type p24mobile.</b><br/> Mobile library version number must be provided. This parameter may be obtained directly from the library (iOS - class P24, Android - class P24SdkVersion). The default value sent is „3.0”.
+      required:
+        - transfer
+        - type
+        - currency
+        - send
+        - id
+        - sign
+    TransferObjectBody:
+      properties:
+        iban:
+          type: string
+          maxLength: 40
+          description: Recipient’s IBAN no. <b>with country prefix</b>
+        recipient:
+          description: Object representing recipient’s details
+          allOf:
+            - $ref: "#/components/schemas/PersonObjectBody"
+        sender:
+          description: Object representing sender’s details
+          allOf:
+            - $ref: "#/components/schemas/PersonObjectBody"
+        label:
+          type: string
+          description: Additional description in the transfer title – only for p24, p24mobile modes
+          maxLength: 20
+        title:
+          type: string
+          maxLength: 150
+          description: Transaction title
+        amountOut:
+          type: integer
+          description: Amount of transaction in the smallest denomination<br/>1000 = 10.00
+        currencyOut:
+          type: string
+          maxLength: 3
+          description: Transfer currency [ISO 4217 code](https://en.wikipedia.org/wiki/ISO_4217#Active_codes)
+        externalParam:
+          type: string
+          maxLength: 100
+          description: <b>We recommend that additional, individual transfer ids are used with this parameter, as it significantly simplifies transaction identification in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> The parameter is defined at the user’s discretion and is generated when notifications are sent.<br/>This parameter may be the same as the “id” parameter.
+        confirmation:
+          type: boolean
+          default: false
+          description: Defines if this transfer should get generated confirmation from outgoing bank in PDF format.<br/><br/> <b>Warning!  This  feature  of  generating PDF confirmations from outgoing bank is required to be consulted and enabled with integrations support before use! By default using this parameter will do nothing instead!
+        confirmationFilename:
+          type: string
+          maxLength: 100
+          example: "string"
+          description: The name of the generated confirmation from the bank (PDF file).<br/><br/>
+                        If the `confirmationFilename` parameter isn't sent in request and `confirmation` parametr is set to 'true' then the default file name takes the value from the formula "EX_timestamp_idtransfer_iduser".
+                        
+      required:
+        - iban
+        - recipient
+        - sender
+        - title
+        - amountOut
+        - currencyOut
+        - externalParam
+    PersonObjectBody:
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          description: Name (company / name and surname)
+        email:
+          type: string
+          maxLength: 100
+          description: Email (used later for sending notifications)
+        address:
+          type: string
+          maxLength: 100
+          description: Address – street name, street no., apartment no.
+        zip:
+          type: string
+          maxLength: 10
+          description: Postal code – validated depending on the <b>country</b> parameter
+        city:
+          type: string
+          maxLength: 50
+          description: City
+        country:
+          type: string
+          maxLength: 2
+          description: '2-character country code ([ISO-3166-1](https://pl.wikipedia.org/wiki/ISO_3166-1_alfa-2))<br/> exception: UK = GB, Great Britain'
+      required:
+        - name
+        - email
+        - address
+        - zip
+        - city
+        - country
+    TransferBasketPostBody:
+      properties:
+        transfers:
+          description: Comprises a table of transfers to be processed once they are paid through przelewy24.pl or with a payment card.
+          items:
+            $ref: "#/components/schemas/TransferObjectBody"
+        type:
+          type: string
+          description: 'Payment methods available: p24, p24mobile.<br/> <b>Wallet mode is not accepted</b> in this method.'
+        express:
+          type: boolean
+          description: 'Default setting - True: <br/>True – upon payment, the transfer will be sent in the express mode,<br/> False – upon payment, the transfer will be sent in the elixir mode.'
+          default: true
+          example: true
+        currency:
+          type: string
+          maxLength: 3
+          description: 'Transfer currency in which the funds will be collected for specific payment types:<br/> wallet – funds will be collected from the wallet in a given currency;<br/> p24, p24mobile – the currency in which the client will pay in their funds,<br/>'
+          example: PLN
+        send:
+          type: integer
+          description: 'Wartości:<br/> 0 - none,<br/> 1 – send an email with the url to the recipient of the transfer ,<br/> 2 – send an email with the url to the sender of the transfer,<br/> 4 – send an email with a confirmation of completion to the recipient,<br/> 8 – send an email with a confirmation of completion to the sender.<br/> In order to choose, e.g. two options, provide the sum of the respective values: email with url to the sender + to the recipient + email with confirmation to the sender:<br/> 2 + 1 + 8 = 11 -> value to be provided'
+          example: 11
+        regulations:
+          type: boolean
+          default: false
+          description: 'Acceptance of Przelewy24 regulations: <br/>false – display consent on p24 website (default),<br/>true – consent granted, do not display.<br/>In case the „true” parameter is sent, the consent – worded as follows – must be displayed on the Partner’s website: „I hereby state that I have read the [regulations](https://www.przelewy24.pl/regulamin) and [information obligation](https://www.przelewy24.pl/obowiazekinformacyjny) of ”Przelewy24”. <br/>Under words <i>regulations</i> and <i>information obligation</i> there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default.'
+        id:
+          type: string
+          maxLength: 255
+          description: Unique transfer ID, UUID recommended
+        sign:
+          type: string
+          maxLength: 255
+          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b>Calculation of sign parameter</b></a>
+        label:
+          type: string
+          maxLength: 20
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> Additional description in the transfer title.<br/><br/> Can be send in the object of transfer, in the <b>label</b> parameter. Value from the object overwirtes value from this parameter
+        ttl:
+          type: integer
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>Timestamp – date and time after which it will not be possible to pay the transaction<br/><br/>NOTE! For the parameter to work in P24 system, please send a request to partner@przelewy24.pl<br/>Example:<br/><br/> 1577833200 = 2020-01-01 00:00:00<br/>0 = no limit (as default)
+        paymentMethod:
+          type: integer
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> The payment method selected in P24 <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1payment~1methods/get"><b>v1/payment/methods</b></a>
+        returnUrl:
+          type: string
+          maxLength: 255
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>The address to which the client will be redirected after processing the payment in Przelewy24.pl. By default, the client will return to the URL address generated upon transfer registration.
+        sdkVersion:
+          type: string
+          maxLength: 10
+          default: '3.0'
+          description: <b>Additional fields used solely for payments of the following type p24mobile.</b><br/> Mobile library version number must be provided. This parameter may be obtained directly from the library (iOS - class P24, Android - class P24SdkVersion). The default value sent is „3.0”.
+          example: 3.0
+      required:
+        - transfers
+        - type
+        - currency
+        - send
+        - id
+        - sign
+    NotificationTransferStatusBody:
+      properties:
+        type:
+          type: string
+          description: '<b>Sent: always.</b><br/>Specifies which stage the notification refers to.<br/>Possible values:<br/>- pay - transfer payment(transferRequestId),<br/>- payout  - payout of funds (transferIds),<br/>- refund.'
+        id:
+          type: string
+          description: '<b>Sent: always.</b><br/> Identifier of transfer, payout or refund which the notification refers to.'
+        status:
+          type: integer
+          description: <b>Sent&#x3A; always.</b><br/> Operation statuses are described in <a href="#tag/Table-of-transfer-statuses"><b>Table of tansaction statuses</b></a>
+        externalParam:
+          type: string
+          description: '<b>Sent: always.</b><br/>Parameter defined at transfer registration.<br/><b>Note!</b><br/>For method /v1/transfer/basket n case of notifications of the type „pay”, the field comprises <b>all the externalParam values of the sent transfers separated with commas.</b>'
+        method:
+          type: string
+          description: '<b>Sent: only if it is a notification on the payment of the transfer.</b><br/> Transfer payment method: p24/p24code/wallet/card.'
+          example: wallet
+        sign:
+          type: string
+          description: <b>Sent&#x3A; always.</b><br/> Control sum is a value calculated with the use of sha384 algorithm. For details, see <a href="#section/Calculation-of-sign-parameter-for-notifications"><b>Calculation of sign parameter dla powiadomień</b></a>.
+    UserBalanceResponse200Body:
+      properties:
+        balance:
+          description: Object representing the account balance for a given wallet
+          items:
+            $ref: "#/components/schemas/BalanceObjectBody"
+        timestamp:
+          type: integer
+          description: Unix time stamp of the exact moment for which the results are presented
+    BalanceObjectBody:
+      properties:
+        amount:
+          type: integer
+          description: The amount of the balance in the smallest denomination (grosz)
+        currency:
+          type: string
+          maxLength: 3
+          description: Currency in the form of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) code
+          example: PLN
+    GetBankCheck:
+      properties:
+        available:
+          type: boolean
+          description: Indication whether the bank is active
+          example: true
+    BankAvailabilityObjectResponseBody:
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          description: Bank name
+        workweek:
+          type: string
+          maxLength: 50
+          description: Working hours from Monday to Friday
+        saturday:
+          type: string
+          maxLength: 50
+          description: Working hours on Saturdays
+        sunday:
+          type: string
+          maxLength: 50
+          description: Working hours on Sundays
+        holidays:
+          type: boolean
+          description: 'Availability on public holidays:<br/> false – unavailable<br/>true – available'
+    PaymentMethodObjectResponseBody:
+      properties:
+        id:
+          type: integer
+          description: Unique payment method ID
+        name:
+          type: string
+          description: Name of a payment method
+        status:
+          type: boolean
+          description: True – ON, False – OFF
+    TransferRequestResultObjectBody:
+      properties:
+        result:
+          description: Includes the object of the query result
+          $ref: "#/components/schemas/TransferOutObjectBody"
+    TransferOutObjectBody:
+      properties:
+        transferRequestId:
+          type: string
+          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „pay”
+        transferIds:
+          type: array
+          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „payout”
+          items:
+            type: integer
+        url:
+          type: string
+          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
+    TransferBasketResultBody:
+      properties:
+        result:
+          description: Includes the object of the query result
+          $ref: "#/components/schemas/TransferBasketOutObjectBody"
+    TransferBasketOutObjectBody:
+      properties:
+        transferRequestId:
+          type: string
+          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „pay”
+        transferIds:
+          type: array
+          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „payout”
+          items:
+            type: integer
+        url:
+          type: string
+          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
+    TransferHistory200ResponseBody:
+      properties:
+        result:
+          description: Comprises a table of objects of the transfer history or an empty table if no transfers have been found
+          items:
+            $ref: "#/components/schemas/HistoryOutObjectBody"
+    HistoryOutObjectBody:
+      properties:
+        transfer:
+          description: Object of transfer TransferObject
+          $ref: "#/components/schemas/TransferObjectBody"
+        express:
+          type: boolean
+          description: Was the transfer ordered in the express mode?
+        date:
+          type: string
+          description: Transfer registration date
+        status:
+          type: integer
+          description: Transfer current status
+        statusDescription:
+          type: string
+          description: Current status (description)
+        type:
+          type: string
+          description: 'Type of payment: wallet, p24, p24code'
+        id:
+          type: string
+          description: “id” parameter provided during transfer registration
+        transferId:
+          type: integer
+          description: Transfer identifier in the express system
+        transferRequestId:
+          type: integer
+          description: Request identifier in the express mode
+    GeneralErrorObjectResponseBody:
+      properties:
+        error:
+          description:
+          $ref: "#/components/schemas/GeneralErrorObject"
+    GeneralErrorObject:
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    ##############################
+
+
+tags:
+  - name: Calculation of sign parameter
+    x-displayName: Calculation of sign parameter
+    description: >
+
+      # Calculation of sign parameter for API methods
+
+      The <b>sign</b> parameter is used to sign queries which trigger registration of transfers or process other important operations. It is always accompanied by the “id” parameter, which guarantees the idempotent character of the method.
+      <p style="border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;">
+      <b>Note!</b><br/><br/>
+      The <b>sign</b> parameter for  <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> is calculated in a different manner than for calling methods.<br/><br/>
+      For details concerning the calculation of the signature for notifications, see: <a href="#section/Calculation-of-sign-parameter-for-notifications"><b>Calculation of sign parameter for notifications</b></a>.</b><br/>
+      </p>
+
+      The signature results from the application of the hash sha384 method and consists of the following parameters:<br/><ul>
+      <li><b>apiKey</b> – user API key,</li>
+      <li><b>apiPass</b> – password to user API key,</li>
+      <li><b>object</b> – JSON object of internal method query <b>no unicode or slash sign filtering</b>,</li>
+      <li><b>id</b> – „id” parameter for a given query,</li>
+      <li><b>crc</b> – CRC value for a given API key.</li></ul>
+
+      The parameters above should be transferred as JSON object, <b>without unicode or slash sign filtering</b>, to the hash method. The result of this calculation constitutes a correct signature.<br/><br/>
+
+      <b>NOTE! The order of the parameters transferred MATTERS, both for the general object and the internal value “object”.</b><br/><br/>
+
+      Sample signature:<br/>
+
+      ```php
+          <?php
+          // $data is a sample transfer from /v1/transfer/request
+          // Creating signArray parameter in order to calculate sign parameter
+          $signArray = [
+              'apiKey' => 'api-key',
+              'apiPass' => 'api-key-password',
+              'object' => json_encode(
+                  $data['transfer'],
+                  JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+              ),
+              'id' => $data['id'],
+              'crc' => 'api-crc-key'
+          ];
+          // Calculating sign parameter
+          $data['sign'] = hash(
+              'sha384',
+              json_encode($signArray, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+          );
+      ```
+
+      # Calculation of sign parameter for notifications
+
+      In the case of <a href="#tag/Notifications-on-transfer-status"><b>notifications on the change of transfer status</b></a> which are sent to the Partner’s destination point configured for a given key, the “sign” parameter included in them should be calculated and verified to ensure that they come from a correct source.
+      <p style="border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;">
+      <b>Note!</b><br/><br/>
+      The <b>sign</b> parameter for the API methods is calculated in a different manner than for notifications.<br/><br/>
+      For details concerning the calculation of the signature for transfers, see: <a href="#section/Calculation-of-sign-parameter-for-API-methods"><b>Calculation of sign parameter for API methods</b></a>.</b><br/>
+      </p>
+
+      The signature results from the application of the hash sha384 method and consists of the following parameters:<br/><ul>
+      <li><b>type</b> – type of notification,</li>
+      <li><b>id</b> – transfer identifier provided,</li>
+      <li><b>status</b> – new transfer status provided,</li>
+      <li><b>crc</b> – CRC value for a given API key.</li></ul>
+
+      <b>Parameters type, id and status come directly from the received notification. For details concerning the parameters included in the notifications, see <a href="#tag/Notifications-on-transfer-status"><b>Notifications on transfer status</b></a>.</b><br/><br/>
+
+      The parameters above should be transferred as JSON object, <b>without unicode or slash sign filtering</b>, to the hash method. The result of this calculation constitutes a correct signature.<br/><br/>
+
+      <b>NOTE! When calculating the sign, please take care not to change the order of the parameters you received.</b>
+
+      Sample calculation of the signature for the notification received:<br/>
+
+      ```php
+          <?php
+          // $data is the received POST response
+          // Creating signArray parameter in order to calculate sign parameter
+          $signArray = [
+              'type' => $data['type'],
+              'id' => $data['id'],
+              'status' => $data['status'],
+              'crc' => 'api-crc-key'
+          ];
+          // Calculating sign parameter
+          $data['sign'] = hash(
+              'sha384',
+              json_encode($signArray, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+          );
+      ```
+  - name: Notifications on transfer status
+    x-displayName: Notifications on transfer status
+    description: >
+
+      Whenever the status of a transfer/refund changes in Ekspres, a notification may be sent. The address for notifications may be configured in the <a href="#section/Basic-notions"><b>WWW system</b></a>, in the API key settings. The notification will have the structure presented in the table below and will be sent as JSON object using the POST method. Sending a notification requires a response from the partner’s server with code 200.<br/><b> If the response code is different, the notification will be repeated after 5, 10, 15, 20, 25, 55 and 95 minutes.</b>
+      <p style="border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;">
+      <b>Note!</b> Special attention should be given to parameters <b>type</b> and <b>id</b>!<br/><br/>
+      Parameter <b>type</b> specifies the value that parameter <b>id</b> possess.<br/><br/>
+      In case the value is <b>pay</b>, parameter <b>id</b> will have transferRequestId identifier.<br/><br/>
+      In case the value is <b>payout</b>, parameter <b>id</b> will have transferId identifier.<br/><br/>
+      In case the value is <b>refunded</b>, parameter <b>id</b> will have refund identifier.<br/><br/>
+      <b>All the identifiers are unique</b>, nd they should be considered separately. <u> If they are confused, the respective transfers may be ascribed wrong statuses.</u>
+      Use <b>externalParam</b> to ascribe notifications in a simpler way according to an independently assigned identifier.
+      </p>
+
+      # Notification
+
+      TransferNotificationObject:<br/>
+
+      <SchemaDefinition schemaRef="#/components/schemas/NotificationTransferStatusBody" />
+
+  - name: Table of transfer statuses
+    x-displayName: Table of transfer statuses
+    description: >
+
+      Transfer statuses<br/>
+
+        | Code  |      Name    |  English equivalent  |
+        |------|:--------------|:------------|
+        | 1  |    Zarejestrowana   | Registered |
+        | 2	| Przekazany do realizacji |	Sent to processing |
+        | 3	| Błąd przekazania do realizacji |	Error while sending to processing |
+        | 4	| Opłacona |	Paid |
+        | 5	| Wypłacona |	Finished |
+        | 6	| Przeterminowana |	Expired |
+        | 7	| Błąd podczas wypłaty	| Error while processing |
+        | 8	| Błąd opłacenia transakcji	| Error while payment |
+        | 9	| Wypłacona przez zewnętrznego operatora	| Finished by external operator |
+        | 10	| Zlecony zwrot	| Refund commissioned |
+        | 11	| Zwrot zrealizowany	| Refund finished |
+        | 12	| Zwrot odrzucony |	Refund rejected |
+        | 13	| Błąd podczas realizacji zwrotu | Error while refunding |
+        | 14	| Zwrot zarejestrowany |	Refund registered |
+        | 15	| Wypłacona zwrócona |	Finished and refunded |
+        | 16	| Anulowana |	Canceled |
+        | 17	| Oczekuje na dane |	Pending for data |
+
+
+  - name: Transfer scenarios
+    x-displayName: Transfer scenarios
+    description: >
+
+      # Introduction
+
+      Below are transfer scenarios that occur most frequently. Subsequent transfer statuses are indicated.
+       <p style="border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;">
+      <b>Note!</b><br/><br/>
+      For status 1 “Registered”  <b>no notification is sent!</b><br/><br/>
+      This is because it is an input status, i.e. obtaining the correct response from API during transfer registration serves to inform that it was assigned this status.
+      </p>
+
+      # Correct transfer
+
+      **1** Registered &rightarrow; **4** Paid &rightarrow; **2** Sent to processing &rightarrow; **5** Paid out
+
+      # Transfer stopped in Ekspres application
+
+      <b>The funds are returned to the wallet.</b><br/><br/>
+
+      **1** Registered &rightarrow; **4** Paid &rightarrow; **3** Error while sending to processing
+
+      # Transfer stopped at payout at the bank
+
+      <b>The funds are returned to the wallet.</b><br/><br/>
+
+      **1** Registered &rightarrow; **4** Paid &rightarrow; **2** Sent to processing &rightarrow; **5** Paid out &rightarrow; **7** Processing error
+
+      # Transfer finished and refunded
+
+      <b>The funds are returned to the wallet.</b><br/><br/>
+
+      **1** Registered &rightarrow; **4** Paid &rightarrow; **2** Sent to processing &rightarrow; **5** Paid out &rightarrow; **15** Paid out and refunded
+
+      # Insufficient funds to make a transfer that has already been initiated
+
+      <b>Funds have not been collected.</b><br/><br/>
+
+      **1** Registered &rightarrow; **4** Paid &rightarrow; **8** Payment error

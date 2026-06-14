@@ -1,0 +1,12 @@
+{
+  "summary": "Example RefundsCollection",
+  "value": {
+    "batchId": 1,
+    "requestId": "example_requestId",
+    "date": "example_date",
+    "login": "example_login",
+    "description": "example_description",
+    "status": 3,
+    "amount": 1
+  }
+}

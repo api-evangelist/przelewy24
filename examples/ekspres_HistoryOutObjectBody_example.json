@@ -1,0 +1,25 @@
+{
+  "summary": "Ekspres Example HistoryOutObjectBody",
+  "value": {
+    "transfer": {
+      "iban": "example_iban",
+      "recipient": null,
+      "sender": null,
+      "label": "example_label",
+      "title": "example_title",
+      "amountOut": 1,
+      "currencyOut": "example_currencyOut",
+      "externalParam": "example_externalParam",
+      "confirmation": false,
+      "confirmationFilename": "string"
+    },
+    "express": false,
+    "date": "example_date",
+    "status": 1,
+    "statusDescription": "example_statusDescription",
+    "type": "example_type",
+    "id": "example_id",
+    "transferId": 1,
+    "transferRequestId": 1
+  }
+}

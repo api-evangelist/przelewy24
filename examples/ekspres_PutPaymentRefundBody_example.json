@@ -1,0 +1,7 @@
+{
+  "summary": "Ekspres Example PutPaymentRefundBody",
+  "value": {
+    "transferId": 1,
+    "amount": 1
+  }
+}

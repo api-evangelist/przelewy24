@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChargeCardSuccessResponse",
+  "properties": {
+    "data": {
+      "properties": {
+        "orderId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Registered transaction ID"
+        }
+      },
+      "type": "object"
+    },
+    "responseCode": {
+      "type": "number",
+      "default": 0,
+      "example": 0
+    }
+  }
+}

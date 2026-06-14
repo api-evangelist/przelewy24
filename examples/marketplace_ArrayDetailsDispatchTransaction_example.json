@@ -1,0 +1,9 @@
+{
+  "summary": "Marketplace Example ArrayDetailsDispatchTransaction",
+  "value": {
+    "orderId": 1,
+    "sessionId": "example_sessionId",
+    "sellerId": 1,
+    "amount": 1
+  }
+}

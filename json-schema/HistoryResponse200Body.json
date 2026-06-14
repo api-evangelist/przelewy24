@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HistoryResponse200Body",
+  "properties": {
+    "data": {
+      "description": "Array of objects (batches, transactions, refunds)",
+      "items": {
+        "$ref": "#/components/schemas/HistoryDataObject"
+      }
+    },
+    "token": {
+      "type": "string",
+      "description": "Token to request next page"
+    },
+    "responseCode": {
+      "type": "integer",
+      "description": "0 if correct"
+    },
+    "pageInformation": {
+      "description": "Information about pagination",
+      "items": {
+        "$ref": "#/components/schemas/PageInformationObject"
+      }
+    }
+  }
+}

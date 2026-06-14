@@ -1,0 +1,9 @@
+{
+  "summary": "Marketplace Example MerchanExistsResponse200",
+  "value": {
+    "data": [
+      "example_value"
+    ],
+    "error": ""
+  }
+}

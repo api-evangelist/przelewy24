@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_RefundRequestArrayDataBasic",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Transaction order ID from Przelewy24"
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Transaction session ID from the Partner\u2019s system"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount of refund"
+    },
+    "description": {
+      "type": "string",
+      "description": "Refund description visible in transfer details",
+      "maxLength": 35
+    }
+  },
+  "type": "object",
+  "required": [
+    "orderId",
+    "sessionId",
+    "amount"
+  ]
+}

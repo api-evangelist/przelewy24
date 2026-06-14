@@ -1,0 +1,9 @@
+{
+  "summary": "Example blikadnotification",
+  "value": {
+    "email": "example_email",
+    "value": "example_value",
+    "type": "example_type",
+    "status": "example_status"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SIMPConflict",
+  "properties": {
+    "error": {
+      "type": "string",
+      "example": "Conflict"
+    },
+    "code": {
+      "type": "number",
+      "example": 409
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "extended_CardPayResponse409",
+  "properties": {
+    "error": {
+      "type": "string",
+      "example": "Unable to make payment."
+    },
+    "code": {
+      "type": "number"
+    }
+  }
+}

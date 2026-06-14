@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CrcResponse400",
+  "properties": {
+    "data": {
+      "type": "array"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message",
+      "example": "Invalid merchant or affiliate id"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "summary": "Example InvalidInputDataRefund",
+  "value": {
+    "error": "Request already exists",
+    "code": 400
+  }
+}

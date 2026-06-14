@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardPaymentPositiveNotificationSecurity",
+  "type": "object",
+  "properties": {
+    "3ds": {
+      "type": "boolean",
+      "description": "Flag indicating whether 3D Secure authorization was required"
+    },
+    "frictionless": {
+      "type": "boolean",
+      "description": "Flag indicating frictionless occurrence"
+    },
+    "risk": {
+      "type": "integer",
+      "description": "Risk level"
+    },
+    "liabilityshift": {
+      "type": "boolean",
+      "description": "Liabilityshift flag"
+    },
+    "traceID": {
+      "type": "string",
+      "description": "Global transaction ID"
+    },
+    "3dsMode": {
+      "type": "string",
+      "description": "3D Secure authorization mode"
+    },
+    "softDecline": {
+      "type": "boolean",
+      "description": "Transaction retry due to softDecline flag"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardPaymentPositiveNotificationCardInfoData",
+  "type": "object",
+  "properties": {
+    "cardType": {
+      "type": "string",
+      "description": "Card type"
+    },
+    "bank": {
+      "type": "string",
+      "description": "The bank issuing the card"
+    },
+    "refId": {
+      "type": "string",
+      "description": "Card alias"
+    },
+    "bin": {
+      "type": "string",
+      "description": "BIN number"
+    },
+    "mask": {
+      "type": "string",
+      "description": "Card mask"
+    },
+    "cardDate": {
+      "type": "string",
+      "description": "Card expiration date"
+    },
+    "hash": {
+      "type": "string",
+      "description": "Card hash"
+    },
+    "cardCountry": {
+      "type": "string",
+      "description": "Card issuing country code",
+      "example": "PL"
+    },
+    "security": {
+      "type": "object",
+      "description": "Information regarding transaction security",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/CardPaymentPositiveNotificationSecurity"
+        }
+      ]
+    }
+  }
+}

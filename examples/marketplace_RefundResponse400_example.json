@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example RefundResponse400",
+  "value": {
+    "error": "Invalid input parameters",
+    "code": 1
+  }
+}

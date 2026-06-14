@@ -1,0 +1,198 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MerchantRegisterBody",
+  "properties": {
+    "business_type": {
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "type": "integer",
+      "description": "Business type. Acceptable values are available at <a href=\"#section/Business-types\"><b>Business types</b></a> table"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 255,
+      "description": "Name of business"
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Merchant's address email"
+    },
+    "pesel": {
+      "type": "string",
+      "maxLength": 11,
+      "minLength": 11,
+      "description": "Pesel number. The Pesel number must be a unique value.<br/><br/> <b>*Requierd in case natural person is registered (business_type = 1)</b>"
+    },
+    "phone_number": {
+      "type": "string",
+      "maxLength": 9,
+      "minLength": 9,
+      "description": "Phone number, format xxxxxxxxx"
+    },
+    "bank_account": {
+      "type": "string",
+      "description": "Number of bank account"
+    },
+    "invoice_email": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Email address for invoices"
+    },
+    "shop_url": {
+      "type": "string",
+      "description": "Website address, format: http(s)://nazwasklepuprzyklad.pl<br/><br/> <b>*The parameter is not required, if parameter services_description is send</b>"
+    },
+    "services_description": {
+      "type": "string",
+      "description": "Description of provided services<br/><br/><b>*The parameter is not required, if parameter shop_url is send</b>"
+    },
+    "trade": {
+      "type": "string",
+      "description": "Trade, Acceptable values are available at <a href=\"#section/List-of-trades\"><b>List of trades</b></a> table",
+      "example": "agd"
+    },
+    "krs": {
+      "type": "string",
+      "description": "KRS Number <br/><br/> <b>*Requierd only if business_type > 3",
+      "maxLength": 10,
+      "minLength": 10
+    },
+    "nip": {
+      "type": "string",
+      "description": "Number of NIP. The NIP number must be a unique value.<br/><br/> <b>*Requierd only if business_type != 1",
+      "maxLength": 10,
+      "minLength": 10
+    },
+    "regon": {
+      "type": "string",
+      "description": "Number of REGON<br/><br/> <b>*Requierd only if business_type != 1",
+      "maxLength": 14
+    },
+    "acceptance": {
+      "type": "boolean",
+      "description": "Determines wheter the account should be activated immediately <br/><br/> <b>*The parameter is available only to selected Partners.</b></br>To have this parameter enabled, please contact Partner Support:partner@przelewy24.pl",
+      "example": 1
+    },
+    "representatives": {
+      "description": "Data of the representative / person authorized to conclude the contract",
+      "items": {
+        "$ref": "#/components/schemas/RepresentativesArray"
+      }
+    },
+    "contact_person[name]": {
+      "type": "string",
+      "description": "First name and last name of contact person",
+      "maxLength": 50
+    },
+    "contact_person[email]": {
+      "type": "string",
+      "description": "Address email of contact person",
+      "maxLength": 50
+    },
+    "contact_person[phone_number]": {
+      "type": "string",
+      "description": "Phone number of contact person",
+      "maxLength": 9
+    },
+    "technical_contact[name]": {
+      "type": "string",
+      "description": "First name and last name of technical contact person"
+    },
+    "technical_contact[email]": {
+      "type": "string",
+      "description": "Address email of technical contact person"
+    },
+    "technical_contact[phone_number]": {
+      "type": "string",
+      "description": "Phone number of technical contact person"
+    },
+    "address[country]": {
+      "type": "string",
+      "description": "Country of company's headquarters, available value is PL",
+      "example": "PL",
+      "enum": [
+        "PL"
+      ]
+    },
+    "address[city]": {
+      "type": "string",
+      "description": "City of comapny's headquarters",
+      "example": "Warszawa",
+      "maxLength": 50,
+      "minLength": 3
+    },
+    "address[post_code]": {
+      "type": "string",
+      "description": "Postal code of company's headquarters, format 00-000 or 00000"
+    },
+    "address[street]": {
+      "type": "string",
+      "description": "Street of company's headquarters",
+      "maxLength": 100,
+      "minLength": 3
+    },
+    "correspondence_address[country]": {
+      "type": "string",
+      "description": "Correspondence address - country, available value is PL",
+      "example": "PL",
+      "enum": [
+        "PL"
+      ]
+    },
+    "correspondence_address[city]": {
+      "type": "string",
+      "description": "Correspondence address - city",
+      "example": "Pozna\u0144",
+      "maxLength": 50,
+      "minLength": 3
+    },
+    "correspondence_address[post_code]": {
+      "type": "string",
+      "description": "Correspondence address - postal code, format 00-000 or 00000"
+    },
+    "correspondence_address[street]": {
+      "type": "string",
+      "description": "Correspondence address - street",
+      "maxLength": 100,
+      "minLength": 3
+    }
+  },
+  "required": [
+    "business_type",
+    "name",
+    "email",
+    "phone_number",
+    "bank_account",
+    "invoice_email",
+    "shop_url",
+    "services_description",
+    "trade",
+    "acceptace",
+    "contact_person[name]",
+    "contact_person[email]",
+    "contact_person[phone_number]",
+    "technical_contact[name]",
+    "technical_contact[email]",
+    "technical_contact[phone_number]",
+    "address[country]",
+    "address[city]",
+    "address[post_code]",
+    "address[street]",
+    "correspondence_address[country]",
+    "correspondence_address[city]",
+    "correspondence_address[street]",
+    "correspondence_address[post_code]"
+  ]
+}

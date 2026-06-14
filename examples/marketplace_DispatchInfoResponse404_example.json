@@ -1,0 +1,7 @@
+{
+  "summary": "Marketplace Example DispatchInfoResponse404",
+  "value": {
+    "error": "Transaction Not Found",
+    "code": 3
+  }
+}

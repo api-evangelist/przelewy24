@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RefundResponseArrayObject",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Identifier of refunded transaction",
+      "example": 0
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session's id of refunded transaction"
+    },
+    "amount": {
+      "type": "integer",
+      "description": "The refunded amount, in polish groshes",
+      "example": 1000
+    },
+    "data": {
+      "description": "Tablica danych sub-partner\u00f3w",
+      "items": {
+        "$ref": "#/components/schemas/RefundResponseArrDataObj"
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "Refund description"
+    },
+    "status": {
+      "type": "boolean",
+      "description": "Refund's status",
+      "example": true
+    },
+    "message": {
+      "type": "string",
+      "description": "Message",
+      "example": "success"
+    }
+  }
+}

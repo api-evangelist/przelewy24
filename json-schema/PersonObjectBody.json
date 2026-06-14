@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PersonObjectBody",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name (company / name and surname)"
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Email (used later for sending notifications)"
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Address \u2013 street name, street no., apartment no."
+    },
+    "zip": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Postal code \u2013 validated depending on the <b>country</b> parameter"
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "City"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 2,
+      "description": "2-character country code ([ISO-3166-1](https://pl.wikipedia.org/wiki/ISO_3166-1_alfa-2))<br/> exception: UK = GB, Great Britain"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "address",
+    "zip",
+    "city",
+    "country"
+  ]
+}
