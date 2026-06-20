@@ -9,7 +9,7 @@ description: >-
   prepaid cards. The API supports PLN and EUR currencies and enables
   transaction registration, payment verification, refunds, and real-time
   webhook notifications for payment events.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -35,7 +35,7 @@ apis:
       Authentication uses HTTP Basic Auth with the merchant's POS ID and API
       key, and transaction integrity is secured via SHA-384 signatures using
       the merchant CRC key.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.przelewy24.pl/
     baseURL: https://secure.przelewy24.pl/api/v1
     tags:
@@ -70,7 +70,7 @@ apis:
       marketplace operators and sellers, multi-vendor transaction routing,
       and seller onboarding workflows. It supports the distribution of funds
       to multiple beneficiaries within a single transaction.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.przelewy24.pl/marketplace/
     baseURL: https://secure.przelewy24.pl/api/v1
     tags:
@@ -95,7 +95,7 @@ apis:
       operations, recurring payment handling, and access to extended
       transaction data. It is intended for enterprise merchants requiring
       deeper integration with Przelewy24's payment infrastructure.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.przelewy24.pl/extended/
     baseURL: https://secure.przelewy24.pl/api/v1
     tags:
@@ -120,7 +120,7 @@ apis:
       the need for customers to re-enter banking credentials. It streamlines
       the checkout experience for returning customers who have previously
       authenticated with Przelewy24.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.przelewy24.pl/ekspres/
     baseURL: https://secure.przelewy24.pl/api/v1
     tags:
