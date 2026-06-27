@@ -2,13 +2,13 @@
   "repo": "przelewy24",
   "feeds": [
     {
-      "source": "https://www.przelewy24.pl/en/help-center/api-technical-support",
-      "feed_url": "https://www.przelewy24.pl/en/help-center/api-technical-support",
-      "title": "",
+      "source": "https://www.przelewy24.pl/en/news",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 1,
+  "fetched": "2026-06-27T13:05:05Z",
+  "agent_pulled": "2026-06-27"
 }

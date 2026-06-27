@@ -140,7 +140,7 @@ apis:
 common:
   - type: Website
     url: https://www.przelewy24.pl/en
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developers.przelewy24.pl/
   - type: Documentation
     url: https://developers.przelewy24.pl/
