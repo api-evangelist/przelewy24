@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi-ekspres.yml, openapi/openapi-extended.yml, openapi/openapi-marketplace.yml,
+  openapi/openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: This is the default authentication method. User login is API REST key the password
+    assigned to it.
+  sources:
+  - openapi/openapi-ekspres.yml
+  - openapi/openapi-extended.yml
+  - openapi/openapi-marketplace.yml
+  - openapi/openapi.yml

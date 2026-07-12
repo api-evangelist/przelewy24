@@ -138,6 +138,10 @@ apis:
         email: ''
 
 common:
+  - type: DomainSecurity
+    url: security/przelewy24-domain-security.yml
+  - type: Authentication
+    url: authentication/przelewy24-authentication.yml
   - type: Website
     url: https://www.przelewy24.pl/en
   - type: DeveloperPortal
