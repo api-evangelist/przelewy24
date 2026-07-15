@@ -138,6 +138,8 @@ apis:
         email: ''
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/przelewy24-agentic-access.yml
   - type: DomainSecurity
     url: security/przelewy24-domain-security.yml
   - type: Authentication
