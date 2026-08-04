@@ -1,0 +1,38 @@
+{
+  "provider": "przelewy24",
+  "sources": [
+    "przelewy24-additional-api-functionality-api-openapi.yml",
+    "przelewy24-additional-services-mass-payments-transactions-api-openapi.yml",
+    "przelewy24-apay-api-api-openapi.yml",
+    "przelewy24-blik-api-api-openapi.yml",
+    "przelewy24-card-api-api-openapi.yml",
+    "przelewy24-ekspres-p24-api-api-openapi.yml",
+    "przelewy24-gpay-api-api-openapi.yml",
+    "przelewy24-marketplace-management-api-api-openapi.yml",
+    "przelewy24-marketplace-merchant-api-api-openapi.yml",
+    "przelewy24-marketplace-partner-api-api-openapi.yml",
+    "przelewy24-recursion-dopayment-api-openapi.yml",
+    "przelewy24-report-api-api-openapi.yml",
+    "przelewy24-transaction-service-api-api-openapi.yml"
+  ],
+  "outputs": [
+    "przelewy24-additional-api-functionality-api-openapi.yml",
+    "przelewy24-additional-services-mass-payments-transactions-api-openapi.yml",
+    "przelewy24-apay-api-api-openapi.yml",
+    "przelewy24-blik-api-api-openapi.yml",
+    "przelewy24-card-api-api-openapi.yml",
+    "przelewy24-ekspres-p24-api-api-openapi.yml",
+    "przelewy24-gpay-api-api-openapi.yml",
+    "przelewy24-marketplace-management-api-api-openapi.yml",
+    "przelewy24-marketplace-merchant-api-api-openapi.yml",
+    "przelewy24-marketplace-partner-api-api-openapi.yml",
+    "przelewy24-recursion-dopayment-api-openapi.yml",
+    "przelewy24-report-api-api-openapi.yml",
+    "przelewy24-transaction-service-api-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
