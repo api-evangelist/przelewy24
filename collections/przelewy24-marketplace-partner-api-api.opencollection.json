@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Marketplace Partner API API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Marketplace Partner API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CRC key downloading",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/multiStore/:affiliate_id/crc",
+            "params": [
+              {
+                "name": "affiliate_id",
+                "value": "",
+                "type": "path",
+                "description": "Merchant's ID."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method allows to download information about crc key/keys from given submerchant's account."
+        },
+        {
+          "info": {
+            "name": "API key downloading",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/multiStore/:affiliate_id/apiKey",
+            "params": [
+              {
+                "name": "affiliate_id",
+                "value": "",
+                "type": "path",
+                "description": "Merchant's ID"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method allows to download information about API key/keys from given submerchant's account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

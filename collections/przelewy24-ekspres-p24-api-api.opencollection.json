@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Ekspres P24 API API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ekspres P24 API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Access Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/express/v1/access/check",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "<br/>The method is used to test access to API. It allows you to verify if the key and the password are active and working correctly.<br/><br/>Object returned: <b>NONE, empty response</b>"
+        },
+        {
+          "info": {
+            "name": "Current user's balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/express/v1/user/balance",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "<br/>The method allows to download the current balance of the user’s wallets.<br/>"
+        },
+        {
+          "info": {
+            "name": "Banks' availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/express/v1/bank/availability",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method returns declared by banks availability on specific weekdays and public holidays. The information allows you to find out at what time a given transfer may be processed."
+        },
+        {
+          "info": {
+            "name": "Payment methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/express/v1/payment/methods",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method returns payment methods available in przelewy24.pl. The information returned proves useful for ordering transfers in  <a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile\"><b>p24 and p24mobile</b></a>. We can make the client use a specific payment method after they are redirected to przelewy24.pl in order to pay for the transaction. <br><br><b>It may also return an empty result if no method is available at the moment.</b>"
+        },
+        {
+          "info": {
+            "name": "Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandbox.przelewy24.pl/express/v1/payment/refund",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This  method  refunds  payment  of  transfers  in <a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile\"><b>p24 i p24mobile</b></a> type that were rejected by bank or finished with errors and returned to wallet. Funds for this operation are taken from Ekspres user wallet and refund request is sent to Przelewy24 service for refunding money directly to client.<br/><br/>The progress of refunding a transfer can be watched through transfer <a href=\"#tag/Notification"
+        },
+        {
+          "info": {
+            "name": "Transfer request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/express/v1/transfer/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This method is responsible for sending transfers. The query and the response look similar for each type of transfer, yet the results of the call will be different for each type.<br><ul><li><a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-Wallet\"><b>wallet</b></a>  – concludes with <b>an immediate transfer of money</b> upon a correct call, provided there are sufficient funds in the account,</li><li><a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-P24-an"
+        },
+        {
+          "info": {
+            "name": "Multiple transfers at once (basket)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/express/v1/transfer/basket",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method allows processing numerous transfers with one payment through przelewy24.pl or with a payment card.<br/>The method operates in an analogous manner to <a href=\"#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post\"><b>/v1/transfer/request</b></a>, all the information regarding response codes and values returned may be found there. The description comprises only the elements that differ with respect to the call.<br/><br/><font color=\"red\"><b>Note!</b><br/>/v1/transfer/basket "
+        },
+        {
+          "info": {
+            "name": "Transfers' history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/express/v1/transfer/history",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "path",
+                "description": "Limit of transfers downloaded in a single query. Default setting - 10."
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "path",
+                "description": "The date FROM which the transfer history will be downloaded.<br/>Format: „YYYY-mm-dd”"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "path",
+                "description": "The date TO which the transfer history will be downloaded.<br/> Format: „YYYY-mm-dd”"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method allows to download the history of transfers from the account within a specified period of time. <b> Warning! Do not use this method to verify whether a transfer was successful.</b> In order to monitor the transfer status use <a href=\"#tag/Notifications-on-transfer-status\"><b>Notifications</b></a>.</b><br/>."
+        },
+        {
+          "info": {
+            "name": "Refund (possible overrefund)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/express/v1/transfer/p24/refund",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This method generates new transfer for an existing transaction in Przelewy24 system. New transfer is created exactly the  same as in method <a href=\"#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post\"><b>/v1/transfer/request</b></a>, and its data is pulled from transaction in Przelewy24 system. <b>Refunds are always created as </b> <a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-Wallet\"><b>Wallet  type</b></a> – the amount is pulled from user in Ekspres syste"
+        },
+        {
+          "info": {
+            "name": "Verification of the bank's activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/express/v1/bank/check",
+            "params": [
+              {
+                "name": "iban",
+                "value": "",
+                "type": "path",
+                "description": "IBAN number"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method allows you to check whether the bank that serves the given IBAN by default is currently active.</br><p style=\"border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;\"><b><font size=4px>NOTE!</b><br/><br/>Even if the method of returning that the bank is an existing system, re-recover the information for a given user, which will direct the transfer to another bank.<br/>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Additional services Mass Payments Transactions API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Additional services Mass Payments Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mass payments transaction register",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1.1/transaction/register/simp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Before sending a transaction request, save its data to the Partner's local database. In particular, the session ID and transaction amount information should be saved.<br/> <br/>The request takes analogous values to the request <a href=\"#tag/Transaction-service-API/paths/~1v1.1~1transaction~1register/post\"><b> transaction/register</b></a>, except for two additional parameters used when requesting <a href=\"#tag/Additional-services-SIMP-Transactions/paths/~1v1~1transaction~1register~1simp/post\"><b>"
+        },
+        {
+          "info": {
+            "name": "Data about transaction via sessionID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v2/transaction/by/sessionId/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "SessionId of the transaction given during transaction registration"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method returns transaction information based on the <b>sessionId</b> field. For a single sessionId within a SIMP payment, multiple payments can be made on the IBAN, hence the API can return multiple objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2360 @@
+{
+  "item": [
+    {
+      "id": "715aab55-19c2-4ce2-be9d-83c675e17628",
+      "name": "Ekspres P24 API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2d729e2-f518-453b-a86c-5dafabb626a3",
+          "name": "Access Check",
+          "request": {
+            "name": "Access Check",
+            "description": {
+              "content": "<br/>The method is used to test access to API. It allows you to verify if the key and the password are active and working correctly.<br/><br/>Object returned: <b>NONE, empty response</b>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "access",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5bde8e57-630d-443c-a3fd-a6fae1863cab",
+              "name": "OK - Access granted, API working properly",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "access",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a11512bb-1dcb-4fe1-93a8-ca4b1895ca5f",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "access",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "913d02f7-9eec-40ad-a883-150529f8f3e9",
+              "name": "Forbidden - Access active, but you are not authorised to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "access",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29ead4ac-ef53-4e20-9ac0-f601bdcadb46",
+          "name": "Current user's balance",
+          "request": {
+            "name": "Current user's balance",
+            "description": {
+              "content": "<br/>The method allows to download the current balance of the user’s wallets.<br/>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "user",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ef6d8bc-66f3-41fc-b02f-8555b8c109c2",
+              "name": "OK - JSON object returned with account balance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "user",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balance\": {},\n  \"timestamp\": 2076\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee5a9885-51d5-461f-9887-3009d43992df",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "user",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bfabb79-8299-4476-b0c1-cbacf9571c7f",
+          "name": "Banks' availability",
+          "request": {
+            "name": "Banks' availability",
+            "description": {
+              "content": "The method returns declared by banks availability on specific weekdays and public holidays. The information allows you to find out at what time a given transfer may be processed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "bank",
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "795acf2a-e963-4b88-a153-9d316ce8e478",
+              "name": "OK - JSON object returned with a list of availability of banks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "bank",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"workweek\": \"string\",\n  \"saturday\": \"string\",\n  \"sunday\": \"string\",\n  \"holidays\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df2e8e76-bdaa-40d5-8f59-1c41299e1c77",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "bank",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91a6e306-21f8-4c54-9a66-cff670a83627",
+          "name": "Payment methods",
+          "request": {
+            "name": "Payment methods",
+            "description": {
+              "content": "The method returns payment methods available in przelewy24.pl. The information returned proves useful for ordering transfers in  <a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile\"><b>p24 and p24mobile</b></a>. We can make the client use a specific payment method after they are redirected to przelewy24.pl in order to pay for the transaction. <br><br><b>It may also return an empty result if no method is available at the moment.</b>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "payment",
+                "methods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "88077705-55ab-4e10-8a32-1d0a3214fcbd",
+              "name": "OK - JSON object returned with a list of payment methods available at przelewy24.pl",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "payment",
+                    "methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7131,\n  \"name\": \"string\",\n  \"status\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5558d04d-6f8c-453b-bbf2-8e5f54e4ed89",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "payment",
+                    "methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d10ba05-fcca-491f-85dc-7fa8ba9f03ee",
+          "name": "Refund",
+          "request": {
+            "name": "Refund",
+            "description": {
+              "content": "This  method  refunds  payment  of  transfers  in <a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile\"><b>p24 i p24mobile</b></a> type that were rejected by bank or finished with errors and returned to wallet. Funds for this operation are taken from Ekspres user wallet and refund request is sent to Przelewy24 service for refunding money directly to client.<br/><br/>The progress of refunding a transfer can be watched through transfer <a href=\"#tag/Notifications-on-transfer-status\"><b>notifications</b></a>.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "payment",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transferId\": \"<integer>\",\n  \"amount\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a06f5929-55af-4799-8b56-55360f1d4190",
+              "name": "OK - Refund for transfer has been accepted for processing in Przelewy24 service",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "payment",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transferId\": \"<integer>\",\n  \"amount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transferId\": 5177,\n  \"refundId\": 2661,\n  \"amount\": 5048,\n  \"currency\": \"str\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b5e1c60-5486-4829-8dc8-4c72fb6bce48",
+              "name": "Bad Request - Incorrect parameter format, the error object returned should include a description of the field in which the problem occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "payment",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transferId\": \"<integer>\",\n  \"amount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a8ede62-8a5a-4d2f-b2ef-8a5d889b7310",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "payment",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transferId\": \"<integer>\",\n  \"amount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1dad9318-48a4-41d7-b089-b9e392f2efe2",
+              "name": "Not Found - No transfer was found, this will be also returned for transfers that aren’t p24/p24mobile type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "payment",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transferId\": \"<integer>\",\n  \"amount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca16c208-e0c6-41b9-ad89-e3799bd9e4c3",
+              "name": "Conflict - Transfer is in status that prevents its refunding",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "payment",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transferId\": \"<integer>\",\n  \"amount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cd42002-528f-4ca9-9650-4b234bf2e404",
+          "name": "Transfer request",
+          "request": {
+            "name": "Transfer request",
+            "description": {
+              "content": "This method is responsible for sending transfers. The query and the response look similar for each type of transfer, yet the results of the call will be different for each type.<br><ul><li><a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-Wallet\"><b>wallet</b></a>  – concludes with <b>an immediate transfer of money</b> upon a correct call, provided there are sufficient funds in the account,</li><li><a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-P24-and-P24mobile\"><b>p24 and p24mobile</b></a> – concludes with transaction registration in przelewy24.pl, a link to which will be generated. Once the transaction is paid and verified positively, the transfer will be sent to the entity whose details are indicated in the query,</li><p style=\"border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;\"><font size=3px><b>Note!</b><br/>/v1/transfer/request method is idempotent.<br/> It means that if the method is called for the first time and a positive result is obtained, a new transfer will be created. In this case, the http code returned is <b>201 Created</b>.<br/> If <b>the same query is called again</b>, the transfer <b>will not be repeated</b> and the same result as in the case of the original transfer will be generated. In this case, the http code returned is <b>200 OK</b>. It is important to note that <b>only code 201 Created</b> means that <b>the transfer has been sent / registered</b>. Code 200 OK means that such a transfer already exists and the system only returns <b>the result of the original call.</b><br/><br/>The mechanism serves to prevent accidental duplication of transfers. If the same transfer is called twice, the money will be sent only once. In case the API connection is interrupted (e.g. Timeout) while the method is being called, it can be repeated without worrying about the possibility of generating a duplicate transfer. At the same time, it is possible to check if the original query was successful and to obtain a link.<br/><br/>The mechanism is based on the ‘id’ parameter. In case the parameter is changed, the query is treated as an <b>entirely new transfer</b>. That is why one must still exercise caution so as to avoid creating a duplicate. </font></p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "transfer",
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transfer\": {\n    \"iban\": \"<string>\",\n    \"recipient\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"sender\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"amountOut\": \"<integer>\",\n    \"currencyOut\": \"<string>\",\n    \"externalParam\": \"<string>\",\n    \"label\": \"<string>\",\n    \"confirmation\": false,\n    \"confirmationFilename\": \"<string>\"\n  },\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"send\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c6c926d-8ac5-4c81-bd7e-c802c8e0b080",
+              "name": "OK - The result returned is idempotent, the transfer has already been registered, no new transfer has been registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfer\": {\n    \"iban\": \"<string>\",\n    \"recipient\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"sender\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"amountOut\": \"<integer>\",\n    \"currencyOut\": \"<string>\",\n    \"externalParam\": \"<string>\",\n    \"label\": \"<string>\",\n    \"confirmation\": false,\n    \"confirmationFilename\": \"string\"\n  },\n  \"type\": \"wallet\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      2511,\n      4588\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d0e7787-f47f-4c6b-b242-5ef4a1c996bf",
+              "name": "Created - New transfer has been accepted and registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfer\": {\n    \"iban\": \"<string>\",\n    \"recipient\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"sender\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"amountOut\": \"<integer>\",\n    \"currencyOut\": \"<string>\",\n    \"externalParam\": \"<string>\",\n    \"label\": \"<string>\",\n    \"confirmation\": false,\n    \"confirmationFilename\": \"string\"\n  },\n  \"type\": \"wallet\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      6434,\n      1332\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6644a5c2-a055-490a-8eb0-09cc89d1b34f",
+              "name": "Accepted - The transfer is being processed (occurs when the same request is called for again before an idempotent response is generated)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfer\": {\n    \"iban\": \"<string>\",\n    \"recipient\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"sender\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"amountOut\": \"<integer>\",\n    \"currencyOut\": \"<string>\",\n    \"externalParam\": \"<string>\",\n    \"label\": \"<string>\",\n    \"confirmation\": false,\n    \"confirmationFilename\": \"string\"\n  },\n  \"type\": \"wallet\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      6434,\n      1332\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64698fa5-2dfd-427a-a498-46d13a48f0ab",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfer\": {\n    \"iban\": \"<string>\",\n    \"recipient\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"sender\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"amountOut\": \"<integer>\",\n    \"currencyOut\": \"<string>\",\n    \"externalParam\": \"<string>\",\n    \"label\": \"<string>\",\n    \"confirmation\": false,\n    \"confirmationFilename\": \"string\"\n  },\n  \"type\": \"wallet\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "526d5ecd-b699-4024-9aff-eb14349ff153",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfer\": {\n    \"iban\": \"<string>\",\n    \"recipient\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"sender\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"amountOut\": \"<integer>\",\n    \"currencyOut\": \"<string>\",\n    \"externalParam\": \"<string>\",\n    \"label\": \"<string>\",\n    \"confirmation\": false,\n    \"confirmationFilename\": \"string\"\n  },\n  \"type\": \"wallet\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0aa04c9-e2e9-4cb4-a630-1765287af14e",
+          "name": "Multiple transfers at once (basket)",
+          "request": {
+            "name": "Multiple transfers at once (basket)",
+            "description": {
+              "content": "The method allows processing numerous transfers with one payment through przelewy24.pl or with a payment card.<br/>The method operates in an analogous manner to <a href=\"#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post\"><b>/v1/transfer/request</b></a>, all the information regarding response codes and values returned may be found there. The description comprises only the elements that differ with respect to the call.<br/><br/><font color=\"red\"><b>Note!</b><br/>/v1/transfer/basket method <b>is also idempotent!</b><br/>The operation details are analogous to <a href=\"#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post\"><b>/v1/transfer/request</b></a>.</font>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "transfer",
+                "basket"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transfers\": {},\n  \"type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"send\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed90c173-d355-494d-be55-f191e1642876",
+              "name": "OK - The result returned is idempotent, the transfer has already been registered, no new transfer has been registered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "basket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfers\": {},\n  \"type\": \"<string>\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      9887,\n      6018\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c41d97fe-dda0-4d97-b8f2-53960ec89245",
+              "name": "Created - New transfer has been accepted and registered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "basket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfers\": {},\n  \"type\": \"<string>\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      4355,\n      3606\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64c47827-6168-4a87-9363-3ff07ad6fef5",
+              "name": "Accepted - he transfer is being processed (occurs when the same request is called for again before an idempotent response is generated)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "basket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfers\": {},\n  \"type\": \"<string>\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      4355,\n      3606\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54334a2d-930e-4cf3-a75a-2df551a690f1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "basket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfers\": {},\n  \"type\": \"<string>\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8d0a830-2210-40b4-95fe-28bb5f3abe27",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "basket"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transfers\": {},\n  \"type\": \"<string>\",\n  \"currency\": \"PLN\",\n  \"send\": 11,\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"express\": true,\n  \"regulations\": false,\n  \"label\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"paymentMethod\": \"<integer>\",\n  \"returnUrl\": \"<string>\",\n  \"sdkVersion\": \"3.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3399bfc-0222-4a01-a539-4bf75af90c81",
+          "name": "Transfers' history",
+          "request": {
+            "name": "Transfers' history",
+            "description": {
+              "content": "The method allows to download the history of transfers from the account within a specified period of time. <b> Warning! Do not use this method to verify whether a transfer was successful.</b> In order to monitor the transfer status use <a href=\"#tag/Notifications-on-transfer-status\"><b>Notifications</b></a>.</b><br/>.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "transfer",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "10",
+                  "key": "limit",
+                  "description": "Limit of transfers downloaded in a single query. Default setting - 10."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dateFrom",
+                  "description": "The date FROM which the transfer history will be downloaded.<br/>Format: „YYYY-mm-dd”"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dateTo",
+                  "description": "The date TO which the transfer history will be downloaded.<br/> Format: „YYYY-mm-dd”"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "45fb1be5-e64c-445f-b5c5-8449b5408ecb",
+              "name": "OK -Table of JSON objects returned with history results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "limit",
+                      "description": "Limit of transfers downloaded in a single query. Default setting - 10."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dateFrom",
+                      "description": "The date FROM which the transfer history will be downloaded.<br/>Format: „YYYY-mm-dd”"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dateTo",
+                      "description": "The date TO which the transfer history will be downloaded.<br/> Format: „YYYY-mm-dd”"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e43ca1fe-589c-43ac-8658-16835ff03dab",
+              "name": "Bad Request - Incorrect parameter format, the error object returned should include a description of the field in which the problem occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "limit",
+                      "description": "Limit of transfers downloaded in a single query. Default setting - 10."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dateFrom",
+                      "description": "The date FROM which the transfer history will be downloaded.<br/>Format: „YYYY-mm-dd”"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dateTo",
+                      "description": "The date TO which the transfer history will be downloaded.<br/> Format: „YYYY-mm-dd”"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9d2cb4f-edc5-456f-b8fa-1d0a9d2f49f8",
+              "name": "Authorization Required - No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "10",
+                      "key": "limit",
+                      "description": "Limit of transfers downloaded in a single query. Default setting - 10."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dateFrom",
+                      "description": "The date FROM which the transfer history will be downloaded.<br/>Format: „YYYY-mm-dd”"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dateTo",
+                      "description": "The date TO which the transfer history will be downloaded.<br/> Format: „YYYY-mm-dd”"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38814837-57eb-454f-b538-ffd85625e713",
+          "name": "Refund (possible overrefund)",
+          "request": {
+            "name": "Refund (possible overrefund)",
+            "description": {
+              "content": "This method generates new transfer for an existing transaction in Przelewy24 system. New transfer is created exactly the  same as in method <a href=\"#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post\"><b>/v1/transfer/request</b></a>, and its data is pulled from transaction in Przelewy24 system. <b>Refunds are always created as </b> <a href=\"#section/Modes-and-transfer-processing/Transfer-processing-in-Wallet\"><b>Wallet  type</b></a> – the amount is pulled from user in Ekspres system.<br/><br/> As for default method does not allow creating a refund transfer for transactions that were previously refunded in Przelewy24 system. Optionally you can force such refund with overrefund parameter. <p style=\"border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;\"><b><font size=4px>Warning! Refunds in foreign currencies are evaluated and refunded in PLN!</font></b></p><p style=\"border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;\"><b><font size=4px>NOTE!</b><br/><br/>Method /v1/transfer/p24/refund is idempotent! <br/><br/>The operation details are analogous to <a href=\"#tag/Ekspres-P24-API/paths/~1express~1v1~1transfer~1request/post\"><b>/v1/transfer/request</b></a></font></b></p>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "transfer",
+                "p24",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refund\": \"<object>\",\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95c7cbcd-d403-4a09-99bf-bb687dfd5a44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "p24",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refund\": {\n    \"sessionId\": \"<string>\",\n    \"title\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"overrefund\": false\n  },\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      6434,\n      1332\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bf514c1-ee1d-4fec-a865-cd8008a4442e",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "p24",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refund\": {\n    \"sessionId\": \"<string>\",\n    \"title\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"overrefund\": false\n  },\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      6434,\n      1332\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "269a5c01-dd2d-4cac-9a7e-3a2ca355f69c",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "p24",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refund\": {\n    \"sessionId\": \"<string>\",\n    \"title\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"overrefund\": false\n  },\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"transferRequestId\": \"string\",\n    \"transferIds\": [\n      6434,\n      1332\n    ],\n    \"url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30019b85-57c5-4c0c-b4f2-496c16b2c1b5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "p24",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refund\": {\n    \"sessionId\": \"<string>\",\n    \"title\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"overrefund\": false\n  },\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbca045d-e8b9-4796-8d93-7c8d30b46879",
+              "name": "Authorization Required -  No access, check the key and the password, check if  the key and the password are active and have authorisation to use this method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "transfer",
+                    "p24",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refund\": {\n    \"sessionId\": \"<string>\",\n    \"title\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"overrefund\": false\n  },\n  \"id\": \"<string>\",\n  \"sign\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b2d8588-efa1-4353-a7ac-64b4be896dcb",
+          "name": "Verification of the bank's activity",
+          "request": {
+            "name": "Verification of the bank's activity",
+            "description": {
+              "content": "The method allows you to check whether the bank that serves the given IBAN by default is currently active.</br><p style=\"border:1.5px;border-style:solid;border-color:#FF0000;padding:1em;\"><b><font size=4px>NOTE!</b><br/><br/>Even if the method of returning that the bank is an existing system, re-recover the information for a given user, which will direct the transfer to another bank.<br/>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "express",
+                "v1",
+                "bank",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "PL0000000000000000000000000000",
+                  "key": "iban",
+                  "description": "(Required) IBAN number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3298817d-dc4c-41d3-b825-ed539a097a23",
+              "name": "The returned JSON object with the default bank activity parameter for the given IBAN",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "bank",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "PL0000000000000000000000000000",
+                      "key": "iban",
+                      "description": "(Required) IBAN number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"available\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f8ac08b-9f4e-49e7-94a2-47044c2057e3",
+              "name": "The provided IBAN is incorrect or parameters were provided incorrected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "express",
+                    "v1",
+                    "bank",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "PL0000000000000000000000000000",
+                      "key": "iban",
+                      "description": "(Required) IBAN number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.przelewy24.pl",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b9a17571-e70c-4ed9-839e-155614dfb445",
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Ekspres P24 API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n\n\n# Ekspres Przelewy24\n\nPrzelewy24 provides an authorisation and clearing system and provides payment services as a Domestic Payment Institution. <br><br/>\n<b><b>Ekspres-Przelewy24</b> service allows to quickly and effortlessly send money between accounts from different banks.</b><br/><br/>\nBelow documentation describes the process of information exchange in the course of ordering a transfer via Ekspres Przelewy24 with the use of REST API.<br/><br/>\nIn order to be able to access Ekspres API Przelewy24, first you need to [create an account](https://ekspres.przelewy24.pl/kontakt/index) in Ekspres P24 Administration Panel.\n<br/>\n# Basic notions\nThe following notions will be used for describing the operation of Ekspres Przelewy24:<br/><br/> **WWW system** – access to Ekspres Przelewy24 in the WWW version through the following websites:<ul>\n    <li>[https://ekspres.przelewy24.pl](https://ekspres.przelewy24.pl) – production version,</li>\n    <li>[https://testekspres.przelewy24.pl](https://testekspres.przelewy24.pl) – sandbox version.</li></ul>\n**API** – access to Ekspres Przelewy24 via REST API. <br/> **Partner** – a person / entity owning the system and submitting transfer orders to Ekspres.<br/> **Client** – a person using Ekspres services (payer or recipient of payment from Ekspres).\n\n# Modes and transfer processing\nEkspres Przelewy24 offers 3 modes of transfer processing:<ul> <li><b>Wallet</b> - transfers are processed using the funds previously paid into the wallet,</li> <li><b>P24</b> i <b>P24mobile</b> - transfers are processed only after the client has made the payment in [przelewy24.pl](https://www.przelewy24.pl),</li> Each of these modes allows the client to monitor the progress of the transfer by providing them with a dedicated URL address (available upon transfer registration).\n\n## Transfer processing in Wallet\n<b>Wallet</b> is characterized by quick processing of transfers to the client. Thanks to the funds accrued in the wallet, it is possible to effect immediate processing of a transfer registered by the Partner.<br/><br/>\n\n<img src=\"getfile/eng_wallet.png\" alt=\"Transfer w trybie Wallet\" class=\"center smallImg\">\n\n\n## Transfer processing in P24 and P24mobile\n<b>P24</b> and <b>P24mobile</b> processes payments based on the funds paid in by the Client through [przelewy24.pl](https://www.przelewy24.pl). Using this mode, the partner registers the transfer in API and, subsequently, sends a payment link to the client (alternatively, the payment link may also be sent automatically via email). Once the transaction is paid by the client in [przelewy24.pl](https://www.przelewy24.pl), the transfer registered by the partner is sent for processing.<br/><br/>\n<b>NOTE: P24mobile is analogous to P24 in that it is designed to operate with a mobile library.</b><br/><br/>\n\n<img src=\"getfile/eng_p24_p24mobile.png\" alt=\"Transfer w trybie P24 i P24mobile\" class=\"center smallImg\">\n\n\n# Codes of responses and erros\n## HTTP response codes\nEkspres Przelewy24 REST API uses response codes in HTTP headers to communicate the result of a query, potential problems and errors. <br/><br/> An inventory of possible response codes and their meanings are explained in the appropriate subchapters describing the specific methods.<br/><br/> <b>Always take note of the response code in order to react adequately to potential problems idempotent replies, etc.</b><br/><br/>\n<b>Possible response codes for all methods:</b>\n\n  | Kod   |      Opis      |  Znaczenie |\n  |--------------|:--------------|:------------|\n  | 401  |   Authorization Required   | No access, check the key and the password, check if the key and the password are active and valid for this method. The code is also used to signal temporary failures. |\n  | 403 |  Forbidden  | No access to a given method. The API key and the password are correct. Contact our staff in order to get access.  |\n  | 404 | Not Found | Method not found, check the URL address called. |\n  | 405 | Method Not Allowed | The method used exists, but under a different http call. Check the calls for this method (GET/POST/etc.).|\n  | 415 | Unsupported Media Type | The „Content-Type” value used is not allowed or a required header is missing. Inventory of allowed values available at <a href=\"#section/General-structures-of-queries-and-responses/General-query-format\"><b>General query format</b></a>. |\n  | 500 | Internal Server Error | Server error, if the error recurs, contact our staff and provide the whole query processed, as well as your API key. |\n  | 503 | Service Unavailable | Service temporarily unavailable due to a failure or planned upgrade.   |\n\n\n## Error codes\nError codes appear in the output object of a query that ended with an error and, if it’s possible, indicate its cause. This allows to precisely establish the cause of the error and triggers an automatic reaction / error notification. <br/><br/>\nError codes are divided into the following groups:<ul> <li><b>1xxx</b> – input parameter validation error (the query contains an error),</li> <li><b>2xxx, 3xxx</b> – transfer registration error (the query is correct, but the transfer cannot be processed, e.g. due to insufficient funds),</b> <li><b>9xxx</b> – external services error (API failure caused by unavailability of a related service necessary to process the transfer, e.g. currency exchange),</li> <li><b>10000</b> – internal error (failure of Ekspres Przelewy24 REST API).</li></ul>\n<b>NOTE! When implementing API error service, in order to identify the error, rely solely on the codes, as the “description” parameter may change and constitutes additional information only!</b><br/><br/>\nThe table below presents error codes <b>input parameter validation:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 1001  | The value of parameter <b>parameter_name</b> contains illicict characters |\n  | 1002  | Parameter <b>parameter_name</b> value must not be empty |\n  | 1003  | Passwords are not identical |\n  | 1004  | The password must consist of at least 8 characters and contain small and capital letters and digits |\n  | 1005  | Incorrect email address |\n  | 1006  | Incorrect postal code |\n  | 1007  | Incorrect country code |\n  | 1008  | Incorrect amount |\n  | 1009  | The <b>parameter</b> value submitted is not a correct integer |\n  | 1010  | Incorrect currency |\n  | 1011  | Incorrect account number |\n  | 1012  | Incorrect URL address |\n  | 1013  | Transaction type not serviced |\n  | 1014  | Incorrect field value |\n  | 1015  | Current transfer status prevents this operation, or incorrect transfer object |\n  | 1016  | Incorrect date format / incorrect date |\n  | 1017  | Incorrect query signature |\n  | 1018  | Parameter value too long |\n  | 1019  | IBAN number submitted has been blocked |\n\n<br/>The table below presents <b>transfer registration error codes:</b>\n\n  | Error code   |      Description   |\n  |--------------|:--------------|\n  |  2001\t| Bank unavailable |\n  |  2002 |\tInsufficient funds in wallet |\n  |  2003\t| Limit for a single transfer has been exceeded |\n  |  2004\t|\tDaily limit on the amount of transfers paid has been exceeded |\n  |  2005\t| Transfer ID not recognised |\n  |  2006\t| Refund amount provided exceeds the transfer value available |\n  |  2007\t| Access denied |\n  |  2008\t| Incorrect transfer ID |\n  |  2009\t| Transfer limit exceeded |\n  |  2010\t| Transfer already returned in P24 mode |\n  |  3000\t| Incorrect ID query |\n  |  3001\t| Unknown sessionId in P24 mode |\n\n<br/>The table below presents <b>error codes for external services:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 9001 |\tTransfer processing error. Contact the customer service department and provide the query ID |\n  | 9002 |\tCurrency exchange error. Please, try again |\n\n<br/>The table below presents the <b>remaining error codes:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 10000 |\tInternal error. Please, contact the customer service department and provide the query ID |\n\n\n\n# General structures of queries and responses\n## General query format\n\n  API queries may be processed using any library that allows HTTPS protocol-based communication. Allowed Content-Type values:<ul>\n  <li><b>application/json</b> – queries sent in JSON format,</li>\n  <li><b>application/x-www-form-urlencoded</b> – queries sent as POST (urlencoded).</li></ul>\n\n  <b>Required coding to UTF-8.</b><br/>\n\n  Sample PHP code with the use of cURL\n  ```php\n      <?php\n      $process = curl_init('https://endpoint/ekspres/v1/balance');\n      // Content-Type header required\n      curl_setopt(\n        $process,\n        CURLOPT_HTTPHEADER,\n        array('Content-Type: application/json')\n      );\n      // Basic Auth authentication\n      curl_setopt($process, CURLOPT_USERPWD, 'api-key' . \":\" . 'api-pass');\n      curl_setopt($process, CURLOPT_RETURNTRANSFER, true);\n      $return = json_decode(curl_exec($process));\n      echo json_encode($return, JSON_PRETTY_PRINT) . \"n\";\n      curl_close($process);\n  ```\n\n## General response format\nA correct method call in Ekspres Przelewy24 REST API will generate a response in the form of a JSON object, in the format dependent on the method called.<br/> <p style=\"border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;\"> <b>NOTE!</b><br/><br/> All the responses returned by API are <b>UTF-8-coded JSON objects without “slash” sign filters and unicode characters!</b><br/><br/> All the responses are returned using the following method:<br/> json_encode($response, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)<br/><br/> For more information see [PHP documentation](https://www.php.net/manual/en/json.constants.php). </p><br/>\nIn the case of some errors, e.g. internal error 500 or authorisation error 401, the same http code will be returned without additional information in the body. These are the cases when the system does not have any more information on the error or does not want to make it available (for instance, due to lack of authorisation). <br/><br/>\n\n When most errors are generated, GeneralErrorObject is returned (in addition to the relevant http code) with additional details:<br/>\n\n  <b>GeneralErrorObject:</b>\n\n  | Field name   |      Type    |  Description |\n  |--------------|:--------------:|:------------|\n  | code  |     int   | General <a href=\"#section/Codes-of-responses-and-erros/Error-codes\"><b>error code</b></a>  |\n  | description |  string  | Error details   |\n\n  <p style=\"color:darkblue; font-size:17px\"><b>Przykład odpowiedzi z obiektem GeneralErrorObject:</b></p>\n\n    ```html\n        HTTP/1.1 400 Bad Request\n          Content-Type: application/json\n\n          {\n            „error”: {\n              „code”: 1011,\n              „description”: „Given IBAN value ”iban” is not valid”\n            }\n          }\n    ```\n\n\n# Environments\n## Production environment\nEvery request is differentiated by its own unique request URL. This way Ekspres P24 knows which API-function you want to access. Combined with the base URL for either the production- or test-environment, you will get the complete API-URL.\n\nBase URL production system:<br/> https://secure.przelewy24.pl/express/v1\n\n## Test environment\nDuring implementation of the mechanisms in merchant’s system, it is recommended to use test environment. Test environment allows to reproduce system functionalities without making actual payments. <br><br>\nTest environment endpoint:<br> https://sandbox.przelewy24.pl/express/v1 <br><br>\n**<u>The test version does not effect transfers and requires separate login keys.</u>**\n\n# IP server addresses\nWe recommend script protection against suspicious calls using address filtering for incoming connections. IP server ranges for the P24 servers: <br><br> <font class = \"right\"><b>5.252.202.255 , 5.252.202.254</b></font><br> <font class = \"right\"><b>20.215.81.124</b></font><br> <font class = \"right\"><b>193.178.213.0/24</b></font><br> <font class = \"right\"><b>91.220.177.0/24</b></font><br> <font class = \"right\"><b>20.215.183.48/28</b></font><br> <font class = \"right\"><b>134.112.88.8/29</b></font><br>\n\n\n# API Access\nAuthentication is effected with the Basic Auth mechanism, which uses a REST API key (as a login) and the password assigned to it. Generating the API key is possible upon logging on to one’s account in the  <a href=\"#section/Basic-notions\"><b>WWW System</b></a> (left-hand menu, tab “API Users” -> “REST User List”). A single user may possess a few API access keys.\n# Authentication\n<!-- Redoc-Inject: <security-definitions> -->\n\n\nContact Support:\n Name: Przelewy24 Support",
+      "type": "text/plain"
+    }
+  }
+}

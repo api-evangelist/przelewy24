@@ -1,0 +1,2426 @@
+{
+  "item": [
+    {
+      "id": "7b0fe7ea-02c8-4009-8d26-4887dc851ad6",
+      "name": "Additional API functionality",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c73056b-e7ad-4e93-8aae-1cfe0f66c47f",
+          "name": "Test Access",
+          "request": {
+            "name": "Test Access",
+            "description": {
+              "content": "Test connection. REST uses  <a href=\"#section/Authentication\"><b>\"basicAuth\"</b></a> authorisation standard, where login and password are, respectively, account ID in P24 and the API key obtained from the “My data” section (“API and configuration data” subsection).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "testAccess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c213779-4f8f-459c-8306-f076d425ff32",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "testAccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": true,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb891199-4c70-4edd-a9dc-04abbd00b4af",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "testAccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid input data\",\n  \"code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b48bb9b-e020-4f8a-ad19-d61ec8ccbeb4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "testAccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07a9b394-8c1d-4af9-8fc1-8aee21837021",
+          "name": "Payment Methods",
+          "request": {
+            "name": "Payment Methods",
+            "description": {
+              "content": "Method returns a list of payment methods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "payment",
+                "methods",
+                "{{lang}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "amount",
+                  "value": "150"
+                },
+                {
+                  "key": "subgroup",
+                  "value": "1"
+                },
+                {
+                  "key": "currency",
+                  "value": "PLN"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "Value of the amount.<br>It gives the possibility of clarifying whether a given form of payment is available for a specific amount."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "PLN",
+                  "description": "Currency compatible with ISO, e.g. PLN"
+                },
+                {
+                  "disabled": false,
+                  "key": "subgroup",
+                  "value": "<integer>",
+                  "description": "Condition if the subgroup value should be visible in the response. Default 0 (NO). Optional 1 (YES)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0a191eaf-f38f-4ded-bd4e-d205dd52f5a5",
+              "name": "List of payment methods",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "payment",
+                    "methods",
+                    "{{lang}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "PLN"
+                    },
+                    {
+                      "key": "subgroup",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"id\": 6488,\n      \"group\": \"string\",\n      \"subgroup\": \"string\",\n      \"status\": true,\n      \"imgUrl\": \"string\",\n      \"mobileImgUrl\": \"string\",\n      \"mobile\": true,\n      \"availabilityHours\": {\n        \"mondayToFriday\": \"string\",\n        \"saturday\": \"string\",\n        \"sunday\": \"string\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"id\": 6511,\n      \"group\": \"string\",\n      \"subgroup\": \"string\",\n      \"status\": true,\n      \"imgUrl\": \"string\",\n      \"mobileImgUrl\": \"string\",\n      \"mobile\": true,\n      \"availabilityHours\": {\n        \"mondayToFriday\": \"string\",\n        \"saturday\": \"string\",\n        \"sunday\": \"string\"\n      }\n    }\n  ],\n  \"responseCode\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ba236ff-89b4-4193-9759-fc225f156590",
+              "name": "Not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "payment",
+                    "methods",
+                    "{{lang}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "PLN"
+                    },
+                    {
+                      "key": "subgroup",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb11bb52-2617-4964-9f46-5d1e51428c40",
+              "name": "Payment methods not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "payment",
+                    "methods",
+                    "{{lang}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "PLN"
+                    },
+                    {
+                      "key": "subgroup",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"Payment methods not found\",\n  \"responseCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1da3f498-2ef8-4ae9-8a92-f9bb7410eb29",
+          "name": "Refund transaction",
+          "request": {
+            "name": "Refund transaction",
+            "description": {
+              "content": "Create refund for one or more transactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "transaction",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<string>\",\n  \"refunds\": [\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"refundsUuid\": \"<string>\",\n  \"urlStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8765e128-8b4c-4bb6-ae58-beefafcd20ba",
+              "name": "Created. Parameter 'data' contains all refunds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"refunds\": [\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"refundsUuid\": \"<string>\",\n  \"urlStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"orderId\": 4360,\n      \"sessionId\": \"string\",\n      \"amount\": 876,\n      \"description\": \"string\",\n      \"status\": true,\n      \"message\": \"success\"\n    },\n    {\n      \"orderId\": 1950,\n      \"sessionId\": \"string\",\n      \"amount\": 2945,\n      \"description\": \"string\",\n      \"status\": true,\n      \"message\": \"success\"\n    }\n  ],\n  \"responseCode\": 4038.656566087323\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b7d9636-b30d-40fe-9deb-8b542e6203b3",
+              "name": "Invalid input data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"refunds\": [\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"refundsUuid\": \"<string>\",\n  \"urlStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41abbcb3-dcfe-4c44-b78c-111ab7eb9395",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"refunds\": [\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"refundsUuid\": \"<string>\",\n  \"urlStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edc465b1-fc93-4635-a30c-161f46a2cce7",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"refunds\": [\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"refundsUuid\": \"<string>\",\n  \"urlStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": [\n    {\n      \"orderId\": 8246,\n      \"sessionId\": \"string\",\n      \"amount\": 1803,\n      \"description\": \"string\",\n      \"status\": false,\n      \"message\": \"The amount of refund exceeds available amount for the transaction\"\n    },\n    {\n      \"orderId\": 2728,\n      \"sessionId\": \"string\",\n      \"amount\": 2352,\n      \"description\": \"string\",\n      \"status\": false,\n      \"message\": \"The amount of refund exceeds available amount for the transaction\"\n    }\n  ],\n  \"code\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1173ed74-afc8-48d8-86c9-fd414e106b3a",
+              "name": "Unknown error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"refunds\": [\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<long>\",\n      \"sessionId\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"refundsUuid\": \"<string>\",\n  \"urlStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unknown error\",\n  \"code\": 500\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f63f8877-be26-4fb9-a183-cf8c586159a9",
+          "name": "Register offline transaction",
+          "request": {
+            "name": "Register offline transaction",
+            "description": {
+              "content": "This method allows you to register offline payments. To use the method, you must first register standard payment transaction with <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"><b>register transaction</b></a> method.<br><br>Additionally, you can control which bank use for payment by using the method parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "transaction",
+                "registerOffline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b866f015-0b27-4f9c-8898-844923192f0e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "registerOffline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"orderId\": 3282,\n    \"sessionId\": \"string\",\n    \"amount\": 590,\n    \"statement\": \"string\",\n    \"iban\": \"string\",\n    \"ibanOwner\": \"string\",\n    \"ibanOwnerAddress\": \"string\"\n  },\n  \"responseCode\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfbb04ea-8d68-4866-aa60-02872ff6bf90",
+              "name": "Invalid input data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "registerOffline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid input data\",\n  \"code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dd41c63-7c21-4874-a2cc-36cedf22e70e",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "registerOffline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3039dc18-7784-4d4b-8091-d9768d6825aa",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "registerOffline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unable to create offline transaction\",\n  \"code\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09c62bd1-b790-41f5-bf4b-f70b4d244fe6",
+              "name": "Undefined error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "registerOffline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Undefined error\",\n  \"code\": 500\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60d56453-ac2a-47d3-8436-24831bd087b6",
+          "name": "Transaction Registration with ttl",
+          "request": {
+            "name": "Transaction Registration with ttl",
+            "description": {
+              "content": "Transaction registration and defining the lifespan of the transaction at the same time. The <b>ttl</b> paramter is required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "transaction",
+                "register",
+                "ttl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"urlNotify\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {\n    \"sellerId\": \"<string>\",\n    \"sellerCategory\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"price\": \"<integer>\",\n    \"number\": \"<string>\"\n  },\n  \"methodRefId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "207547fa-2f55-4ca9-90c9-10725b9ed4be",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "register",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"urlNotify\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {\n    \"sellerId\": \"<string>\",\n    \"sellerCategory\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"price\": \"<integer>\",\n    \"number\": \"<string>\"\n  },\n  \"methodRefId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"token\": \"string\"\n  },\n  \"responseCode\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6f6f31a-8c22-4d6b-9054-bf3661e53610",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "register",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"urlNotify\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {\n    \"sellerId\": \"<string>\",\n    \"sellerCategory\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"price\": \"<integer>\",\n    \"number\": \"<string>\"\n  },\n  \"methodRefId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid input data\",\n  \"code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7c39799-4994-41fa-bde0-c98c2089181a",
+              "name": "not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "register",
+                    "ttl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"ttl\": \"<integer>\",\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"urlNotify\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {\n    \"sellerId\": \"<string>\",\n    \"sellerCategory\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"price\": \"<integer>\",\n    \"number\": \"<string>\"\n  },\n  \"methodRefId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f07854c-e12e-49f0-bdc2-65239a285a01",
+          "name": "Split Payment",
+          "request": {
+            "name": "Split Payment",
+            "description": {
+              "content": "Split Payments are charged using previously registered token in a process analogous to  <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"><b>transaction/register</b></a>. When registering the token, you must add the <b>splitPaymentDetails</b> object characteristic for this form of transaction execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "transaction",
+                "register",
+                "splitpayment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"splitPaymentDetails\": {\n    \"vatAmount\": \"<integer>\",\n    \"invoiceNumber\": \"<string>\",\n    \"nip\": \"<string>\",\n    \"iban\": \"<string>\"\n  },\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {},\n  \"methodRefId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44ffb437-bbc1-48a9-ab04-44f4f50b0072",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "register",
+                    "splitpayment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"splitPaymentDetails\": {\n    \"vatAmount\": \"<integer>\",\n    \"invoiceNumber\": \"<string>\",\n    \"nip\": \"<string>\",\n    \"iban\": \"<string>\"\n  },\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {},\n  \"methodRefId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"token\": \"string\"\n  },\n  \"responseCode\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9716e7c3-175e-4a02-adcf-9f9e728ca6df",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "register",
+                    "splitpayment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"splitPaymentDetails\": {\n    \"vatAmount\": \"<integer>\",\n    \"invoiceNumber\": \"<string>\",\n    \"nip\": \"<string>\",\n    \"iban\": \"<string>\"\n  },\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {},\n  \"methodRefId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid input data\",\n  \"code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "083f558b-be6d-47fa-a767-b2d2cf393613",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "register",
+                    "splitpayment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<integer>\",\n  \"posId\": \"<integer>\",\n  \"sessionId\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"PLN\",\n  \"description\": \"<string>\",\n  \"email\": \"<string>\",\n  \"country\": \"PL\",\n  \"language\": \"pl\",\n  \"urlReturn\": \"<string>\",\n  \"sign\": \"<string>\",\n  \"splitPaymentDetails\": {\n    \"vatAmount\": \"<integer>\",\n    \"invoiceNumber\": \"<string>\",\n    \"nip\": \"<string>\",\n    \"iban\": \"<string>\"\n  },\n  \"client\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"city\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"method\": \"<integer>\",\n  \"urlStatus\": \"<string>\",\n  \"timeLimit\": \"<integer>\",\n  \"channel\": \"<integer>\",\n  \"shipping\": \"<integer>\",\n  \"transferLabel\": \"<string>\",\n  \"sdkVersion\": \"<string>\",\n  \"encoding\": \"<string>\",\n  \"cart\": {},\n  \"methodRefId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9579395a-044a-46a7-b45d-3856c9af5303",
+          "name": "Refund by OrderID",
+          "request": {
+            "name": "Refund by OrderID",
+            "description": {
+              "content": "Get refund details for given Order Id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "refund",
+                "by",
+                "orderId",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "orderId",
+                  "description": "(Required) existing refund Order Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b5e0b3ff-08a8-45f1-9221-1da4e491d740",
+              "name": "Request has been processed successful. Parameter 'data' contains refund info.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "refund",
+                    "by",
+                    "orderId",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "orderId",
+                      "description": "(Required) existing refund Order Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"orderId\": 5922,\n    \"sessionId\": \"string\",\n    \"amount\": 3507,\n    \"currency\": \"string\",\n    \"refunds\": [\n      {\n        \"batchId\": 5994,\n        \"requestId\": \"string\",\n        \"date\": \"string\",\n        \"login\": \"string\",\n        \"description\": \"string\",\n        \"status\": 3,\n        \"amount\": 9150\n      },\n      {\n        \"batchId\": 9779,\n        \"requestId\": \"string\",\n        \"date\": \"string\",\n        \"login\": \"string\",\n        \"description\": \"string\",\n        \"status\": 3,\n        \"amount\": 3600\n      }\n    ]\n  },\n  \"responseCode\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2415f89-f607-4d88-8fad-d1070ce4dccd",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "refund",
+                    "by",
+                    "orderId",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "orderId",
+                      "description": "(Required) existing refund Order Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "478e61f9-1e0b-45e0-bbaf-8f3306d41382",
+              "name": "Refund with given Order Id not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "refund",
+                    "by",
+                    "orderId",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "orderId",
+                      "description": "(Required) existing refund Order Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Transaction not found\",\n  \"responseCode\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bdae535-2c11-47a8-b458-14ef71c9439b",
+              "name": "Undefined error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "refund",
+                    "by",
+                    "orderId",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "orderId",
+                      "description": "(Required) existing refund Order Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Undefined error\",\n  \"code\": 500\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04814201-f573-4f86-bf89-ae0bc0e9ba2f",
+          "name": "Get transaction by sessionID",
+          "request": {
+            "name": "Get transaction by sessionID",
+            "description": {
+              "content": "Method returns transaction information by sessionId",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "transaction",
+                "by",
+                "sessionId",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "sessionId",
+                  "description": "(Required) Transaction ID assigned by Merchant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ea4fdd0-7f9e-47e9-9617-c751428f3643",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "by",
+                    "sessionId",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "sessionId",
+                      "description": "(Required) Transaction ID assigned by Merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"statement\": \"string\",\n    \"orderId\": 3487,\n    \"sessionId\": \"string\",\n    \"status\": 7737,\n    \"amount\": 6178,\n    \"currency\": \"PLN\",\n    \"date\": \"string\",\n    \"dateOfTransaction\": \"string\",\n    \"clientEmail\": \"string\",\n    \"accountMD5\": \"string\",\n    \"paymentMethod\": 3015,\n    \"description\": \"string\",\n    \"clientName\": \"string\",\n    \"clientAddress\": \"string\",\n    \"clientCity\": \"string\",\n    \"clientPostcode\": \"string\",\n    \"batchId\": 1432,\n    \"fee\": \"string\"\n  },\n  \"responseCode\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7c74f7d-b705-420d-8ae2-90254bd644a8",
+              "name": "Invalid input data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "by",
+                    "sessionId",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "sessionId",
+                      "description": "(Required) Transaction ID assigned by Merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid input data\",\n  \"code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c8bd5d3-c51c-4403-98cb-df5f202e0718",
+              "name": "Incorrect authentication",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "by",
+                    "sessionId",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "sessionId",
+                      "description": "(Required) Transaction ID assigned by Merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d656fee-b5f8-4f36-b47d-383c79fa3cfb",
+              "name": "Transaction not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "transaction",
+                    "by",
+                    "sessionId",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "sessionId",
+                      "description": "(Required) Transaction ID assigned by Merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Transaction not found\",\n  \"responseCode\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1698b533-2771-4e96-95a6-9959c36a6e67",
+          "name": "Payment Methods",
+          "request": {
+            "name": "Payment Methods",
+            "description": {
+              "content": "Method returns a list of payment methods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "payment",
+                "methods",
+                "{{lang}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "amount",
+                  "value": "150"
+                },
+                {
+                  "key": "currency",
+                  "value": "PLN"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "Value of the amount.<br>It gives the possibility of clarifying whether a given form of payment is available for a specific amount."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "PLN",
+                  "description": "Currency compatible with ISO, e.g. PLN"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3fe5750f-4dc7-48b8-8fe9-1967730b5f21",
+              "name": "List of payment methods",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "payment",
+                    "methods",
+                    "{{lang}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "PLN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"id\": 4773,\n      \"group\": \"string\",\n      \"subgroup\": \"string\",\n      \"status\": true,\n      \"imgUrl\": \"string\",\n      \"mobileImgUrl\": \"string\",\n      \"mobile\": true,\n      \"availabilityHours\": {\n        \"mondayToFriday\": \"string\",\n        \"saturday\": \"string\",\n        \"sunday\": \"string\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"id\": 5843,\n      \"group\": \"string\",\n      \"subgroup\": \"string\",\n      \"status\": true,\n      \"imgUrl\": \"string\",\n      \"mobileImgUrl\": \"string\",\n      \"mobile\": true,\n      \"availabilityHours\": {\n        \"mondayToFriday\": \"string\",\n        \"saturday\": \"string\",\n        \"sunday\": \"string\"\n      }\n    }\n  ],\n  \"responseCode\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a6d6b6-c427-4fd5-a626-9dbb540803e1",
+              "name": "Not authorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "payment",
+                    "methods",
+                    "{{lang}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "PLN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49ea8809-6bfe-4c2a-bb8e-c56c2d23a3e1",
+              "name": "Payment methods not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "payment",
+                    "methods",
+                    "{{lang}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "PLN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"Payment methods not found\",\n  \"responseCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.przelewy24.pl",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) A language code. One of these: pl , en",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "lang"
+    }
+  ],
+  "info": {
+    "_postman_id": "de8dd11b-56f8-4209-888d-6c395540ebcb",
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n\n\n# Ekspres Przelewy24\n\nPrzelewy24 provides an authorisation and clearing system and provides payment services as a Domestic Payment Institution. <br><br/>\n<b><b>Ekspres-Przelewy24</b> service allows to quickly and effortlessly send money between accounts from different banks.</b><br/><br/>\nBelow documentation describes the process of information exchange in the course of ordering a transfer via Ekspres Przelewy24 with the use of REST API.<br/><br/>\nIn order to be able to access Ekspres API Przelewy24, first you need to [create an account](https://ekspres.przelewy24.pl/kontakt/index) in Ekspres P24 Administration Panel.\n<br/>\n# Basic notions\nThe following notions will be used for describing the operation of Ekspres Przelewy24:<br/><br/> **WWW system** – access to Ekspres Przelewy24 in the WWW version through the following websites:<ul>\n    <li>[https://ekspres.przelewy24.pl](https://ekspres.przelewy24.pl) – production version,</li>\n    <li>[https://testekspres.przelewy24.pl](https://testekspres.przelewy24.pl) – sandbox version.</li></ul>\n**API** – access to Ekspres Przelewy24 via REST API. <br/> **Partner** – a person / entity owning the system and submitting transfer orders to Ekspres.<br/> **Client** – a person using Ekspres services (payer or recipient of payment from Ekspres).\n\n# Modes and transfer processing\nEkspres Przelewy24 offers 3 modes of transfer processing:<ul> <li><b>Wallet</b> - transfers are processed using the funds previously paid into the wallet,</li> <li><b>P24</b> i <b>P24mobile</b> - transfers are processed only after the client has made the payment in [przelewy24.pl](https://www.przelewy24.pl),</li> Each of these modes allows the client to monitor the progress of the transfer by providing them with a dedicated URL address (available upon transfer registration).\n\n## Transfer processing in Wallet\n<b>Wallet</b> is characterized by quick processing of transfers to the client. Thanks to the funds accrued in the wallet, it is possible to effect immediate processing of a transfer registered by the Partner.<br/><br/>\n\n<img src=\"getfile/eng_wallet.png\" alt=\"Transfer w trybie Wallet\" class=\"center smallImg\">\n\n\n## Transfer processing in P24 and P24mobile\n<b>P24</b> and <b>P24mobile</b> processes payments based on the funds paid in by the Client through [przelewy24.pl](https://www.przelewy24.pl). Using this mode, the partner registers the transfer in API and, subsequently, sends a payment link to the client (alternatively, the payment link may also be sent automatically via email). Once the transaction is paid by the client in [przelewy24.pl](https://www.przelewy24.pl), the transfer registered by the partner is sent for processing.<br/><br/>\n<b>NOTE: P24mobile is analogous to P24 in that it is designed to operate with a mobile library.</b><br/><br/>\n\n<img src=\"getfile/eng_p24_p24mobile.png\" alt=\"Transfer w trybie P24 i P24mobile\" class=\"center smallImg\">\n\n\n# Codes of responses and erros\n## HTTP response codes\nEkspres Przelewy24 REST API uses response codes in HTTP headers to communicate the result of a query, potential problems and errors. <br/><br/> An inventory of possible response codes and their meanings are explained in the appropriate subchapters describing the specific methods.<br/><br/> <b>Always take note of the response code in order to react adequately to potential problems idempotent replies, etc.</b><br/><br/>\n<b>Possible response codes for all methods:</b>\n\n  | Kod   |      Opis      |  Znaczenie |\n  |--------------|:--------------|:------------|\n  | 401  |   Authorization Required   | No access, check the key and the password, check if the key and the password are active and valid for this method. The code is also used to signal temporary failures. |\n  | 403 |  Forbidden  | No access to a given method. The API key and the password are correct. Contact our staff in order to get access.  |\n  | 404 | Not Found | Method not found, check the URL address called. |\n  | 405 | Method Not Allowed | The method used exists, but under a different http call. Check the calls for this method (GET/POST/etc.).|\n  | 415 | Unsupported Media Type | The „Content-Type” value used is not allowed or a required header is missing. Inventory of allowed values available at <a href=\"#section/General-structures-of-queries-and-responses/General-query-format\"><b>General query format</b></a>. |\n  | 500 | Internal Server Error | Server error, if the error recurs, contact our staff and provide the whole query processed, as well as your API key. |\n  | 503 | Service Unavailable | Service temporarily unavailable due to a failure or planned upgrade.   |\n\n\n## Error codes\nError codes appear in the output object of a query that ended with an error and, if it’s possible, indicate its cause. This allows to precisely establish the cause of the error and triggers an automatic reaction / error notification. <br/><br/>\nError codes are divided into the following groups:<ul> <li><b>1xxx</b> – input parameter validation error (the query contains an error),</li> <li><b>2xxx, 3xxx</b> – transfer registration error (the query is correct, but the transfer cannot be processed, e.g. due to insufficient funds),</b> <li><b>9xxx</b> – external services error (API failure caused by unavailability of a related service necessary to process the transfer, e.g. currency exchange),</li> <li><b>10000</b> – internal error (failure of Ekspres Przelewy24 REST API).</li></ul>\n<b>NOTE! When implementing API error service, in order to identify the error, rely solely on the codes, as the “description” parameter may change and constitutes additional information only!</b><br/><br/>\nThe table below presents error codes <b>input parameter validation:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 1001  | The value of parameter <b>parameter_name</b> contains illicict characters |\n  | 1002  | Parameter <b>parameter_name</b> value must not be empty |\n  | 1003  | Passwords are not identical |\n  | 1004  | The password must consist of at least 8 characters and contain small and capital letters and digits |\n  | 1005  | Incorrect email address |\n  | 1006  | Incorrect postal code |\n  | 1007  | Incorrect country code |\n  | 1008  | Incorrect amount |\n  | 1009  | The <b>parameter</b> value submitted is not a correct integer |\n  | 1010  | Incorrect currency |\n  | 1011  | Incorrect account number |\n  | 1012  | Incorrect URL address |\n  | 1013  | Transaction type not serviced |\n  | 1014  | Incorrect field value |\n  | 1015  | Current transfer status prevents this operation, or incorrect transfer object |\n  | 1016  | Incorrect date format / incorrect date |\n  | 1017  | Incorrect query signature |\n  | 1018  | Parameter value too long |\n  | 1019  | IBAN number submitted has been blocked |\n\n<br/>The table below presents <b>transfer registration error codes:</b>\n\n  | Error code   |      Description   |\n  |--------------|:--------------|\n  |  2001\t| Bank unavailable |\n  |  2002 |\tInsufficient funds in wallet |\n  |  2003\t| Limit for a single transfer has been exceeded |\n  |  2004\t|\tDaily limit on the amount of transfers paid has been exceeded |\n  |  2005\t| Transfer ID not recognised |\n  |  2006\t| Refund amount provided exceeds the transfer value available |\n  |  2007\t| Access denied |\n  |  2008\t| Incorrect transfer ID |\n  |  2009\t| Transfer limit exceeded |\n  |  2010\t| Transfer already returned in P24 mode |\n  |  3000\t| Incorrect ID query |\n  |  3001\t| Unknown sessionId in P24 mode |\n\n<br/>The table below presents <b>error codes for external services:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 9001 |\tTransfer processing error. Contact the customer service department and provide the query ID |\n  | 9002 |\tCurrency exchange error. Please, try again |\n\n<br/>The table below presents the <b>remaining error codes:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 10000 |\tInternal error. Please, contact the customer service department and provide the query ID |\n\n\n\n# General structures of queries and responses\n## General query format\n\n  API queries may be processed using any library that allows HTTPS protocol-based communication. Allowed Content-Type values:<ul>\n  <li><b>application/json</b> – queries sent in JSON format,</li>\n  <li><b>application/x-www-form-urlencoded</b> – queries sent as POST (urlencoded).</li></ul>\n\n  <b>Required coding to UTF-8.</b><br/>\n\n  Sample PHP code with the use of cURL\n  ```php\n      <?php\n      $process = curl_init('https://endpoint/ekspres/v1/balance');\n      // Content-Type header required\n      curl_setopt(\n        $process,\n        CURLOPT_HTTPHEADER,\n        array('Content-Type: application/json')\n      );\n      // Basic Auth authentication\n      curl_setopt($process, CURLOPT_USERPWD, 'api-key' . \":\" . 'api-pass');\n      curl_setopt($process, CURLOPT_RETURNTRANSFER, true);\n      $return = json_decode(curl_exec($process));\n      echo json_encode($return, JSON_PRETTY_PRINT) . \"n\";\n      curl_close($process);\n  ```\n\n## General response format\nA correct method call in Ekspres Przelewy24 REST API will generate a response in the form of a JSON object, in the format dependent on the method called.<br/> <p style=\"border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;\"> <b>NOTE!</b><br/><br/> All the responses returned by API are <b>UTF-8-coded JSON objects without “slash” sign filters and unicode characters!</b><br/><br/> All the responses are returned using the following method:<br/> json_encode($response, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)<br/><br/> For more information see [PHP documentation](https://www.php.net/manual/en/json.constants.php). </p><br/>\nIn the case of some errors, e.g. internal error 500 or authorisation error 401, the same http code will be returned without additional information in the body. These are the cases when the system does not have any more information on the error or does not want to make it available (for instance, due to lack of authorisation). <br/><br/>\n\n When most errors are generated, GeneralErrorObject is returned (in addition to the relevant http code) with additional details:<br/>\n\n  <b>GeneralErrorObject:</b>\n\n  | Field name   |      Type    |  Description |\n  |--------------|:--------------:|:------------|\n  | code  |     int   | General <a href=\"#section/Codes-of-responses-and-erros/Error-codes\"><b>error code</b></a>  |\n  | description |  string  | Error details   |\n\n  <p style=\"color:darkblue; font-size:17px\"><b>Przykład odpowiedzi z obiektem GeneralErrorObject:</b></p>\n\n    ```html\n        HTTP/1.1 400 Bad Request\n          Content-Type: application/json\n\n          {\n            „error”: {\n              „code”: 1011,\n              „description”: „Given IBAN value ”iban” is not valid”\n            }\n          }\n    ```\n\n\n# Environments\n## Production environment\nEvery request is differentiated by its own unique request URL. This way Ekspres P24 knows which API-function you want to access. Combined with the base URL for either the production- or test-environment, you will get the complete API-URL.\n\nBase URL production system:<br/> https://secure.przelewy24.pl/express/v1\n\n## Test environment\nDuring implementation of the mechanisms in merchant’s system, it is recommended to use test environment. Test environment allows to reproduce system functionalities without making actual payments. <br><br>\nTest environment endpoint:<br> https://sandbox.przelewy24.pl/express/v1 <br><br>\n**<u>The test version does not effect transfers and requires separate login keys.</u>**\n\n# IP server addresses\nWe recommend script protection against suspicious calls using address filtering for incoming connections. IP server ranges for the P24 servers: <br><br> <font class = \"right\"><b>5.252.202.255 , 5.252.202.254</b></font><br> <font class = \"right\"><b>20.215.81.124</b></font><br> <font class = \"right\"><b>193.178.213.0/24</b></font><br> <font class = \"right\"><b>91.220.177.0/24</b></font><br> <font class = \"right\"><b>20.215.183.48/28</b></font><br> <font class = \"right\"><b>134.112.88.8/29</b></font><br>\n\n\n# API Access\nAuthentication is effected with the Basic Auth mechanism, which uses a REST API key (as a login) and the password assigned to it. Generating the API key is possible upon logging on to one’s account in the  <a href=\"#section/Basic-notions\"><b>WWW System</b></a> (left-hand menu, tab “API Users” -> “REST User List”). A single user may possess a few API access keys.\n# Authentication\n<!-- Redoc-Inject: <security-definitions> -->\n\n\nContact Support:\n Name: Przelewy24 Support",
+      "type": "text/plain"
+    }
+  }
+}

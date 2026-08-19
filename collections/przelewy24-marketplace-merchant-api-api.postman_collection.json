@@ -1,0 +1,650 @@
+{
+  "item": [
+    {
+      "id": "2d4258bd-e461-4086-af9e-6d5f7e1b8507",
+      "name": "Marketplace Merchant API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "042bac3f-61ba-4edd-b06a-ef9b00746889",
+          "name": "Merchant Register",
+          "request": {
+            "name": "Merchant Register",
+            "description": {
+              "content": "The method allows to register new merchant/shop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "api",
+                "v1",
+                "merchant",
+                "register"
+              ],
+              "host": [
+                "secure",
+                "przelewy24",
+                "pl"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"business_type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"bank_account\": \"<string>\",\n  \"invoice_email\": \"<string>\",\n  \"shop_url\": \"<string>\",\n  \"services_description\": \"<string>\",\n  \"trade\": \"<string>\",\n  \"contact_person[name]\": \"<string>\",\n  \"contact_person[email]\": \"<string>\",\n  \"contact_person[phone_number]\": \"<string>\",\n  \"technical_contact[name]\": \"<string>\",\n  \"technical_contact[email]\": \"<string>\",\n  \"technical_contact[phone_number]\": \"<string>\",\n  \"address[country]\": \"<string>\",\n  \"address[city]\": \"<string>\",\n  \"address[post_code]\": \"<string>\",\n  \"address[street]\": \"<string>\",\n  \"correspondence_address[country]\": \"<string>\",\n  \"correspondence_address[city]\": \"<string>\",\n  \"correspondence_address[street]\": \"<string>\",\n  \"correspondence_address[post_code]\": \"<string>\",\n  \"pesel\": \"<string>\",\n  \"krs\": \"<string>\",\n  \"nip\": \"<string>\",\n  \"regon\": \"<string>\",\n  \"acceptance\": \"<boolean>\",\n  \"representatives\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0aabde93-3740-412a-9b71-26abc2fcc9b8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "api",
+                    "v1",
+                    "merchant",
+                    "register"
+                  ],
+                  "host": [
+                    "secure",
+                    "przelewy24",
+                    "pl"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"bank_account\": \"<string>\",\n  \"invoice_email\": \"<string>\",\n  \"shop_url\": \"<string>\",\n  \"services_description\": \"<string>\",\n  \"trade\": \"agd\",\n  \"contact_person[name]\": \"<string>\",\n  \"contact_person[email]\": \"<string>\",\n  \"contact_person[phone_number]\": \"<string>\",\n  \"technical_contact[name]\": \"<string>\",\n  \"technical_contact[email]\": \"<string>\",\n  \"technical_contact[phone_number]\": \"<string>\",\n  \"address[country]\": \"PL\",\n  \"address[city]\": \"Warszawa\",\n  \"address[post_code]\": \"<string>\",\n  \"address[street]\": \"<string>\",\n  \"correspondence_address[country]\": \"PL\",\n  \"correspondence_address[city]\": \"Poznań\",\n  \"correspondence_address[street]\": \"<string>\",\n  \"correspondence_address[post_code]\": \"<string>\",\n  \"pesel\": \"<string>\",\n  \"krs\": \"<string>\",\n  \"nip\": \"<string>\",\n  \"regon\": \"<string>\",\n  \"acceptance\": \"<boolean>\",\n  \"representatives\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"data\": {\n    \"merchant_id\": 8931,\n    \"link\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cf6d5c3-83b3-481a-a20d-609816dc9f3e",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "api",
+                    "v1",
+                    "merchant",
+                    "register"
+                  ],
+                  "host": [
+                    "secure",
+                    "przelewy24",
+                    "pl"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"bank_account\": \"<string>\",\n  \"invoice_email\": \"<string>\",\n  \"shop_url\": \"<string>\",\n  \"services_description\": \"<string>\",\n  \"trade\": \"agd\",\n  \"contact_person[name]\": \"<string>\",\n  \"contact_person[email]\": \"<string>\",\n  \"contact_person[phone_number]\": \"<string>\",\n  \"technical_contact[name]\": \"<string>\",\n  \"technical_contact[email]\": \"<string>\",\n  \"technical_contact[phone_number]\": \"<string>\",\n  \"address[country]\": \"PL\",\n  \"address[city]\": \"Warszawa\",\n  \"address[post_code]\": \"<string>\",\n  \"address[street]\": \"<string>\",\n  \"correspondence_address[country]\": \"PL\",\n  \"correspondence_address[city]\": \"Poznań\",\n  \"correspondence_address[street]\": \"<string>\",\n  \"correspondence_address[post_code]\": \"<string>\",\n  \"pesel\": \"<string>\",\n  \"krs\": \"<string>\",\n  \"nip\": \"<string>\",\n  \"regon\": \"<string>\",\n  \"acceptance\": \"<boolean>\",\n  \"representatives\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": \"string\",\n  \"data\": {\n    \"merchant_id\": 7246,\n    \"link\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e98bd290-0aef-4caa-9ebc-aab75dca168f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "api",
+                    "v1",
+                    "merchant",
+                    "register"
+                  ],
+                  "host": [
+                    "secure",
+                    "przelewy24",
+                    "pl"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"bank_account\": \"<string>\",\n  \"invoice_email\": \"<string>\",\n  \"shop_url\": \"<string>\",\n  \"services_description\": \"<string>\",\n  \"trade\": \"agd\",\n  \"contact_person[name]\": \"<string>\",\n  \"contact_person[email]\": \"<string>\",\n  \"contact_person[phone_number]\": \"<string>\",\n  \"technical_contact[name]\": \"<string>\",\n  \"technical_contact[email]\": \"<string>\",\n  \"technical_contact[phone_number]\": \"<string>\",\n  \"address[country]\": \"PL\",\n  \"address[city]\": \"Warszawa\",\n  \"address[post_code]\": \"<string>\",\n  \"address[street]\": \"<string>\",\n  \"correspondence_address[country]\": \"PL\",\n  \"correspondence_address[city]\": \"Poznań\",\n  \"correspondence_address[street]\": \"<string>\",\n  \"correspondence_address[post_code]\": \"<string>\",\n  \"pesel\": \"<string>\",\n  \"krs\": \"<string>\",\n  \"nip\": \"<string>\",\n  \"regon\": \"<string>\",\n  \"acceptance\": \"<boolean>\",\n  \"representatives\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect parameter: phone_number | (contact_person)\",\n  \"code\": \"string\",\n  \"data\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5432b58f-1711-429b-bd15-69749015ecf4",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "api",
+                    "v1",
+                    "merchant",
+                    "register"
+                  ],
+                  "host": [
+                    "secure",
+                    "przelewy24",
+                    "pl"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"business_type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"bank_account\": \"<string>\",\n  \"invoice_email\": \"<string>\",\n  \"shop_url\": \"<string>\",\n  \"services_description\": \"<string>\",\n  \"trade\": \"agd\",\n  \"contact_person[name]\": \"<string>\",\n  \"contact_person[email]\": \"<string>\",\n  \"contact_person[phone_number]\": \"<string>\",\n  \"technical_contact[name]\": \"<string>\",\n  \"technical_contact[email]\": \"<string>\",\n  \"technical_contact[phone_number]\": \"<string>\",\n  \"address[country]\": \"PL\",\n  \"address[city]\": \"Warszawa\",\n  \"address[post_code]\": \"<string>\",\n  \"address[street]\": \"<string>\",\n  \"correspondence_address[country]\": \"PL\",\n  \"correspondence_address[city]\": \"Poznań\",\n  \"correspondence_address[street]\": \"<string>\",\n  \"correspondence_address[post_code]\": \"<string>\",\n  \"pesel\": \"<string>\",\n  \"krs\": \"<string>\",\n  \"nip\": \"<string>\",\n  \"regon\": \"<string>\",\n  \"acceptance\": \"<boolean>\",\n  \"representatives\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ac8e0bf-9ab5-4038-9044-494695df0373",
+          "name": "Merchant Exists",
+          "request": {
+            "name": "Merchant Exists",
+            "description": {
+              "content": "The method allows to verify wheter a given merchant has been already registered in a given marketplace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "merchant",
+                "exists",
+                ":identificationType",
+                ":identificationNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identificationType",
+                  "description": "(Required) Possible values: nip or pesel"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identificationNumber",
+                  "description": "(Required) nip or pesel number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3a5c250-62e2-45a2-a245-d308620fca47",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "exists",
+                    ":identificationType",
+                    ":identificationNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationType",
+                      "description": "(Required) Possible values: nip or pesel"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationNumber",
+                      "description": "(Required) nip or pesel number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    \"string\",\n    \"string\"\n  ],\n  \"error\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee2b3727-1de0-4677-82aa-a2197a6025a2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "exists",
+                    ":identificationType",
+                    ":identificationNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationType",
+                      "description": "(Required) Possible values: nip or pesel"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationNumber",
+                      "description": "(Required) nip or pesel number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid pesel format\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f968def-bb55-40fb-aa3f-073e076f899a",
+              "name": "Not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "exists",
+                    ":identificationType",
+                    ":identificationNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationType",
+                      "description": "(Required) Possible values: nip or pesel"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationNumber",
+                      "description": "(Required) nip or pesel number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Incorrect authentication\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "414af31c-bb69-4fbe-9dfe-73d91e1b89e2",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "merchant",
+                    "exists",
+                    ":identificationType",
+                    ":identificationNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationType",
+                      "description": "(Required) Possible values: nip or pesel"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identificationNumber",
+                      "description": "(Required) nip or pesel number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Affiliate not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox.przelewy24.pl",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "507ca2dc-351d-451d-90bb-d3b32722d199",
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Marketplace Merchant API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n\n\n# Ekspres Przelewy24\n\nPrzelewy24 provides an authorisation and clearing system and provides payment services as a Domestic Payment Institution. <br><br/>\n<b><b>Ekspres-Przelewy24</b> service allows to quickly and effortlessly send money between accounts from different banks.</b><br/><br/>\nBelow documentation describes the process of information exchange in the course of ordering a transfer via Ekspres Przelewy24 with the use of REST API.<br/><br/>\nIn order to be able to access Ekspres API Przelewy24, first you need to [create an account](https://ekspres.przelewy24.pl/kontakt/index) in Ekspres P24 Administration Panel.\n<br/>\n# Basic notions\nThe following notions will be used for describing the operation of Ekspres Przelewy24:<br/><br/> **WWW system** – access to Ekspres Przelewy24 in the WWW version through the following websites:<ul>\n    <li>[https://ekspres.przelewy24.pl](https://ekspres.przelewy24.pl) – production version,</li>\n    <li>[https://testekspres.przelewy24.pl](https://testekspres.przelewy24.pl) – sandbox version.</li></ul>\n**API** – access to Ekspres Przelewy24 via REST API. <br/> **Partner** – a person / entity owning the system and submitting transfer orders to Ekspres.<br/> **Client** – a person using Ekspres services (payer or recipient of payment from Ekspres).\n\n# Modes and transfer processing\nEkspres Przelewy24 offers 3 modes of transfer processing:<ul> <li><b>Wallet</b> - transfers are processed using the funds previously paid into the wallet,</li> <li><b>P24</b> i <b>P24mobile</b> - transfers are processed only after the client has made the payment in [przelewy24.pl](https://www.przelewy24.pl),</li> Each of these modes allows the client to monitor the progress of the transfer by providing them with a dedicated URL address (available upon transfer registration).\n\n## Transfer processing in Wallet\n<b>Wallet</b> is characterized by quick processing of transfers to the client. Thanks to the funds accrued in the wallet, it is possible to effect immediate processing of a transfer registered by the Partner.<br/><br/>\n\n<img src=\"getfile/eng_wallet.png\" alt=\"Transfer w trybie Wallet\" class=\"center smallImg\">\n\n\n## Transfer processing in P24 and P24mobile\n<b>P24</b> and <b>P24mobile</b> processes payments based on the funds paid in by the Client through [przelewy24.pl](https://www.przelewy24.pl). Using this mode, the partner registers the transfer in API and, subsequently, sends a payment link to the client (alternatively, the payment link may also be sent automatically via email). Once the transaction is paid by the client in [przelewy24.pl](https://www.przelewy24.pl), the transfer registered by the partner is sent for processing.<br/><br/>\n<b>NOTE: P24mobile is analogous to P24 in that it is designed to operate with a mobile library.</b><br/><br/>\n\n<img src=\"getfile/eng_p24_p24mobile.png\" alt=\"Transfer w trybie P24 i P24mobile\" class=\"center smallImg\">\n\n\n# Codes of responses and erros\n## HTTP response codes\nEkspres Przelewy24 REST API uses response codes in HTTP headers to communicate the result of a query, potential problems and errors. <br/><br/> An inventory of possible response codes and their meanings are explained in the appropriate subchapters describing the specific methods.<br/><br/> <b>Always take note of the response code in order to react adequately to potential problems idempotent replies, etc.</b><br/><br/>\n<b>Possible response codes for all methods:</b>\n\n  | Kod   |      Opis      |  Znaczenie |\n  |--------------|:--------------|:------------|\n  | 401  |   Authorization Required   | No access, check the key and the password, check if the key and the password are active and valid for this method. The code is also used to signal temporary failures. |\n  | 403 |  Forbidden  | No access to a given method. The API key and the password are correct. Contact our staff in order to get access.  |\n  | 404 | Not Found | Method not found, check the URL address called. |\n  | 405 | Method Not Allowed | The method used exists, but under a different http call. Check the calls for this method (GET/POST/etc.).|\n  | 415 | Unsupported Media Type | The „Content-Type” value used is not allowed or a required header is missing. Inventory of allowed values available at <a href=\"#section/General-structures-of-queries-and-responses/General-query-format\"><b>General query format</b></a>. |\n  | 500 | Internal Server Error | Server error, if the error recurs, contact our staff and provide the whole query processed, as well as your API key. |\n  | 503 | Service Unavailable | Service temporarily unavailable due to a failure or planned upgrade.   |\n\n\n## Error codes\nError codes appear in the output object of a query that ended with an error and, if it’s possible, indicate its cause. This allows to precisely establish the cause of the error and triggers an automatic reaction / error notification. <br/><br/>\nError codes are divided into the following groups:<ul> <li><b>1xxx</b> – input parameter validation error (the query contains an error),</li> <li><b>2xxx, 3xxx</b> – transfer registration error (the query is correct, but the transfer cannot be processed, e.g. due to insufficient funds),</b> <li><b>9xxx</b> – external services error (API failure caused by unavailability of a related service necessary to process the transfer, e.g. currency exchange),</li> <li><b>10000</b> – internal error (failure of Ekspres Przelewy24 REST API).</li></ul>\n<b>NOTE! When implementing API error service, in order to identify the error, rely solely on the codes, as the “description” parameter may change and constitutes additional information only!</b><br/><br/>\nThe table below presents error codes <b>input parameter validation:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 1001  | The value of parameter <b>parameter_name</b> contains illicict characters |\n  | 1002  | Parameter <b>parameter_name</b> value must not be empty |\n  | 1003  | Passwords are not identical |\n  | 1004  | The password must consist of at least 8 characters and contain small and capital letters and digits |\n  | 1005  | Incorrect email address |\n  | 1006  | Incorrect postal code |\n  | 1007  | Incorrect country code |\n  | 1008  | Incorrect amount |\n  | 1009  | The <b>parameter</b> value submitted is not a correct integer |\n  | 1010  | Incorrect currency |\n  | 1011  | Incorrect account number |\n  | 1012  | Incorrect URL address |\n  | 1013  | Transaction type not serviced |\n  | 1014  | Incorrect field value |\n  | 1015  | Current transfer status prevents this operation, or incorrect transfer object |\n  | 1016  | Incorrect date format / incorrect date |\n  | 1017  | Incorrect query signature |\n  | 1018  | Parameter value too long |\n  | 1019  | IBAN number submitted has been blocked |\n\n<br/>The table below presents <b>transfer registration error codes:</b>\n\n  | Error code   |      Description   |\n  |--------------|:--------------|\n  |  2001\t| Bank unavailable |\n  |  2002 |\tInsufficient funds in wallet |\n  |  2003\t| Limit for a single transfer has been exceeded |\n  |  2004\t|\tDaily limit on the amount of transfers paid has been exceeded |\n  |  2005\t| Transfer ID not recognised |\n  |  2006\t| Refund amount provided exceeds the transfer value available |\n  |  2007\t| Access denied |\n  |  2008\t| Incorrect transfer ID |\n  |  2009\t| Transfer limit exceeded |\n  |  2010\t| Transfer already returned in P24 mode |\n  |  3000\t| Incorrect ID query |\n  |  3001\t| Unknown sessionId in P24 mode |\n\n<br/>The table below presents <b>error codes for external services:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 9001 |\tTransfer processing error. Contact the customer service department and provide the query ID |\n  | 9002 |\tCurrency exchange error. Please, try again |\n\n<br/>The table below presents the <b>remaining error codes:</b>\n\n  | Error code   |      Description      |\n  |--------------|:--------------|\n  | 10000 |\tInternal error. Please, contact the customer service department and provide the query ID |\n\n\n\n# General structures of queries and responses\n## General query format\n\n  API queries may be processed using any library that allows HTTPS protocol-based communication. Allowed Content-Type values:<ul>\n  <li><b>application/json</b> – queries sent in JSON format,</li>\n  <li><b>application/x-www-form-urlencoded</b> – queries sent as POST (urlencoded).</li></ul>\n\n  <b>Required coding to UTF-8.</b><br/>\n\n  Sample PHP code with the use of cURL\n  ```php\n      <?php\n      $process = curl_init('https://endpoint/ekspres/v1/balance');\n      // Content-Type header required\n      curl_setopt(\n        $process,\n        CURLOPT_HTTPHEADER,\n        array('Content-Type: application/json')\n      );\n      // Basic Auth authentication\n      curl_setopt($process, CURLOPT_USERPWD, 'api-key' . \":\" . 'api-pass');\n      curl_setopt($process, CURLOPT_RETURNTRANSFER, true);\n      $return = json_decode(curl_exec($process));\n      echo json_encode($return, JSON_PRETTY_PRINT) . \"n\";\n      curl_close($process);\n  ```\n\n## General response format\nA correct method call in Ekspres Przelewy24 REST API will generate a response in the form of a JSON object, in the format dependent on the method called.<br/> <p style=\"border:1.5px; border-style:dashed; border-color:#FF0000; padding: 1em;\"> <b>NOTE!</b><br/><br/> All the responses returned by API are <b>UTF-8-coded JSON objects without “slash” sign filters and unicode characters!</b><br/><br/> All the responses are returned using the following method:<br/> json_encode($response, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)<br/><br/> For more information see [PHP documentation](https://www.php.net/manual/en/json.constants.php). </p><br/>\nIn the case of some errors, e.g. internal error 500 or authorisation error 401, the same http code will be returned without additional information in the body. These are the cases when the system does not have any more information on the error or does not want to make it available (for instance, due to lack of authorisation). <br/><br/>\n\n When most errors are generated, GeneralErrorObject is returned (in addition to the relevant http code) with additional details:<br/>\n\n  <b>GeneralErrorObject:</b>\n\n  | Field name   |      Type    |  Description |\n  |--------------|:--------------:|:------------|\n  | code  |     int   | General <a href=\"#section/Codes-of-responses-and-erros/Error-codes\"><b>error code</b></a>  |\n  | description |  string  | Error details   |\n\n  <p style=\"color:darkblue; font-size:17px\"><b>Przykład odpowiedzi z obiektem GeneralErrorObject:</b></p>\n\n    ```html\n        HTTP/1.1 400 Bad Request\n          Content-Type: application/json\n\n          {\n            „error”: {\n              „code”: 1011,\n              „description”: „Given IBAN value ”iban” is not valid”\n            }\n          }\n    ```\n\n\n# Environments\n## Production environment\nEvery request is differentiated by its own unique request URL. This way Ekspres P24 knows which API-function you want to access. Combined with the base URL for either the production- or test-environment, you will get the complete API-URL.\n\nBase URL production system:<br/> https://secure.przelewy24.pl/express/v1\n\n## Test environment\nDuring implementation of the mechanisms in merchant’s system, it is recommended to use test environment. Test environment allows to reproduce system functionalities without making actual payments. <br><br>\nTest environment endpoint:<br> https://sandbox.przelewy24.pl/express/v1 <br><br>\n**<u>The test version does not effect transfers and requires separate login keys.</u>**\n\n# IP server addresses\nWe recommend script protection against suspicious calls using address filtering for incoming connections. IP server ranges for the P24 servers: <br><br> <font class = \"right\"><b>5.252.202.255 , 5.252.202.254</b></font><br> <font class = \"right\"><b>20.215.81.124</b></font><br> <font class = \"right\"><b>193.178.213.0/24</b></font><br> <font class = \"right\"><b>91.220.177.0/24</b></font><br> <font class = \"right\"><b>20.215.183.48/28</b></font><br> <font class = \"right\"><b>134.112.88.8/29</b></font><br>\n\n\n# API Access\nAuthentication is effected with the Basic Auth mechanism, which uses a REST API key (as a login) and the password assigned to it. Generating the API key is possible upon logging on to one’s account in the  <a href=\"#section/Basic-notions\"><b>WWW System</b></a> (left-hand menu, tab “API Users” -> “REST User List”). A single user may possess a few API access keys.\n# Authentication\n<!-- Redoc-Inject: <security-definitions> -->\n\n\nContact Support:\n Name: Przelewy24 Support",
+      "type": "text/plain"
+    }
+  }
+}

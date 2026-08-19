@@ -1,0 +1,38 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Recursion (doPayment) API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recursion (doPayment)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transaction without JS/SDK",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/doPayment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Transaction without JS/SDK"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

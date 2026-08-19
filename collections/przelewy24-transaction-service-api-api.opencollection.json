@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Transaction service API API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction service API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Transaction registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Transaction registration"
+        },
+        {
+          "info": {
+            "name": "Transaction verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Transaction verification"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

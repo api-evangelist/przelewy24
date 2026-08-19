@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Marketplace Merchant API API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Marketplace Merchant API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Merchant Register",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/merchant/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method allows to register new merchant/shop."
+        },
+        {
+          "info": {
+            "name": "Merchant Exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/merchant/exists/:identificationType/:identificationNumber",
+            "params": [
+              {
+                "name": "identificationType",
+                "value": "",
+                "type": "path",
+                "description": "Possible values: nip or pesel"
+              },
+              {
+                "name": "identificationNumber",
+                "value": "",
+                "type": "path",
+                "description": "nip or pesel number"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "The method allows to verify wheter a given merchant has been already registered in a given marketplace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

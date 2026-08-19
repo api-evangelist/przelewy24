@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality GPay API API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GPay API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Token transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/bundle/payWithGoogle/:TOKEN",
+            "params": [
+              {
+                "name": "TOKEN",
+                "value": "",
+                "type": "path",
+                "description": "Token obtained from Przelewy24."
+              }
+            ]
+          },
+          "docs": "Upon token obtaining from P24, JavaScript script should be called.<br><br>\nOn completion of the transaction, a relevant response (callback) is called.\nIn case 3D-Secure is required, customer will be redirected to bank’s website. After authorisation customer will be redirected to URL provided in <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"><b>\"urlReturn\"</b></a> parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

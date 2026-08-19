@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality Report API API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "History transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/report/history",
+            "params": [
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "path",
+                "description": "Date in format YYYYMMDD"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "path",
+                "description": "Date in format YYYYMMDD. Max period length is 31 days"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Type of objects to load. Omit this parameter, if you want to load everything. Acceptable values: batch, transaction, refund."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "<br/>This method gives you back information about: batches, transactions and refunds, in questioned period of time.<br/><h2>Pagination</h2>To call next page you need to call <b>report/history</b> with <b>token</b> as a query parameter, e.g.:<table border=\"0 px\"><tr><th bgcolor=\"#0f6ab4\"><font color=\"white\"><b>GET</b></font></th><th bgcolor=\"E7F0F7\">[https://secure.przelewy24.pl/api/v1/report/history/{token}](https://secure.przelewy24.pl/api/v1/report/history/{token})</th></tr></table>"
+        },
+        {
+          "info": {
+            "name": "Batch information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/report/batch/details",
+            "params": [
+              {
+                "name": "batch",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of batch (withdrawal)"
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Token needed to request next page"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Method returns all transactions and refunds paid in requested batch.<br/><h2>Pagination</h2>To call next page you need to call report/batch/details with token in payload e.g.:<table border=\"0 px\"><tr><th bgcolor=\"#0f6ab4\"><font color=\"white\"><b>GET</b></font></th><th bgcolor=\"E7F0F7\">[https://secure.przelewy24.pl/api/v1/report/batch/details](https://secure.przelewy24.pl/api/v1/report/batch/details)</th></tr></table>"
+        },
+        {
+          "info": {
+            "name": "Issue Withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/issueWithdrawal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Method allows to generete withdrawals/batches."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

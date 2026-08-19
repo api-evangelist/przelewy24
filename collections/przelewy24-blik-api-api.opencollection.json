@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality BLIK API API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BLIK API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BLIK charge by code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/paymentMethod/blik/chargeByCode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Allows to charge blik transaction with T6 code. Returns unique transaction Id."
+        },
+        {
+          "info": {
+            "name": "BLIK charge by Alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/paymentMethod/blik/chargeByAlias",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "ChargeByAlias is a one click payment method. It allows to charge customer using a previously obtained alias (**getAliasesByEmail**). Alias obtained must be provided in <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"><b>methodRefId</b></a> parameter during transaction registration"
+        },
+        {
+          "info": {
+            "name": "Getting Aliases ByEmail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/paymentMethod/blik/getAliasesByEmail/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "For aliases registered by email address"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "In order to receive an alias for subsequent payments, call the <b>\"getAliasesByEmail\" </b>method.<br><br> The method returns a list of aliases (along with the type and status) created for a given email address in the scope of a given merchant.<br><br>"
+        },
+        {
+          "info": {
+            "name": "Getting Aliases ByEmail (Custom)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/paymentMethod/blik/getAliasesByEmail/:email/custom",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "For Aliases registered with values <b><i><b>\"aliasValue\"</b></b></i> and <b><i><b>\"aliasLabel\"</b></b></i>"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "In order to receive an alias for subsequent payments, call the <b>\"getAliasesByEmail\" </b>method.<br><br> The method returns a list of aliases (along with the type and status) created for a given email address in the scope of a given merchant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

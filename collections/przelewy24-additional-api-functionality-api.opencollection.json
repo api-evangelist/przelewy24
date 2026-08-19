@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ekspres Przelewy24 REST API Documentation Additional API functionality API",
+    "version": "1.0.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Additional API functionality",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Test Access",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/testAccess",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Test connection. REST uses  <a href=\"#section/Authentication\"><b>\"basicAuth\"</b></a> authorisation standard, where login and password are, respectively, account ID in P24 and the API key obtained from the “My data” section (“API and configuration data” subsection)."
+        },
+        {
+          "info": {
+            "name": "Payment Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/payment/methods/:lang?amount=150&subgroup=1&currency=PLN",
+            "params": [
+              {
+                "name": "lang",
+                "value": "",
+                "type": "path",
+                "description": "A language code. One of these: pl , en"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Value of the amount.<br>It gives the possibility of clarifying whether a given form of payment is available for a specific amount."
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Currency compatible with ISO, e.g. PLN"
+              },
+              {
+                "name": "subgroup",
+                "value": "",
+                "type": "query",
+                "description": "Condition if the subgroup value should be visible in the response. Default 0 (NO). Optional 1 (YES)."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Method returns a list of payment methods."
+        },
+        {
+          "info": {
+            "name": "Refund transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/refund",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create refund for one or more transactions."
+        },
+        {
+          "info": {
+            "name": "Register offline transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/registerOffline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This method allows you to register offline payments. To use the method, you must first register standard payment transaction with <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"><b>register transaction</b></a> method.<br><br>Additionally, you can control which bank use for payment by using the method parameter."
+        },
+        {
+          "info": {
+            "name": "Transaction Registration with ttl",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/register/ttl",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Transaction registration and defining the lifespan of the transaction at the same time. The <b>ttl</b> paramter is required."
+        },
+        {
+          "info": {
+            "name": "Split Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/register/splitpayment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Split Payments are charged using previously registered token in a process analogous to  <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"><b>transaction/register</b></a>. When registering the token, you must add the <b>splitPaymentDetails</b> object characteristic for this form of transaction execution."
+        },
+        {
+          "info": {
+            "name": "Refund by OrderID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/refund/by/orderId/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "existing refund Order Id"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get refund details for given Order Id"
+        },
+        {
+          "info": {
+            "name": "Get transaction by sessionID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/transaction/by/sessionId/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID assigned by Merchant"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Method returns transaction information by sessionId"
+        },
+        {
+          "info": {
+            "name": "Payment Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.przelewy24.pl/api/v1/payment/methods/:lang?amount=150&currency=PLN",
+            "params": [
+              {
+                "name": "lang",
+                "value": "",
+                "type": "path",
+                "description": "A language code. One of these: pl , en"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Value of the amount.<br>It gives the possibility of clarifying whether a given form of payment is available for a specific amount."
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Currency compatible with ISO, e.g. PLN"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Method returns a list of payment methods."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
