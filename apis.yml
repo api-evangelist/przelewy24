@@ -1,14 +1,11 @@
 name: Przelewy24
-description: >-
-  Przelewy24 is Poland's leading online payment gateway, providing REST APIs
-  for bank transfer payments, card processing, BLIK mobile payments, and
-  multi-currency payment processing for e-commerce merchants. With 91% brand
-  recognition among Polish online customers, the platform connects merchants
-  to over 165 Polish banks and supports payment methods including online bank
-  transfers, credit and debit cards, BLIK, Google Pay, digital wallets, and
-  prepaid cards. The API supports PLN and EUR currencies and enables
-  transaction registration, payment verification, refunds, and real-time
-  webhook notifications for payment events.
+description: Przelewy24 is Poland's leading online payment gateway, providing REST APIs for bank transfer
+  payments, card processing, BLIK mobile payments, and multi-currency payment processing for e-commerce
+  merchants. With 91% brand recognition among Polish online customers, the platform connects merchants
+  to over 165 Polish banks and supports payment methods including online bank transfers, credit and debit
+  cards, BLIK, Google Pay, digital wallets, and prepaid cards. The API supports PLN and EUR currencies
+  and enables transaction registration, payment verification, refunds, and real-time webhook notifications
+  for payment events.
 deliveryModel:
   model: saas
   open_source: false
@@ -38,24 +35,24 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/przelewy24.png
 url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
-  - Payments
-  - Payment Gateway
-  - Bank Transfer
-  - BLIK
-  - Card Payments
-  - E-Commerce
-  - Poland
-  - Polish
-  - Multi-Currency
-  - Fintech
+- Payments
+- Payment Gateway
+- Bank Transfer
+- BLIK
+- Card Payments
+- E-Commerce
+- Poland
+- Polish
+- Multi-Currency
+- Fintech
 apis:
 - aid: przelewy24:przelewy24-additional-api-functionality-api
   name: Przelewy24 Additional API functionality API
-  description: >-
-    The Additional API functionality API from Przelewy24 — 9 operation(s) for additional api functionality.
+  description: The Additional API functionality API from Przelewy24 — 9 operation(s) for additional api
+    functionality.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
   tags:
@@ -68,14 +65,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -84,10 +78,9 @@ apis:
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-additional-services-mass-payments-transactions-api
   name: Przelewy24 Additional services Mass Payments Transactions API
-  description: >-
-    Mass Payment Identification System is an easy way for a payer to make a payment to an individual bank
-    account created. For a payer wishing to make a traditional transfer, an individual bank account is
-    generated to which he makes the payment. <br> <br>
+  description: Mass Payment Identification System is an easy way for a payer to make a payment to an individual
+    bank account created. For a payer wishing to make a traditional transfer, an individual bank account
+    is generated to which he makes the payment. <br> <br>
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
   tags:
@@ -100,14 +93,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -115,7 +105,7 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-apay-api-api
-  name: Przelewy24 APay API API
+  name: Przelewy24 APay API
   description: The APay API API from Przelewy24 — 1 operation(s) for apay api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
@@ -129,14 +119,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -144,7 +131,7 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-blik-api-api
-  name: Przelewy24 BLIK API API
+  name: Przelewy24 BLIK API
   description: The BLIK API API from Przelewy24 — 4 operation(s) for blik api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
@@ -158,14 +145,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -173,7 +157,7 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-card-api-api
-  name: Przelewy24 Card API API
+  name: Przelewy24 Card API
   description: The Card API API from Przelewy24 — 5 operation(s) for card api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
@@ -187,14 +171,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -202,7 +183,7 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-ekspres-p24-api-api
-  name: Przelewy24 Ekspres P24 API API
+  name: Przelewy24 Ekspres P24 API
   description: The Ekspres P24 API API from Przelewy24 — 10 operation(s) for ekspres p24 api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
@@ -216,14 +197,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -231,7 +209,7 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-gpay-api-api
-  name: Przelewy24 GPay API API
+  name: Przelewy24 GPay API
   description: The GPay API API from Przelewy24 — 1 operation(s) for gpay api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
@@ -245,14 +223,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -260,9 +235,9 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-marketplace-management-api-api
-  name: Przelewy24 Marketplace Management API API
-  description: >-
-    The Marketplace Management API API from Przelewy24 — 5 operation(s) for marketplace management api.
+  name: Przelewy24 Marketplace Management API
+  description: The Marketplace Management API API from Przelewy24 — 5 operation(s) for marketplace management
+    api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
   tags:
@@ -275,14 +250,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -290,9 +262,9 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-marketplace-merchant-api-api
-  name: Przelewy24 Marketplace Merchant API API
-  description: >-
-    The Marketplace Merchant API API from Przelewy24 — 2 operation(s) for marketplace merchant api.
+  name: Przelewy24 Marketplace Merchant API
+  description: The Marketplace Merchant API API from Przelewy24 — 2 operation(s) for marketplace merchant
+    api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
   tags:
@@ -305,14 +277,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -320,9 +289,9 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-marketplace-partner-api-api
-  name: Przelewy24 Marketplace Partner API API
-  description: >-
-    The Marketplace Partner API API from Przelewy24 — 2 operation(s) for marketplace partner api.
+  name: Przelewy24 Marketplace Partner API
+  description: The Marketplace Partner API API from Przelewy24 — 2 operation(s) for marketplace partner
+    api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
   tags:
@@ -335,14 +304,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -351,43 +317,21 @@ apis:
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-recursion-dopayment-api
   name: Przelewy24 Recursion (doPayment) API
-  description: >-
-    In order to register a recurring transaction, it is necessary to send transaction registration request
-    first to  <a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post">/transaction/register</a>
-    endpoint. . For the transaction to be performed, the `“cardData”` object must be added in the transaction
-    registration request.
-
-     ```json
-     {
-       "cardData": {
-         "means": {
-           "card": {
-             "pan": "1234123412341234",
-             "expYear": "2027",
-             "expMonth": "01",
-             "clientName": "Name and surname",
-             "securityCode": "123"
-           }
-         },
-         "transcationType": "recurring",
-         "traceID": ""
-       }
-     }
-     ```
-
-     Description of the specific parameters of the object:
-     - the `"card"` object contains card data such as:
-       - `"pan"` - 16-digit card number
-       - `"expYear"` - card expiry year
-       - `"expMonth"` - card expiry month
-       - `"securityCode"` – CVV/CVC code
-     - `"transactionType"` - takes the “recurring” value
-     - `"traceID"` - initiating transaction reference number (required for recurring, if the following
-    have been provided: card, schemeToken)
-
-     Provided that all the parameters in the <a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post">
-    transaction registration </a>request are correct, a token required for  `transaction/doPayment` request
-    is returned in response.
+  description: "In order to register a recurring transaction, it is necessary to send transaction registration\
+    \ request first to  <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"\
+    >/transaction/register</a> endpoint. . For the transaction to be performed, the `“cardData”` object\
+    \ must be added in the transaction registration request.\n\n ```json\n {\n   \"cardData\": {\n   \
+    \  \"means\": {\n       \"card\": {\n         \"pan\": \"1234123412341234\",\n         \"expYear\"\
+    : \"2027\",\n         \"expMonth\": \"01\",\n         \"clientName\": \"Name and surname\",\n    \
+    \     \"securityCode\": \"123\"\n       }\n     },\n     \"transcationType\": \"recurring\",\n   \
+    \  \"traceID\": \"\"\n   }\n }\n ```\n\n Description of the specific parameters of the object:\n -\
+    \ the `\"card\"` object contains card data such as:\n   - `\"pan\"` - 16-digit card number\n   - `\"\
+    expYear\"` - card expiry year\n   - `\"expMonth\"` - card expiry month\n   - `\"securityCode\"` –\
+    \ CVV/CVC code\n - `\"transactionType\"` - takes the “recurring” value\n - `\"traceID\"` - initiating\
+    \ transaction reference number (required for recurring, if the following\nhave been provided: card,\
+    \ schemeToken)\n\n Provided that all the parameters in the <a href=\"#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post\"\
+    >\ntransaction registration </a>request are correct, a token required for  `transaction/doPayment`\
+    \ request is returned in response."
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
   tags:
@@ -400,14 +344,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -415,7 +356,7 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-report-api-api
-  name: Przelewy24 Report API API
+  name: Przelewy24 Report API
   description: The Report API API from Przelewy24 — 3 operation(s) for report api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
@@ -429,14 +370,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -444,9 +382,9 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 - aid: przelewy24:przelewy24-transaction-service-api-api
-  name: Przelewy24 Transaction service API API
-  description: >-
-    The Transaction service API API from Przelewy24 — 2 operation(s) for transaction service api.
+  name: Przelewy24 Transaction service API
+  description: The Transaction service API API from Przelewy24 — 2 operation(s) for transaction service
+    api.
   humanURL: https://developers.przelewy24.pl/
   baseURL: https://secure.przelewy24.pl/api/v1
   tags:
@@ -459,14 +397,11 @@ apis:
   - type: Sandbox
     url: https://sandbox.przelewy24.pl/api/v1
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/plans/plans.yml
   - type: RateLimits
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/rate-limits/rate-limits.yml
   - type: FinOps
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
+    url: https://raw.githubusercontent.com/api-evangelist/przelewy24/refs/heads/main/finops/finops.yml
   - type: Documentation
     url: https://developers.przelewy24.pl/marketplace/
   - type: Documentation
@@ -474,38 +409,37 @@ apis:
   - type: Documentation
     url: https://developers.przelewy24.pl/ekspres/
 common:
-  - type: AgenticAccess
-    url: agentic-access/przelewy24-agentic-access.yml
-  - type: DomainSecurity
-    url: security/przelewy24-domain-security.yml
-  - type: Authentication
-    url: authentication/przelewy24-authentication.yml
-  - type: Website
-    url: https://www.przelewy24.pl/en
-  - type: DeveloperPortal
-    url: https://developers.przelewy24.pl/
-  - type: Documentation
-    url: https://developers.przelewy24.pl/
-  - type: Sandbox
-    url: https://sandbox.przelewy24.pl/
-  - type: Pricing
-    url: https://www.przelewy24.pl/en/offer/commissions-and-fees
-  - type: Registration
-    url: https://www.przelewy24.pl/en/start-cooperation
-  - type: Support
-    url: https://www.przelewy24.pl/en/help-center/api-technical-support
-  - type: Blog
-    url: https://www.przelewy24.pl/en/news
-  - type: PaymentMethods
-    url: https://www.przelewy24.pl/en/payment-methods
-  - type: PartnerProgram
-    url: https://www.przelewy24.pl/en/partner-program
-  - type: Marketplace
-    url: https://www.przelewy24.pl/en/payment-solutions/marketplace
-  - type: StatusPage
-    url: https://status.przelewy24.pl/
-
+- type: AgenticAccess
+  url: agentic-access/przelewy24-agentic-access.yml
+- type: DomainSecurity
+  url: security/przelewy24-domain-security.yml
+- type: Authentication
+  url: authentication/przelewy24-authentication.yml
+- type: Website
+  url: https://www.przelewy24.pl/en
+- type: DeveloperPortal
+  url: https://developers.przelewy24.pl/
+- type: Documentation
+  url: https://developers.przelewy24.pl/
+- type: Sandbox
+  url: https://sandbox.przelewy24.pl/
+- type: Pricing
+  url: https://www.przelewy24.pl/en/offer/commissions-and-fees
+- type: Registration
+  url: https://www.przelewy24.pl/en/start-cooperation
+- type: Support
+  url: https://www.przelewy24.pl/en/help-center/api-technical-support
+- type: Blog
+  url: https://www.przelewy24.pl/en/news
+- type: PaymentMethods
+  url: https://www.przelewy24.pl/en/payment-methods
+- type: PartnerProgram
+  url: https://www.przelewy24.pl/en/partner-program
+- type: Marketplace
+  url: https://www.przelewy24.pl/en/payment-solutions/marketplace
+- type: StatusPage
+  url: https://status.przelewy24.pl/
 maintainers:
-  - FN: API Evangelist
-    url: https://apievangelist.com
-    email: info@apievangelist.com
+- FN: API Evangelist
+  url: https://apievangelist.com
+  email: info@apievangelist.com
