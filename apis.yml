@@ -40,6 +40,17 @@ specificationVersion: '0.23'
 tags:
 - Payments
 - Payment Gateway
+- Bank Transfers
+- BLIK
+- Card Payments
+- E-Commerce
+- Poland
+- Polish
+- Multi-Currency
+- Fintech
+tags_raw:
+- Payments
+- Payment Gateway
 - Bank Transfer
 - BLIK
 - Card Payments
