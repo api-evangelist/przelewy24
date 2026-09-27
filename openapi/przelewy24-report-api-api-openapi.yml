@@ -197,17 +197,6 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    PageInformationObject:
-      properties:
-        recordsOnPage:
-          type: integer
-          description: Amount records on current page
-        recordsAll:
-          type: integer
-          description: Amount of all records
-        pageCount:
-          type: integer
-          description: Amount of pages
     HistoryError400Body:
       properties:
         error:
@@ -219,21 +208,58 @@ components:
         validation:
           items:
             $ref: '#/components/schemas/ValidationObject'
-    OverallObject:
-      oneOf:
-      - $ref: '#/components/schemas/Batch'
-      - $ref: '#/components/schemas/Transaction'
-      - $ref: '#/components/schemas/Refund'
-      discriminator:
-        propertyName: details
-    WithdrawalResponseBody:
+    BatchObject:
+      properties:
+        dateIn:
+          type: string
+          description: 'Date of creating batch. Format: “YYYY-MM-DD HH:MM:SS”'
+        dateOut:
+          type: string
+          description: 'Date of withdrawal. Format: “YYYY-MM-DD HH:MM:SS”'
+        batchId:
+          type: integer
+          description: Unique id of withdrawal
+        commision:
+          type: integer
+          description: Sum of commisions
+        charge:
+          type: integer
+          description: Charge
+        refund:
+          type: integer
+          description: Sum of refunds
+    HistoryResponse200Body:
       properties:
         data:
-          type: array
+          description: Array of objects (batches, transactions, refunds)
           items:
-            type: string
-        responseCode:
+            $ref: '#/components/schemas/HistoryDataObject'
+        token:
           type: string
+          description: Token to request next page
+        responseCode:
+          type: integer
+          description: 0 if correct
+        pageInformation:
+          description: Information about pagination
+          items:
+            $ref: '#/components/schemas/PageInformationObject'
+    Transaction:
+      properties:
+        type:
+          type: string
+          description: 'Possible values: batch, refund, transaction'
+        amount:
+          type: integer
+          description: Amount
+        currency:
+          type: string
+          description: Currency
+          example: PLN
+        details:
+          description: Array of objects depended of type
+          items:
+            $ref: '#/components/schemas/TransactionObject'
     BatchDetailsError400Body:
       properties:
         code:
@@ -242,6 +268,123 @@ components:
         error:
           type: string
           example: Value for field batch is invalid
+    HistoryDataObject:
+      oneOf:
+      - $ref: '#/components/schemas/Batch'
+      - $ref: '#/components/schemas/Transaction'
+      - $ref: '#/components/schemas/Refund'
+      discriminator:
+        propertyName: details
+    DataBatchDetailsObject:
+      properties:
+        overall:
+          description: Batch overall information
+          items: null
+          $ref: '#/components/schemas/OverallObject'
+        transactions:
+          description: List of transactions
+          type: array
+        refunds:
+          description: List of refunds
+          type: array
+    RefundObject:
+      properties:
+        refundId:
+          type: integer
+          description: Unique id of refund
+        orderId:
+          type: integer
+          format: int64
+          descirption: Unique id of payment transaction
+        requestId:
+          type: string
+          description: Unique request ID of refund. Empty when refund is done by P24 Panel.
+        dateIn:
+          type: string
+          description: Refund registration date
+        dateOut:
+          type: string
+          description: Refund payout date
+        status:
+          type: integer
+          descirption: 'Status of refund: 1 – completed, 2 – pending, 3 – waiting to acceptance, 4 - rejected'
+        description:
+          type: string
+          description: Additional description of refund
+    Refund:
+      properties:
+        type:
+          type: string
+          description: 'Possible values: batch, refund, transaction'
+        amount:
+          type: integer
+          description: Amount
+        currency:
+          type: string
+          description: Currency
+          example: PLN
+        details:
+          description: Array of objects depended of type
+          items:
+            $ref: '#/components/schemas/RefundObject'
+    ValidationObject:
+      properties:
+        type:
+          type: array
+          example: Provided type is unknown
+    BatchDetails200ResponseBody:
+      properties:
+        token:
+          type: string
+          description: Token needed to request next page
+        responseCode:
+          type: integer
+          description: 0 if correct
+        pageInformation:
+          description: Array of page information
+          properties:
+            recordsOnPage:
+              type: integer
+              description: Amount records on current page
+            recordsAll:
+              type: integer
+              description: Amount of all records
+            pageCount:
+              type: integer
+              description: Amount of pages
+        data:
+          description: Array of transactions, refunds and batch
+          items:
+            $ref: '#/components/schemas/DataBatchDetailsObject'
+    GeneralErrorResponse:
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+    Batch:
+      properties:
+        type:
+          type: string
+          description: 'Possible values: batch, refund, transaction'
+        amount:
+          type: integer
+          description: Amount
+        currency:
+          type: string
+          description: Currency
+          example: PLN
+        details:
+          description: Array of objects depended of type
+          items:
+            $ref: '#/components/schemas/BatchObject'
+    OverallObject:
+      oneOf:
+      - $ref: '#/components/schemas/Batch'
+      - $ref: '#/components/schemas/Transaction'
+      - $ref: '#/components/schemas/Refund'
+      discriminator:
+        propertyName: details
     TransactionObject:
       properties:
         settledAmount:
@@ -295,153 +438,15 @@ components:
         fee:
           type: integer
           descirption: Commision
-    GeneralErrorResponse:
-      properties:
-        error:
-          type: string
-        code:
-          type: string
-    HistoryDataObject:
-      oneOf:
-      - $ref: '#/components/schemas/Batch'
-      - $ref: '#/components/schemas/Transaction'
-      - $ref: '#/components/schemas/Refund'
-      discriminator:
-        propertyName: details
-    BatchObject:
-      properties:
-        dateIn:
-          type: string
-          description: 'Date of creating batch. Format: “YYYY-MM-DD HH:MM:SS”'
-        dateOut:
-          type: string
-          description: 'Date of withdrawal. Format: “YYYY-MM-DD HH:MM:SS”'
-        batchId:
-          type: integer
-          description: Unique id of withdrawal
-        commision:
-          type: integer
-          description: Sum of commisions
-        charge:
-          type: integer
-          description: Charge
-        refund:
-          type: integer
-          description: Sum of refunds
-    Refund:
-      properties:
-        type:
-          type: string
-          description: 'Possible values: batch, refund, transaction'
-        amount:
-          type: integer
-          description: Amount
-        currency:
-          type: string
-          description: Currency
-          example: PLN
-        details:
-          description: Array of objects depended of type
-          items:
-            $ref: '#/components/schemas/RefundObject'
-    ValidationObject:
-      properties:
-        type:
-          type: array
-          example: Provided type is unknown
-    BatchDetails200ResponseBody:
-      properties:
-        token:
-          type: string
-          description: Token needed to request next page
-        responseCode:
-          type: integer
-          description: 0 if correct
-        pageInformation:
-          description: Array of page information
-          properties:
-            recordsOnPage:
-              type: integer
-              description: Amount records on current page
-            recordsAll:
-              type: integer
-              description: Amount of all records
-            pageCount:
-              type: integer
-              description: Amount of pages
-        data:
-          description: Array of transactions, refunds and batch
-          items:
-            $ref: '#/components/schemas/DataBatchDetailsObject'
-    Transaction:
-      properties:
-        type:
-          type: string
-          description: 'Possible values: batch, refund, transaction'
-        amount:
-          type: integer
-          description: Amount
-        currency:
-          type: string
-          description: Currency
-          example: PLN
-        details:
-          description: Array of objects depended of type
-          items:
-            $ref: '#/components/schemas/TransactionObject'
-    DataBatchDetailsObject:
-      properties:
-        overall:
-          description: Batch overall information
-          items: null
-          $ref: '#/components/schemas/OverallObject'
-        transactions:
-          description: List of transactions
-          type: array
-        refunds:
-          description: List of refunds
-          type: array
-    Batch:
-      properties:
-        type:
-          type: string
-          description: 'Possible values: batch, refund, transaction'
-        amount:
-          type: integer
-          description: Amount
-        currency:
-          type: string
-          description: Currency
-          example: PLN
-        details:
-          description: Array of objects depended of type
-          items:
-            $ref: '#/components/schemas/BatchObject'
-    RefundObject:
-      properties:
-        refundId:
-          type: integer
-          description: Unique id of refund
-        orderId:
-          type: integer
-          format: int64
-          descirption: Unique id of payment transaction
-        requestId:
-          type: string
-          description: Unique request ID of refund. Empty when refund is done by P24 Panel.
-        dateIn:
-          type: string
-          description: Refund registration date
-        dateOut:
-          type: string
-          description: Refund payout date
-        status:
-          type: integer
-          descirption: 'Status of refund: 1 – completed, 2 – pending, 3 – waiting to acceptance, 4 - rejected'
-        description:
-          type: string
-          description: Additional description of refund
     409ErrorResponse:
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+        responseCode:
+          type: string
+    WithdrawalResponseBody:
       properties:
         data:
           type: array
@@ -460,22 +465,17 @@ components:
         affiliateId:
           type: integer
           description: Affiliated Id
-    HistoryResponse200Body:
+    PageInformationObject:
       properties:
-        data:
-          description: Array of objects (batches, transactions, refunds)
-          items:
-            $ref: '#/components/schemas/HistoryDataObject'
-        token:
-          type: string
-          description: Token to request next page
-        responseCode:
+        recordsOnPage:
           type: integer
-          description: 0 if correct
-        pageInformation:
-          description: Information about pagination
-          items:
-            $ref: '#/components/schemas/PageInformationObject'
+          description: Amount records on current page
+        recordsAll:
+          type: integer
+          description: Amount of all records
+        pageCount:
+          type: integer
+          description: Amount of pages
     TransactionObject_2:
       properties:
         settledAmount:

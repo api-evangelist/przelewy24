@@ -115,16 +115,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
     cardData:
       type: object
       description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
@@ -228,6 +218,191 @@ components:
       required:
       - means
       - transactionType
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
+    SIMPTransactionBySessionIdResponse200:
+      properties:
+        statement:
+          type: array
+          description: Transfer title
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction ID
+        sessionId:
+          type: string
+          description: Transaction ID assigned by Merchant
+        status:
+          type: integer
+          description: Transaction status. 0 - no payment, 1 - advance payment, 2 - payment made, 3 - payment returned
+        amount:
+          type: integer
+          description: Transaction amount
+        currency:
+          type: string
+          default: PLN
+          description: Transaction currency
+        date:
+          type: string
+          description: Transaction registration date
+        dateOfTransaction:
+          type: string
+          description: Date of payment
+        clientEmail:
+          type: string
+          description: Customer's e-mail
+        accountMD5:
+          type: string
+          description: Customer's hashed bank account number
+        paymentMethod:
+          type: integer
+          description: Payment method ID
+        description:
+          type: string
+          description: Transaction description
+        clientName:
+          type: string
+          description: Customer's first name and surname
+        clientAddress:
+          type: string
+          description: Customer's address
+        clientCity:
+          type: string
+          description: Customer's city
+        clientPostcode:
+          type: string
+          description: Customer's zip code
+        batchId:
+          type: integer
+          description: Batch number in which the transaction was paid
+        fee:
+          type: string
+          description: Commission
+    SIMPTransactionRegistrationResponse:
+      properties:
+        data:
+          properties:
+            token:
+              type: string
+              description: Token
+            iban:
+              type: string
+              description: IBAN
+              example: PL59105000996912000444444341
+            companyName:
+              type: string
+              description: Company name
+          type: object
+        responseCode:
+          type: string
+          default: '0'
+    SIMPResponse400:
+      properties:
+        error:
+          type: string
+          example: Invalid simpClientId
+        code:
+          type: number
+          example: 400
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
+    AdditionalProperties:
+      properties:
+        shipping:
+          type: object
+          description: Additional shipping information
+          properties:
+            type:
+              type: integer
+              description: Type of shipment:<br> 0 - courier<br>1 - delivery point<br>2 - parcel locker<br> 3 - package in a shop
+              enum:
+              - 0
+              - 1
+              - 2
+              - 3
+            address:
+              type: string
+              description: 'Shipment address: street and number'
+            zip:
+              type: string
+              description: Shipment zip code
+            city:
+              type: string
+              description: Shipment city
+            country:
+              type: string
+              description: Shipment country
+          required:
+          - type
+          - address
+          - zip
+          - city
+          - country
+        PSU:
+          type: object
+          description: 'Payment Service User<br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br> Object required when using methods <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByCode/post">blikChargeByCode</a></b> or <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByAlias/post">blikChargeByAlias</a></b>.
+
+            '
+          properties:
+            IP:
+              type: string
+              description: IPv4 or IPv6
+            userAgent:
+              type: string
+              maxLength: 255
+              description: UserAgent is a string identifying the browser and operating system.
+    SIMPConflict:
+      properties:
+        error:
+          type: string
+          example: Conflict
+        code:
+          type: number
+          example: 409
+    CartParameters:
+      description: Cart Parameters
+      type: object
+      required:
+      - sellerId
+      - sellerCategory
+      properties:
+        sellerId:
+          type: string
+          description: Shop ID on the part of Partner
+        sellerCategory:
+          type: string
+          description: Shop category
+        name:
+          type: string
+          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
+        description:
+          type: string
+          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
+        quantity:
+          type: integer
+          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
+        price:
+          type: integer
+          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
+        number:
+          type: string
+          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
     SIMPGetTransactionBySessionId200:
       properties:
         data:
@@ -238,14 +413,17 @@ components:
           type: number
           default: 0
       type: object
-    SIMPResponse400:
+    ErrorCodeResponse:
       properties:
         error:
           type: string
-          example: Invalid simpClientId
+          example: Undefined error
+          default: Undefined error
         code:
-          type: number
-          example: 400
+          type: integer
+          example: 500
+          default: 500
+      type: object
     TransactionRegistrationSIMPBody:
       type: object
       properties:
@@ -461,184 +639,6 @@ components:
       - ttl
       - sign
       - simpCountryCode
-    CartParameters:
-      description: Cart Parameters
-      type: object
-      required:
-      - sellerId
-      - sellerCategory
-      properties:
-        sellerId:
-          type: string
-          description: Shop ID on the part of Partner
-        sellerCategory:
-          type: string
-          description: Shop category
-        name:
-          type: string
-          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
-        description:
-          type: string
-          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
-        quantity:
-          type: integer
-          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
-        price:
-          type: integer
-          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
-        number:
-          type: string
-          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
-    SIMPConflict:
-      properties:
-        error:
-          type: string
-          example: Conflict
-        code:
-          type: number
-          example: 409
-    AdditionalProperties:
-      properties:
-        shipping:
-          type: object
-          description: Additional shipping information
-          properties:
-            type:
-              type: integer
-              description: Type of shipment:<br> 0 - courier<br>1 - delivery point<br>2 - parcel locker<br> 3 - package in a shop
-              enum:
-              - 0
-              - 1
-              - 2
-              - 3
-            address:
-              type: string
-              description: 'Shipment address: street and number'
-            zip:
-              type: string
-              description: Shipment zip code
-            city:
-              type: string
-              description: Shipment city
-            country:
-              type: string
-              description: Shipment country
-          required:
-          - type
-          - address
-          - zip
-          - city
-          - country
-        PSU:
-          type: object
-          description: 'Payment Service User<br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br> Object required when using methods <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByCode/post">blikChargeByCode</a></b> or <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByAlias/post">blikChargeByAlias</a></b>.
-
-            '
-          properties:
-            IP:
-              type: string
-              description: IPv4 or IPv6
-            userAgent:
-              type: string
-              maxLength: 255
-              description: UserAgent is a string identifying the browser and operating system.
-    SIMPTransactionRegistrationResponse:
-      properties:
-        data:
-          properties:
-            token:
-              type: string
-              description: Token
-            iban:
-              type: string
-              description: IBAN
-              example: PL59105000996912000444444341
-            companyName:
-              type: string
-              description: Company name
-          type: object
-        responseCode:
-          type: string
-          default: '0'
-    SIMPTransactionBySessionIdResponse200:
-      properties:
-        statement:
-          type: array
-          description: Transfer title
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction ID
-        sessionId:
-          type: string
-          description: Transaction ID assigned by Merchant
-        status:
-          type: integer
-          description: Transaction status. 0 - no payment, 1 - advance payment, 2 - payment made, 3 - payment returned
-        amount:
-          type: integer
-          description: Transaction amount
-        currency:
-          type: string
-          default: PLN
-          description: Transaction currency
-        date:
-          type: string
-          description: Transaction registration date
-        dateOfTransaction:
-          type: string
-          description: Date of payment
-        clientEmail:
-          type: string
-          description: Customer's e-mail
-        accountMD5:
-          type: string
-          description: Customer's hashed bank account number
-        paymentMethod:
-          type: integer
-          description: Payment method ID
-        description:
-          type: string
-          description: Transaction description
-        clientName:
-          type: string
-          description: Customer's first name and surname
-        clientAddress:
-          type: string
-          description: Customer's address
-        clientCity:
-          type: string
-          description: Customer's city
-        clientPostcode:
-          type: string
-          description: Customer's zip code
-        batchId:
-          type: integer
-          description: Batch number in which the transaction was paid
-        fee:
-          type: string
-          description: Commission
-    ErrorCodeResponse:
-      properties:
-        error:
-          type: string
-          example: Undefined error
-          default: Undefined error
-        code:
-          type: integer
-          example: 500
-          default: 500
-      type: object
-    UnauthorizedResponse:
-      properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User and secretId are available in P24 panel:<br/>- "User" it's the same value as posId,<br/>- secretId it's the samevalue as key for reports (API key).

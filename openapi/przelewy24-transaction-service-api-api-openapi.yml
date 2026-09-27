@@ -100,41 +100,6 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    TransactionVerificationBody:
-      properties:
-        merchantId:
-          description: Merchant ID
-          type: integer
-        posId:
-          description: Shop identification number (defaults to merchant ID)
-          type: integer
-        sessionId:
-          description: Unique identifier from merchant's system
-          type: string
-          maxLength: 100
-        amount:
-          description: Transaction amount which format is presented as amount in lowest currency unit, e.g. 1.23 PLN = 123
-          type: integer
-        currency:
-          description: Currency
-          type: string
-          maxLength: 3
-          default: PLN
-        orderId:
-          description: Id of an order assigned by P24
-          type: integer
-          format: int64
-        sign:
-          description: Checksum of parameters:<br> {<font color = "brown">"sessionId":</font>"str",<font color = "brown">"orderId":</font>int,<font color = "brown">"amount":</font>int,<font color = "brown">"currency":</font>"str",<font color = "brown">"crc":</font>"str"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
-          type: string
-      required:
-      - posId
-      - sessionId
-      - amount
-      - currency
-      - orderId
-      - sign
-      - merchantId
     TransactionRequestBody1:
       type: object
       properties:
@@ -347,26 +312,6 @@ components:
       - urlReturn
       - ttl
       - sign
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
-    TransactionRegistrationResponse:
-      properties:
-        data:
-          properties:
-            token:
-              type: string
-          type: object
-        responseCode:
-          type: number
-          default: 0
     cardData:
       type: object
       description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
@@ -470,34 +415,61 @@ components:
       required:
       - means
       - transactionType
-    CartParameters:
-      description: Cart Parameters
-      type: object
-      required:
-      - sellerId
-      - sellerCategory
+    InvalidInputData:
       properties:
-        sellerId:
+        error:
           type: string
-          description: Shop ID on the part of Partner
-        sellerCategory:
-          type: string
-          description: Shop category
-        name:
-          type: string
-          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
-        description:
-          type: string
-          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
-        quantity:
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
+    TransactionRegistrationResponse:
+      properties:
+        data:
+          properties:
+            token:
+              type: string
+          type: object
+        responseCode:
+          type: number
+          default: 0
+    TransactionVerificationBody:
+      properties:
+        merchantId:
+          description: Merchant ID
           type: integer
-          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
-        price:
+        posId:
+          description: Shop identification number (defaults to merchant ID)
           type: integer
-          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
-        number:
+        sessionId:
+          description: Unique identifier from merchant's system
           type: string
-          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
+          maxLength: 100
+        amount:
+          description: Transaction amount which format is presented as amount in lowest currency unit, e.g. 1.23 PLN = 123
+          type: integer
+        currency:
+          description: Currency
+          type: string
+          maxLength: 3
+          default: PLN
+        orderId:
+          description: Id of an order assigned by P24
+          type: integer
+          format: int64
+        sign:
+          description: Checksum of parameters:<br> {<font color = "brown">"sessionId":</font>"str",<font color = "brown">"orderId":</font>int,<font color = "brown">"amount":</font>int,<font color = "brown">"currency":</font>"str",<font color = "brown">"crc":</font>"str"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
+          type: string
+      required:
+      - posId
+      - sessionId
+      - amount
+      - currency
+      - orderId
+      - sign
+      - merchantId
     TransactionVerificationResponse:
       properties:
         data:
@@ -509,6 +481,16 @@ components:
         responseCode:
           type: number
           default: 0
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
     AdditionalProperties:
       properties:
         shipping:
@@ -554,16 +536,34 @@ components:
               type: string
               maxLength: 255
               description: UserAgent is a string identifying the browser and operating system.
-    UnauthorizedResponse:
+    CartParameters:
+      description: Cart Parameters
+      type: object
+      required:
+      - sellerId
+      - sellerCategory
       properties:
-        error:
+        sellerId:
           type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
+          description: Shop ID on the part of Partner
+        sellerCategory:
+          type: string
+          description: Shop category
+        name:
+          type: string
+          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
+        description:
+          type: string
+          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
+        quantity:
+          type: integer
+          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
+        price:
+          type: integer
+          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
+        number:
+          type: string
+          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
     TransactionRequestBody1_2:
       type: object
       properties:

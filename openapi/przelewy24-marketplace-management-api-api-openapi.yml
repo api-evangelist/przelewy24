@@ -235,125 +235,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DataAffArrayObject:
-      properties:
-        id:
-          type: integer
-          description: Merchant's id
-        name:
-          type: string
-          description: Merchant's name
-          example: Sample Merchant Oddział Poznań
-        nip:
-          type: string
-          description: Merchant's NIP number
-        regon:
-          type: string
-          description: Merchant's REGON number
-        customerStatus:
-          type: string
-          description: Merchant's status
-          example: Verified
-          enum:
-          - Verified
-          - Not verified
-        extendedStatus:
-          type: string
-          description: Extended merchant's status
-          enum:
-          - Inactive
-          - Active
-          - Blocked
-    AffiliatesResponse404:
-      properties:
-        error:
-          type: string
-          description: Error message
-          example: Affiliates not found
-        code:
-          type: integer
-          description: Erroc code
-          example: 404
-    500UndefinedGeneralError:
-      properties:
-        error:
-          type: string
-          description: Error message
-          example: Undefined error
-        code:
-          type: integer
-          description: Erroc code
-          example: 500
-    DispatchArrayObject:
-      properties:
-        date:
-          type: string
-          description: Date and time of dispatch
-          example: '2020-03-27 15:18:38'
-        orderId:
-          type: integer
-          format: int64
-          description: Identifier of dispatched transaction
-        partner_id:
-          type: integer
-          description: Submerchant's id. The funds are transferred to this sumberchant
-        items:
-          type: array
-          description: Array of product data objects
-        amount:
-          type: integer
-          description: Amount of transferred funds, in polish groshes
-    DispatchInfoResponse404:
-      properties:
-        error:
-          type: string
-          description: Error message
-          example: Transaction Not Found
-        code:
-          type: integer
-          description: Erroc code
-          example: 3
-    RefundResponseArrayObject:
-      properties:
-        orderId:
-          type: integer
-          format: int64
-          description: Identifier of refunded transaction
-          example: 0
-        sessionId:
-          type: string
-          description: Session's id of refunded transaction
-        amount:
-          type: integer
-          description: The refunded amount, in polish groshes
-          example: 1000
-        data:
-          description: Tablica danych sub-partnerów
-          items:
-            $ref: '#/components/schemas/RefundResponseArrDataObj'
-        description:
-          type: string
-          description: Refund description
-        status:
-          type: boolean
-          description: Refund's status
-          example: true
-        message:
-          type: string
-          description: Message
-          example: success
-    DispatchTransactionBody:
-      properties:
-        batchId:
-          type: integer
-          description: Unique id
-        details:
-          description: Array of dispatch transaction objects
-          items:
-            $ref: '#/components/schemas/ArrayDetailsDispatchTransaction'
-      required:
-      - batchId
-      - details
     FundsResponse200:
       properties:
         result:
@@ -396,28 +277,29 @@ components:
           type: string
           description: Error message
           example: Incorrect orderId or sessionId
-    FundsResponse403:
+    ErrorRefundArrayObject:
       properties:
-        error:
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of refunded transaction
+        sessionId:
+          type: string
+          description: Session's id of refunded transaction
+        amount:
+          type: integer
+          description: The refunded amount, in polish groshes
+        description:
+          type: string
+          description: Refund description
+        status:
+          type: boolean
+          description: Refund's status
+          example: false
+        message:
           type: string
           description: Error message
-          example: You do not have rights to this account
-        code:
-          type: integer
-          description: Erroc code
-          example: 403
-    DataArrayObjectRefundBody:
-      properties:
-        spId:
-          type: integer
-          description: Merchant's ID. The given merchant will be charged with the refund
-          example: 0
-        spAmount:
-          type: integer
-          description: The amount of funds, in polish groshes,to charge the merchant
-      required:
-      - spId
-      - spAmount
+          example: The amount of refund exceeds available amount for the transaction
     AffiliatesResponse400:
       properties:
         error:
@@ -428,25 +310,25 @@ components:
           type: integer
           description: Erroc code
           example: 400
-    ErrorDispatch400Object:
+    TransactionRefundBody:
       properties:
-        errorCode:
-          type: integer
-          description: Erroc code
-        errorMessage:
+        requestId:
           type: string
-          description: Error message
-          example: Empty refund list!
-    RefundRsponse409:
-      properties:
-        error:
-          description: Error Array of refund object
+          description: Unique request id
+        refundsUuid:
+          type: string
+          description: Unique id of correct refund request in Merchant's system
+        urlStatus:
+          type: string
+          description: URL address for sendig refund's status
+        refunds:
+          description: Array of refund objects
           items:
-            $ref: '#/components/schemas/ErrorRefundArrayObject'
-        code:
-          type: integer
-          description: Erroc code
-          example: 409
+            $ref: '#/components/schemas/RefundArrayObjectBody'
+      required:
+      - requestId
+      - refundsUuid
+      - refunds
     DispatchResultObjectArrayBody:
       properties:
         orderId:
@@ -474,22 +356,16 @@ components:
           type: string
           description: Error message. Empty for correct transaction
           example: ''
-    FundsResponse400:
+    RefundRsponse409:
       properties:
         error:
-          type: string
-          description: Error message
-          example: Invalid merchant id
+          description: Error Array of refund object
+          items:
+            $ref: '#/components/schemas/ErrorRefundArrayObject'
         code:
           type: integer
           description: Erroc code
-          example: 400
-    RefundResponseArrDataObj:
-      properties:
-        spId:
-          type: integer
-        spAmount:
-          type: integer
+          example: 409
     RefundResponse201:
       properties:
         data:
@@ -500,6 +376,67 @@ components:
           type: string
           description: Response code. 0 for correct
           example: 0
+    FundsResponse403:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: You do not have rights to this account
+        code:
+          type: integer
+          description: Erroc code
+          example: 403
+    DispatchInfoResponse404:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Transaction Not Found
+        code:
+          type: integer
+          description: Erroc code
+          example: 3
+    500UndefinedGeneralError:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Undefined error
+        code:
+          type: integer
+          description: Erroc code
+          example: 500
+    DispatchTransactionBody:
+      properties:
+        batchId:
+          type: integer
+          description: Unique id
+        details:
+          description: Array of dispatch transaction objects
+          items:
+            $ref: '#/components/schemas/ArrayDetailsDispatchTransaction'
+      required:
+      - batchId
+      - details
+    DataDispatchInfoObject:
+      properties:
+        amountLeft:
+          type: integer
+          description: The amount of left funds, in polish groshes
+        dispatch:
+          description: Array of dispatch information objects
+          items:
+            $ref: '#/components/schemas/DispatchArrayObject'
+    FundsResponse400:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Invalid merchant id
+        code:
+          type: integer
+          description: Erroc code
+          example: 400
     RefundArrayObjectBody:
       properties:
         orderId:
@@ -524,67 +461,35 @@ components:
       - sessionId
       - amount
       - data
-    AuthorizationRequired:
-      properties:
-        error:
-          type: string
-          description: Error message
-          example: Incorrect authentication
-        code:
-          type: string
-          description: Erroc code
-          example: 401
-    DataDispatchInfoObject:
-      properties:
-        amountLeft:
-          type: integer
-          description: The amount of left funds, in polish groshes
-        dispatch:
-          description: Array of dispatch information objects
-          items:
-            $ref: '#/components/schemas/DispatchArrayObject'
-    AffiliatesResponse200:
-      properties:
-        data:
-          descriptiom: Array of pbjects - a list of merchants
-          items:
-            $ref: '#/components/schemas/DataAffArrayObject'
-        code:
-          type: integer
-          description: Response code, 200 for correct
-          example: 200
-    DispatchTransactionResponse400:
-      properties:
-        result:
-          description: Array of transaction result objects
-          items:
-            $ref: '#/components/schemas/DispatchResult600ObjectArrayBody'
-        error:
-          description: Error object
-          $ref: '#/components/schemas/ErrorDispatch400Object'
-    ErrorRefundArrayObject:
+    RefundResponseArrayObject:
       properties:
         orderId:
           type: integer
           format: int64
           description: Identifier of refunded transaction
+          example: 0
         sessionId:
           type: string
           description: Session's id of refunded transaction
         amount:
           type: integer
           description: The refunded amount, in polish groshes
+          example: 1000
+        data:
+          description: Tablica danych sub-partnerów
+          items:
+            $ref: '#/components/schemas/RefundResponseArrDataObj'
         description:
           type: string
           description: Refund description
         status:
           type: boolean
           description: Refund's status
-          example: false
+          example: true
         message:
           type: string
-          description: Error message
-          example: The amount of refund exceeds available amount for the transaction
+          description: Message
+          example: success
     ArrayDetailsDispatchTransaction:
       properties:
         orderId:
@@ -600,16 +505,59 @@ components:
         amount:
           type: integer
           description: Amount of transferred funds in polish groshes, e.g. 1 zł = 100 gr
-    403ForbiddenGeneralError:
+    RefundResponseArrDataObj:
       properties:
-        error:
-          type: string
-          description: Error message
-          example: ''
-        code:
+        spId:
+          type: integer
+        spAmount:
+          type: integer
+    ErrorDispatch400Object:
+      properties:
+        errorCode:
           type: integer
           description: Erroc code
-          example: 403
+        errorMessage:
+          type: string
+          description: Error message
+          example: Empty refund list!
+    DispatchInfoResponse200:
+      properties:
+        data:
+          description: Information of dispatched transactio n
+          $ref: '#/components/schemas/DataDispatchInfoObject'
+        responseCode:
+          type: integer
+          description: Response code. 0 for correct
+          example: 0
+    DataAffArrayObject:
+      properties:
+        id:
+          type: integer
+          description: Merchant's id
+        name:
+          type: string
+          description: Merchant's name
+          example: Sample Merchant Oddział Poznań
+        nip:
+          type: string
+          description: Merchant's NIP number
+        regon:
+          type: string
+          description: Merchant's REGON number
+        customerStatus:
+          type: string
+          description: Merchant's status
+          example: Verified
+          enum:
+          - Verified
+          - Not verified
+        extendedStatus:
+          type: string
+          description: Extended merchant's status
+          enum:
+          - Inactive
+          - Active
+          - Blocked
     DispatchErrorObjectBody:
       properties:
         errorCode:
@@ -620,34 +568,76 @@ components:
           type: string
           description: Error message. For correct transaction "Success, no error."
           example: Success, no error.
-    DispatchInfoResponse200:
+    DataArrayObjectRefundBody:
+      properties:
+        spId:
+          type: integer
+          description: Merchant's ID. The given merchant will be charged with the refund
+          example: 0
+        spAmount:
+          type: integer
+          description: The amount of funds, in polish groshes,to charge the merchant
+      required:
+      - spId
+      - spAmount
+    DispatchTransactionResponse400:
+      properties:
+        result:
+          description: Array of transaction result objects
+          items:
+            $ref: '#/components/schemas/DispatchResult600ObjectArrayBody'
+        error:
+          description: Error object
+          $ref: '#/components/schemas/ErrorDispatch400Object'
+    AuthorizationRequired:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Incorrect authentication
+        code:
+          type: string
+          description: Erroc code
+          example: 401
+    AffiliatesResponse404:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Affiliates not found
+        code:
+          type: integer
+          description: Erroc code
+          example: 404
+    DispatchArrayObject:
+      properties:
+        date:
+          type: string
+          description: Date and time of dispatch
+          example: '2020-03-27 15:18:38'
+        orderId:
+          type: integer
+          format: int64
+          description: Identifier of dispatched transaction
+        partner_id:
+          type: integer
+          description: Submerchant's id. The funds are transferred to this sumberchant
+        items:
+          type: array
+          description: Array of product data objects
+        amount:
+          type: integer
+          description: Amount of transferred funds, in polish groshes
+    AffiliatesResponse200:
       properties:
         data:
-          description: Information of dispatched transactio n
-          $ref: '#/components/schemas/DataDispatchInfoObject'
-        responseCode:
-          type: integer
-          description: Response code. 0 for correct
-          example: 0
-    TransactionRefundBody:
-      properties:
-        requestId:
-          type: string
-          description: Unique request id
-        refundsUuid:
-          type: string
-          description: Unique id of correct refund request in Merchant's system
-        urlStatus:
-          type: string
-          description: URL address for sendig refund's status
-        refunds:
-          description: Array of refund objects
+          descriptiom: Array of pbjects - a list of merchants
           items:
-            $ref: '#/components/schemas/RefundArrayObjectBody'
-      required:
-      - requestId
-      - refundsUuid
-      - refunds
+            $ref: '#/components/schemas/DataAffArrayObject'
+        code:
+          type: integer
+          description: Response code, 200 for correct
+          example: 200
     RefundResponse400:
       properties:
         error:
@@ -658,6 +648,16 @@ components:
           type: integer
           description: Erroc code
           example: null
+    403ForbiddenGeneralError:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: ''
+        code:
+          type: integer
+          description: Erroc code
+          example: 403
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. Merchant's ID is user login and API key is the password.

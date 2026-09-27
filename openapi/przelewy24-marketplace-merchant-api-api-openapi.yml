@@ -113,17 +113,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MerchanExistsResponse200:
-      properties:
-        data:
-          type: array
-          description: Array with merchant's id
-          items:
-            type: string
-        error:
-          type: string
-          description: Error message. Empty for correct
-          example: ''
     MerchantRegisterDataObject:
       properties:
         merchant_id:
@@ -132,14 +121,6 @@ components:
         link:
           type: string
           description: Link - new merchant registration form
-    MerchantExistsResponse400:
-      properties:
-        data:
-          type: array
-        error:
-          type: string
-          description: Error message
-          example: Invalid pesel format
     MerchantRegisterResponse201:
       properties:
         error:
@@ -153,16 +134,30 @@ components:
         data:
           description: Object of registration data
           $ref: '#/components/schemas/MerchantRegisterDataObject'
-    AuthorizationRequired:
+    MerchantRegisterResponse400:
       properties:
         error:
           type: string
           description: Error message
-          example: Incorrect authentication
+          example: 'Incorrect parameter: phone_number | (contact_person)'
         code:
           type: string
           description: Erroc code
-          example: 401
+          example: 400
+        data:
+          default: null
+          example: null
+    RepresentativesArray:
+      properties:
+        name:
+          maxLength: 100
+          type: string
+          description: First name and last name
+        pesel:
+          type: string
+          maxLength: 11
+          minLength: 11
+          description: Explicit identifier - PESEL
     MerchantExistsResponse404:
       properties:
         data:
@@ -344,30 +339,35 @@ components:
       - correspondence_address[city]
       - correspondence_address[street]
       - correspondence_address[post_code]
-    RepresentativesArray:
+    MerchantExistsResponse400:
       properties:
-        name:
-          maxLength: 100
+        data:
+          type: array
+        error:
           type: string
-          description: First name and last name
-        pesel:
+          description: Error message
+          example: Invalid pesel format
+    MerchanExistsResponse200:
+      properties:
+        data:
+          type: array
+          description: Array with merchant's id
+          items:
+            type: string
+        error:
           type: string
-          maxLength: 11
-          minLength: 11
-          description: Explicit identifier - PESEL
-    MerchantRegisterResponse400:
+          description: Error message. Empty for correct
+          example: ''
+    AuthorizationRequired:
       properties:
         error:
           type: string
           description: Error message
-          example: 'Incorrect parameter: phone_number | (contact_person)'
+          example: Incorrect authentication
         code:
           type: string
           description: Erroc code
-          example: 400
-        data:
-          default: null
-          example: null
+          example: 401
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. Merchant's ID is user login and API key is the password.
