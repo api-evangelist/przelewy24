@@ -210,125 +210,6 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    Transaction200Blik:
-      properties:
-        data:
-          description: Array of objects related to the BLIK alias
-          items:
-            $ref: '#/components/schemas/BlikAlias200'
-        responseCode:
-          type: integer
-          default: 0
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
-    BlikAlias200:
-      properties:
-        value:
-          type: string
-          description: alias value
-        type:
-          type: string
-          description: alias type
-        status:
-          type: string
-          description: alias status
-        expirationDate:
-          type: string
-          description: alias expiration date
-    BlikChargeByCodeResponse:
-      properties:
-        data:
-          properties:
-            orderId:
-              type: integer
-              format: int64
-            message:
-              type: string
-          type: object
-        responseCode:
-          type: number
-          default: 0
-    UnauthorizedResponse:
-      properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
-    alternativeKeysItem:
-      properties:
-        label:
-          type: string
-        alias:
-          type: string
-    RecurringParamsIn:
-      description: 'An object containing information on BLIK recurring payment.
-
-        <div id="note">  The recurring payment functionality is not enabled by default. Contact the Technical Service Department via <a href="https://www.przelewy24.pl/en/help-center/api-technical-support/is-your-question-not-answered"><b>contact form</b></a>, in order to launch the service.  </div>
-
-        '
-      type: object
-      discriminator:
-        propertyName: type
-        mapping:
-          O: '#/components/schemas/RecurringParametersO'
-          M: '#/components/schemas/RecurringParametersM'
-          A: '#/components/schemas/RecurringParametersA'
-      properties:
-        type:
-          type: string
-          name: type
-          enum:
-          - M
-          - A
-          - O
-          description: 'The type of recurring payment; allowed values: A, O, M'
-          in: formData
-          default: M
-        expirationDate:
-          type: string
-          description: 'Allowed format: YYYY-MM-DD hh:mm:ss'
-        frequency:
-          type: string
-          description: 'Frequency of the recurrency; value must fulfill regex: [1-9][0-9]{0,2}[DWMY])'
-        totalLimitAmount:
-          type: integer
-          description: Maximum total amount that will be charged through the process
-        limitAmount:
-          type: integer
-          description: Maximum amount that will be charged in a single payment
-        totalLimitCount:
-          type: integer
-          description: Number of payments that will be issued in the whole process
-        minimumTime:
-          type: boolean
-          description: Parametr to control min flag
-          default: true
-        availableBanks:
-          description: Parameter to control the verification of whether the bank supports recursion. If set to false, it is not checked if the bank supports recursion.
-          default: true
-          type: boolean
-    TransactionNotFoundResponse:
-      properties:
-        error:
-          type: string
-          default: Transaction not found
-          example: Transaction not found
-        responseCode:
-          type: number
-          default: 0
-          example: 0
     BlikOneClick:
       type: object
       required:
@@ -402,6 +283,150 @@ components:
           example: 500
           default: 500
       type: object
+    alternativeKeysItem:
+      properties:
+        label:
+          type: string
+        alias:
+          type: string
+    Transaction200Blik:
+      properties:
+        data:
+          description: Array of objects related to the BLIK alias
+          items:
+            $ref: '#/components/schemas/BlikAlias200'
+        responseCode:
+          type: integer
+          default: 0
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
+    TransactionNotFoundResponse:
+      properties:
+        error:
+          type: string
+          default: Transaction not found
+          example: Transaction not found
+        responseCode:
+          type: number
+          default: 0
+          example: 0
+    RecurringParamsIn:
+      description: 'An object containing information on BLIK recurring payment.
+
+        <div id="note">  The recurring payment functionality is not enabled by default. Contact the Technical Service Department via <a href="https://www.przelewy24.pl/en/help-center/api-technical-support/is-your-question-not-answered"><b>contact form</b></a>, in order to launch the service.  </div>
+
+        '
+      type: object
+      discriminator:
+        propertyName: type
+        mapping:
+          O: '#/components/schemas/RecurringParametersO'
+          M: '#/components/schemas/RecurringParametersM'
+          A: '#/components/schemas/RecurringParametersA'
+      properties:
+        type:
+          type: string
+          name: type
+          enum:
+          - M
+          - A
+          - O
+          description: 'The type of recurring payment; allowed values: A, O, M'
+          in: formData
+          default: M
+        expirationDate:
+          type: string
+          description: 'Allowed format: YYYY-MM-DD hh:mm:ss'
+        frequency:
+          type: string
+          description: 'Frequency of the recurrency; value must fulfill regex: [1-9][0-9]{0,2}[DWMY])'
+        totalLimitAmount:
+          type: integer
+          description: Maximum total amount that will be charged through the process
+        limitAmount:
+          type: integer
+          description: Maximum amount that will be charged in a single payment
+        totalLimitCount:
+          type: integer
+          description: Number of payments that will be issued in the whole process
+        minimumTime:
+          type: boolean
+          description: Parametr to control min flag
+          default: true
+        availableBanks:
+          description: Parameter to control the verification of whether the bank supports recursion. If set to false, it is not checked if the bank supports recursion.
+          default: true
+          type: boolean
+    BlikChargeByCodeResponse:
+      properties:
+        data:
+          properties:
+            orderId:
+              type: integer
+              format: int64
+            message:
+              type: string
+          type: object
+        responseCode:
+          type: number
+          default: 0
+    BlikAlias200:
+      properties:
+        value:
+          type: string
+          description: alias value
+        type:
+          type: string
+          description: alias type
+        status:
+          type: string
+          description: alias status
+        expirationDate:
+          type: string
+          description: alias expiration date
+    BlikOneClick_2:
+      type: object
+      required:
+      - token
+      - type
+      discriminator:
+        propertyName: type
+        mapping:
+          alias: '#/components/schemas/Alias'
+          alternativeKey: '#/components/schemas/Alternativekey'
+      properties:
+        token:
+          type: string
+          description: Token obtained during transaction registration request via <b><a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post">transaction/register</a></b>. <br> <br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br> In order to correctly charge the payer using the blikChargeByAlias method the <b>PSU</b> object must be sent in the <b>additional</b> object in the <b><a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post">transaction/register</a></b> request.
+        type:
+          type: string
+        aliasValue:
+          type: string
+          description: <b> Warning! If you send the parameter it will result in overwriting the current value. </b> <br/> Unique alias of the user which can be used to charge client's next transactions. <br><br><b><font color = "#DB2053">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request.
+        aliasLabel:
+          type: string
+          description: <b> Warning! If you send the parameter it will result in overwriting the current value. </b> <br/> Alias label displayed in the app. <br><br><b><font color = "#DB2053">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request.
+        recurring:
+          description: null
+          $ref: '#/components/schemas/RecurringParamsIn_2'
     RecurringParamsIn_2:
       description: 'An object containing information on BLIK recurring payment.
 
@@ -449,31 +474,6 @@ components:
           description: parameter to control the verification of whether the bank supports recursion. If set to false, it is not checked if the bank supports recursion.
           default: true
           type: boolean
-    BlikOneClick_2:
-      type: object
-      required:
-      - token
-      - type
-      discriminator:
-        propertyName: type
-        mapping:
-          alias: '#/components/schemas/Alias'
-          alternativeKey: '#/components/schemas/Alternativekey'
-      properties:
-        token:
-          type: string
-          description: Token obtained during transaction registration request via <b><a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post">transaction/register</a></b>. <br> <br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br> In order to correctly charge the payer using the blikChargeByAlias method the <b>PSU</b> object must be sent in the <b>additional</b> object in the <b><a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post">transaction/register</a></b> request.
-        type:
-          type: string
-        aliasValue:
-          type: string
-          description: <b> Warning! If you send the parameter it will result in overwriting the current value. </b> <br/> Unique alias of the user which can be used to charge client's next transactions. <br><br><b><font color = "#DB2053">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request.
-        aliasLabel:
-          type: string
-          description: <b> Warning! If you send the parameter it will result in overwriting the current value. </b> <br/> Alias label displayed in the app. <br><br><b><font color = "#DB2053">IMPORTANT!:</font></b> Parameter <b>required</b> if a `recurring` object was sent in the request.
-        recurring:
-          description: null
-          $ref: '#/components/schemas/RecurringParamsIn_2'
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User and secretId are available in P24 panel:<br/>- "User" it's the same value as posId,<br/>- secretId it's the samevalue as key for reports (API key).

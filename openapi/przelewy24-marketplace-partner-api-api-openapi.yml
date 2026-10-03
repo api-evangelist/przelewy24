@@ -106,45 +106,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CrcDataObject:
-      properties:
-        id:
-          type: string
-          description: Merchant's id
-        crc:
-          type: string
-          description: CRC key
-    CrcResponse400:
-      properties:
-        data:
-          type: array
-        error:
-          type: string
-          description: Error message
-          example: Invalid merchant or affiliate id
-    ApiKeyResponse404:
-      properties:
-        error:
-          type: string
-          description: Error message
-          example: Affiliate not found
-        status:
-          type: integer
-          description: Status
-          example: 404
-    ApiKeyResponse200:
-      properties:
-        api_key:
-          type: string
-          description: API key
-        type:
-          type: string
-          description: Authentication type
-          example: baseAuth
-        name:
-          type: string
-          description: Nazwa
-          example: ''
     CrcResponse404:
       properties:
         data:
@@ -172,6 +133,14 @@ components:
           type: string
           description: Error message, empty for correct
           example: ''
+    CrcResponse400:
+      properties:
+        data:
+          type: array
+        error:
+          type: string
+          description: Error message
+          example: Invalid merchant or affiliate id
     AuthorizationRequired:
       properties:
         error:
@@ -182,6 +151,37 @@ components:
           type: string
           description: Erroc code
           example: 401
+    ApiKeyResponse404:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Affiliate not found
+        status:
+          type: integer
+          description: Status
+          example: 404
+    ApiKeyResponse200:
+      properties:
+        api_key:
+          type: string
+          description: API key
+        type:
+          type: string
+          description: Authentication type
+          example: baseAuth
+        name:
+          type: string
+          description: Nazwa
+          example: ''
+    CrcDataObject:
+      properties:
+        id:
+          type: string
+          description: Merchant's id
+        crc:
+          type: string
+          description: CRC key
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. Merchant's ID is user login and API key is the password.

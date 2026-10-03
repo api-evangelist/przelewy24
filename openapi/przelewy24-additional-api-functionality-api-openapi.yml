@@ -490,17 +490,7 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    availabilityHours:
-      type: object
-      description: An object containing information about the method's availability hours (methods with ID 177, 178 return bool true/false information)
-      properties:
-        mondayToFriday:
-          type: string
-        saturday:
-          type: string
-        sunday:
-          type: string
-    RefundRequestArrayDataBasic:
+    TransactionRefund409Item:
       properties:
         orderId:
           type: integer
@@ -514,13 +504,51 @@ components:
           description: Amount of refund
         description:
           type: string
-          description: Refund description visible in transfer details
-          maxLength: 35
+          description: Refund description
+        status:
+          type: boolean
+          example: false
+          description: Was refund attempt successful?
+        message:
+          type: string
+          example: The amount of refund exceeds available amount for the transaction
+          description: Error message. Possible values:<br/><br/>"Transaction not found" - in case the transaction is not found, <br/><br/>"Transaction in wrong status - cannot refund" - in case the transaction is in wrong status, therefore the refundis not possible, <br/><br/>"Insufficient funds available" - in case there are not enough funds to execute the refund, <br/><br/>"The amount of refund exceeds available amount for the transaction" - in case the amount of the refund request exceeds available amount for the transaction
+    TransactionBySessionIdSuccessResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/TransactionBySessionIdResponse'
+        responseCode:
+          type: number
+          default: 0
+      type: object
+    CartParameters:
+      description: Cart Parameters
       type: object
       required:
-      - orderId
-      - sessionId
-      - amount
+      - sellerId
+      - sellerCategory
+      properties:
+        sellerId:
+          type: string
+          description: Shop ID on the part of Partner
+        sellerCategory:
+          type: string
+          description: Shop category
+        name:
+          type: string
+          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
+        description:
+          type: string
+          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
+        quantity:
+          type: integer
+          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
+        price:
+          type: integer
+          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
+        number:
+          type: string
+          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
     Refund500Response:
       properties:
         error:
@@ -531,15 +559,6 @@ components:
           type: integer
           example: 500
           default: 500
-    TransactionRegistrationOffline409:
-      properties:
-        error:
-          type: string
-          default: Unable to create offline transaction
-          example: Unable to create offline transaction
-        code:
-          type: number
-          example: 409
     ErrorCodeResponse:
       properties:
         error:
@@ -551,24 +570,6 @@ components:
           example: 500
           default: 500
       type: object
-    TransactionRegisterOfflineRequest:
-      properties:
-        token:
-          type: string
-    TransactionRefundsInfoResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/TransactionWithRefundsResponse'
-        responseCode:
-          type: number
-          example: 0
-    TransactionTestAccess200:
-      properties:
-        data:
-          type: boolean
-          default: true
-        error:
-          type: string
     TransactionWithRefundsResponse:
       properties:
         orderId:
@@ -585,229 +586,14 @@ components:
           items:
             $ref: '#/components/schemas/RefundsCollection'
       type: object
-    TransactionBySessionIdResponse:
+    TransactionRefund201:
       properties:
-        statement:
-          type: string
-          description: Transfer title
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction ID
-        sessionId:
-          type: string
-          description: Transaction ID assigned by Merchant
-        status:
-          type: integer
-          description: Transaction status. 0 - no payment, 1 - advance payment, 2 - payment made, 3 - payment returned
-        amount:
-          type: integer
-          description: Transaction amount
-        currency:
-          type: string
-          default: PLN
-          description: Transaction currency
-        date:
-          type: string
-          description: Transaction registration date
-        dateOfTransaction:
-          type: string
-          description: Date of payment
-        clientEmail:
-          type: string
-          description: Customer's e-mail
-        accountMD5:
-          type: string
-          description: Customer's hashed bank account number
-        paymentMethod:
-          type: integer
-          description: Payment method ID
-        description:
-          type: string
-          description: Transaction description
-        clientName:
-          type: string
-          description: Customer's first name and surname
-        clientAddress:
-          type: string
-          description: Customer's address
-        clientCity:
-          type: string
-          description: Customer's city
-        clientPostcode:
-          type: string
-          description: Customer's zip code
-        batchId:
-          type: integer
-          description: Batch number in which the transaction was paid
-        fee:
-          type: string
-          description: Commission
-    TransactionRegisterTtl:
-      required:
-      - merchantId
-      - posId
-      - sessionId
-      - amount
-      - currency
-      - description
-      - email
-      - country
-      - language
-      - urlReturn
-      - sign
-      - ttl
-      properties:
-        merchantId:
-          description: Merchant identification number
-          type: integer
-        posId:
-          description: Shop identification number (defaults to merchant ID)
-          type: integer
-        sessionId:
-          description: Unique identifier from merchant's system
-          type: string
-        amount:
-          description: Transaction amount expressed in lowest currency unit, e.g. 1.23 PLN = 123
-          type: integer
-        currency:
-          description: Currency compatible with ISO, e.g. PLN
-          default: PLN
-          type: string
-          maxLength: 3
-        description:
-          description: Transaction description
-          type: string
-          maxLength: 1024
-        email:
-          description: Customer's e-mail
-          type: string
-          maxLength: 50
-        client:
-          description: Customer's first name and surname
-          type: string
-          maxLength: 50
-        address:
-          description: Customer's address
-          type: string
-          maxLength: 80
-        zip:
-          description: Customer's postal code
-          type: string
-          maxLength: 10
-        city:
-          description: Customer's city
-          type: string
-          maxLength: 50
-        country:
-          description: Country codes compatible with ISO, e.g. PL, DE, etc.
-          type: string
-          default: PL
-          maxLength: 2
-        phone:
-          description: 'Customer''s telephone in the following format : 481321132123'
-          type: string
-          maxLength: 2
-        language:
-          description: 'One of following language codes according to ISO 639-1: bg, cs, de, en, es, fr, hr, hu, it, nl, pl, pt, se, sk, ro'
-          type: string
-          default: pl
-        method:
-          description: Payment method ID. List of payment methods provided in the panel or available through API
-          type: integer
-          maxLength: 2
-        urlReturn:
-          description: URL address to which customer will be redirected when transaction is complete
-          type: string
-          maxLength: 250
-        urlStatus:
-          description: URL address to which transaction status will be send
-          type: string
-          maxLength: 250
-        urlNotify:
-          description: URL address to which notify message will be send
-          type: string
-          maxLength: 250
-        timeLimit:
-          description: Time limit for transaction process 0 - no limit max. 99 (in minutes)
-          type: integer
-        ttl:
-          description: Time limit for transaction token 0 = max 31 days max. 44640 (in minutes)
-          type: integer
-        channel:
-          description: ' 1 - card + ApplePay + GooglePay, 2 - transfer, 4 - traditional transfer, 8 - N/A, 16 - all 24/7 – makes available all payment methods, 32 - use pre-payment, 64 – only pay-by-link methods, 128 – instalment payment forms, 256 – wallets, 4096 - card, 8192 - blik, 16384 - all methods except blik
-
-            <p>To activate the specific channels, their values should be summed up.
-
-            <p>Example: transfer and traditional transfer: channel=6'
-          type: integer
-          enum:
-          - 1
-          - 2
-          - 4
-          - 8
-          - 16
-          - 32
-          - 64
-          - 128
-          - 256
-          - 4096
-          - 8192
-          - 16384
-        shipping:
-          description: Delivery cost
-          type: integer
-        transferLabel:
-          description: Description forwarded to transfer's description (not in every payment methods). A parameter can contain values only ​​in a range [a-z A-Z 0-9 ęółśążźćńĘÓŁŚĄŻŹĆŃ . / :- ]
-          type: string
-          maxLength: 20
-        sdkVersion:
-          description: Version of mobile library. Determines if transaction is mobile
-          type: string
-        sign:
-          description: <br>Checksum of parameters:<br> {<font color = "brown">"sessionId":</font>"str",<font color = "brown">"merchantId":</font>int,<font color = "brown">"amount":</font>int,<font color = "brown">"currency":</font>"str",<font color = "brown">"crc":</font>"str"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
-          type: string
-        encoding:
-          description: 'Coding system for characters sent: ISO-8859-2, UTF-8, Windows-1250'
-          type: string
-        cart:
-          description: cart
-          type: array
-          items: null
-          $ref: '#/components/schemas/CartParameters'
-        methodRefId:
-          description: Special parameter for some payment flows e.g. BLIK and Card one-click.
-          type: string
-    TransactionRefund409:
-      properties:
-        error:
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionRefund409Item'
-        code:
-          type: integer
-          example: 409
-    TransactionRefundJsonRequestBody:
-      properties:
-        requestId:
-          type: string
-          description: Individual request ID
-          maxLength: 45
-        refunds:
-          type: array
-          items:
-            $ref: '#/components/schemas/RefundRequestArrayDataBasic'
-        refundsUuid:
-          type: string
-          description: Individual ID for a correct refund request in the merchant’s system
-          maxLength: 35
-        urlStatus:
-          type: string
-          description: Notification address for the refund batch transferred
-      required:
-      - requestId
-      - refunds
-      - refundsUuid
+            $ref: '#/components/schemas/TransactionRefund201Item'
+        responseCode:
+          type: number
     PaymentMethodsResponseMethod:
       properties:
         name:
@@ -838,33 +624,76 @@ components:
           description: Is the payment mobile method available?
         availabilityHours:
           $ref: '#/components/schemas/availabilityHours'
-    TransactionRefund201:
+    TransactionTestAccess200:
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionRefund201Item'
-        responseCode:
+          type: boolean
+          default: true
+        error:
+          type: string
+    RefundsCollection:
+      properties:
+        batchId:
+          type: integer
+        requestId:
+          type: string
+        date:
+          type: string
+        login:
+          type: string
+        description:
+          type: string
+        status:
+          type: integer
+          example: 3
+          default: 3
+          description: 1 - completed,<br/>2 - pending,<br/>3 - awaiting P24's acceptance,<br/>4 - rejected
+        amount:
+          type: integer
+      type: object
+    availabilityHours:
+      type: object
+      description: An object containing information about the method's availability hours (methods with ID 177, 178 return bool true/false information)
+      properties:
+        mondayToFriday:
+          type: string
+        saturday:
+          type: string
+        sunday:
+          type: string
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
           type: number
-    BasicResponse:
+          default: 400
+          example: 400
+    TransactionNotFoundResponse:
       properties:
-        data:
-          type: array
-          default: Payment methods not found
-          items:
-            type: string
-            default: Payment methods not found
-        responseCode:
-          default: 404
-          type: number
-    TransactionBySessionIdSuccessResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/TransactionBySessionIdResponse'
+        error:
+          type: string
+          default: Transaction not found
+          example: Transaction not found
         responseCode:
           type: number
           default: 0
-      type: object
+          example: 0
+    TransactionRegisterOfflineRequest:
+      properties:
+        token:
+          type: string
+    TransactionRefund409:
+      properties:
+        error:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionRefund409Item'
+        code:
+          type: integer
+          example: 409
     TransactionRefund201Item:
       properties:
         orderId:
@@ -888,136 +717,6 @@ components:
           type: string
           example: success
           description: Text description of successful refund
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
-    CartParameters:
-      description: Cart Parameters
-      type: object
-      required:
-      - sellerId
-      - sellerCategory
-      properties:
-        sellerId:
-          type: string
-          description: Shop ID on the part of Partner
-        sellerCategory:
-          type: string
-          description: Shop category
-        name:
-          type: string
-          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
-        description:
-          type: string
-          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
-        quantity:
-          type: integer
-          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
-        price:
-          type: integer
-          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
-        number:
-          type: string
-          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
-    TransactionRegistrationOffline200:
-      properties:
-        data:
-          properties:
-            orderId:
-              type: integer
-              format: int64
-              description: Unique transaction ID assigned by P24
-            sessionId:
-              type: string
-              description: Unique ID assigned by the merchant’s system
-            amount:
-              type: integer
-              description: Transaction amount
-            statement:
-              type: string
-              description: Full payment title
-            iban:
-              type: string
-              description: Number of account for payment
-            ibanOwner:
-              type: string
-              description: Name of payment recipient
-            ibanOwnerAddress:
-              type: string
-              description: Address of payment recipient
-          type: object
-        responseCode:
-          type: number
-          example: 0
-    InvalidInputDataRefund:
-      properties:
-        error:
-          type: string
-          description: Error message. Possbile values:<br/><br/>"Invalid input parameters" - in case incorrect parameters or their values,<br/><br/> "Request already exists" - in case the refund was already created,<br/><br/> "Concurrent call" - in case the  refund is multiplied.
-        code:
-          type: number
-          default: 400
-          example: 400
-    TransactionRegistrationResponse:
-      properties:
-        data:
-          properties:
-            token:
-              type: string
-          type: object
-        responseCode:
-          type: number
-          default: 0
-    UnauthorizedResponse:
-      properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
-    TransactionNotFoundResponse:
-      properties:
-        error:
-          type: string
-          default: Transaction not found
-          example: Transaction not found
-        responseCode:
-          type: number
-          default: 0
-          example: 0
-    TransactionRefund409Item:
-      properties:
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction order ID from Przelewy24
-        sessionId:
-          type: string
-          description: Transaction session ID from the Partner’s system
-        amount:
-          type: integer
-          description: Amount of refund
-        description:
-          type: string
-          description: Refund description
-        status:
-          type: boolean
-          example: false
-          description: Was refund attempt successful?
-        message:
-          type: string
-          example: The amount of refund exceeds available amount for the transaction
-          description: Error message. Possible values:<br/><br/>"Transaction not found" - in case the transaction is not found, <br/><br/>"Transaction in wrong status - cannot refund" - in case the transaction is in wrong status, therefore the refundis not possible, <br/><br/>"Insufficient funds available" - in case there are not enough funds to execute the refund, <br/><br/>"The amount of refund exceeds available amount for the transaction" - in case the amount of the refund request exceeds available amount for the transaction
     TranstactionSplitPayment:
       required:
       - merchantId
@@ -1222,26 +921,336 @@ components:
           - vatAmount
           - invoiceNumber
           - nip
-    RefundsCollection:
+    TransactionRegisterTtl:
+      required:
+      - merchantId
+      - posId
+      - sessionId
+      - amount
+      - currency
+      - description
+      - email
+      - country
+      - language
+      - urlReturn
+      - sign
+      - ttl
       properties:
-        batchId:
+        merchantId:
+          description: Merchant identification number
           type: integer
-        requestId:
+        posId:
+          description: Shop identification number (defaults to merchant ID)
+          type: integer
+        sessionId:
+          description: Unique identifier from merchant's system
           type: string
-        date:
+        amount:
+          description: Transaction amount expressed in lowest currency unit, e.g. 1.23 PLN = 123
+          type: integer
+        currency:
+          description: Currency compatible with ISO, e.g. PLN
+          default: PLN
           type: string
-        login:
-          type: string
+          maxLength: 3
         description:
+          description: Transaction description
           type: string
+          maxLength: 1024
+        email:
+          description: Customer's e-mail
+          type: string
+          maxLength: 50
+        client:
+          description: Customer's first name and surname
+          type: string
+          maxLength: 50
+        address:
+          description: Customer's address
+          type: string
+          maxLength: 80
+        zip:
+          description: Customer's postal code
+          type: string
+          maxLength: 10
+        city:
+          description: Customer's city
+          type: string
+          maxLength: 50
+        country:
+          description: Country codes compatible with ISO, e.g. PL, DE, etc.
+          type: string
+          default: PL
+          maxLength: 2
+        phone:
+          description: 'Customer''s telephone in the following format : 481321132123'
+          type: string
+          maxLength: 2
+        language:
+          description: 'One of following language codes according to ISO 639-1: bg, cs, de, en, es, fr, hr, hu, it, nl, pl, pt, se, sk, ro'
+          type: string
+          default: pl
+        method:
+          description: Payment method ID. List of payment methods provided in the panel or available through API
+          type: integer
+          maxLength: 2
+        urlReturn:
+          description: URL address to which customer will be redirected when transaction is complete
+          type: string
+          maxLength: 250
+        urlStatus:
+          description: URL address to which transaction status will be send
+          type: string
+          maxLength: 250
+        urlNotify:
+          description: URL address to which notify message will be send
+          type: string
+          maxLength: 250
+        timeLimit:
+          description: Time limit for transaction process 0 - no limit max. 99 (in minutes)
+          type: integer
+        ttl:
+          description: Time limit for transaction token 0 = max 31 days max. 44640 (in minutes)
+          type: integer
+        channel:
+          description: ' 1 - card + ApplePay + GooglePay, 2 - transfer, 4 - traditional transfer, 8 - N/A, 16 - all 24/7 – makes available all payment methods, 32 - use pre-payment, 64 – only pay-by-link methods, 128 – instalment payment forms, 256 – wallets, 4096 - card, 8192 - blik, 16384 - all methods except blik
+
+            <p>To activate the specific channels, their values should be summed up.
+
+            <p>Example: transfer and traditional transfer: channel=6'
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 4
+          - 8
+          - 16
+          - 32
+          - 64
+          - 128
+          - 256
+          - 4096
+          - 8192
+          - 16384
+        shipping:
+          description: Delivery cost
+          type: integer
+        transferLabel:
+          description: Description forwarded to transfer's description (not in every payment methods). A parameter can contain values only ​​in a range [a-z A-Z 0-9 ęółśążźćńĘÓŁŚĄŻŹĆŃ . / :- ]
+          type: string
+          maxLength: 20
+        sdkVersion:
+          description: Version of mobile library. Determines if transaction is mobile
+          type: string
+        sign:
+          description: <br>Checksum of parameters:<br> {<font color = "brown">"sessionId":</font>"str",<font color = "brown">"merchantId":</font>int,<font color = "brown">"amount":</font>int,<font color = "brown">"currency":</font>"str",<font color = "brown">"crc":</font>"str"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
+          type: string
+        encoding:
+          description: 'Coding system for characters sent: ISO-8859-2, UTF-8, Windows-1250'
+          type: string
+        cart:
+          description: cart
+          type: array
+          items: null
+          $ref: '#/components/schemas/CartParameters'
+        methodRefId:
+          description: Special parameter for some payment flows e.g. BLIK and Card one-click.
+          type: string
+    TransactionRegistrationResponse:
+      properties:
+        data:
+          properties:
+            token:
+              type: string
+          type: object
+        responseCode:
+          type: number
+          default: 0
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
+    TransactionBySessionIdResponse:
+      properties:
+        statement:
+          type: string
+          description: Transfer title
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction ID
+        sessionId:
+          type: string
+          description: Transaction ID assigned by Merchant
         status:
           type: integer
-          example: 3
-          default: 3
-          description: 1 - completed,<br/>2 - pending,<br/>3 - awaiting P24's acceptance,<br/>4 - rejected
+          description: Transaction status. 0 - no payment, 1 - advance payment, 2 - payment made, 3 - payment returned
         amount:
           type: integer
+          description: Transaction amount
+        currency:
+          type: string
+          default: PLN
+          description: Transaction currency
+        date:
+          type: string
+          description: Transaction registration date
+        dateOfTransaction:
+          type: string
+          description: Date of payment
+        clientEmail:
+          type: string
+          description: Customer's e-mail
+        accountMD5:
+          type: string
+          description: Customer's hashed bank account number
+        paymentMethod:
+          type: integer
+          description: Payment method ID
+        description:
+          type: string
+          description: Transaction description
+        clientName:
+          type: string
+          description: Customer's first name and surname
+        clientAddress:
+          type: string
+          description: Customer's address
+        clientCity:
+          type: string
+          description: Customer's city
+        clientPostcode:
+          type: string
+          description: Customer's zip code
+        batchId:
+          type: integer
+          description: Batch number in which the transaction was paid
+        fee:
+          type: string
+          description: Commission
+    TransactionRegistrationOffline409:
+      properties:
+        error:
+          type: string
+          default: Unable to create offline transaction
+          example: Unable to create offline transaction
+        code:
+          type: number
+          example: 409
+    RefundRequestArrayDataBasic:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction order ID from Przelewy24
+        sessionId:
+          type: string
+          description: Transaction session ID from the Partner’s system
+        amount:
+          type: integer
+          description: Amount of refund
+        description:
+          type: string
+          description: Refund description visible in transfer details
+          maxLength: 35
       type: object
+      required:
+      - orderId
+      - sessionId
+      - amount
+    BasicResponse:
+      properties:
+        data:
+          type: array
+          default: Payment methods not found
+          items:
+            type: string
+            default: Payment methods not found
+        responseCode:
+          default: 404
+          type: number
+    TransactionRefundsInfoResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/TransactionWithRefundsResponse'
+        responseCode:
+          type: number
+          example: 0
+    TransactionRegistrationOffline200:
+      properties:
+        data:
+          properties:
+            orderId:
+              type: integer
+              format: int64
+              description: Unique transaction ID assigned by P24
+            sessionId:
+              type: string
+              description: Unique ID assigned by the merchant’s system
+            amount:
+              type: integer
+              description: Transaction amount
+            statement:
+              type: string
+              description: Full payment title
+            iban:
+              type: string
+              description: Number of account for payment
+            ibanOwner:
+              type: string
+              description: Name of payment recipient
+            ibanOwnerAddress:
+              type: string
+              description: Address of payment recipient
+          type: object
+        responseCode:
+          type: number
+          example: 0
+    TransactionRefundJsonRequestBody:
+      properties:
+        requestId:
+          type: string
+          description: Individual request ID
+          maxLength: 45
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundRequestArrayDataBasic'
+        refundsUuid:
+          type: string
+          description: Individual ID for a correct refund request in the merchant’s system
+          maxLength: 35
+        urlStatus:
+          type: string
+          description: Notification address for the refund batch transferred
+      required:
+      - requestId
+      - refunds
+      - refundsUuid
+    InvalidInputDataRefund:
+      properties:
+        error:
+          type: string
+          description: Error message. Possbile values:<br/><br/>"Invalid input parameters" - in case incorrect parameters or their values,<br/><br/> "Request already exists" - in case the refund was already created,<br/><br/> "Concurrent call" - in case the  refund is multiplied.
+        code:
+          type: number
+          default: 400
+          example: 400
+    TransactionRefund201_2:
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionRefund201Item'
+        responseCode:
+          type: number
+          example: 0
     PaymentMethodsResponseMethod_2:
       properties:
         name:
@@ -1272,25 +1281,6 @@ components:
           description: Is the payment mobile method available?
         availabilityHours:
           $ref: '#/components/schemas/availabilityHours'
-    TransactionRefund201_2:
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionRefund201Item'
-        responseCode:
-          type: number
-          example: 0
-    InvalidInputDataRefund_2:
-      properties:
-        error:
-          type: string
-          example: Request already exists
-          description: Error message. Possbile values:<br/><br/>"Invalid input parameters" - in case incorrect parameters or their values,<br/><br/> "Request already exists" - in case the refund was already created,<br/><br/> "Concurrent call" - in case the  refund is multiplied.
-        code:
-          type: number
-          default: 400
-          example: 400
     TranstactionSplitPayment_2:
       required:
       - merchantId
@@ -1495,6 +1485,16 @@ components:
           - vatAmount
           - invoiceNumber
           - nip
+    InvalidInputDataRefund_2:
+      properties:
+        error:
+          type: string
+          example: Request already exists
+          description: Error message. Possbile values:<br/><br/>"Invalid input parameters" - in case incorrect parameters or their values,<br/><br/> "Request already exists" - in case the refund was already created,<br/><br/> "Concurrent call" - in case the  refund is multiplied.
+        code:
+          type: number
+          default: 400
+          example: 400
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User and secretId are available in P24 panel:<br/>- "User" it's the same value as posId,<br/>- secretId it's the samevalue as key for reports (API key).

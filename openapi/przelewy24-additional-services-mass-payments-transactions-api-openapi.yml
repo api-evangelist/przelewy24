@@ -115,119 +115,89 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    cardData:
+    CartParameters:
+      description: Cart Parameters
       type: object
-      description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
-      discriminator:
-        propertyName: transactionType
-        mapping:
-          recurring: '#/components/schemas/recurring'
-          standard: '#/components/schemas/other2'
-          initial: '#/components/schemas/other'
-          1click: '#/components/schemas/other2'
+      required:
+      - sellerId
+      - sellerCategory
       properties:
-        means:
-          type: object
-          properties:
-            card:
-              type: object
-              properties:
-                pan:
-                  type: string
-                  description: Payment card number (PAN - personal account number)
-                expYear:
-                  type: integer
-                  description: The year in which the card expires
-                expMonth:
-                  type: integer
-                  description: The month in which the card expires
-                clientName:
-                  type: string
-                  description: Name and surname of the card holder
-                securityCode:
-                  type: string
-                  description: CVV/CVC code
-              required:
-              - pan
-              - expYear
-              - expMonth
-              - clientName
-            referenceNumber:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: Reference number (token assigned by P24)
-                securityCode:
-                  type: string
-                  description: Security code
-              required:
-              - id
-            schemeToken:
-              type: object
-              properties:
-                pan:
-                  type: string
-                  description: Token number
-                expYear:
-                  type: integer
-                  description: The year in which the card expires
-                expMonth:
-                  type: integer
-                  description: The month in which the card expires
-                securityCode:
-                  type: string
-                  description: Cryptogram
-                eci:
-                  type: string
-                  description: The Electronic Commerce Indicator
-                type:
-                  type: string
-                  description: Typ tokenu
-                  enum:
-                  - visaToken
-                  - mcToken
-                  - visaMobile
-                  - applepay
-                  - googlepay
-              required:
-              - pan
-              - expYear
-              - expMonth
-              - type
-            xPayPayload:
-              type: object
-              properties:
-                payload:
-                  type: string
-                  description: Base64 encrypted payment payload
-                type:
-                  type: string
-                  description: Payment type
-                  enum:
-                  - applepay
-                  - googlepay
-              required:
-              - payload
-              - type
-        transactionType:
+        sellerId:
           type: string
-          description: 'Transaction type:<br> - <b>standard</b> - standard transaction<br> - <b>initial</b> - 1click or recurring initialization transaction. Launched in SCA mode<br> - <b>1click</b> - transaction with a saved card in the presence of the customer<br> - <b>recurring</b> - recurring transaction<br>
+          description: Shop ID on the part of Partner
+        sellerCategory:
+          type: string
+          description: Shop category
+        name:
+          type: string
+          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
+        description:
+          type: string
+          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
+        quantity:
+          type: integer
+          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
+        price:
+          type: integer
+          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
+        number:
+          type: string
+          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
+    AdditionalProperties:
+      properties:
+        shipping:
+          type: object
+          description: Additional shipping information
+          properties:
+            type:
+              type: integer
+              description: Type of shipment:<br> 0 - courier<br>1 - delivery point<br>2 - parcel locker<br> 3 - package in a shop
+              enum:
+              - 0
+              - 1
+              - 2
+              - 3
+            address:
+              type: string
+              description: 'Shipment address: street and number'
+            zip:
+              type: string
+              description: Shipment zip code
+            city:
+              type: string
+              description: Shipment city
+            country:
+              type: string
+              description: Shipment country
+          required:
+          - type
+          - address
+          - zip
+          - city
+          - country
+        PSU:
+          type: object
+          description: 'Payment Service User<br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br> Object required when using methods <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByCode/post">blikChargeByCode</a></b> or <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByAlias/post">blikChargeByAlias</a></b>.
 
             '
-      required:
-      - means
-      - transactionType
-    InvalidInputData:
+          properties:
+            IP:
+              type: string
+              description: IPv4 or IPv6
+            userAgent:
+              type: string
+              maxLength: 255
+              description: UserAgent is a string identifying the browser and operating system.
+    SIMPGetTransactionBySessionId200:
       properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SIMPTransactionBySessionIdResponse200'
+        responseCode:
           type: number
-          default: 400
-          example: 400
+          default: 0
+      type: object
     SIMPTransactionBySessionIdResponse200:
       properties:
         statement:
@@ -286,133 +256,6 @@ components:
         fee:
           type: string
           description: Commission
-    SIMPTransactionRegistrationResponse:
-      properties:
-        data:
-          properties:
-            token:
-              type: string
-              description: Token
-            iban:
-              type: string
-              description: IBAN
-              example: PL59105000996912000444444341
-            companyName:
-              type: string
-              description: Company name
-          type: object
-        responseCode:
-          type: string
-          default: '0'
-    SIMPResponse400:
-      properties:
-        error:
-          type: string
-          example: Invalid simpClientId
-        code:
-          type: number
-          example: 400
-    UnauthorizedResponse:
-      properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
-    AdditionalProperties:
-      properties:
-        shipping:
-          type: object
-          description: Additional shipping information
-          properties:
-            type:
-              type: integer
-              description: Type of shipment:<br> 0 - courier<br>1 - delivery point<br>2 - parcel locker<br> 3 - package in a shop
-              enum:
-              - 0
-              - 1
-              - 2
-              - 3
-            address:
-              type: string
-              description: 'Shipment address: street and number'
-            zip:
-              type: string
-              description: Shipment zip code
-            city:
-              type: string
-              description: Shipment city
-            country:
-              type: string
-              description: Shipment country
-          required:
-          - type
-          - address
-          - zip
-          - city
-          - country
-        PSU:
-          type: object
-          description: 'Payment Service User<br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br> Object required when using methods <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByCode/post">blikChargeByCode</a></b> or <b><a href="#tag/BLIK-API/paths/~1api~1v1~1paymentMethod~1blik~1chargeByAlias/post">blikChargeByAlias</a></b>.
-
-            '
-          properties:
-            IP:
-              type: string
-              description: IPv4 or IPv6
-            userAgent:
-              type: string
-              maxLength: 255
-              description: UserAgent is a string identifying the browser and operating system.
-    SIMPConflict:
-      properties:
-        error:
-          type: string
-          example: Conflict
-        code:
-          type: number
-          example: 409
-    CartParameters:
-      description: Cart Parameters
-      type: object
-      required:
-      - sellerId
-      - sellerCategory
-      properties:
-        sellerId:
-          type: string
-          description: Shop ID on the part of Partner
-        sellerCategory:
-          type: string
-          description: Shop category
-        name:
-          type: string
-          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
-        description:
-          type: string
-          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
-        quantity:
-          type: integer
-          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
-        price:
-          type: integer
-          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
-        number:
-          type: string
-          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
-    SIMPGetTransactionBySessionId200:
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SIMPTransactionBySessionIdResponse200'
-        responseCode:
-          type: number
-          default: 0
-      type: object
     ErrorCodeResponse:
       properties:
         error:
@@ -639,6 +482,163 @@ components:
       - ttl
       - sign
       - simpCountryCode
+    cardData:
+      type: object
+      description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
+      discriminator:
+        propertyName: transactionType
+        mapping:
+          recurring: '#/components/schemas/recurring'
+          standard: '#/components/schemas/other2'
+          initial: '#/components/schemas/other'
+          1click: '#/components/schemas/other2'
+      properties:
+        means:
+          type: object
+          properties:
+            card:
+              type: object
+              properties:
+                pan:
+                  type: string
+                  description: Payment card number (PAN - personal account number)
+                expYear:
+                  type: integer
+                  description: The year in which the card expires
+                expMonth:
+                  type: integer
+                  description: The month in which the card expires
+                clientName:
+                  type: string
+                  description: Name and surname of the card holder
+                securityCode:
+                  type: string
+                  description: CVV/CVC code
+              required:
+              - pan
+              - expYear
+              - expMonth
+              - clientName
+            referenceNumber:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Reference number (token assigned by P24)
+                securityCode:
+                  type: string
+                  description: Security code
+              required:
+              - id
+            schemeToken:
+              type: object
+              properties:
+                pan:
+                  type: string
+                  description: Token number
+                expYear:
+                  type: integer
+                  description: The year in which the card expires
+                expMonth:
+                  type: integer
+                  description: The month in which the card expires
+                securityCode:
+                  type: string
+                  description: Cryptogram
+                eci:
+                  type: string
+                  description: The Electronic Commerce Indicator
+                type:
+                  type: string
+                  description: Typ tokenu
+                  enum:
+                  - visaToken
+                  - mcToken
+                  - visaMobile
+                  - applepay
+                  - googlepay
+              required:
+              - pan
+              - expYear
+              - expMonth
+              - type
+            xPayPayload:
+              type: object
+              properties:
+                payload:
+                  type: string
+                  description: Base64 encrypted payment payload
+                type:
+                  type: string
+                  description: Payment type
+                  enum:
+                  - applepay
+                  - googlepay
+              required:
+              - payload
+              - type
+        transactionType:
+          type: string
+          description: 'Transaction type:<br> - <b>standard</b> - standard transaction<br> - <b>initial</b> - 1click or recurring initialization transaction. Launched in SCA mode<br> - <b>1click</b> - transaction with a saved card in the presence of the customer<br> - <b>recurring</b> - recurring transaction<br>
+
+            '
+      required:
+      - means
+      - transactionType
+    SIMPResponse400:
+      properties:
+        error:
+          type: string
+          example: Invalid simpClientId
+        code:
+          type: number
+          example: 400
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
+    SIMPConflict:
+      properties:
+        error:
+          type: string
+          example: Conflict
+        code:
+          type: number
+          example: 409
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
+    SIMPTransactionRegistrationResponse:
+      properties:
+        data:
+          properties:
+            token:
+              type: string
+              description: Token
+            iban:
+              type: string
+              description: IBAN
+              example: PL59105000996912000444444341
+            companyName:
+              type: string
+              description: Company name
+          type: object
+        responseCode:
+          type: string
+          default: '0'
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User and secretId are available in P24 panel:<br/>- "User" it's the same value as posId,<br/>- secretId it's the samevalue as key for reports (API key).
