@@ -490,147 +490,6 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    TransactionRefund409Item:
-      properties:
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction order ID from Przelewy24
-        sessionId:
-          type: string
-          description: Transaction session ID from the Partner’s system
-        amount:
-          type: integer
-          description: Amount of refund
-        description:
-          type: string
-          description: Refund description
-        status:
-          type: boolean
-          example: false
-          description: Was refund attempt successful?
-        message:
-          type: string
-          example: The amount of refund exceeds available amount for the transaction
-          description: Error message. Possible values:<br/><br/>"Transaction not found" - in case the transaction is not found, <br/><br/>"Transaction in wrong status - cannot refund" - in case the transaction is in wrong status, therefore the refundis not possible, <br/><br/>"Insufficient funds available" - in case there are not enough funds to execute the refund, <br/><br/>"The amount of refund exceeds available amount for the transaction" - in case the amount of the refund request exceeds available amount for the transaction
-    TransactionBySessionIdSuccessResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/TransactionBySessionIdResponse'
-        responseCode:
-          type: number
-          default: 0
-      type: object
-    CartParameters:
-      description: Cart Parameters
-      type: object
-      required:
-      - sellerId
-      - sellerCategory
-      properties:
-        sellerId:
-          type: string
-          description: Shop ID on the part of Partner
-        sellerCategory:
-          type: string
-          description: Shop category
-        name:
-          type: string
-          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
-        description:
-          type: string
-          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
-        quantity:
-          type: integer
-          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
-        price:
-          type: integer
-          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
-        number:
-          type: string
-          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
-    Refund500Response:
-      properties:
-        error:
-          type: string
-          example: Unknown error
-          description: Error message
-        code:
-          type: integer
-          example: 500
-          default: 500
-    ErrorCodeResponse:
-      properties:
-        error:
-          type: string
-          example: Undefined error
-          default: Undefined error
-        code:
-          type: integer
-          example: 500
-          default: 500
-      type: object
-    TransactionWithRefundsResponse:
-      properties:
-        orderId:
-          type: integer
-          format: int64
-        sessionId:
-          type: string
-        amount:
-          type: integer
-        currency:
-          type: string
-        refunds:
-          type: array
-          items:
-            $ref: '#/components/schemas/RefundsCollection'
-      type: object
-    TransactionRefund201:
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionRefund201Item'
-        responseCode:
-          type: number
-    PaymentMethodsResponseMethod:
-      properties:
-        name:
-          type: string
-          description: Name of payment method
-        id:
-          type: integer
-          description: Payment method ID
-        group:
-          type: string
-          description: 'Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment'
-        subgroup:
-          type: string
-          description: 'Possible values: PBL, Blik, BlikWhiteLabel, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another, SplitPayment, PIS'
-        status:
-          type: boolean
-          example: true
-          description: Specifies whether a given method is active
-        imgUrl:
-          type: string
-          description: Link to graphics
-        mobileImgUrl:
-          type: string
-          description: Link to mobile graphics
-        mobile:
-          type: boolean
-          example: true
-          description: Is the payment mobile method available?
-        availabilityHours:
-          $ref: '#/components/schemas/availabilityHours'
-    TransactionTestAccess200:
-      properties:
-        data:
-          type: boolean
-          default: true
-        error:
-          type: string
     RefundsCollection:
       properties:
         batchId:
@@ -651,72 +510,6 @@ components:
         amount:
           type: integer
       type: object
-    availabilityHours:
-      type: object
-      description: An object containing information about the method's availability hours (methods with ID 177, 178 return bool true/false information)
-      properties:
-        mondayToFriday:
-          type: string
-        saturday:
-          type: string
-        sunday:
-          type: string
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
-    TransactionNotFoundResponse:
-      properties:
-        error:
-          type: string
-          default: Transaction not found
-          example: Transaction not found
-        responseCode:
-          type: number
-          default: 0
-          example: 0
-    TransactionRegisterOfflineRequest:
-      properties:
-        token:
-          type: string
-    TransactionRefund409:
-      properties:
-        error:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionRefund409Item'
-        code:
-          type: integer
-          example: 409
-    TransactionRefund201Item:
-      properties:
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction order ID from Przelewy24
-        sessionId:
-          type: string
-          description: Transaction session ID from the Partner’s system
-        amount:
-          type: integer
-          description: Amount of refund
-        description:
-          type: string
-          description: Transaction description
-        status:
-          type: boolean
-          example: true
-          description: Was refund attempt successful?
-        message:
-          type: string
-          example: success
-          description: Text description of successful refund
     TranstactionSplitPayment:
       required:
       - merchantId
@@ -1056,26 +849,6 @@ components:
         methodRefId:
           description: Special parameter for some payment flows e.g. BLIK and Card one-click.
           type: string
-    TransactionRegistrationResponse:
-      properties:
-        data:
-          properties:
-            token:
-              type: string
-          type: object
-        responseCode:
-          type: number
-          default: 0
-    UnauthorizedResponse:
-      properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
     TransactionBySessionIdResponse:
       properties:
         statement:
@@ -1134,15 +907,26 @@ components:
         fee:
           type: string
           description: Commission
-    TransactionRegistrationOffline409:
+    TransactionBySessionIdSuccessResponse:
       properties:
-        error:
-          type: string
-          default: Unable to create offline transaction
-          example: Unable to create offline transaction
-        code:
+        data:
+          $ref: '#/components/schemas/TransactionBySessionIdResponse'
+        responseCode:
           type: number
-          example: 409
+          default: 0
+      type: object
+    TransactionRefund201:
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionRefund201Item'
+        responseCode:
+          type: number
+    TransactionRegisterOfflineRequest:
+      properties:
+        token:
+          type: string
     RefundRequestArrayDataBasic:
       properties:
         orderId:
@@ -1164,24 +948,6 @@ components:
       - orderId
       - sessionId
       - amount
-    BasicResponse:
-      properties:
-        data:
-          type: array
-          default: Payment methods not found
-          items:
-            type: string
-            default: Payment methods not found
-        responseCode:
-          default: 404
-          type: number
-    TransactionRefundsInfoResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/TransactionWithRefundsResponse'
-        responseCode:
-          type: number
-          example: 0
     TransactionRegistrationOffline200:
       properties:
         data:
@@ -1212,6 +978,105 @@ components:
         responseCode:
           type: number
           example: 0
+    TransactionRefund409Item:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction order ID from Przelewy24
+        sessionId:
+          type: string
+          description: Transaction session ID from the Partner’s system
+        amount:
+          type: integer
+          description: Amount of refund
+        description:
+          type: string
+          description: Refund description
+        status:
+          type: boolean
+          example: false
+          description: Was refund attempt successful?
+        message:
+          type: string
+          example: The amount of refund exceeds available amount for the transaction
+          description: Error message. Possible values:<br/><br/>"Transaction not found" - in case the transaction is not found, <br/><br/>"Transaction in wrong status - cannot refund" - in case the transaction is in wrong status, therefore the refundis not possible, <br/><br/>"Insufficient funds available" - in case there are not enough funds to execute the refund, <br/><br/>"The amount of refund exceeds available amount for the transaction" - in case the amount of the refund request exceeds available amount for the transaction
+    availabilityHours:
+      type: object
+      description: An object containing information about the method's availability hours (methods with ID 177, 178 return bool true/false information)
+      properties:
+        mondayToFriday:
+          type: string
+        saturday:
+          type: string
+        sunday:
+          type: string
+    TransactionTestAccess200:
+      properties:
+        data:
+          type: boolean
+          default: true
+        error:
+          type: string
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
+    Refund500Response:
+      properties:
+        error:
+          type: string
+          example: Unknown error
+          description: Error message
+        code:
+          type: integer
+          example: 500
+          default: 500
+    InvalidInputDataRefund:
+      properties:
+        error:
+          type: string
+          description: Error message. Possbile values:<br/><br/>"Invalid input parameters" - in case incorrect parameters or their values,<br/><br/> "Request already exists" - in case the refund was already created,<br/><br/> "Concurrent call" - in case the  refund is multiplied.
+        code:
+          type: number
+          default: 400
+          example: 400
+    PaymentMethodsResponseMethod:
+      properties:
+        name:
+          type: string
+          description: Name of payment method
+        id:
+          type: integer
+          description: Payment method ID
+        group:
+          type: string
+          description: 'Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment'
+        subgroup:
+          type: string
+          description: 'Possible values: PBL, Blik, BlikWhiteLabel, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another, SplitPayment, PIS'
+        status:
+          type: boolean
+          example: true
+          description: Specifies whether a given method is active
+        imgUrl:
+          type: string
+          description: Link to graphics
+        mobileImgUrl:
+          type: string
+          description: Link to mobile graphics
+        mobile:
+          type: boolean
+          example: true
+          description: Is the payment mobile method available?
+        availabilityHours:
+          $ref: '#/components/schemas/availabilityHours'
     TransactionRefundJsonRequestBody:
       properties:
         requestId:
@@ -1233,54 +1098,150 @@ components:
       - requestId
       - refunds
       - refundsUuid
-    InvalidInputDataRefund:
-      properties:
-        error:
-          type: string
-          description: Error message. Possbile values:<br/><br/>"Invalid input parameters" - in case incorrect parameters or their values,<br/><br/> "Request already exists" - in case the refund was already created,<br/><br/> "Concurrent call" - in case the  refund is multiplied.
-        code:
-          type: number
-          default: 400
-          example: 400
-    TransactionRefund201_2:
+    BasicResponse:
       properties:
         data:
           type: array
+          default: Payment methods not found
           items:
-            $ref: '#/components/schemas/TransactionRefund201Item'
+            type: string
+            default: Payment methods not found
+        responseCode:
+          default: 404
+          type: number
+    TransactionRegistrationOffline409:
+      properties:
+        error:
+          type: string
+          default: Unable to create offline transaction
+          example: Unable to create offline transaction
+        code:
+          type: number
+          example: 409
+    TransactionRegistrationResponse:
+      properties:
+        data:
+          properties:
+            token:
+              type: string
+          type: object
         responseCode:
           type: number
-          example: 0
-    PaymentMethodsResponseMethod_2:
+          default: 0
+    ErrorCodeResponse:
       properties:
+        error:
+          type: string
+          example: Undefined error
+          default: Undefined error
+        code:
+          type: integer
+          example: 500
+          default: 500
+      type: object
+    TransactionWithRefundsResponse:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+        sessionId:
+          type: string
+        amount:
+          type: integer
+        currency:
+          type: string
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundsCollection'
+      type: object
+    TransactionNotFoundResponse:
+      properties:
+        error:
+          type: string
+          default: Transaction not found
+          example: Transaction not found
+        responseCode:
+          type: number
+          default: 0
+          example: 0
+    TransactionRefund409:
+      properties:
+        error:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionRefund409Item'
+        code:
+          type: integer
+          example: 409
+    CartParameters:
+      description: Cart Parameters
+      type: object
+      required:
+      - sellerId
+      - sellerCategory
+      properties:
+        sellerId:
+          type: string
+          description: Shop ID on the part of Partner
+        sellerCategory:
+          type: string
+          description: Shop category
         name:
           type: string
-          description: Name of payment method
-        id:
+          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
+        description:
+          type: string
+          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
+        quantity:
           type: integer
-          description: Payment method ID
-        group:
+          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
+        price:
+          type: integer
+          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
+        number:
           type: string
-          description: 'Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment'
-        subgroup:
+          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
+    TransactionRefund201Item:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction order ID from Przelewy24
+        sessionId:
           type: string
-          description: 'Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment'
+          description: Transaction session ID from the Partner’s system
+        amount:
+          type: integer
+          description: Amount of refund
+        description:
+          type: string
+          description: Transaction description
         status:
           type: boolean
           example: true
-          description: Specifies whether a given method is active
-        imgUrl:
+          description: Was refund attempt successful?
+        message:
           type: string
-          description: Link to graphics
-        mobileImgUrl:
+          example: success
+          description: Text description of successful refund
+    TransactionRefundsInfoResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/TransactionWithRefundsResponse'
+        responseCode:
+          type: number
+          example: 0
+    UnauthorizedResponse:
+      properties:
+        error:
           type: string
-          description: Link to mobile graphics
-        mobile:
-          type: boolean
-          example: true
-          description: Is the payment mobile method available?
-        availabilityHours:
-          $ref: '#/components/schemas/availabilityHours'
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
     TranstactionSplitPayment_2:
       required:
       - merchantId
@@ -1485,6 +1446,15 @@ components:
           - vatAmount
           - invoiceNumber
           - nip
+    TransactionRefund201_2:
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionRefund201Item'
+        responseCode:
+          type: number
+          example: 0
     InvalidInputDataRefund_2:
       properties:
         error:
@@ -1495,6 +1465,36 @@ components:
           type: number
           default: 400
           example: 400
+    PaymentMethodsResponseMethod_2:
+      properties:
+        name:
+          type: string
+          description: Name of payment method
+        id:
+          type: integer
+          description: Payment method ID
+        group:
+          type: string
+          description: 'Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment'
+        subgroup:
+          type: string
+          description: 'Possible values: FastTransfers, Blik, eTransfer, Credit Card, Installments, Wallet, Foreign, PrePayment, TraditionalTransfer, Another. SplitPayment'
+        status:
+          type: boolean
+          example: true
+          description: Specifies whether a given method is active
+        imgUrl:
+          type: string
+          description: Link to graphics
+        mobileImgUrl:
+          type: string
+          description: Link to mobile graphics
+        mobile:
+          type: boolean
+          example: true
+          description: Is the payment mobile method available?
+        availabilityHours:
+          $ref: '#/components/schemas/availabilityHours'
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User and secretId are available in P24 panel:<br/>- "User" it's the same value as posId,<br/>- secretId it's the samevalue as key for reports (API key).

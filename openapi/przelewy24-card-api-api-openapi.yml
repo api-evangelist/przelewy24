@@ -246,97 +246,33 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    TransactionReject200:
-      properties:
-        data:
-          properties:
-            status:
-              type: string
-              example: success
-          type: object
-        responseCode:
-          type: string
-          example: '0'
-    CardRegisterRequestBody:
-      type: object
-      properties:
-        transactionToken:
-          type: string
-          description: Token obtained during registration
-        cardNumber:
-          type: string
-          description: Card number
-          maxLength: 16
-        cardDate:
-          type: string
-          description: Card expiry date in format MMYYYY
-        cvv:
-          type: string
-          description: Card CVV
-        clientName:
-          type: string
-          description: First name and surname of cardholder
-      required:
-      - transactionToken
-      - cardNumber
-      - cardDate
-      - cvv
-      - clientName
-    TransactionRejectJsonRequestBodyV11:
-      properties:
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction ID assigned by Przelewy24
-        sessionId:
-          type: string
-          description: Unique ID from Partner’s system
-        sign:
-          type: string
-          description: <br>Checksum of parameters:<br> {<font color = "brown">"merchantId":</font>int,<font color = "brown">"orderId":</font>int,<font color = "brown">"sessionId":</font>"string",<font color = "brown">"crc":</font>"string"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
-    ChargeCard3dsSuccessResponse:
+    ChargeCardSuccessResponse:
       properties:
         data:
           properties:
             orderId:
               type: integer
               format: int64
-            redirectUrl:
-              type: string
+              description: Registered transaction ID
           type: object
         responseCode:
           type: number
-          example: 0
-    ErrorCodeResponse:
-      properties:
-        error:
-          type: string
-          example: Undefined error
-          default: Undefined error
-        code:
-          type: integer
-          example: 500
-          default: 500
-      type: object
-    CardChargeRequestBody:
-      properties:
-        token:
-          type: string
-          description: Token registered by <a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post"><b>transaction/register</b></a> method. Card reference number must be provided during transaction registration in <b>methodRefId</b> parameter.
-    CardPayThreeDSecureResponse:
-      properties:
-        data:
-          properties:
-            orderId:
-              type: integer
-              format: int64
-            redirectUrl:
-              type: string
-          type: object
-        responseCode:
-          type: number
+          default: 0
           example: 0
     CardPaySuccessResponse:
+      properties:
+        data:
+          properties:
+            orderId:
+              type: integer
+              format: int64
+            redirectUrl:
+              type: string
+          type: object
+        responseCode:
+          type: number
+          example: 0
+    CardPayThreeDSecureResponse:
       properties:
         data:
           properties:
@@ -376,19 +312,47 @@ components:
           type: number
           default: 0
           example: 0
-    ChargeCardSuccessResponse:
+    CardRegisterRequestBody:
+      type: object
       properties:
-        data:
-          properties:
-            orderId:
-              type: integer
-              format: int64
-              description: Registered transaction ID
-          type: object
-        responseCode:
-          type: number
-          default: 0
-          example: 0
+        transactionToken:
+          type: string
+          description: Token obtained during registration
+        cardNumber:
+          type: string
+          description: Card number
+          maxLength: 16
+        cardDate:
+          type: string
+          description: Card expiry date in format MMYYYY
+        cvv:
+          type: string
+          description: Card CVV
+        clientName:
+          type: string
+          description: First name and surname of cardholder
+      required:
+      - transactionToken
+      - cardNumber
+      - cardDate
+      - cvv
+      - clientName
+    CardChargeRequestBody:
+      properties:
+        token:
+          type: string
+          description: Token registered by <a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post"><b>transaction/register</b></a> method. Card reference number must be provided during transaction registration in <b>methodRefId</b> parameter.
+    ErrorCodeResponse:
+      properties:
+        error:
+          type: string
+          example: Undefined error
+          default: Undefined error
+        code:
+          type: integer
+          example: 500
+          default: 500
+      type: object
     InvalidInputData:
       properties:
         error:
@@ -399,6 +363,49 @@ components:
           type: number
           default: 400
           example: 400
+    ChargeCard3dsSuccessResponse:
+      properties:
+        data:
+          properties:
+            orderId:
+              type: integer
+              format: int64
+            redirectUrl:
+              type: string
+          type: object
+        responseCode:
+          type: number
+          example: 0
+    TransactionRejectJsonRequestBodyV11:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction ID assigned by Przelewy24
+        sessionId:
+          type: string
+          description: Unique ID from Partner’s system
+        sign:
+          type: string
+          description: <br>Checksum of parameters:<br> {<font color = "brown">"merchantId":</font>int,<font color = "brown">"orderId":</font>int,<font color = "brown">"sessionId":</font>"string",<font color = "brown">"crc":</font>"string"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
+    TransactionReject200:
+      properties:
+        data:
+          properties:
+            status:
+              type: string
+              example: success
+          type: object
+        responseCode:
+          type: string
+          example: '0'
+    CardPayResponse409:
+      properties:
+        error:
+          type: string
+          example: Unable to make payment.
+        code:
+          type: number
     UnauthorizedResponse:
       properties:
         error:
@@ -409,13 +416,6 @@ components:
           type: number
           default: 401
           example: 401
-    CardPayResponse409:
-      properties:
-        error:
-          type: string
-          example: Unable to make payment.
-        code:
-          type: number
     cardinfores_2:
       properties:
         data:

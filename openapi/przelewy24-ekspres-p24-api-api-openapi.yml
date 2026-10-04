@@ -388,11 +388,141 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TransferBasketResultBody:
+    TransferHistory200ResponseBody:
       properties:
         result:
-          description: Includes the object of the query result
-          $ref: '#/components/schemas/TransferBasketOutObjectBody'
+          description: Comprises a table of objects of the transfer history or an empty table if no transfers have been found
+          items:
+            $ref: '#/components/schemas/HistoryOutObjectBody'
+    GeneralErrorObjectResponseBody:
+      properties:
+        error:
+          description: null
+          $ref: '#/components/schemas/GeneralErrorObject'
+    TransferP24RefundObject:
+      properties:
+        sessionId:
+          type: string
+          maxLength: 255
+          description: Session ID in Przelewy24 system
+        title:
+          type: string
+          maxLength: 255
+          description: Title of refund transaction
+        currency:
+          type: string
+          maxLength: 3
+          description: 'Currency in which refund will be executed as ISO 4217 code (currently available: EUR, PLN)'
+        amount:
+          type: integer
+          description: 'Amount  of  created  refund  in  smallest denomination<br/> Example: "100" (1 PLN)'
+        overrefund:
+          type: boolean
+          default: false
+          description: If  TRUE,  refund  will  be  executed <b>no matter if there was any other refunds executed for this transaction earlier</b>. It ignores error 2010.<br/><b>Default value is FALSE</b>
+      required:
+      - sessionId
+      - title
+      - currency
+      - amount
+    BalanceObjectBody:
+      properties:
+        amount:
+          type: integer
+          description: The amount of the balance in the smallest denomination (grosz)
+        currency:
+          type: string
+          maxLength: 3
+          description: Currency in the form of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) code
+          example: PLN
+    TransferBasketOutObjectBody:
+      properties:
+        transferRequestId:
+          type: string
+          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „pay”
+        transferIds:
+          type: array
+          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „payout”
+          items:
+            type: integer
+        url:
+          type: string
+          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
+    PersonObjectBody:
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          description: Name (company / name and surname)
+        email:
+          type: string
+          maxLength: 100
+          description: Email (used later for sending notifications)
+        address:
+          type: string
+          maxLength: 100
+          description: Address – street name, street no., apartment no.
+        zip:
+          type: string
+          maxLength: 10
+          description: Postal code – validated depending on the <b>country</b> parameter
+        city:
+          type: string
+          maxLength: 50
+          description: City
+        country:
+          type: string
+          maxLength: 2
+          description: '2-character country code ([ISO-3166-1](https://pl.wikipedia.org/wiki/ISO_3166-1_alfa-2))<br/> exception: UK = GB, Great Britain'
+      required:
+      - name
+      - email
+      - address
+      - zip
+      - city
+      - country
+    TransferOutObjectBody:
+      properties:
+        transferRequestId:
+          type: string
+          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „pay”
+        transferIds:
+          type: array
+          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „payout”
+          items:
+            type: integer
+        url:
+          type: string
+          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
+    HistoryOutObjectBody:
+      properties:
+        transfer:
+          description: Object of transfer TransferObject
+          $ref: '#/components/schemas/TransferObjectBody'
+        express:
+          type: boolean
+          description: Was the transfer ordered in the express mode?
+        date:
+          type: string
+          description: Transfer registration date
+        status:
+          type: integer
+          description: Transfer current status
+        statusDescription:
+          type: string
+          description: Current status (description)
+        type:
+          type: string
+          description: 'Type of payment: wallet, p24, p24code'
+        id:
+          type: string
+          description: “id” parameter provided during transfer registration
+        transferId:
+          type: integer
+          description: Transfer identifier in the express system
+        transferRequestId:
+          type: integer
+          description: Request identifier in the express mode
     TransferBasketPostBody:
       properties:
         transfers:
@@ -464,93 +594,6 @@ components:
         timestamp:
           type: integer
           description: Unix time stamp of the exact moment for which the results are presented
-    PostTransferRefundBody:
-      properties:
-        refund:
-          type: object
-          description: Refund object
-          allOf:
-          - $ref: '#/components/schemas/TransferP24RefundObject'
-        id:
-          type: string
-          maxLength: 255
-          description: Unique transfer ID, UUID recommended
-        sign:
-          type: string
-          maxLength: 255
-          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b> sign parameter calculation</b></a>
-      required:
-      - refund
-      - id
-      - sign
-    HistoryOutObjectBody:
-      properties:
-        transfer:
-          description: Object of transfer TransferObject
-          $ref: '#/components/schemas/TransferObjectBody'
-        express:
-          type: boolean
-          description: Was the transfer ordered in the express mode?
-        date:
-          type: string
-          description: Transfer registration date
-        status:
-          type: integer
-          description: Transfer current status
-        statusDescription:
-          type: string
-          description: Current status (description)
-        type:
-          type: string
-          description: 'Type of payment: wallet, p24, p24code'
-        id:
-          type: string
-          description: “id” parameter provided during transfer registration
-        transferId:
-          type: integer
-          description: Transfer identifier in the express system
-        transferRequestId:
-          type: integer
-          description: Request identifier in the express mode
-    GeneralErrorObject:
-      properties:
-        code:
-          type: string
-        description:
-          type: string
-    TransferRequestResultObjectBody:
-      properties:
-        result:
-          description: Includes the object of the query result
-          $ref: '#/components/schemas/TransferOutObjectBody'
-    PutPaymentRefundBody:
-      properties:
-        transferId:
-          type: integer
-          description: ID of Ekspres transfer that we want to refund
-        amount:
-          type: integer
-          description: Amount to refund, if empty by default whole transfer will be refunded. Refund is always in currency of original transfer
-      required:
-      - transferId
-    TransferOutObjectBody:
-      properties:
-        transferRequestId:
-          type: string
-          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „pay”
-        transferIds:
-          type: array
-          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „payout”
-          items:
-            type: integer
-        url:
-          type: string
-          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
-    GeneralErrorObjectResponseBody:
-      properties:
-        error:
-          description: null
-          $ref: '#/components/schemas/GeneralErrorObject'
     BankAvailabilityObjectResponseBody:
       properties:
         name:
@@ -572,6 +615,30 @@ components:
         holidays:
           type: boolean
           description: Availability on public holidays:<br/> false – unavailable<br/>true – available
+    PostTransferRefundBody:
+      properties:
+        refund:
+          type: object
+          description: Refund object
+          allOf:
+          - $ref: '#/components/schemas/TransferP24RefundObject'
+        id:
+          type: string
+          maxLength: 255
+          description: Unique transfer ID, UUID recommended
+        sign:
+          type: string
+          maxLength: 255
+          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b> sign parameter calculation</b></a>
+      required:
+      - refund
+      - id
+      - sign
+    TransferBasketResultBody:
+      properties:
+        result:
+          description: Includes the object of the query result
+          $ref: '#/components/schemas/TransferBasketOutObjectBody'
     TransferRequestPostBody:
       properties:
         transfer:
@@ -634,51 +701,21 @@ components:
       - send
       - id
       - sign
-    TransferBasketOutObjectBody:
+    PutPaymentRefundResponse:
       properties:
-        transferRequestId:
-          type: string
-          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „pay”
-        transferIds:
-          type: array
-          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „payout”
-          items:
-            type: integer
-        url:
-          type: string
-          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
-    TransferP24RefundObject:
-      properties:
-        sessionId:
-          type: string
-          maxLength: 255
-          description: Session ID in Przelewy24 system
-        title:
-          type: string
-          maxLength: 255
-          description: Title of refund transaction
+        transferId:
+          type: integer
+          description: ID of refunded transfer
+        refundId:
+          type: integer
+          description: ID of refund (important for <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>)
+        amount:
+          type: integer
+          description: Amount of created refund in smallest denomination<br/><br/> 1000 = 10.00
         currency:
           type: string
           maxLength: 3
-          description: 'Currency in which refund will be executed as ISO 4217 code (currently available: EUR, PLN)'
-        amount:
-          type: integer
-          description: 'Amount  of  created  refund  in  smallest denomination<br/> Example: "100" (1 PLN)'
-        overrefund:
-          type: boolean
-          default: false
-          description: If  TRUE,  refund  will  be  executed <b>no matter if there was any other refunds executed for this transaction earlier</b>. It ignores error 2010.<br/><b>Default value is FALSE</b>
-      required:
-      - sessionId
-      - title
-      - currency
-      - amount
-    GetBankCheck:
-      properties:
-        available:
-          type: boolean
-          description: Indication whether the bank is active
-          example: true
+          description: Currency of created refund as ISO 4217 code
     TransferObjectBody:
       properties:
         iban:
@@ -729,27 +766,6 @@ components:
       - amountOut
       - currencyOut
       - externalParam
-    PutPaymentRefundResponse:
-      properties:
-        transferId:
-          type: integer
-          description: ID of refunded transfer
-        refundId:
-          type: integer
-          description: ID of refund (important for <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>)
-        amount:
-          type: integer
-          description: Amount of created refund in smallest denomination<br/><br/> 1000 = 10.00
-        currency:
-          type: string
-          maxLength: 3
-          description: Currency of created refund as ISO 4217 code
-    TransferHistory200ResponseBody:
-      properties:
-        result:
-          description: Comprises a table of objects of the transfer history or an empty table if no transfers have been found
-          items:
-            $ref: '#/components/schemas/HistoryOutObjectBody'
     PaymentMethodObjectResponseBody:
       properties:
         id:
@@ -761,49 +777,33 @@ components:
         status:
           type: boolean
           description: True – ON, False – OFF
-    BalanceObjectBody:
+    PutPaymentRefundBody:
       properties:
+        transferId:
+          type: integer
+          description: ID of Ekspres transfer that we want to refund
         amount:
           type: integer
-          description: The amount of the balance in the smallest denomination (grosz)
-        currency:
-          type: string
-          maxLength: 3
-          description: Currency in the form of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) code
-          example: PLN
-    PersonObjectBody:
-      properties:
-        name:
-          type: string
-          maxLength: 100
-          description: Name (company / name and surname)
-        email:
-          type: string
-          maxLength: 100
-          description: Email (used later for sending notifications)
-        address:
-          type: string
-          maxLength: 100
-          description: Address – street name, street no., apartment no.
-        zip:
-          type: string
-          maxLength: 10
-          description: Postal code – validated depending on the <b>country</b> parameter
-        city:
-          type: string
-          maxLength: 50
-          description: City
-        country:
-          type: string
-          maxLength: 2
-          description: '2-character country code ([ISO-3166-1](https://pl.wikipedia.org/wiki/ISO_3166-1_alfa-2))<br/> exception: UK = GB, Great Britain'
+          description: Amount to refund, if empty by default whole transfer will be refunded. Refund is always in currency of original transfer
       required:
-      - name
-      - email
-      - address
-      - zip
-      - city
-      - country
+      - transferId
+    TransferRequestResultObjectBody:
+      properties:
+        result:
+          description: Includes the object of the query result
+          $ref: '#/components/schemas/TransferOutObjectBody'
+    GeneralErrorObject:
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    GetBankCheck:
+      properties:
+        available:
+          type: boolean
+          description: Indication whether the bank is active
+          example: true
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User login is API REST key the password assigned to it.

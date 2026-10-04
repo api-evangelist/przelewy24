@@ -126,6 +126,32 @@ components:
         data:
           description: Object of registration data
           $ref: '#/components/schemas/MerchantRegisterDataObject'
+    AuthorizationRequired:
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Incorrect authentication
+        code:
+          type: string
+          description: Erroc code
+          example: 401
+    MerchantRegisterDataObject:
+      properties:
+        merchant_id:
+          type: integer
+          description: Id of a new merchant
+        link:
+          type: string
+          description: Link - new merchant registration form
+    MerchantExistsResponse404:
+      properties:
+        data:
+          type: array
+        error:
+          type: string
+          description: Error message
+          example: Affiliate not found
     RepresentativesArray:
       properties:
         name:
@@ -137,56 +163,6 @@ components:
           maxLength: 11
           minLength: 11
           description: Explicit identifier - PESEL
-    MerchanExistsResponse200:
-      properties:
-        data:
-          type: array
-          description: Array with merchant's id
-          items:
-            type: string
-        error:
-          type: string
-          description: Error message. Empty for correct
-          example: ''
-    MerchantRegisterResponse201:
-      properties:
-        error:
-          type: string
-          description: Error message. In case of empty message, null is returned.
-          example: null
-        code:
-          type: string
-          description: Response's code
-          example: 201
-        data:
-          description: Object of registration data
-          $ref: '#/components/schemas/MerchantRegisterDataObject'
-    MerchantRegisterDataObject:
-      properties:
-        merchant_id:
-          type: integer
-          description: Id of a new merchant
-        link:
-          type: string
-          description: Link - new merchant registration form
-    AuthorizationRequired:
-      properties:
-        error:
-          type: string
-          description: Error message
-          example: Incorrect authentication
-        code:
-          type: string
-          description: Erroc code
-          example: 401
-    MerchantExistsResponse404:
-      properties:
-        data:
-          type: array
-        error:
-          type: string
-          description: Error message
-          example: Affiliate not found
     MerchantRegisterBody:
       properties:
         business_type:
@@ -347,6 +323,19 @@ components:
       - correspondence_address[city]
       - correspondence_address[street]
       - correspondence_address[post_code]
+    MerchantRegisterResponse201:
+      properties:
+        error:
+          type: string
+          description: Error message. In case of empty message, null is returned.
+          example: null
+        code:
+          type: string
+          description: Response's code
+          example: 201
+        data:
+          description: Object of registration data
+          $ref: '#/components/schemas/MerchantRegisterDataObject'
     MerchantRegisterResponse400:
       properties:
         error:
@@ -360,6 +349,17 @@ components:
         data:
           default: null
           example: null
+    MerchanExistsResponse200:
+      properties:
+        data:
+          type: array
+          description: Array with merchant's id
+          items:
+            type: string
+        error:
+          type: string
+          description: Error message. Empty for correct
+          example: ''
     MerchantExistsResponse400:
       properties:
         data:

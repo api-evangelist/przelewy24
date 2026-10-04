@@ -115,34 +115,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CartParameters:
-      description: Cart Parameters
-      type: object
-      required:
-      - sellerId
-      - sellerCategory
-      properties:
-        sellerId:
-          type: string
-          description: Shop ID on the part of Partner
-        sellerCategory:
-          type: string
-          description: Shop category
-        name:
-          type: string
-          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
-        description:
-          type: string
-          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
-        quantity:
-          type: integer
-          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
-        price:
-          type: integer
-          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
-        number:
-          type: string
-          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
     AdditionalProperties:
       properties:
         shipping:
@@ -188,6 +160,14 @@ components:
               type: string
               maxLength: 255
               description: UserAgent is a string identifying the browser and operating system.
+    SIMPResponse400:
+      properties:
+        error:
+          type: string
+          example: Invalid simpClientId
+        code:
+          type: number
+          example: 400
     SIMPGetTransactionBySessionId200:
       properties:
         data:
@@ -198,64 +178,6 @@ components:
           type: number
           default: 0
       type: object
-    SIMPTransactionBySessionIdResponse200:
-      properties:
-        statement:
-          type: array
-          description: Transfer title
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction ID
-        sessionId:
-          type: string
-          description: Transaction ID assigned by Merchant
-        status:
-          type: integer
-          description: Transaction status. 0 - no payment, 1 - advance payment, 2 - payment made, 3 - payment returned
-        amount:
-          type: integer
-          description: Transaction amount
-        currency:
-          type: string
-          default: PLN
-          description: Transaction currency
-        date:
-          type: string
-          description: Transaction registration date
-        dateOfTransaction:
-          type: string
-          description: Date of payment
-        clientEmail:
-          type: string
-          description: Customer's e-mail
-        accountMD5:
-          type: string
-          description: Customer's hashed bank account number
-        paymentMethod:
-          type: integer
-          description: Payment method ID
-        description:
-          type: string
-          description: Transaction description
-        clientName:
-          type: string
-          description: Customer's first name and surname
-        clientAddress:
-          type: string
-          description: Customer's address
-        clientCity:
-          type: string
-          description: Customer's city
-        clientPostcode:
-          type: string
-          description: Customer's zip code
-        batchId:
-          type: integer
-          description: Batch number in which the transaction was paid
-        fee:
-          type: string
-          description: Commission
     ErrorCodeResponse:
       properties:
         error:
@@ -267,6 +189,127 @@ components:
           example: 500
           default: 500
       type: object
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
+    SIMPConflict:
+      properties:
+        error:
+          type: string
+          example: Conflict
+        code:
+          type: number
+          example: 409
+    cardData:
+      type: object
+      description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
+      discriminator:
+        propertyName: transactionType
+        mapping:
+          recurring: '#/components/schemas/recurring'
+          standard: '#/components/schemas/other2'
+          initial: '#/components/schemas/other'
+          1click: '#/components/schemas/other2'
+      properties:
+        means:
+          type: object
+          properties:
+            card:
+              type: object
+              properties:
+                pan:
+                  type: string
+                  description: Payment card number (PAN - personal account number)
+                expYear:
+                  type: integer
+                  description: The year in which the card expires
+                expMonth:
+                  type: integer
+                  description: The month in which the card expires
+                clientName:
+                  type: string
+                  description: Name and surname of the card holder
+                securityCode:
+                  type: string
+                  description: CVV/CVC code
+              required:
+              - pan
+              - expYear
+              - expMonth
+              - clientName
+            referenceNumber:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Reference number (token assigned by P24)
+                securityCode:
+                  type: string
+                  description: Security code
+              required:
+              - id
+            schemeToken:
+              type: object
+              properties:
+                pan:
+                  type: string
+                  description: Token number
+                expYear:
+                  type: integer
+                  description: The year in which the card expires
+                expMonth:
+                  type: integer
+                  description: The month in which the card expires
+                securityCode:
+                  type: string
+                  description: Cryptogram
+                eci:
+                  type: string
+                  description: The Electronic Commerce Indicator
+                type:
+                  type: string
+                  description: Typ tokenu
+                  enum:
+                  - visaToken
+                  - mcToken
+                  - visaMobile
+                  - applepay
+                  - googlepay
+              required:
+              - pan
+              - expYear
+              - expMonth
+              - type
+            xPayPayload:
+              type: object
+              properties:
+                payload:
+                  type: string
+                  description: Base64 encrypted payment payload
+                type:
+                  type: string
+                  description: Payment type
+                  enum:
+                  - applepay
+                  - googlepay
+              required:
+              - payload
+              - type
+        transactionType:
+          type: string
+          description: 'Transaction type:<br> - <b>standard</b> - standard transaction<br> - <b>initial</b> - 1click or recurring initialization transaction. Launched in SCA mode<br> - <b>1click</b> - transaction with a saved card in the presence of the customer<br> - <b>recurring</b> - recurring transaction<br>
+
+            '
+      required:
+      - means
+      - transactionType
     TransactionRegistrationSIMPBody:
       type: object
       properties:
@@ -482,145 +525,92 @@ components:
       - ttl
       - sign
       - simpCountryCode
-    cardData:
+    CartParameters:
+      description: Cart Parameters
       type: object
-      description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
-      discriminator:
-        propertyName: transactionType
-        mapping:
-          recurring: '#/components/schemas/recurring'
-          standard: '#/components/schemas/other2'
-          initial: '#/components/schemas/other'
-          1click: '#/components/schemas/other2'
-      properties:
-        means:
-          type: object
-          properties:
-            card:
-              type: object
-              properties:
-                pan:
-                  type: string
-                  description: Payment card number (PAN - personal account number)
-                expYear:
-                  type: integer
-                  description: The year in which the card expires
-                expMonth:
-                  type: integer
-                  description: The month in which the card expires
-                clientName:
-                  type: string
-                  description: Name and surname of the card holder
-                securityCode:
-                  type: string
-                  description: CVV/CVC code
-              required:
-              - pan
-              - expYear
-              - expMonth
-              - clientName
-            referenceNumber:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: Reference number (token assigned by P24)
-                securityCode:
-                  type: string
-                  description: Security code
-              required:
-              - id
-            schemeToken:
-              type: object
-              properties:
-                pan:
-                  type: string
-                  description: Token number
-                expYear:
-                  type: integer
-                  description: The year in which the card expires
-                expMonth:
-                  type: integer
-                  description: The month in which the card expires
-                securityCode:
-                  type: string
-                  description: Cryptogram
-                eci:
-                  type: string
-                  description: The Electronic Commerce Indicator
-                type:
-                  type: string
-                  description: Typ tokenu
-                  enum:
-                  - visaToken
-                  - mcToken
-                  - visaMobile
-                  - applepay
-                  - googlepay
-              required:
-              - pan
-              - expYear
-              - expMonth
-              - type
-            xPayPayload:
-              type: object
-              properties:
-                payload:
-                  type: string
-                  description: Base64 encrypted payment payload
-                type:
-                  type: string
-                  description: Payment type
-                  enum:
-                  - applepay
-                  - googlepay
-              required:
-              - payload
-              - type
-        transactionType:
-          type: string
-          description: 'Transaction type:<br> - <b>standard</b> - standard transaction<br> - <b>initial</b> - 1click or recurring initialization transaction. Launched in SCA mode<br> - <b>1click</b> - transaction with a saved card in the presence of the customer<br> - <b>recurring</b> - recurring transaction<br>
-
-            '
       required:
-      - means
-      - transactionType
-    SIMPResponse400:
+      - sellerId
+      - sellerCategory
       properties:
-        error:
+        sellerId:
           type: string
-          example: Invalid simpClientId
-        code:
-          type: number
-          example: 400
-    InvalidInputData:
+          description: Shop ID on the part of Partner
+        sellerCategory:
+          type: string
+          description: Shop category
+        name:
+          type: string
+          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
+        description:
+          type: string
+          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
+        quantity:
+          type: integer
+          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
+        price:
+          type: integer
+          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
+        number:
+          type: string
+          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
+    SIMPTransactionBySessionIdResponse200:
       properties:
-        error:
+        statement:
+          type: array
+          description: Transfer title
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction ID
+        sessionId:
           type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
-    SIMPConflict:
-      properties:
-        error:
+          description: Transaction ID assigned by Merchant
+        status:
+          type: integer
+          description: Transaction status. 0 - no payment, 1 - advance payment, 2 - payment made, 3 - payment returned
+        amount:
+          type: integer
+          description: Transaction amount
+        currency:
           type: string
-          example: Conflict
-        code:
-          type: number
-          example: 409
-    UnauthorizedResponse:
-      properties:
-        error:
+          default: PLN
+          description: Transaction currency
+        date:
           type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
+          description: Transaction registration date
+        dateOfTransaction:
+          type: string
+          description: Date of payment
+        clientEmail:
+          type: string
+          description: Customer's e-mail
+        accountMD5:
+          type: string
+          description: Customer's hashed bank account number
+        paymentMethod:
+          type: integer
+          description: Payment method ID
+        description:
+          type: string
+          description: Transaction description
+        clientName:
+          type: string
+          description: Customer's first name and surname
+        clientAddress:
+          type: string
+          description: Customer's address
+        clientCity:
+          type: string
+          description: Customer's city
+        clientPostcode:
+          type: string
+          description: Customer's zip code
+        batchId:
+          type: integer
+          description: Batch number in which the transaction was paid
+        fee:
+          type: string
+          description: Commission
     SIMPTransactionRegistrationResponse:
       properties:
         data:
@@ -639,6 +629,16 @@ components:
         responseCode:
           type: string
           default: '0'
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User and secretId are available in P24 panel:<br/>- "User" it's the same value as posId,<br/>- secretId it's the samevalue as key for reports (API key).

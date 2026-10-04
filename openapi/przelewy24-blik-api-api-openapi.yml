@@ -210,6 +210,87 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
+    BlikChargeByCodeResponse:
+      properties:
+        data:
+          properties:
+            orderId:
+              type: integer
+              format: int64
+            message:
+              type: string
+          type: object
+        responseCode:
+          type: number
+          default: 0
+    Transaction200Blik:
+      properties:
+        data:
+          description: Array of objects related to the BLIK alias
+          items:
+            $ref: '#/components/schemas/BlikAlias200'
+        responseCode:
+          type: integer
+          default: 0
+    ErrorCodeResponse:
+      properties:
+        error:
+          type: string
+          example: Undefined error
+          default: Undefined error
+        code:
+          type: integer
+          example: 500
+          default: 500
+      type: object
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
+    BlikAlias200:
+      properties:
+        value:
+          type: string
+          description: alias value
+        type:
+          type: string
+          description: alias type
+        status:
+          type: string
+          description: alias status
+        expirationDate:
+          type: string
+          description: alias expiration date
+    TransactionNotFoundResponse:
+      properties:
+        error:
+          type: string
+          default: Transaction not found
+          example: Transaction not found
+        responseCode:
+          type: number
+          default: 0
+          example: 0
+    ChargeByAlias409:
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            alternativeKeys:
+              type: array
+              items:
+                $ref: '#/components/schemas/alternativeKeysItem'
+        code:
+          type: integer
+          example: 51
     BlikOneClick:
       type: object
       required:
@@ -235,20 +316,6 @@ components:
         recurring:
           description: null
           $ref: '#/components/schemas/RecurringParamsIn'
-    ChargeByAlias409:
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            alternativeKeys:
-              type: array
-              items:
-                $ref: '#/components/schemas/alternativeKeysItem'
-        code:
-          type: integer
-          example: 51
     RecurringParams:
       type: object
       properties:
@@ -272,62 +339,12 @@ components:
       required:
       - token
       - blikCode
-    ErrorCodeResponse:
-      properties:
-        error:
-          type: string
-          example: Undefined error
-          default: Undefined error
-        code:
-          type: integer
-          example: 500
-          default: 500
-      type: object
     alternativeKeysItem:
       properties:
         label:
           type: string
         alias:
           type: string
-    Transaction200Blik:
-      properties:
-        data:
-          description: Array of objects related to the BLIK alias
-          items:
-            $ref: '#/components/schemas/BlikAlias200'
-        responseCode:
-          type: integer
-          default: 0
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
-    UnauthorizedResponse:
-      properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
-    TransactionNotFoundResponse:
-      properties:
-        error:
-          type: string
-          default: Transaction not found
-          example: Transaction not found
-        responseCode:
-          type: number
-          default: 0
-          example: 0
     RecurringParamsIn:
       description: 'An object containing information on BLIK recurring payment.
 
@@ -375,33 +392,16 @@ components:
           description: Parameter to control the verification of whether the bank supports recursion. If set to false, it is not checked if the bank supports recursion.
           default: true
           type: boolean
-    BlikChargeByCodeResponse:
+    UnauthorizedResponse:
       properties:
-        data:
-          properties:
-            orderId:
-              type: integer
-              format: int64
-            message:
-              type: string
-          type: object
-        responseCode:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
           type: number
-          default: 0
-    BlikAlias200:
-      properties:
-        value:
-          type: string
-          description: alias value
-        type:
-          type: string
-          description: alias type
-        status:
-          type: string
-          description: alias status
-        expirationDate:
-          type: string
-          description: alias expiration date
+          default: 401
+          example: 401
     BlikOneClick_2:
       type: object
       required:
