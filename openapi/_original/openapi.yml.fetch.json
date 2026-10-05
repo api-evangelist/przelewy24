@@ -1,0 +1,12 @@
+{
+ "url": "https://developers.przelewy24.pl/yaml/en_documentation_1.0.yaml",
+ "requested_url": "https://developers.przelewy24.pl/yaml/en_documentation_1.0.yaml",
+ "status": 200,
+ "content_type": "application/yaml",
+ "bytes": 224610,
+ "sha256": "a2ee47f2c905e86c83d403243378e57321555887c864c799a42e4c8fb0aeecc8",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.909), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

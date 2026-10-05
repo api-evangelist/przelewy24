@@ -1,0 +1,12 @@
+{
+ "url": "https://developers.przelewy24.pl/marketplace/p24MarketplaceAPIDocumentation_1.0.1_en.yaml",
+ "requested_url": "https://developers.przelewy24.pl/marketplace/p24MarketplaceAPIDocumentation_1.0.1_en.yaml",
+ "status": 200,
+ "content_type": "application/yaml",
+ "bytes": 46004,
+ "sha256": "09521fb76b5f91c4caa14fdd807594bdf61f9846c4f60e1837156e0c1f424a8f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
