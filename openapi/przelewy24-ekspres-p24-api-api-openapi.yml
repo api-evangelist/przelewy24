@@ -388,112 +388,93 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TransferHistory200ResponseBody:
+    UserBalanceResponse200Body:
+      properties:
+        balance:
+          description: Object representing the account balance for a given wallet
+          items:
+            $ref: '#/components/schemas/BalanceObjectBody'
+        timestamp:
+          type: integer
+          description: Unix time stamp of the exact moment for which the results are presented
+    TransferRequestResultObjectBody:
       properties:
         result:
-          description: Comprises a table of objects of the transfer history or an empty table if no transfers have been found
-          items:
-            $ref: '#/components/schemas/HistoryOutObjectBody'
-    GeneralErrorObjectResponseBody:
+          description: Includes the object of the query result
+          $ref: '#/components/schemas/TransferOutObjectBody'
+    TransferRequestPostBody:
       properties:
-        error:
-          description: null
-          $ref: '#/components/schemas/GeneralErrorObject'
-    TransferP24RefundObject:
-      properties:
-        sessionId:
+        transfer:
+          description: Object of transfer
+          allOf:
+          - $ref: '#/components/schemas/TransferObjectBody'
+        type:
           type: string
-          maxLength: 255
-          description: Session ID in Przelewy24 system
-        title:
-          type: string
-          maxLength: 255
-          description: Title of refund transaction
+          description: 'Payment types available: wallet, p24, p24mobile'
+          example: wallet
+        express:
+          type: boolean
+          description: 'Default setting - True: <br/>True – upon payment, the transfer will be sent in the express mode,<br/> False – upon payment, the transfer will be sent in the elixir mode.'
+          default: true
+          example: true
         currency:
           type: string
           maxLength: 3
-          description: 'Currency in which refund will be executed as ISO 4217 code (currently available: EUR, PLN)'
-        amount:
+          description: Transfer currency in which the funds will be collected for specific payment types:<br/> wallet – funds will be collected from the wallet in a given currency;<br/> p24, p24mobile – the currency in which the client will pay in their funds,<br/>
+          example: PLN
+        send:
           type: integer
-          description: 'Amount  of  created  refund  in  smallest denomination<br/> Example: "100" (1 PLN)'
-        overrefund:
+          description: 'Values:<br/> 0 - none,<br/> 1 – send an email with the url to the recipient of the transfer ,<br/> 2 – send an email with the url to the sender of the transfer,<br/> 4 – send an email with a confirmation of completion to the recipient,<br/> 8 – send an email with a confirmation of completion to the sender.<br/> In order to choose, e.g. two options, provide the sum of the respective values: email with url to the sender + to the recipient + email with confirmation to the sender:<br/> 2 + 1 + 8 = 11 -> value to be provided'
+          example: 11
+        regulations:
           type: boolean
           default: false
-          description: If  TRUE,  refund  will  be  executed <b>no matter if there was any other refunds executed for this transaction earlier</b>. It ignores error 2010.<br/><b>Default value is FALSE</b>
-      required:
-      - sessionId
-      - title
-      - currency
-      - amount
-    BalanceObjectBody:
-      properties:
-        amount:
+          description: 'Acceptance of Przelewy24 regulations: <br/>false – display consent on p24 website (default),<br/>true – consent granted, do not display.<br/>In case the „true” parameter is sent, the consent – worded as follows – must be displayed on the Partner’s website: „I hereby state that I have read the [regulations](https://www.przelewy24.pl/regulamin) and [information obligation](https://www.przelewy24.pl/obowiazekinformacyjny) of ”Przelewy24”. <br/>Under words <i>regulations</i> and <i>information obligation</i> there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default.'
+        id:
+          type: string
+          maxLength: 255
+          description: Unique transfer ID, UUID recommended
+        sign:
+          type: string
+          maxLength: 255
+          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b>Calculation of sign parameter</b></a>
+        label:
+          type: string
+          maxLength: 20
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> Additional description in the transfer title.<br/><br/> Can be send in the object of transfer, in the <b>label</b> parameter. Value from the object overwirtes value from this parameter
+        ttl:
           type: integer
-          description: The amount of the balance in the smallest denomination (grosz)
-        currency:
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>Timestamp – date and time after which it will not be possible to pay the transaction<br/><br/>NOTE! For the parameter to work in P24 system, please send a request to partner@przelewy24.pl<br/>Example:<br/><br/> 1577833200 = 2020-01-01 00:00:00<br/>0 = no limit (as default)
+        paymentMethod:
+          type: integer
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> The payment method selected in P24, see <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1payment~1methods/get"><b>v1/payment/methods</b></a>
+        returnUrl:
           type: string
-          maxLength: 3
-          description: Currency in the form of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) code
-          example: PLN
-    TransferBasketOutObjectBody:
-      properties:
-        transferRequestId:
-          type: string
-          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „pay”
-        transferIds:
-          type: array
-          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „payout”
-          items:
-            type: integer
-        url:
-          type: string
-          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
-    PersonObjectBody:
-      properties:
-        name:
-          type: string
-          maxLength: 100
-          description: Name (company / name and surname)
-        email:
-          type: string
-          maxLength: 100
-          description: Email (used later for sending notifications)
-        address:
-          type: string
-          maxLength: 100
-          description: Address – street name, street no., apartment no.
-        zip:
+          maxLength: 255
+          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>The address to which the client will be redirected after processing the payment in Przelewy24.pl. By default, the client will return to the URL address generated upon transfer registration.
+        sdkVersion:
           type: string
           maxLength: 10
-          description: Postal code – validated depending on the <b>country</b> parameter
-        city:
-          type: string
-          maxLength: 50
-          description: City
-        country:
-          type: string
-          maxLength: 2
-          description: '2-character country code ([ISO-3166-1](https://pl.wikipedia.org/wiki/ISO_3166-1_alfa-2))<br/> exception: UK = GB, Great Britain'
+          default: '3.0'
+          description: <b>Additional fields used solely for payments of the following type p24mobile.</b><br/> Mobile library version number must be provided. This parameter may be obtained directly from the library (iOS - class P24, Android - class P24SdkVersion). The default value sent is „3.0”.
       required:
-      - name
-      - email
-      - address
-      - zip
-      - city
-      - country
-    TransferOutObjectBody:
+      - transfer
+      - type
+      - currency
+      - send
+      - id
+      - sign
+    PaymentMethodObjectResponseBody:
       properties:
-        transferRequestId:
+        id:
+          type: integer
+          description: Unique payment method ID
+        name:
           type: string
-          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „pay”
-        transferIds:
-          type: array
-          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „payout”
-          items:
-            type: integer
-        url:
-          type: string
-          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
+          description: Name of a payment method
+        status:
+          type: boolean
+          description: True – ON, False – OFF
     HistoryOutObjectBody:
       properties:
         transfer:
@@ -585,15 +566,139 @@ components:
       - send
       - id
       - sign
-    UserBalanceResponse200Body:
+    TransferBasketResultBody:
       properties:
-        balance:
-          description: Object representing the account balance for a given wallet
-          items:
-            $ref: '#/components/schemas/BalanceObjectBody'
-        timestamp:
+        result:
+          description: Includes the object of the query result
+          $ref: '#/components/schemas/TransferBasketOutObjectBody'
+    GetBankCheck:
+      properties:
+        available:
+          type: boolean
+          description: Indication whether the bank is active
+          example: true
+    PutPaymentRefundResponse:
+      properties:
+        transferId:
           type: integer
-          description: Unix time stamp of the exact moment for which the results are presented
+          description: ID of refunded transfer
+        refundId:
+          type: integer
+          description: ID of refund (important for <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>)
+        amount:
+          type: integer
+          description: Amount of created refund in smallest denomination<br/><br/> 1000 = 10.00
+        currency:
+          type: string
+          maxLength: 3
+          description: Currency of created refund as ISO 4217 code
+    BalanceObjectBody:
+      properties:
+        amount:
+          type: integer
+          description: The amount of the balance in the smallest denomination (grosz)
+        currency:
+          type: string
+          maxLength: 3
+          description: Currency in the form of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) code
+          example: PLN
+    GeneralErrorObject:
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    PersonObjectBody:
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          description: Name (company / name and surname)
+        email:
+          type: string
+          maxLength: 100
+          description: Email (used later for sending notifications)
+        address:
+          type: string
+          maxLength: 100
+          description: Address – street name, street no., apartment no.
+        zip:
+          type: string
+          maxLength: 10
+          description: Postal code – validated depending on the <b>country</b> parameter
+        city:
+          type: string
+          maxLength: 50
+          description: City
+        country:
+          type: string
+          maxLength: 2
+          description: '2-character country code ([ISO-3166-1](https://pl.wikipedia.org/wiki/ISO_3166-1_alfa-2))<br/> exception: UK = GB, Great Britain'
+      required:
+      - name
+      - email
+      - address
+      - zip
+      - city
+      - country
+    TransferOutObjectBody:
+      properties:
+        transferRequestId:
+          type: string
+          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „pay”
+        transferIds:
+          type: array
+          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a> as type „payout”
+          items:
+            type: integer
+        url:
+          type: string
+          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
+    TransferP24RefundObject:
+      properties:
+        sessionId:
+          type: string
+          maxLength: 255
+          description: Session ID in Przelewy24 system
+        title:
+          type: string
+          maxLength: 255
+          description: Title of refund transaction
+        currency:
+          type: string
+          maxLength: 3
+          description: 'Currency in which refund will be executed as ISO 4217 code (currently available: EUR, PLN)'
+        amount:
+          type: integer
+          description: 'Amount  of  created  refund  in  smallest denomination<br/> Example: "100" (1 PLN)'
+        overrefund:
+          type: boolean
+          default: false
+          description: If  TRUE,  refund  will  be  executed <b>no matter if there was any other refunds executed for this transaction earlier</b>. It ignores error 2010.<br/><b>Default value is FALSE</b>
+      required:
+      - sessionId
+      - title
+      - currency
+      - amount
+    PostTransferRefundBody:
+      properties:
+        refund:
+          type: object
+          description: Refund object
+          allOf:
+          - $ref: '#/components/schemas/TransferP24RefundObject'
+        id:
+          type: string
+          maxLength: 255
+          description: Unique transfer ID, UUID recommended
+        sign:
+          type: string
+          maxLength: 255
+          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b> sign parameter calculation</b></a>
+      required:
+      - refund
+      - id
+      - sign
     BankAvailabilityObjectResponseBody:
       properties:
         name:
@@ -615,107 +720,27 @@ components:
         holidays:
           type: boolean
           description: Availability on public holidays:<br/> false – unavailable<br/>true – available
-    PostTransferRefundBody:
+    GeneralErrorObjectResponseBody:
       properties:
-        refund:
-          type: object
-          description: Refund object
-          allOf:
-          - $ref: '#/components/schemas/TransferP24RefundObject'
-        id:
-          type: string
-          maxLength: 255
-          description: Unique transfer ID, UUID recommended
-        sign:
-          type: string
-          maxLength: 255
-          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b> sign parameter calculation</b></a>
-      required:
-      - refund
-      - id
-      - sign
-    TransferBasketResultBody:
+        error:
+          description: null
+          $ref: '#/components/schemas/GeneralErrorObject'
+    TransferHistory200ResponseBody:
       properties:
         result:
-          description: Includes the object of the query result
-          $ref: '#/components/schemas/TransferBasketOutObjectBody'
-    TransferRequestPostBody:
-      properties:
-        transfer:
-          description: Object of transfer
-          allOf:
-          - $ref: '#/components/schemas/TransferObjectBody'
-        type:
-          type: string
-          description: 'Payment types available: wallet, p24, p24mobile'
-          example: wallet
-        express:
-          type: boolean
-          description: 'Default setting - True: <br/>True – upon payment, the transfer will be sent in the express mode,<br/> False – upon payment, the transfer will be sent in the elixir mode.'
-          default: true
-          example: true
-        currency:
-          type: string
-          maxLength: 3
-          description: Transfer currency in which the funds will be collected for specific payment types:<br/> wallet – funds will be collected from the wallet in a given currency;<br/> p24, p24mobile – the currency in which the client will pay in their funds,<br/>
-          example: PLN
-        send:
-          type: integer
-          description: 'Values:<br/> 0 - none,<br/> 1 – send an email with the url to the recipient of the transfer ,<br/> 2 – send an email with the url to the sender of the transfer,<br/> 4 – send an email with a confirmation of completion to the recipient,<br/> 8 – send an email with a confirmation of completion to the sender.<br/> In order to choose, e.g. two options, provide the sum of the respective values: email with url to the sender + to the recipient + email with confirmation to the sender:<br/> 2 + 1 + 8 = 11 -> value to be provided'
-          example: 11
-        regulations:
-          type: boolean
-          default: false
-          description: 'Acceptance of Przelewy24 regulations: <br/>false – display consent on p24 website (default),<br/>true – consent granted, do not display.<br/>In case the „true” parameter is sent, the consent – worded as follows – must be displayed on the Partner’s website: „I hereby state that I have read the [regulations](https://www.przelewy24.pl/regulamin) and [information obligation](https://www.przelewy24.pl/obowiazekinformacyjny) of ”Przelewy24”. <br/>Under words <i>regulations</i> and <i>information obligation</i> there must be hyperlinks redirecting to websites with these documents. The checkbox must not be ticked by default.'
-        id:
-          type: string
-          maxLength: 255
-          description: Unique transfer ID, UUID recommended
-        sign:
-          type: string
-          maxLength: 255
-          description: Signature calculated separately for each transfer. For more information see <a href="#tag/Calculation-of-sign-parameter"><b>Calculation of sign parameter</b></a>
-        label:
-          type: string
-          maxLength: 20
-          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> Additional description in the transfer title.<br/><br/> Can be send in the object of transfer, in the <b>label</b> parameter. Value from the object overwirtes value from this parameter
-        ttl:
-          type: integer
-          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>Timestamp – date and time after which it will not be possible to pay the transaction<br/><br/>NOTE! For the parameter to work in P24 system, please send a request to partner@przelewy24.pl<br/>Example:<br/><br/> 1577833200 = 2020-01-01 00:00:00<br/>0 = no limit (as default)
-        paymentMethod:
-          type: integer
-          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/> The payment method selected in P24, see <a href="#tag/Ekspres-P24-API/paths/~1express~1v1~1payment~1methods/get"><b>v1/payment/methods</b></a>
-        returnUrl:
-          type: string
-          maxLength: 255
-          description: <b>Additional fields used solely for payments of the following types p24, p24mobile.</b><br/>The address to which the client will be redirected after processing the payment in Przelewy24.pl. By default, the client will return to the URL address generated upon transfer registration.
-        sdkVersion:
-          type: string
-          maxLength: 10
-          default: '3.0'
-          description: <b>Additional fields used solely for payments of the following type p24mobile.</b><br/> Mobile library version number must be provided. This parameter may be obtained directly from the library (iOS - class P24, Android - class P24SdkVersion). The default value sent is „3.0”.
-      required:
-      - transfer
-      - type
-      - currency
-      - send
-      - id
-      - sign
-    PutPaymentRefundResponse:
+          description: Comprises a table of objects of the transfer history or an empty table if no transfers have been found
+          items:
+            $ref: '#/components/schemas/HistoryOutObjectBody'
+    PutPaymentRefundBody:
       properties:
         transferId:
           type: integer
-          description: ID of refunded transfer
-        refundId:
-          type: integer
-          description: ID of refund (important for <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>)
+          description: ID of Ekspres transfer that we want to refund
         amount:
           type: integer
-          description: Amount of created refund in smallest denomination<br/><br/> 1000 = 10.00
-        currency:
-          type: string
-          maxLength: 3
-          description: Currency of created refund as ISO 4217 code
+          description: Amount to refund, if empty by default whole transfer will be refunded. Refund is always in currency of original transfer
+      required:
+      - transferId
     TransferObjectBody:
       properties:
         iban:
@@ -766,44 +791,19 @@ components:
       - amountOut
       - currencyOut
       - externalParam
-    PaymentMethodObjectResponseBody:
+    TransferBasketOutObjectBody:
       properties:
-        id:
-          type: integer
-          description: Unique payment method ID
-        name:
+        transferRequestId:
           type: string
-          description: Name of a payment method
-        status:
-          type: boolean
-          description: True – ON, False – OFF
-    PutPaymentRefundBody:
-      properties:
-        transferId:
-          type: integer
-          description: ID of Ekspres transfer that we want to refund
-        amount:
-          type: integer
-          description: Amount to refund, if empty by default whole transfer will be refunded. Refund is always in currency of original transfer
-      required:
-      - transferId
-    TransferRequestResultObjectBody:
-      properties:
-        result:
-          description: Includes the object of the query result
-          $ref: '#/components/schemas/TransferOutObjectBody'
-    GeneralErrorObject:
-      properties:
-        code:
+          description: Query ID of a registered transfer, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „pay”
+        transferIds:
+          type: array
+          description: Table of registered transfers, marked in <a href="#tag/Notifications-on-transfer-status"><b>notifications</b></a>.</b><br/> as type „payout”
+          items:
+            type: integer
+        url:
           type: string
-        description:
-          type: string
-    GetBankCheck:
-      properties:
-        available:
-          type: boolean
-          description: Indication whether the bank is active
-          example: true
+          description: The URL address that allows you to check the current status of the transfer. In case of payments in P24 mode, the redirection to przelewy24.pl will take place in order for the transaction to be paid.
   securitySchemes:
     basicAuth:
       description: This is the default authentication method. User login is API REST key the password assigned to it.

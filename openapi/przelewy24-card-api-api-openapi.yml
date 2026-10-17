@@ -246,32 +246,16 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    ChargeCardSuccessResponse:
+    InvalidInputData:
       properties:
-        data:
-          properties:
-            orderId:
-              type: integer
-              format: int64
-              description: Registered transaction ID
-          type: object
-        responseCode:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
           type: number
-          default: 0
-          example: 0
-    CardPaySuccessResponse:
-      properties:
-        data:
-          properties:
-            orderId:
-              type: integer
-              format: int64
-            redirectUrl:
-              type: string
-          type: object
-        responseCode:
-          type: number
-          example: 0
+          default: 400
+          example: 400
     CardPayThreeDSecureResponse:
       properties:
         data:
@@ -285,6 +269,18 @@ components:
         responseCode:
           type: number
           example: 0
+    TransactionRejectJsonRequestBodyV11:
+      properties:
+        orderId:
+          type: integer
+          format: int64
+          description: Transaction ID assigned by Przelewy24
+        sessionId:
+          type: string
+          description: Unique ID from Partner’s system
+        sign:
+          type: string
+          description: <br>Checksum of parameters:<br> {<font color = "brown">"merchantId":</font>int,<font color = "brown">"orderId":</font>int,<font color = "brown">"sessionId":</font>"string",<font color = "brown">"crc":</font>"string"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
     cardinfores:
       properties:
         data:
@@ -312,6 +308,50 @@ components:
           type: number
           default: 0
           example: 0
+    CardChargeRequestBody:
+      properties:
+        token:
+          type: string
+          description: Token registered by <a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post"><b>transaction/register</b></a> method. Card reference number must be provided during transaction registration in <b>methodRefId</b> parameter.
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
+    TransactionReject200:
+      properties:
+        data:
+          properties:
+            status:
+              type: string
+              example: success
+          type: object
+        responseCode:
+          type: string
+          example: '0'
+    CardPayResponse409:
+      properties:
+        error:
+          type: string
+          example: Unable to make payment.
+        code:
+          type: number
+    ErrorCodeResponse:
+      properties:
+        error:
+          type: string
+          example: Undefined error
+          default: Undefined error
+        code:
+          type: integer
+          example: 500
+          default: 500
+      type: object
     CardRegisterRequestBody:
       type: object
       properties:
@@ -337,32 +377,6 @@ components:
       - cardDate
       - cvv
       - clientName
-    CardChargeRequestBody:
-      properties:
-        token:
-          type: string
-          description: Token registered by <a href="#tag/Transaction-service-API/paths/~1api~1v1~1transaction~1register/post"><b>transaction/register</b></a> method. Card reference number must be provided during transaction registration in <b>methodRefId</b> parameter.
-    ErrorCodeResponse:
-      properties:
-        error:
-          type: string
-          example: Undefined error
-          default: Undefined error
-        code:
-          type: integer
-          example: 500
-          default: 500
-      type: object
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
     ChargeCard3dsSuccessResponse:
       properties:
         data:
@@ -376,46 +390,32 @@ components:
         responseCode:
           type: number
           example: 0
-    TransactionRejectJsonRequestBodyV11:
-      properties:
-        orderId:
-          type: integer
-          format: int64
-          description: Transaction ID assigned by Przelewy24
-        sessionId:
-          type: string
-          description: Unique ID from Partner’s system
-        sign:
-          type: string
-          description: <br>Checksum of parameters:<br> {<font color = "brown">"merchantId":</font>int,<font color = "brown">"orderId":</font>int,<font color = "brown">"sessionId":</font>"string",<font color = "brown">"crc":</font>"string"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
-    TransactionReject200:
+    ChargeCardSuccessResponse:
       properties:
         data:
           properties:
-            status:
-              type: string
-              example: success
+            orderId:
+              type: integer
+              format: int64
+              description: Registered transaction ID
           type: object
         responseCode:
-          type: string
-          example: '0'
-    CardPayResponse409:
-      properties:
-        error:
-          type: string
-          example: Unable to make payment.
-        code:
           type: number
-    UnauthorizedResponse:
+          default: 0
+          example: 0
+    CardPaySuccessResponse:
       properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
+        data:
+          properties:
+            orderId:
+              type: integer
+              format: int64
+            redirectUrl:
+              type: string
+          type: object
+        responseCode:
           type: number
-          default: 401
-          example: 401
+          example: 0
     cardinfores_2:
       properties:
         data:

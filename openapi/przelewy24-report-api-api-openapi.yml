@@ -197,22 +197,31 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
-    Refund:
+    GeneralErrorResponse:
       properties:
-        type:
+        error:
           type: string
-          description: 'Possible values: batch, refund, transaction'
-        amount:
-          type: integer
-          description: Amount
-        currency:
+        code:
           type: string
-          description: Currency
-          example: PLN
-        details:
-          description: Array of objects depended of type
+    409ErrorResponse:
+      properties:
+        data:
+          type: array
           items:
-            $ref: '#/components/schemas/RefundObject'
+            type: string
+        responseCode:
+          type: string
+    PageInformationObject:
+      properties:
+        recordsOnPage:
+          type: integer
+          description: Amount records on current page
+        recordsAll:
+          type: integer
+          description: Amount of all records
+        pageCount:
+          type: integer
+          description: Amount of pages
     Batch:
       properties:
         type:
@@ -229,22 +238,6 @@ components:
           description: Array of objects depended of type
           items:
             $ref: '#/components/schemas/BatchObject'
-    HistoryError400Body:
-      properties:
-        error:
-          type: string
-          example: Invalid data provided
-        code:
-          type: string
-          example: 400
-        validation:
-          items:
-            $ref: '#/components/schemas/ValidationObject'
-    ValidationObject:
-      properties:
-        type:
-          type: array
-          example: Provided type is unknown
     BatchDetailsError400Body:
       properties:
         code:
@@ -253,6 +246,32 @@ components:
         error:
           type: string
           example: Value for field batch is invalid
+    WithdrawalResponseBody:
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+        responseCode:
+          type: string
+    IssueWithdrawalRequestBody:
+      properties:
+        currency:
+          type: string
+          description: Currency
+        timestamp:
+          type: integer
+          description: Timestamp
+        affiliateId:
+          type: integer
+          description: Affiliated Id
+    OverallObject:
+      oneOf:
+      - $ref: '#/components/schemas/Batch'
+      - $ref: '#/components/schemas/Transaction'
+      - $ref: '#/components/schemas/Refund'
+      discriminator:
+        propertyName: details
     Transaction:
       properties:
         type:
@@ -269,31 +288,54 @@ components:
           description: Array of objects depended of type
           items:
             $ref: '#/components/schemas/TransactionObject'
-    HistoryDataObject:
-      oneOf:
-      - $ref: '#/components/schemas/Batch'
-      - $ref: '#/components/schemas/Transaction'
-      - $ref: '#/components/schemas/Refund'
-      discriminator:
-        propertyName: details
-    OverallObject:
-      oneOf:
-      - $ref: '#/components/schemas/Batch'
-      - $ref: '#/components/schemas/Transaction'
-      - $ref: '#/components/schemas/Refund'
-      discriminator:
-        propertyName: details
-    IssueWithdrawalRequestBody:
+    ValidationObject:
       properties:
-        currency:
+        type:
+          type: array
+          example: Provided type is unknown
+    HistoryError400Body:
+      properties:
+        error:
           type: string
-          description: Currency
-        timestamp:
+          example: Invalid data provided
+        code:
+          type: string
+          example: 400
+        validation:
+          items:
+            $ref: '#/components/schemas/ValidationObject'
+    DataBatchDetailsObject:
+      properties:
+        overall:
+          description: Batch overall information
+          items: null
+          $ref: '#/components/schemas/OverallObject'
+        transactions:
+          description: List of transactions
+          type: array
+        refunds:
+          description: List of refunds
+          type: array
+    BatchObject:
+      properties:
+        dateIn:
+          type: string
+          description: 'Date of creating batch. Format: “YYYY-MM-DD HH:MM:SS”'
+        dateOut:
+          type: string
+          description: 'Date of withdrawal. Format: “YYYY-MM-DD HH:MM:SS”'
+        batchId:
           type: integer
-          description: Timestamp
-        affiliateId:
+          description: Unique id of withdrawal
+        commision:
           type: integer
-          description: Affiliated Id
+          description: Sum of commisions
+        charge:
+          type: integer
+          description: Charge
+        refund:
+          type: integer
+          description: Sum of refunds
     BatchDetails200ResponseBody:
       properties:
         token:
@@ -318,53 +360,13 @@ components:
           description: Array of transactions, refunds and batch
           items:
             $ref: '#/components/schemas/DataBatchDetailsObject'
-    PageInformationObject:
-      properties:
-        recordsOnPage:
-          type: integer
-          description: Amount records on current page
-        recordsAll:
-          type: integer
-          description: Amount of all records
-        pageCount:
-          type: integer
-          description: Amount of pages
-    WithdrawalResponseBody:
-      properties:
-        data:
-          type: array
-          items:
-            type: string
-        responseCode:
-          type: string
-    HistoryResponse200Body:
-      properties:
-        data:
-          description: Array of objects (batches, transactions, refunds)
-          items:
-            $ref: '#/components/schemas/HistoryDataObject'
-        token:
-          type: string
-          description: Token to request next page
-        responseCode:
-          type: integer
-          description: 0 if correct
-        pageInformation:
-          description: Information about pagination
-          items:
-            $ref: '#/components/schemas/PageInformationObject'
-    DataBatchDetailsObject:
-      properties:
-        overall:
-          description: Batch overall information
-          items: null
-          $ref: '#/components/schemas/OverallObject'
-        transactions:
-          description: List of transactions
-          type: array
-        refunds:
-          description: List of refunds
-          type: array
+    HistoryDataObject:
+      oneOf:
+      - $ref: '#/components/schemas/Batch'
+      - $ref: '#/components/schemas/Transaction'
+      - $ref: '#/components/schemas/Refund'
+      discriminator:
+        propertyName: details
     TransactionObject:
       properties:
         settledAmount:
@@ -418,40 +420,38 @@ components:
         fee:
           type: integer
           descirption: Commision
-    GeneralErrorResponse:
-      properties:
-        error:
-          type: string
-        code:
-          type: string
-    409ErrorResponse:
+    HistoryResponse200Body:
       properties:
         data:
-          type: array
+          description: Array of objects (batches, transactions, refunds)
           items:
-            type: string
+            $ref: '#/components/schemas/HistoryDataObject'
+        token:
+          type: string
+          description: Token to request next page
         responseCode:
-          type: string
-    BatchObject:
+          type: integer
+          description: 0 if correct
+        pageInformation:
+          description: Information about pagination
+          items:
+            $ref: '#/components/schemas/PageInformationObject'
+    Refund:
       properties:
-        dateIn:
+        type:
           type: string
-          description: 'Date of creating batch. Format: “YYYY-MM-DD HH:MM:SS”'
-        dateOut:
+          description: 'Possible values: batch, refund, transaction'
+        amount:
+          type: integer
+          description: Amount
+        currency:
           type: string
-          description: 'Date of withdrawal. Format: “YYYY-MM-DD HH:MM:SS”'
-        batchId:
-          type: integer
-          description: Unique id of withdrawal
-        commision:
-          type: integer
-          description: Sum of commisions
-        charge:
-          type: integer
-          description: Charge
-        refund:
-          type: integer
-          description: Sum of refunds
+          description: Currency
+          example: PLN
+        details:
+          description: Array of objects depended of type
+          items:
+            $ref: '#/components/schemas/RefundObject'
     RefundObject:
       properties:
         refundId:

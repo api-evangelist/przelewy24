@@ -100,6 +100,27 @@ paths:
       description: Production server (uses live data)
 components:
   schemas:
+    TransactionVerificationResponse:
+      properties:
+        data:
+          properties:
+            status:
+              type: string
+              default: success
+          type: object
+        responseCode:
+          type: number
+          default: 0
+    InvalidInputData:
+      properties:
+        error:
+          type: string
+          default: Invalid input data
+          example: Invalid input data
+        code:
+          type: number
+          default: 400
+          example: 400
     AdditionalProperties:
       properties:
         shipping:
@@ -145,17 +166,6 @@ components:
               type: string
               maxLength: 255
               description: UserAgent is a string identifying the browser and operating system.
-    TransactionVerificationResponse:
-      properties:
-        data:
-          properties:
-            status:
-              type: string
-              default: success
-          type: object
-        responseCode:
-          type: number
-          default: 0
     TransactionRegistrationResponse:
       properties:
         data:
@@ -166,6 +176,182 @@ components:
         responseCode:
           type: number
           default: 0
+    cardData:
+      type: object
+      description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
+      discriminator:
+        propertyName: transactionType
+        mapping:
+          recurring: '#/components/schemas/recurring'
+          standard: '#/components/schemas/other2'
+          initial: '#/components/schemas/other'
+          1click: '#/components/schemas/other2'
+      properties:
+        means:
+          type: object
+          properties:
+            card:
+              type: object
+              properties:
+                pan:
+                  type: string
+                  description: Payment card number (PAN - personal account number)
+                expYear:
+                  type: integer
+                  description: The year in which the card expires
+                expMonth:
+                  type: integer
+                  description: The month in which the card expires
+                clientName:
+                  type: string
+                  description: Name and surname of the card holder
+                securityCode:
+                  type: string
+                  description: CVV/CVC code
+              required:
+              - pan
+              - expYear
+              - expMonth
+              - clientName
+            referenceNumber:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Reference number (token assigned by P24)
+                securityCode:
+                  type: string
+                  description: Security code
+              required:
+              - id
+            schemeToken:
+              type: object
+              properties:
+                pan:
+                  type: string
+                  description: Token number
+                expYear:
+                  type: integer
+                  description: The year in which the card expires
+                expMonth:
+                  type: integer
+                  description: The month in which the card expires
+                securityCode:
+                  type: string
+                  description: Cryptogram
+                eci:
+                  type: string
+                  description: The Electronic Commerce Indicator
+                type:
+                  type: string
+                  description: Typ tokenu
+                  enum:
+                  - visaToken
+                  - mcToken
+                  - visaMobile
+                  - applepay
+                  - googlepay
+              required:
+              - pan
+              - expYear
+              - expMonth
+              - type
+            xPayPayload:
+              type: object
+              properties:
+                payload:
+                  type: string
+                  description: Base64 encrypted payment payload
+                type:
+                  type: string
+                  description: Payment type
+                  enum:
+                  - applepay
+                  - googlepay
+              required:
+              - payload
+              - type
+        transactionType:
+          type: string
+          description: 'Transaction type:<br> - <b>standard</b> - standard transaction<br> - <b>initial</b> - 1click or recurring initialization transaction. Launched in SCA mode<br> - <b>1click</b> - transaction with a saved card in the presence of the customer<br> - <b>recurring</b> - recurring transaction<br>
+
+            '
+      required:
+      - means
+      - transactionType
+    UnauthorizedResponse:
+      properties:
+        error:
+          type: string
+          default: Incorrect authentication
+          example: Incorrect authentication
+        code:
+          type: number
+          default: 401
+          example: 401
+    TransactionVerificationBody:
+      properties:
+        merchantId:
+          description: Merchant ID
+          type: integer
+        posId:
+          description: Shop identification number (defaults to merchant ID)
+          type: integer
+        sessionId:
+          description: Unique identifier from merchant's system
+          type: string
+          maxLength: 100
+        amount:
+          description: Transaction amount which format is presented as amount in lowest currency unit, e.g. 1.23 PLN = 123
+          type: integer
+        currency:
+          description: Currency
+          type: string
+          maxLength: 3
+          default: PLN
+        orderId:
+          description: Id of an order assigned by P24
+          type: integer
+          format: int64
+        sign:
+          description: Checksum of parameters:<br> {<font color = "brown">"sessionId":</font>"str",<font color = "brown">"orderId":</font>int,<font color = "brown">"amount":</font>int,<font color = "brown">"currency":</font>"str",<font color = "brown">"crc":</font>"str"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
+          type: string
+      required:
+      - posId
+      - sessionId
+      - amount
+      - currency
+      - orderId
+      - sign
+      - merchantId
+    CartParameters:
+      description: Cart Parameters
+      type: object
+      required:
+      - sellerId
+      - sellerCategory
+      properties:
+        sellerId:
+          type: string
+          description: Shop ID on the part of Partner
+        sellerCategory:
+          type: string
+          description: Shop category
+        name:
+          type: string
+          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
+        description:
+          type: string
+          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
+        quantity:
+          type: integer
+          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
+        price:
+          type: integer
+          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
+        number:
+          type: string
+          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
     TransactionRequestBody1:
       type: object
       properties:
@@ -378,192 +564,6 @@ components:
       - urlReturn
       - ttl
       - sign
-    TransactionVerificationBody:
-      properties:
-        merchantId:
-          description: Merchant ID
-          type: integer
-        posId:
-          description: Shop identification number (defaults to merchant ID)
-          type: integer
-        sessionId:
-          description: Unique identifier from merchant's system
-          type: string
-          maxLength: 100
-        amount:
-          description: Transaction amount which format is presented as amount in lowest currency unit, e.g. 1.23 PLN = 123
-          type: integer
-        currency:
-          description: Currency
-          type: string
-          maxLength: 3
-          default: PLN
-        orderId:
-          description: Id of an order assigned by P24
-          type: integer
-          format: int64
-        sign:
-          description: Checksum of parameters:<br> {<font color = "brown">"sessionId":</font>"str",<font color = "brown">"orderId":</font>int,<font color = "brown">"amount":</font>int,<font color = "brown">"currency":</font>"str",<font color = "brown">"crc":</font>"str"} <br><br>calculated with the use of sha384<br><br> <b><font color = "#DB2053">IMPORTANT!:</font></b><br>  in case json_encode function is used, the following attributes should be added <br> "JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES"
-          type: string
-      required:
-      - posId
-      - sessionId
-      - amount
-      - currency
-      - orderId
-      - sign
-      - merchantId
-    InvalidInputData:
-      properties:
-        error:
-          type: string
-          default: Invalid input data
-          example: Invalid input data
-        code:
-          type: number
-          default: 400
-          example: 400
-    cardData:
-      type: object
-      description: <b><font color = "#DB2053">IN PREPARATION!</font></b> An object containing card data
-      discriminator:
-        propertyName: transactionType
-        mapping:
-          recurring: '#/components/schemas/recurring'
-          standard: '#/components/schemas/other2'
-          initial: '#/components/schemas/other'
-          1click: '#/components/schemas/other2'
-      properties:
-        means:
-          type: object
-          properties:
-            card:
-              type: object
-              properties:
-                pan:
-                  type: string
-                  description: Payment card number (PAN - personal account number)
-                expYear:
-                  type: integer
-                  description: The year in which the card expires
-                expMonth:
-                  type: integer
-                  description: The month in which the card expires
-                clientName:
-                  type: string
-                  description: Name and surname of the card holder
-                securityCode:
-                  type: string
-                  description: CVV/CVC code
-              required:
-              - pan
-              - expYear
-              - expMonth
-              - clientName
-            referenceNumber:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: Reference number (token assigned by P24)
-                securityCode:
-                  type: string
-                  description: Security code
-              required:
-              - id
-            schemeToken:
-              type: object
-              properties:
-                pan:
-                  type: string
-                  description: Token number
-                expYear:
-                  type: integer
-                  description: The year in which the card expires
-                expMonth:
-                  type: integer
-                  description: The month in which the card expires
-                securityCode:
-                  type: string
-                  description: Cryptogram
-                eci:
-                  type: string
-                  description: The Electronic Commerce Indicator
-                type:
-                  type: string
-                  description: Typ tokenu
-                  enum:
-                  - visaToken
-                  - mcToken
-                  - visaMobile
-                  - applepay
-                  - googlepay
-              required:
-              - pan
-              - expYear
-              - expMonth
-              - type
-            xPayPayload:
-              type: object
-              properties:
-                payload:
-                  type: string
-                  description: Base64 encrypted payment payload
-                type:
-                  type: string
-                  description: Payment type
-                  enum:
-                  - applepay
-                  - googlepay
-              required:
-              - payload
-              - type
-        transactionType:
-          type: string
-          description: 'Transaction type:<br> - <b>standard</b> - standard transaction<br> - <b>initial</b> - 1click or recurring initialization transaction. Launched in SCA mode<br> - <b>1click</b> - transaction with a saved card in the presence of the customer<br> - <b>recurring</b> - recurring transaction<br>
-
-            '
-      required:
-      - means
-      - transactionType
-    CartParameters:
-      description: Cart Parameters
-      type: object
-      required:
-      - sellerId
-      - sellerCategory
-      properties:
-        sellerId:
-          type: string
-          description: Shop ID on the part of Partner
-        sellerCategory:
-          type: string
-          description: Shop category
-        name:
-          type: string
-          description: Product name<br/><br/><font color="red">Required for PayPal payment method</font>
-        description:
-          type: string
-          description: Product description<br/><br/><font color="red">Required for PayPal payment method</font>
-        quantity:
-          type: integer
-          description: Product quantity<br/><br/><font color="red">Required for PayPal payment method</font>
-        price:
-          type: integer
-          description: Product price<br/><br/><font color="red">Required for PayPal payment method</font>
-        number:
-          type: string
-          description: Product number<br/><br/><font color="red">Required for PayPal payment method</font>
-    UnauthorizedResponse:
-      properties:
-        error:
-          type: string
-          default: Incorrect authentication
-          example: Incorrect authentication
-        code:
-          type: number
-          default: 401
-          example: 401
     AdditionalProperties_2:
       properties:
         shipping:
