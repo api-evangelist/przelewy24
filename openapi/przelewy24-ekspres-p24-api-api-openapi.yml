@@ -821,3 +821,9 @@ x-tagGroups:
   - Notifications on transfer status
   - Table of transfer statuses
   - Transfer scenarios
+x-provenance:
+  method: harvested
+  publisher: Przelewy24
+  source: https://developers.przelewy24.pl/ekspres/en_ekspres_1.0.3.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
