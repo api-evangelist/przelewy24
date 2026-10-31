@@ -64,60 +64,218 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Przelewy24 is Poland's leading online payment gateway with 91% brand recognition among Polish online consumers. The platform provides REST APIs enabling e-commerce merchants to accept payments via online bank transfers from 165+ Polish banks, credit and debit cards (Visa, Mastercard), BLIK mobile payments, Google Pay, digital wallets, and prepaid cards. Przelewy24 supports PLN and EUR currencies and is widely used by Polish and international merchants targeting the Polish market.
+Przelewy24 is Poland's leading online payment gateway, providing REST APIs for bank transfer payments, card processing, BLIK mobile payments, and multi-currency payment processing for e-commerce merchants. With 91% brand recognition among Polish online customers, the platform connects merchants to over 165 Polish banks and supports payment methods including online bank transfers, credit and debit cards, BLIK, Google Pay, digital wallets, and prepaid cards. The API supports PLN and EUR currencies and enables transaction registration, payment verification, refunds, and real-time webhook notifications for payment events.
 
-**Developer Portal:** https://developers.przelewy24.pl/
+**Areas:** Payments · Payment Gateway · Bank Transfers · BLIK · Card Payments · E-Commerce · Poland · Polish · Multi-Currency · Fintech
 
-## APIs
+## Przelewy24 on APIs.io
 
-| API | Description | Docs |
-|-----|-------------|------|
-| Przelewy24 REST API | Core payment gateway API for transaction registration, verification, card payments, refunds, and payment methods | https://developers.przelewy24.pl/ |
-| Przelewy24 Marketplace API | Split payments and multi-vendor routing for marketplace platforms | https://developers.przelewy24.pl/marketplace/ |
-| Przelewy24 Extended API | Advanced reporting, batch operations, and enterprise features | https://developers.przelewy24.pl/extended/ |
-| Przelewy24 Ekspres API | One-click fast-pay for returning authenticated Przelewy24 users | https://developers.przelewy24.pl/ekspres/ |
+Everything profiled for Przelewy24 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/przelewy24/](https://apis.io/providers/przelewy24/)** — or go straight to one of the APIs or properties below.
 
-## Key Endpoints (REST API v1)
+### APIs (13)
 
-| Method | Endpoint | Purpose |
-|--------|----------|---------|
-| GET | /api/v1/testAccess | Verify API connectivity |
-| GET | /api/v1/payment/methods | List available payment methods |
-| POST | /api/v1/transaction/register | Register a new payment transaction |
-| PUT | /api/v1/transaction/verify | Verify a completed transaction |
-| POST | /api/v1/transaction/refund | Process a refund |
-| GET | /api/v1/transaction/by/sessionId | Retrieve transaction by session ID |
-| POST | /api/v1/card/info | Get card information |
-| POST | /api/v1/card/pay | Initiate card payment |
-| POST | /api/v1/card/charge | Charge a card |
-| POST | /api/v1/card/chargeWith3ds | Charge a card with 3D Secure |
-| POST | /api/v1/transaction/registerOffline | Register offline transaction |
+- [Przelewy24 Additional API functionality API](https://apis.io/apis/przelewy24/przelewy24-additional-api-functionality-api/) — The Additional API functionality API from Przelewy24 — 9 operation(s) for additional api functionality.
+- [Przelewy24 Additional services Mass Payments Transactions API](https://apis.io/apis/przelewy24/przelewy24-additional-services-mass-payments-transactions-api/) — Mass Payment Identification System is an easy way for a payer to make a payment to an individual bank account created. For a payer wishing to make a…
+- [Przelewy24 APay API](https://apis.io/apis/przelewy24/przelewy24-apay-api-api/) — The APay API API from Przelewy24 — 1 operation(s) for apay api.
+- [Przelewy24 BLIK API](https://apis.io/apis/przelewy24/przelewy24-blik-api-api/) — The BLIK API API from Przelewy24 — 4 operation(s) for blik api.
+- [Przelewy24 Card API](https://apis.io/apis/przelewy24/przelewy24-card-api-api/) — The Card API API from Przelewy24 — 5 operation(s) for card api.
+- [Przelewy24 Ekspres P24 API](https://apis.io/apis/przelewy24/przelewy24-ekspres-p24-api-api/) — The Ekspres P24 API API from Przelewy24 — 10 operation(s) for ekspres p24 api.
+- [Przelewy24 GPay API](https://apis.io/apis/przelewy24/przelewy24-gpay-api-api/) — The GPay API API from Przelewy24 — 1 operation(s) for gpay api.
+- [Przelewy24 Marketplace Management API](https://apis.io/apis/przelewy24/przelewy24-marketplace-management-api-api/) — The Marketplace Management API API from Przelewy24 — 5 operation(s) for marketplace management api.
+- [Przelewy24 Marketplace Merchant API](https://apis.io/apis/przelewy24/przelewy24-marketplace-merchant-api-api/) — The Marketplace Merchant API API from Przelewy24 — 2 operation(s) for marketplace merchant api.
+- [Przelewy24 Marketplace Partner API](https://apis.io/apis/przelewy24/przelewy24-marketplace-partner-api-api/) — The Marketplace Partner API API from Przelewy24 — 2 operation(s) for marketplace partner api.
+- [Przelewy24 Recursion (doPayment) API](https://apis.io/apis/przelewy24/przelewy24-recursion-dopayment-api/) — In order to register a recurring transaction, it is necessary to send transaction registration request first to <a…
+- [Przelewy24 Report API](https://apis.io/apis/przelewy24/przelewy24-report-api-api/) — The Report API API from Przelewy24 — 3 operation(s) for report api.
+- [Przelewy24 Transaction service API](https://apis.io/apis/przelewy24/przelewy24-transaction-service-api-api/) — The Transaction service API API from Przelewy24 — 2 operation(s) for transaction service api.
 
-## Authentication
+### Published properties
 
-HTTP Basic Authentication using POS ID (username) and API Key (password). Transaction integrity is secured via SHA-384 signatures generated from the session ID, merchant ID, amount, currency, and CRC key.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Environments
+#### Agentic access (1)
 
-- **Production:** `https://secure.przelewy24.pl/api/v1`
-- **Sandbox:** `https://sandbox.przelewy24.pl/api/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Pricing
+- [Przelewy24 Agentic Access](https://apis.io/agentic-access/przelewy24/przelewy24-agentic-access/)
 
-- No monthly subscription fees
-- No integration fees
-- One-time activation fee: PLN 59 (refundable after 10 transactions in 2 months)
-- Bank transfer commission: ~1.9% per transaction
-- Card payment commission: 1.29% + PLN 0.30 per transaction
-- BLIK commission: ~1.9% per transaction
-- New merchants may qualify for 0% card commission for 12 months via Polska Bezgotówkowa program
+#### JSON Schema (272)
 
-## Resources
+The data models the API reads and writes.
 
-- [Developer Documentation](https://developers.przelewy24.pl/)
-- [Commissions and Fees](https://www.przelewy24.pl/en/offer/commissions-and-fees)
-- [Start Cooperation / Sign Up](https://www.przelewy24.pl/en/start-cooperation)
-- [Payment Methods](https://www.przelewy24.pl/en/payment-methods)
-- [API Technical Support](https://www.przelewy24.pl/en/help-center/api-technical-support)
-- [Status Page](https://status.przelewy24.pl/)
-- [Partner Program](https://www.przelewy24.pl/en/partner-program)
+- [403ForbiddenGeneralError](https://apis.io/schemas/przelewy24/403ForbiddenGeneralError/)
+- [409ErrorResponse](https://apis.io/schemas/przelewy24/409ErrorResponse/)
+- [500UndefinedGeneralError](https://apis.io/schemas/przelewy24/500UndefinedGeneralError/)
+- [AdditionalProperties](https://apis.io/schemas/przelewy24/AdditionalProperties/)
+- [AffiliatesResponse200](https://apis.io/schemas/przelewy24/AffiliatesResponse200/)
+- [AffiliatesResponse400](https://apis.io/schemas/przelewy24/AffiliatesResponse400/)
+- [AffiliatesResponse404](https://apis.io/schemas/przelewy24/AffiliatesResponse404/)
+- [Alias](https://apis.io/schemas/przelewy24/Alias/)
+- [Alternativekey](https://apis.io/schemas/przelewy24/Alternativekey/)
+- [ApiKeyResponse200](https://apis.io/schemas/przelewy24/ApiKeyResponse200/)
+- [ApiKeyResponse400](https://apis.io/schemas/przelewy24/ApiKeyResponse400/)
+- [ApiKeyResponse404](https://apis.io/schemas/przelewy24/ApiKeyResponse404/)
+- [ArrayDetailsDispatchTransaction](https://apis.io/schemas/przelewy24/ArrayDetailsDispatchTransaction/)
+- [AuthorizationRequired](https://apis.io/schemas/przelewy24/AuthorizationRequired/)
+- [AvailabilityHoursResponse](https://apis.io/schemas/przelewy24/AvailabilityHoursResponse/)
+- [BalanceObjectBody](https://apis.io/schemas/przelewy24/BalanceObjectBody/)
+- [BankAvailabilityObjectResponseBody](https://apis.io/schemas/przelewy24/BankAvailabilityObjectResponseBody/)
+- [BasicResponse](https://apis.io/schemas/przelewy24/BasicResponse/)
+- [Batch](https://apis.io/schemas/przelewy24/Batch/)
+- [BatchDetails200ResponseBody](https://apis.io/schemas/przelewy24/BatchDetails200ResponseBody/)
+- [BatchDetailsError400Body](https://apis.io/schemas/przelewy24/BatchDetailsError400Body/)
+- [BatchObject](https://apis.io/schemas/przelewy24/BatchObject/)
+- [BlikAlias200](https://apis.io/schemas/przelewy24/BlikAlias200/)
+- [BlikChargeByAliasResponse](https://apis.io/schemas/przelewy24/BlikChargeByAliasResponse/)
+- [BlikChargeByCodeResponse](https://apis.io/schemas/przelewy24/BlikChargeByCodeResponse/)
+- …and 247 more published on APIs.io
+
+#### JSON-LD (2)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [context Context](https://apis.io/jsonld/przelewy24/context/)
+- [Provider Context](https://apis.io/jsonld/przelewy24/provider/)
+
+#### Examples (141)
+
+Example requests and responses.
+
+- [Additionalproperties_Example](https://apis.io/examples/przelewy24/AdditionalProperties_example/)
+- [Availabilityhoursresponse_Example](https://apis.io/examples/przelewy24/AvailabilityHoursResponse_example/)
+- [Basicresponse_Example](https://apis.io/examples/przelewy24/BasicResponse_example/)
+- [Batchdetails200Responsebody_Example](https://apis.io/examples/przelewy24/BatchDetails200ResponseBody_example/)
+- [Batchdetailserror400Body_Example](https://apis.io/examples/przelewy24/BatchDetailsError400Body_example/)
+- [Batchobject_Example](https://apis.io/examples/przelewy24/BatchObject_example/)
+- [Batch_Example](https://apis.io/examples/przelewy24/Batch_example/)
+- [Blikalias200_Example](https://apis.io/examples/przelewy24/BlikAlias200_example/)
+- [Blikchargebyaliasresponse_Example](https://apis.io/examples/przelewy24/BlikChargeByAliasResponse_example/)
+- [Blikchargebycoderesponse_Example](https://apis.io/examples/przelewy24/BlikChargeByCodeResponse_example/)
+- [Blikoneclick_Example](https://apis.io/examples/przelewy24/BlikOneClick_example/)
+- [Cardchargerequestbody_Example](https://apis.io/examples/przelewy24/CardChargeRequestBody_example/)
+- [Cardnotificationextn_Example](https://apis.io/examples/przelewy24/CardNotificationExtN_example/)
+- [Cardnotificationext_Example](https://apis.io/examples/przelewy24/CardNotificationExt_example/)
+- [Cardpayresponse409_Example](https://apis.io/examples/przelewy24/CardPayResponse409_example/)
+- [Cardpaysuccessresponse_Example](https://apis.io/examples/przelewy24/CardPaySuccessResponse_example/)
+- [Cardpaythreedsecureresponse_Example](https://apis.io/examples/przelewy24/CardPayThreeDSecureResponse_example/)
+- [Cardregisterrequestbody_Example](https://apis.io/examples/przelewy24/CardRegisterRequestBody_example/)
+- [Cartparameters_Example](https://apis.io/examples/przelewy24/CartParameters_example/)
+- [Chargebyalias409_Example](https://apis.io/examples/przelewy24/ChargeByAlias409_example/)
+- [Chargecard3Dssuccessresponse_Example](https://apis.io/examples/przelewy24/ChargeCard3dsSuccessResponse_example/)
+- [Chargecardsuccessresponse_Example](https://apis.io/examples/przelewy24/ChargeCardSuccessResponse_example/)
+- [Databatchdetailsobject_Example](https://apis.io/examples/przelewy24/DataBatchDetailsObject_example/)
+- [Errorcoderesponse_Example](https://apis.io/examples/przelewy24/ErrorCodeResponse_example/)
+- [Generalerrorresponse_Example](https://apis.io/examples/przelewy24/GeneralErrorResponse_example/)
+- …and 116 more published on APIs.io
+
+#### Collections (13)
+
+Postman and Open Collection request collections.
+
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality API](https://apis.io/collections/przelewy24/open-przelewy24-additional-api-functionality-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Additional services Mass Payments Transactions API](https://apis.io/collections/przelewy24/open-przelewy24-additional-services-mass-payments-transactions-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality APay API API](https://apis.io/collections/przelewy24/open-przelewy24-apay-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality BLIK API API](https://apis.io/collections/przelewy24/open-przelewy24-blik-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Card API API](https://apis.io/collections/przelewy24/open-przelewy24-card-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Ekspres P24 API API](https://apis.io/collections/przelewy24/open-przelewy24-ekspres-p24-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality GPay API API](https://apis.io/collections/przelewy24/open-przelewy24-gpay-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Marketplace Management API API](https://apis.io/collections/przelewy24/open-przelewy24-marketplace-management-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Marketplace Merchant API API](https://apis.io/collections/przelewy24/open-przelewy24-marketplace-merchant-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Marketplace Partner API API](https://apis.io/collections/przelewy24/open-przelewy24-marketplace-partner-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Recursion (doPayment) API](https://apis.io/collections/przelewy24/open-przelewy24-recursion-dopayment-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Report API API](https://apis.io/collections/przelewy24/open-przelewy24-report-api-api/)
+- [Ekspres Przelewy24 REST API Documentation Additional API functionality Transaction service API API](https://apis.io/collections/przelewy24/open-przelewy24-transaction-service-api-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Przelewy24 — jsonschema rules](https://apis.io/rules/przelewy24/przelewy24-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Przelewy24 Authentication](https://apis.io/security/przelewy24/przelewy24-authentication/)
+- [Przelewy24 Domain Security](https://apis.io/security/przelewy24/przelewy24-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/przelewy24/plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rate Limits](https://apis.io/rate-limits/przelewy24/rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/przelewy24/finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.przelewy24.pl/en)
+- [Documentation](https://developers.przelewy24.pl/)
+- [Pricing](https://www.przelewy24.pl/en/offer/commissions-and-fees)
+- [Support](https://www.przelewy24.pl/en/help-center/api-technical-support)
+- [Blog](https://www.przelewy24.pl/en/news)
+- [Status](https://status.przelewy24.pl/)
+
+## API Evangelist rating
+
+**Kin Score 37.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 55.4 |
+| Contract governance | 9.8 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 28.9 |
+
+**Agent readiness 27.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.2** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/przelewy24/](https://apis.io/providers/przelewy24/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Przelewy24: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/przelewy24/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
